@@ -1,0 +1,6 @@
+book_filename: "best_r_practices"
+repo: https://github.com/vikram-rawat/Best_R_Practices
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "

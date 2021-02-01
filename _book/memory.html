@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Memory | Learn RDataTable</title>
+  <meta name="description" content="This book is a guide to rich world of RDataTable" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Memory | Learn RDataTable" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book is a guide to rich world of RDataTable" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Memory | Learn RDataTable" />
+  
+  <meta name="twitter:description" content="This book is a guide to rich world of RDataTable" />
+  
+
+<meta name="author" content="Vikram Singh Rawat" />
+
+
+<meta name="date" content="2021-02-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="speed.html"/>
+<link rel="next" href="keystrokes.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Learn RDataTable</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>CoverPage</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="speed.html"><a href="speed.html"><i class="fa fa-check"></i><b>2</b> Speed</a></li>
+<li class="chapter" data-level="3" data-path="memory.html"><a href="memory.html"><i class="fa fa-check"></i><b>3</b> Memory</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="memory.html"><a href="memory.html#pure-function"><i class="fa fa-check"></i><b>3.1</b> Pure function</a></li>
+<li class="chapter" data-level="3.2" data-path="memory.html"><a href="memory.html#impure-functions"><i class="fa fa-check"></i><b>3.2</b> Impure functions</a></li>
+<li class="chapter" data-level="3.3" data-path="memory.html"><a href="memory.html#pass-by-value"><i class="fa fa-check"></i><b>3.3</b> Pass by value</a></li>
+<li class="chapter" data-level="3.4" data-path="memory.html"><a href="memory.html#pass-by-reference"><i class="fa fa-check"></i><b>3.4</b> Pass by reference</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="keystrokes.html"><a href="keystrokes.html"><i class="fa fa-check"></i><b>4</b> Keystrokes</a></li>
+<li class="part"><span><b>II Beginner</b></span></li>
+<li class="chapter" data-level="5" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>5</b> Syntax</a></li>
+<li class="chapter" data-level="6" data-path="from1.html"><a href="from1.html"><i class="fa fa-check"></i><b>6</b> From</a></li>
+<li class="chapter" data-level="7" data-path="where1.html"><a href="where1.html"><i class="fa fa-check"></i><b>7</b> Where</a></li>
+<li class="chapter" data-level="8" data-path="select1.html"><a href="select1.html"><i class="fa fa-check"></i><b>8</b> Select</a></li>
+<li class="chapter" data-level="9" data-path="group1.html"><a href="group1.html"><i class="fa fa-check"></i><b>9</b> Group By</a></li>
+<li class="part"><span><b>III Intermediate</b></span></li>
+<li class="chapter" data-level="10" data-path="from2.html"><a href="from2.html"><i class="fa fa-check"></i><b>10</b> From</a></li>
+<li class="chapter" data-level="11" data-path="where2.html"><a href="where2.html"><i class="fa fa-check"></i><b>11</b> Where</a></li>
+<li class="chapter" data-level="12" data-path="select2.html"><a href="select2.html"><i class="fa fa-check"></i><b>12</b> Select</a></li>
+<li class="chapter" data-level="13" data-path="group2.html"><a href="group2.html"><i class="fa fa-check"></i><b>13</b> Group By</a></li>
+<li class="chapter" data-level="14" data-path="update.html"><a href="update.html"><i class="fa fa-check"></i><b>14</b> Update</a></li>
+<li class="chapter" data-level="15" data-path="addcolumn.html"><a href="addcolumn.html"><i class="fa fa-check"></i><b>15</b> Add Column</a></li>
+<li class="chapter" data-level="16" data-path="append.html"><a href="append.html"><i class="fa fa-check"></i><b>16</b> Append</a></li>
+<li class="chapter" data-level="17" data-path="join.html"><a href="join.html"><i class="fa fa-check"></i><b>17</b> Join</a></li>
+<li class="part"><span><b>IV Advanced</b></span></li>
+<li class="chapter" data-level="18" data-path="melt.html"><a href="melt.html"><i class="fa fa-check"></i><b>18</b> Melt</a></li>
+<li class="chapter" data-level="19" data-path="cast.html"><a href="cast.html"><i class="fa fa-check"></i><b>19</b> Dcast</a></li>
+<li class="chapter" data-level="20" data-path="split.html"><a href="split.html"><i class="fa fa-check"></i><b>20</b> tstrsplit</a></li>
+<li class="chapter" data-level="21" data-path="sd.html"><a href="sd.html"><i class="fa fa-check"></i><b>21</b> .SD</a></li>
+<li class="chapter" data-level="22" data-path="sdcols.html"><a href="sdcols.html"><i class="fa fa-check"></i><b>22</b> .SDcols</a></li>
+<li class="chapter" data-level="23" data-path="later.html"><a href="later.html"><i class="fa fa-check"></i><b>23</b> Delayed calculation {}</a></li>
+<li class="chapter" data-level="24" data-path="set.html"><a href="set.html"><i class="fa fa-check"></i><b>24</b> setFunctions</a></li>
+<li class="chapter" data-level="25" data-path="date.html"><a href="date.html"><i class="fa fa-check"></i><b>25</b> IDate</a></li>
+<li class="chapter" data-level="26" data-path="time.html"><a href="time.html"><i class="fa fa-check"></i><b>26</b> ITime</a></li>
+<li class="chapter" data-level="27" data-path="listcol.html"><a href="listcol.html"><i class="fa fa-check"></i><b>27</b> List Columns</a></li>
+<li class="chapter" data-level="28" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>28</b> Inside a Function</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Learn RDataTable</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="memory" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Memory</h1>
+<p>Before we understand memory imprint in R. Lets start with a basic concept in functional programming.</p>
+<ol style="list-style-type: decimal">
+<li>Pure function</li>
+<li>Impure function.</li>
+</ol>
+<div id="pure-function" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Pure function</h2>
+<p>Any function that doesn’t change the state of all objects in R and return the same value are called pure function.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="memory.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 1.414214</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="memory.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 0.6931472</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="memory.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(mtcars)</span></code></pre></div>
+<pre><code>##  [1] &quot;mpg&quot;  &quot;cyl&quot;  &quot;disp&quot; &quot;hp&quot;   &quot;drat&quot; &quot;wt&quot;   &quot;qsec&quot; &quot;vs&quot;   &quot;am&quot;   &quot;gear&quot;
+## [11] &quot;carb&quot;</code></pre>
+<p>functions like these are called pure function. They don’t change anything at all and They return the same output given same input.</p>
+</div>
+<div id="impure-functions" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Impure functions</h2>
+<p>And everything else is impure function. Functions like :</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="memory.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] -0.4160588 -2.0133703</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="memory.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="memory.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mtcars)</span></code></pre></div>
+<p><img src="begining_rdatatable_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>library will load data.table or any package in R and then you can use it afterwards so it does change the current state of R and Plotting is impure for same reason. While rnorm will produce different result on same input every time.</p>
+<p>All these functions Either don’t give same output on same input or change the global environment in some way. This is crucial in understanding the next concept.</p>
+<p><br/></p>
+<hr />
+<p>There are 2 ways an element can be passed in a function.</p>
+<ol style="list-style-type: decimal">
+<li>pass by value</li>
+<li>pass by reference</li>
+</ol>
+</div>
+<div id="pass-by-value" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Pass by value</h2>
+<p>Most of the function in R use pass by value. almost all the function in base R use pass by value. Where you create a copy of the object pass it in a function and then return the value out of it. for example read this code.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="memory.html#cb12-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> mtcars</span>
+<span id="cb12-2"><a href="memory.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="memory.html#cb12-3" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="cf">function</span>(a){</span>
+<span id="cb12-4"><a href="memory.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">&lt;-</span> a[<span class="dv">1</span>,]</span>
+<span id="cb12-5"><a href="memory.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb12-6"><a href="memory.html#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(a)</span>
+<span id="cb12-7"><a href="memory.html#cb12-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-8"><a href="memory.html#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="memory.html#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="fu">b</span>(a)</span></code></pre></div>
+<pre><code>##           mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4</code></pre>
+<p>But it didn’t change the actual a</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="memory.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(a)</span></code></pre></div>
+<pre><code>##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>in order to change the actual value of a we will have to pass it in a like this.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="memory.html#cb16-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">b</span>(a)</span>
+<span id="cb16-2"><a href="memory.html#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="memory.html#cb16-3" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<pre><code>##           mpg cyl disp  hp drat   wt  qsec vs am gear carb
+## Mazda RX4  21   6  160 110  3.9 2.62 16.46  0  1    4    4</code></pre>
+<p>now the a has been change permanently.</p>
+</div>
+<div id="pass-by-reference" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Pass by reference</h2>
+<p>When you work on huge passing by value could sometime crash your programme. Thus data.table provide pass by reference in almost all of it’s functions.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="memory.html#cb18-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> mtcars</span>
+<span id="cb18-2"><a href="memory.html#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="memory.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">setDT</span>(a)</span>
+<span id="cb18-4"><a href="memory.html#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="memory.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">setnames</span>(<span class="at">x =</span> a,</span>
+<span id="cb18-6"><a href="memory.html#cb18-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">old =</span> <span class="fu">names</span>(a),</span>
+<span id="cb18-7"><a href="memory.html#cb18-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">new =</span> <span class="fu">toupper</span>(<span class="fu">names</span>(a)))</span>
+<span id="cb18-8"><a href="memory.html#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="memory.html#cb18-9" aria-hidden="true" tabindex="-1"></a>a[, b<span class="sc">:</span><span class="er">=</span> <span class="fu">character</span>(.N) ]</span>
+<span id="cb18-10"><a href="memory.html#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="memory.html#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(a)</span></code></pre></div>
+<pre><code>##     MPG CYL DISP  HP DRAT    WT  QSEC VS AM GEAR CARB b
+## 1: 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4  
+## 2: 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4  
+## 3: 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1  
+## 4: 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1  
+## 5: 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2  
+## 6: 18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+<p>I have a constantly in the previous example.</p>
+<ol style="list-style-type: decimal">
+<li>converted a from a data.frame to data.table</li>
+<li>changed all the names from lowercase to uppercase.</li>
+<li>added a new empty character column in a</li>
+</ol>
+<p>and never in any of the statement have I used the assignment operator.</p>
+<p><br/></p>
+<p>These techniques are very beneficial when will learn about them later in other chapters. For the time being you must understand that data.table provides you an alternative to use your memory more effeciently.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="speed.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="keystrokes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/vikram-rawat/beginning_Rdatatable/blob/master/03-memory.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["begining_rdatatable.pdf", "begining_rdatatable.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

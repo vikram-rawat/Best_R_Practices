@@ -1,0 +1,150 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Learn RDataTable},
+  pdfauthor={Vikram Singh Rawat},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{Learn RDataTable}
+\author{Vikram Singh Rawat}
+\date{2021-02-01}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{part-introduction}{%
+\part{Introduction}\label{part-introduction}}
+
+\hypertarget{coverpage}{%
+\chapter*{CoverPage}\label{coverpage}}
+\addcontentsline{toc}{chapter}{CoverPage}
+
+\begin{quote}
+R is Already a Slow Language please don't defame it by using even slower packages.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\includegraphics{figures/cover.png}
+
+\hypertarget{intro}{%
+\chapter{Introduction}\label{intro}}
+
+\begin{quote}
+\emph{I seem to recall that we were targetting 512k Macintoshes. In our dreams we might have seen 16Mb Sun}.
+
+--- Ross Ihaka
+(in reply to the question whether R\&R thought when they started
+out that they would see R using 16G memory on a dual Opteron computer)
+R-help (November 2003)
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+There is a reason open source is successful. That is something one can not do can be done by someone else. It gives you a thousand hands to work on a task and a million eyes to look over it. \textbf{data.table} is an excellent example of such a task which helped people handle data smoothly. It is an Excellent package for manupulating data efficiently. It is written in one of the most low level languages out there; \textbf{C} to use memory and cores more efficiently.
+
+as of 2019 Many people look after the package day and night. It's tried and tested and you shouldn't have any problem using it in production at all. In this book we will try to teach you everything you need to know about using \textbf{data.table} package in R.
+
+If you are wondering, and which you should; why should I learn data.table. I have 4 reasons for you.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  More Speed
+\item
+  Less Memory
+\item
+  Few KeyStrokes
+\item
+  Easy Syntax
+\end{enumerate}
+
+\begin{verbatim}
+NOTE : From now on we will use Rdatatable and the package data.table interchangebly.
+\end{verbatim}
+
+\hypertarget{part-beginner}{%
+\part{Beginner}\label{part-beginner}}
+
+\hypertarget{syntax}{%
+\chapter{Syntax}\label{syntax}}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}

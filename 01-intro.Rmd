@@ -1,0 +1,31 @@
+# Introduction {#intro}
+
+
+> *I seem to recall that we were targetting 512k Macintoshes. In our dreams we might have seen 16Mb Sun*.
+>
+>--- Ross Ihaka 
+>(in reply to the question whether R&R thought when they started
+          out that they would see R using 16G memory on a dual Opteron computer)
+          R-help (November 2003)
+
+<br/>
+
+***
+
+There is a reason open source is successful. That is something one can not do can be done by someone else. It gives you a thousand hands to work on a task and a million eyes to look over it. **data.table** is an excellent example of such a task which helped people handle data smoothly. It is an Excellent package for manupulating data efficiently. It is written in one of the most low level languages out there; **C** to use memory and cores more efficiently. 
+
+
+as of 2019 Many people look after the package day and night. It's tried and tested and you shouldn't have any problem using it in production at all. In this book we will try to teach you everything you need to know about using **data.table** package in R.
+
+If you are wondering, and which you should; why should I learn data.table. I have 4 reasons for you.
+
+1. More Speed
+2. Less Memory
+3. Few KeyStrokes
+4. Easy Syntax
+
+
+```
+NOTE : From now on we will use Rdatatable and the package data.table interchangebly.
+
+```

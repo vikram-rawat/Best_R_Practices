@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Keystrokes | Learn RDataTable</title>
+  <meta name="description" content="This book is a guide to rich world of RDataTable" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Keystrokes | Learn RDataTable" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book is a guide to rich world of RDataTable" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Keystrokes | Learn RDataTable" />
+  
+  <meta name="twitter:description" content="This book is a guide to rich world of RDataTable" />
+  
+
+<meta name="author" content="Vikram Singh Rawat" />
+
+
+<meta name="date" content="2021-02-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="memory.html"/>
+<link rel="next" href="syntax.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Learn RDataTable</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>CoverPage</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="speed.html"><a href="speed.html"><i class="fa fa-check"></i><b>2</b> Speed</a></li>
+<li class="chapter" data-level="3" data-path="memory.html"><a href="memory.html"><i class="fa fa-check"></i><b>3</b> Memory</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="memory.html"><a href="memory.html#pure-function"><i class="fa fa-check"></i><b>3.1</b> Pure function</a></li>
+<li class="chapter" data-level="3.2" data-path="memory.html"><a href="memory.html#impure-functions"><i class="fa fa-check"></i><b>3.2</b> Impure functions</a></li>
+<li class="chapter" data-level="3.3" data-path="memory.html"><a href="memory.html#pass-by-value"><i class="fa fa-check"></i><b>3.3</b> Pass by value</a></li>
+<li class="chapter" data-level="3.4" data-path="memory.html"><a href="memory.html#pass-by-reference"><i class="fa fa-check"></i><b>3.4</b> Pass by reference</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="keystrokes.html"><a href="keystrokes.html"><i class="fa fa-check"></i><b>4</b> Keystrokes</a></li>
+<li class="part"><span><b>II Beginner</b></span></li>
+<li class="chapter" data-level="5" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>5</b> Syntax</a></li>
+<li class="chapter" data-level="6" data-path="from1.html"><a href="from1.html"><i class="fa fa-check"></i><b>6</b> From</a></li>
+<li class="chapter" data-level="7" data-path="where1.html"><a href="where1.html"><i class="fa fa-check"></i><b>7</b> Where</a></li>
+<li class="chapter" data-level="8" data-path="select1.html"><a href="select1.html"><i class="fa fa-check"></i><b>8</b> Select</a></li>
+<li class="chapter" data-level="9" data-path="group1.html"><a href="group1.html"><i class="fa fa-check"></i><b>9</b> Group By</a></li>
+<li class="part"><span><b>III Intermediate</b></span></li>
+<li class="chapter" data-level="10" data-path="from2.html"><a href="from2.html"><i class="fa fa-check"></i><b>10</b> From</a></li>
+<li class="chapter" data-level="11" data-path="where2.html"><a href="where2.html"><i class="fa fa-check"></i><b>11</b> Where</a></li>
+<li class="chapter" data-level="12" data-path="select2.html"><a href="select2.html"><i class="fa fa-check"></i><b>12</b> Select</a></li>
+<li class="chapter" data-level="13" data-path="group2.html"><a href="group2.html"><i class="fa fa-check"></i><b>13</b> Group By</a></li>
+<li class="chapter" data-level="14" data-path="update.html"><a href="update.html"><i class="fa fa-check"></i><b>14</b> Update</a></li>
+<li class="chapter" data-level="15" data-path="addcolumn.html"><a href="addcolumn.html"><i class="fa fa-check"></i><b>15</b> Add Column</a></li>
+<li class="chapter" data-level="16" data-path="append.html"><a href="append.html"><i class="fa fa-check"></i><b>16</b> Append</a></li>
+<li class="chapter" data-level="17" data-path="join.html"><a href="join.html"><i class="fa fa-check"></i><b>17</b> Join</a></li>
+<li class="part"><span><b>IV Advanced</b></span></li>
+<li class="chapter" data-level="18" data-path="melt.html"><a href="melt.html"><i class="fa fa-check"></i><b>18</b> Melt</a></li>
+<li class="chapter" data-level="19" data-path="cast.html"><a href="cast.html"><i class="fa fa-check"></i><b>19</b> Dcast</a></li>
+<li class="chapter" data-level="20" data-path="split.html"><a href="split.html"><i class="fa fa-check"></i><b>20</b> tstrsplit</a></li>
+<li class="chapter" data-level="21" data-path="sd.html"><a href="sd.html"><i class="fa fa-check"></i><b>21</b> .SD</a></li>
+<li class="chapter" data-level="22" data-path="sdcols.html"><a href="sdcols.html"><i class="fa fa-check"></i><b>22</b> .SDcols</a></li>
+<li class="chapter" data-level="23" data-path="later.html"><a href="later.html"><i class="fa fa-check"></i><b>23</b> Delayed calculation {}</a></li>
+<li class="chapter" data-level="24" data-path="set.html"><a href="set.html"><i class="fa fa-check"></i><b>24</b> setFunctions</a></li>
+<li class="chapter" data-level="25" data-path="date.html"><a href="date.html"><i class="fa fa-check"></i><b>25</b> IDate</a></li>
+<li class="chapter" data-level="26" data-path="time.html"><a href="time.html"><i class="fa fa-check"></i><b>26</b> ITime</a></li>
+<li class="chapter" data-level="27" data-path="listcol.html"><a href="listcol.html"><i class="fa fa-check"></i><b>27</b> List Columns</a></li>
+<li class="chapter" data-level="28" data-path="functions.html"><a href="functions.html"><i class="fa fa-check"></i><b>28</b> Inside a Function</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Learn RDataTable</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="keystrokes" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Keystrokes</h1>
+<p>This is a highly controversial topic. People could regard that as a disadvantage as well. But I beg to differ because once you understand a syntax very well you don’t need an explaination of it ever again. Most common of these function are <strong>lm(), rnorm(), &lt;-, == etc…</strong> from base R. You use these syntax everyday without ever looking for documentation for these functions. Because I am sure you have learned them pretty well. But they are nothing more than just plain symbols.</p>
+<p>Take for example If I ask you to <strong>add 3 4 times</strong> using <span class="math inline">\(3+3+3+3\)</span> or <strong>multiply 3 4 times</strong> using <span class="math inline">\(3\times3\times3\times3\)</span> you would be frustrated while <span class="math inline">\(3\times4\)</span> and <span class="math inline">\(3^4\)</span> is much more consise. Same logic for is far more understandable. Symbols like <span class="math inline">\(\sum|\int|\ln|\pi|\)</span> can take some time to understand but will help explain complex ideas easily later on.</p>
+<p>data.table has a very clear and consise syntax. For example:</p>
+<ol style="list-style-type: decimal">
+<li>group by is optional</li>
+<li>select arguement is optional</li>
+<li>you don’t have to decide arguement names</li>
+<li>.SD == Subset of Data</li>
+<li>.SDcols == cols to be chosen for .SD</li>
+<li>.() == list()</li>
+<li>:= == update or append data</li>
+<li>“:=” == multiple updates in a data</li>
+<li>Automatic conversion of list into columns like :</li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="keystrokes.html#cb20-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="keystrokes.html#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="keystrokes.html#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(<span class="cf">function</span>(x){ <span class="fu">as.integer</span>(x)})</span></code></pre></div>
+<pre><code>## $mpg
+## [1] 21 21 22 21 18 18
+## 
+## $cyl
+## [1] 6 6 4 6 8 6
+## 
+## $disp
+## [1] 160 160 108 258 360 225
+## 
+## $hp
+## [1] 110 110  93 110 175 105
+## 
+## $drat
+## [1] 3 3 3 3 3 2
+## 
+## $wt
+## [1] 2 2 2 3 3 3
+## 
+## $qsec
+## [1] 16 17 18 19 17 20
+## 
+## $vs
+## [1] 0 0 1 1 0 1
+## 
+## $am
+## [1] 1 1 1 0 0 0
+## 
+## $gear
+## [1] 4 4 4 3 3 3
+## 
+## $carb
+## [1] 4 4 1 1 2 1</code></pre>
+<p>Here it will return a list of vectors</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="keystrokes.html#cb22-1" aria-hidden="true" tabindex="-1"></a>mt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(mtcars)</span>
+<span id="cb22-2"><a href="keystrokes.html#cb22-2" aria-hidden="true" tabindex="-1"></a>mt[,</span>
+<span id="cb22-3"><a href="keystrokes.html#cb22-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">lapply</span>(.SD,</span>
+<span id="cb22-4"><a href="keystrokes.html#cb22-4" aria-hidden="true" tabindex="-1"></a>          <span class="cf">function</span>(x){ <span class="fu">as.integer</span>(x)}</span>
+<span id="cb22-5"><a href="keystrokes.html#cb22-5" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb22-6"><a href="keystrokes.html#cb22-6" aria-hidden="true" tabindex="-1"></a>   ][,</span>
+<span id="cb22-7"><a href="keystrokes.html#cb22-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">head</span>(.SD)</span>
+<span id="cb22-8"><a href="keystrokes.html#cb22-8" aria-hidden="true" tabindex="-1"></a>     ]</span></code></pre></div>
+<pre><code>##    mpg cyl disp  hp drat wt qsec vs am gear carb
+## 1:  21   6  160 110    3  2   16  0  1    4    4
+## 2:  21   6  160 110    3  2   17  0  1    4    4
+## 3:  22   4  108  93    3  2   18  1  1    4    1
+## 4:  21   6  258 110    3  3   19  1  0    3    1
+## 5:  18   8  360 175    3  3   17  0  0    3    2
+## 6:  18   6  225 105    2  3   20  1  0    3    1</code></pre>
+<p>While this will return a data.frame as we needed. We will explain each of these points later on in the book. For the time being just try to understand that even less keystrokes can help you a lot in EDA ( exploratory data analysis ).</p>
+<p>Lets start exploration of the package together.</p>
+
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="memory.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="syntax.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/vikram-rawat/beginning_Rdatatable/blob/master/04-keystrokes.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["begining_rdatatable.pdf", "begining_rdatatable.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
