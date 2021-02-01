@@ -1,2 +1,17 @@
 intro
+folder
+code
+func
+names
+types
+reference
+loops
+multithreading
+Vectorize
+bench
+packages
 syntax
+proxy
+cloud
+shinyspeed
+shinymemory

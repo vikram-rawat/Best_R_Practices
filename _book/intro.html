@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="syntax.html"/>
+<link rel="next" href="folder.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -73,8 +73,27 @@
 <li class="part"><span><b>I Introduction</b></span></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>CoverPage</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="part"><span><b>II Beginner</b></span></li>
-<li class="chapter" data-level="2" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>2</b> Syntax</a></li>
+<li class="part"><span><b>II Structure</b></span></li>
+<li class="chapter" data-level="2" data-path="folder.html"><a href="folder.html"><i class="fa fa-check"></i><b>2</b> Folder Structure</a></li>
+<li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code Structure</a></li>
+<li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a></li>
+<li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions</a></li>
+<li class="part"><span><b>III Memory</b></span></li>
+<li class="chapter" data-level="6" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>6</b> Type System</a></li>
+<li class="chapter" data-level="7" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>7</b> Pass By Value-Reference</a></li>
+<li class="part"><span><b>IV Speed</b></span></li>
+<li class="chapter" data-level="8" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>8</b> For Loops</a></li>
+<li class="chapter" data-level="9" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>9</b> Multithreading</a></li>
+<li class="chapter" data-level="10" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>10</b> Vectorize</a></li>
+<li class="chapter" data-level="11" data-path="bench.html"><a href="bench.html"><i class="fa fa-check"></i><b>11</b> Benchmarking</a></li>
+<li class="chapter" data-level="12" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>12</b> packages</a></li>
+<li class="part"><span><b>V Production Tools</b></span></li>
+<li class="chapter" data-level="13" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>13</b> Docker</a></li>
+<li class="chapter" data-level="14" data-path="proxy.html"><a href="proxy.html"><i class="fa fa-check"></i><b>14</b> Proxy Server</a></li>
+<li class="chapter" data-level="15" data-path="cloud.html"><a href="cloud.html"><i class="fa fa-check"></i><b>15</b> Cloud Services</a></li>
+<li class="part"><span><b>VI Shiny Tips</b></span></li>
+<li class="chapter" data-level="16" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>16</b> Speed</a></li>
+<li class="chapter" data-level="17" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>17</b> Memory</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -98,25 +117,18 @@
 <div id="intro" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
 <blockquote>
-<p><em>I seem to recall that we were targetting 512k Macintoshes. In our dreams we might have seen 16Mb Sun</em>.</p>
-<p>— Ross Ihaka
-(in reply to the question whether R&amp;R thought when they started
-out that they would see R using 16G memory on a dual Opteron computer)
-R-help (November 2003)</p>
+<ul>
+<li>The most damaging phrase in the language is: ’It’s always been done that way.*.</li>
+</ul>
+<p>— Grace Hopper</p>
 </blockquote>
 <p><br/></p>
 <hr />
-<p>There is a reason open source is successful. That is something one can not do can be done by someone else. It gives you a thousand hands to work on a task and a million eyes to look over it. <strong>data.table</strong> is an excellent example of such a task which helped people handle data smoothly. It is an Excellent package for manupulating data efficiently. It is written in one of the most low level languages out there; <strong>C</strong> to use memory and cores more efficiently.</p>
-<p>as of 2019 Many people look after the package day and night. It’s tried and tested and you shouldn’t have any problem using it in production at all. In this book we will try to teach you everything you need to know about using <strong>data.table</strong> package in R.</p>
-<p>If you are wondering, and which you should; why should I learn data.table. I have 4 reasons for you.</p>
-<ol style="list-style-type: decimal">
-<li>More Speed</li>
-<li>Less Memory</li>
-<li>Few KeyStrokes</li>
-<li>Easy Syntax</li>
-</ol>
-<pre><code>NOTE : From now on we will use Rdatatable and the package data.table interchangebly.
-</code></pre>
+<p>Did you try to read the title from the cover of the book? I could have done a thousand things to make it easier for you to read it. But this cover reminds me of how often we overlook simple things which are very crucial from the reader’s point of view.</p>
+<p>R is an excellent programming language it’s turing complete and doesn’t lack anything for a production level code. It can be used in the entire data domain from API’s to dashboards to apps and much more. Trust the language and trust in yourself. It’s a journey everyone has gone through and everyone must go through.</p>
+<p>R programmers have a bad reputation for not writing production level code. It stems from the fact that we mostly aren’t trained programmers. We tend to overlook things that are crucial from a programming standpoint. As R programmers we are often less inclined to write the code for production. Mostly we try to write scripts and when we are asked to deploy the same we just wrap it in a function and provide it to the IT team. I have been at the receiving end of these issues where I had to maintain a poorly written code; <strong>columns were referred by numbers, functions were dependent upon global environment variables, 50+ lines functions without arguement, poor naming conventions etc…</strong>.</p>
+<p>I too am a self taught programmer and have gone through these hiccups of code deployment, code reviews and speed issues. World going forward will all be code and data. The sooner you learn these skills the better it is for you to have trust in your own programming skills. R is a huge language and I would like to share the little knowlede I have in the subject. I don’t claim to be an expert but this book will guide you in the right path wherever possible.</p>
+<p>I will try to write it as a dictionary as succinctly as possible. So that you can use it for references. Let the journey begin…</p>
 
 </div>
 
@@ -128,7 +140,7 @@ R-help (November 2003)</p>
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="syntax.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="folder.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
