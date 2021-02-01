@@ -8,6 +8,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 description: "This book explains how the code must be written for production"
+
 ---
 
 # (PART) Introduction {-}
@@ -16,6 +17,8 @@ description: "This book explains how the code must be written for production"
 
 > Know the rules well, so you can break them effectively. 
 > --- The Dalai Lama
+
+<br/>
 
 ***
 
