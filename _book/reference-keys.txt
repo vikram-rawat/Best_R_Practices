@@ -3,6 +3,7 @@ folder
 code
 func
 names
+pkgManagement
 types
 reference
 loops
