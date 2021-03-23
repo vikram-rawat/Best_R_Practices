@@ -1,1 +1,94 @@
-# Package Management {#pkgManagement}
+# Environment Management {#envManagement}
+
+If you create a product today be it an API or Shiny App or Even a normal R-script. One thing you can't be sure of is to update the packages or the version of R. There are companies where you can not access different version of a package because multiple projects are relying on the same copy of the package. It's hard to update your package in these companies and you will need to get permissions from top admins to do so. Thus it's better to rely on as less packages as possible and that too on the popular ones.
+
+But even after you have created a code you would want to keep a record of all the packages and their version as it is for that particular project. This is where environments come in handy.
+
+## renv for package management
+
+There was a package called Packrat a few years ago I would have suggested you to use that always. But currently there is a package I have been using for over a year now by name renv. It does everything that you need to recreate your environment anywhere else.
+
+Basically you need to activate the package in your project. By using this command.
+
+```{r , eval=FALSE}
+
+renv::activate()
+```
+
+Then take a snapshot of current project where it will record a list of all the packages used in your project by this command.
+
+```{r , eval=FALSE}
+
+renv::snapshot()
+```
+
+and When you want to reproduce it on a docker container or a remote machine or any place else. You would simple need to run.
+
+```{r , eval=FALSE}
+
+renv::restore()
+```
+
+and it generates a lock file with all the information about a project including the version or R and the versions of the packages used so at any time you can recreate the entire environment again.
+
+---
+{
+  "R": {
+    "Version": "4.0.2",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "https://cran.rstudio.com"
+      }
+    ]
+  },
+  "Packages": {
+    "renv": {
+      "Package": "renv",
+      "Version": "0.13.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "be02499761baab60d58b808efd08c3fc"
+    }
+  }
+}
+---
+
+I could give you multiple ways of tackling the same problem. But this book is about the best possible one so this is it. You just need to use this package to solve almost all of your problems.
+
+## config for external dependencies
+
+There is a package called config that allows you to read yaml format in R. That is a standard practice to keep all the **Credentials, tokens, API keys etc..** in a config file. There are many other ways you can secure credentials and everything but config is easiest amongst them all and you can use it for storing all the parameters and external path variables that your code requires. It could be an address to external file storage or anything else.
+
+It's good to keep all the variable your code requires outside the main code so that when you need to update them you don't need to change the entire code itself. Below is a snippet of config file from one of my project.
+
+
+    default:
+      datawarehouse:
+        driver: Postgres
+        server: localhost
+        uid: postgres
+        pwd: postgres
+        port: 5432
+        database: master
+      dockerdatabase:
+        driver: Postgres
+        server: postgres_plum
+        uid: postgres
+        pwd: postgres
+        port: 5432
+        database: master
+
+      filestructure:
+        logfile: "logs/logs.csv"
+
+as you can see I haven't only kept the passwords and user names but external files as well. Tomorrow if I have to change the logging file I will just have to update it here without opening any R code. It removes so much burden on reading the code again and again.
+
+Use it whenever possible.
+
+## Conclusion
+
+This chapter doesn't discuss much on concepts but the takeaways from the chapter are:
+
+1.  Use **renv** for all the project you plan to maintain or keep for long term
+2.  Use **config** to manage all the external dependencies your project have or might have

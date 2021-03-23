@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-02-01" />
+<meta name="date" content="2021-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,8 +32,8 @@
   
   
 <link rel="prev" href="func.html"/>
-<link rel="next" href="pkgManagement.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<link rel="next" href="envManagement.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,69 @@
 
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -74,11 +137,49 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>CoverPage</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="part"><span><b>II Structure</b></span></li>
-<li class="chapter" data-level="2" data-path="folder.html"><a href="folder.html"><i class="fa fa-check"></i><b>2</b> Folder Structure</a></li>
-<li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code Structure</a></li>
-<li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a></li>
-<li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions</a></li>
-<li class="chapter" data-level="6" data-path="pkgManagement.html"><a href="pkgManagement.html"><i class="fa fa-check"></i><b>6</b> Package Management</a></li>
+<li class="chapter" data-level="2" data-path="folder.html"><a href="folder.html"><i class="fa fa-check"></i><b>2</b> Folder Structure</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="folder.html"><a href="folder.html#organizing-files"><i class="fa fa-check"></i><b>2.1</b> Organizing files</a></li>
+<li class="chapter" data-level="2.2" data-path="folder.html"><a href="folder.html#create-projects"><i class="fa fa-check"></i><b>2.2</b> Create Projects</a></li>
+<li class="chapter" data-level="2.3" data-path="folder.html"><a href="folder.html#naming-files"><i class="fa fa-check"></i><b>2.3</b> Naming files</a></li>
+<li class="chapter" data-level="2.4" data-path="folder.html"><a href="folder.html#folders-based-on-file-type"><i class="fa fa-check"></i><b>2.4</b> Folders Based on File-Type</a></li>
+<li class="chapter" data-level="2.5" data-path="folder.html"><a href="folder.html#creating-sub-folders"><i class="fa fa-check"></i><b>2.5</b> Creating Sub-folders</a></li>
+<li class="chapter" data-level="2.6" data-path="folder.html"><a href="folder.html#conclusion"><i class="fa fa-check"></i><b>2.6</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code Structure</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#create-sections"><i class="fa fa-check"></i><b>3.1</b> Create Sections</a></li>
+<li class="chapter" data-level="3.2" data-path="code.html"><a href="code.html#order-of-code"><i class="fa fa-check"></i><b>3.2</b> Order of Code</a></li>
+<li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.3</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="func.html"><a href="func.html#metadata-or-information"><i class="fa fa-check"></i><b>4.1</b> Metadata or Information</a></li>
+<li class="chapter" data-level="4.2" data-path="func.html"><a href="func.html#pass-everything-through-parameters"><i class="fa fa-check"></i><b>4.2</b> Pass everything through parameters</a></li>
+<li class="chapter" data-level="4.3" data-path="func.html"><a href="func.html#use-return-statement"><i class="fa fa-check"></i><b>4.3</b> Use Return Statement</a></li>
+<li class="chapter" data-level="4.4" data-path="func.html"><a href="func.html#keep-a-consistency-in-return-type"><i class="fa fa-check"></i><b>4.4</b> Keep a consistency in Return Type</a></li>
+<li class="chapter" data-level="4.5" data-path="func.html"><a href="func.html#use-sensible-names-for-parameters"><i class="fa fa-check"></i><b>4.5</b> Use Sensible Names for parameters</a></li>
+<li class="chapter" data-level="4.6" data-path="func.html"><a href="func.html#use-trycatch"><i class="fa fa-check"></i><b>4.6</b> use tryCatch</a></li>
+<li class="chapter" data-level="4.7" data-path="func.html"><a href="func.html#write-simple-and-unique-functions"><i class="fa fa-check"></i><b>4.7</b> Write simple and unique functions</a></li>
+<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.8</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="names.html"><a href="names.html#popular-naming-conventions"><i class="fa fa-check"></i><b>5.1</b> Popular naming conventions</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="names.html"><a href="names.html#camelcase"><i class="fa fa-check"></i><b>5.1.1</b> camelCase</a></li>
+<li class="chapter" data-level="5.1.2" data-path="names.html"><a href="names.html#pascalcase"><i class="fa fa-check"></i><b>5.1.2</b> PascalCase</a></li>
+<li class="chapter" data-level="5.1.3" data-path="names.html"><a href="names.html#snake_case"><i class="fa fa-check"></i><b>5.1.3</b> snake_case</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="names.html"><a href="names.html#informative-names"><i class="fa fa-check"></i><b>5.2</b> Informative Names</a></li>
+<li class="chapter" data-level="5.3" data-path="names.html"><a href="names.html#conclusions"><i class="fa fa-check"></i><b>5.3</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="envManagement.html"><a href="envManagement.html"><i class="fa fa-check"></i><b>6</b> Environment Management</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="envManagement.html"><a href="envManagement.html#renv-for-package-management"><i class="fa fa-check"></i><b>6.1</b> renv for package management</a></li>
+<li class="chapter" data-level="6.2" data-path="envManagement.html"><a href="envManagement.html#config-for-external-dependencies"><i class="fa fa-check"></i><b>6.2</b> config for external dependencies</a></li>
+<li class="chapter" data-level="6.3" data-path="envManagement.html"><a href="envManagement.html#conclusion-3"><i class="fa fa-check"></i><b>6.3</b> Conclusion</a></li>
+</ul></li>
 <li class="part"><span><b>III Memory</b></span></li>
 <li class="chapter" data-level="7" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>7</b> Type System</a></li>
 <li class="chapter" data-level="8" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>8</b> Pass By Value-Reference</a></li>
@@ -117,7 +218,47 @@
             <section class="normal" id="section-">
 <div id="names" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Naming Conventions</h1>
+<p>This chapter is crucial only for people to understand what are the bad naming practices we the R users have acquired over the years because of flexibility in the language. These names we give to the data or variables are not valid outside or R community and thus are subject to code reviews. You may even be asked to change name before deploying the code in production. The more bad naming practices the more time it takes you to fix them. It’s a good practice to know the best practices for naming things in general.</p>
+<div id="popular-naming-conventions" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Popular naming conventions</h2>
+<p>There are 3 most famous naming conventions in programming community. They are used throughout the code in big projects to smaller ones. These are :</p>
+<div id="camelcase" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> camelCase</h3>
+<p>These names start with small letter and every subsequent word will start with upperCase letter like my name in camelCase would be written as <strong><em>vikramSinghRawat</em></strong>. All the functions in <strong>SHINY</strong> are camelCase. It’s a great example of camelCase naming conventions.</p>
+</div>
+<div id="pascalcase" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> PascalCase</h3>
+<p>PascalCase is just like camel case but the only difference is the first letter is also UpperCase. My name would be written as <strong><em>VikramSinghRawat</em></strong>.</p>
+</div>
+<div id="snake_case" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> snake_case</h3>
+<p>These names are all lower case with underscore between the name. My name in snake_case would be <strong><em>vikram_singh_rawat</em></strong>. <strong>TIDYVERSE</strong> is a great example of snake_cases. I really like the naming conventions of packages like <strong>stringi</strong> and <strong>quanteda</strong>.</p>
+<p>whenever you start a project you should choose one of the naming conventions for the entire team. So that no matter who writes the code there is a logical consistency in the names and anybody can predict the next letter.</p>
+<p>In many projects that I have worked camelCase were chosen for naming variables and PascalCase for methods or functions. I came to know later that this is a style many programming languages choose. Infact in langauges like golang if you write snake_cases linter will ask you to correct the name. But for <strong>SQL</strong> and <strong>R</strong> I would highly recommend snake_cases as many databases like postgres don’t allow capital cases in column names you have to surround names in quotes if you need to use uppercase letters. In R tidyverse has gained huge momentum and now all the packages are following suite. Apart from that if your package can even tell what datatype are you working on that is a huge add on. Packages like <strong>stringi</strong> and <strong>quanteda</strong> are excellent example of this.</p>
+<p>And I would like to add no matter what you choose <strong>Please never include dot in any name</strong>. That’s a practice valid for only R code and it too is not accepted anywhere apart from R programming language.</p>
+<p>Overall choose a naming convention for a project and stick to it or ask your client if they have a preference on it. This saves you from trouble of code reviews.</p>
+</div>
+</div>
+<div id="informative-names" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Informative Names</h2>
+<p>I may sound like a tidyverse fanboy ( I am not) but classes and data types in R are quite opaque so names of functions and objects should reflect precisely what they represent. There is no harm in using names with data-types before them</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="names.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># int_currency &lt;- 1:10</span></span>
+<span id="cb21-2"><a href="names.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># chr_letters &lt;- letters</span></span>
+<span id="cb21-3"><a href="names.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dt_mtcars &lt;- data.table::data.table(mtcars)</span></span>
+<span id="cb21-4"><a href="names.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># tbl_mtcars &lt;- tibble::tibble(mtcars)</span></span></code></pre></div>
+<p>Above advice may be more useful for package developers but it can be used in broad scenarios even on a project where there are multiple working on a same project. If I know what datatype I am dealing with I don’t have to go through the entire code and working on top of it becomes that much easier.</p>
+<p>You can use more descriptive names without data types in the beginning for your projects. Names like <strong>data, mainData, dummyVar, tempList</strong> etc.. should never be used in a project. Use more descriptive names like sales_data_2020, api_token, rate_of_interest etc…</p>
+</div>
+<div id="conclusions" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Conclusions</h2>
+<p>Proper naming conventions will help collaboration in big teams and it makes the code easier to maintain. We should all strive for better names in the code. It’s the hardest job to come up with new and unique names for a variable everytime you create one but this is the difference between an average programmer and a good one.</p>
+<ol style="list-style-type: decimal">
+<li>Choose a naming convention and stick to it</li>
+<li>Don’t include dots ( . ) in names</li>
+<li>Use informative names</li>
+</ol>
 
+</div>
 </div>
             </section>
 
@@ -125,7 +266,7 @@
         </div>
       </div>
 <a href="func.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="pkgManagement.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="envManagement.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

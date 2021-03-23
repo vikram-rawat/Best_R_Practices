@@ -1,1 +1,50 @@
 # Naming Conventions {#names}
+
+This chapter is crucial only for people to understand what are the bad naming practices we the R users have acquired over the years because of flexibility in the language. These names we give to the data or variables are not valid outside or R community and thus are subject to code reviews. You may even be asked to change name before deploying the code in production. The more bad naming practices the more time it takes you to fix them. It's a good practice to know the best practices for naming things in general.
+
+## Popular naming conventions
+
+There are 3 most famous naming conventions in programming community. They are used throughout the code in big projects to smaller ones. These are :
+
+### camelCase
+
+These names start with small letter and every subsequent word will start with upperCase letter like my name in camelCase would be written as ***vikramSinghRawat***. All the functions in **SHINY** are camelCase. It's a great example of camelCase naming conventions.
+
+### PascalCase
+
+PascalCase is just like camel case but the only difference is the first letter is also UpperCase. My name would be written as ***VikramSinghRawat***.
+
+### snake_case
+
+These names are all lower case with underscore between the name. My name in snake_case would be ***vikram_singh_rawat***. **TIDYVERSE** is a great example of snake_cases. I really like the naming conventions of packages like **stringi** and **quanteda**.
+
+whenever you start a project you should choose one of the naming conventions for the entire team. So that no matter who writes the code there is a logical consistency in the names and anybody can predict the next letter.
+
+In many projects that I have worked camelCase were chosen for naming variables and PascalCase for methods or functions. I came to know later that this is a style many programming languages choose. Infact in langauges like golang if you write snake_cases linter will ask you to correct the name. But for **SQL** and **R** I would highly recommend snake_cases as many databases like postgres don't allow capital cases in column names you have to surround names in quotes if you need to use uppercase letters. In R tidyverse has gained huge momentum and now all the packages are following suite. Apart from that if your package can even tell what datatype are you working on that is a huge add on. Packages like **stringi** and **quanteda** are excellent example of this.
+
+And I would like to add no matter what you choose **Please never include dot in any name**. That's a practice valid for only R code and it too is not accepted anywhere apart from R programming language.
+
+Overall choose a naming convention for a project and stick to it or ask your client if they have a preference on it. This saves you from trouble of code reviews.
+
+## Informative Names
+
+I may sound like a tidyverse fanboy ( I am not) but classes and data types in R are quite opaque so names of functions and objects should reflect precisely what they represent. There is no harm in using names with data-types before them
+
+```{r}
+# int_currency <- 1:10
+# chr_letters <- letters
+# dt_mtcars <- data.table::data.table(mtcars)
+# tbl_mtcars <- tibble::tibble(mtcars)
+```
+
+Above advice may be more useful for package developers but it can be used in broad scenarios even on a project where there are multiple working on a same project. If I know what datatype I am dealing with I don't have to go through the entire code and working on top of it becomes that much easier.
+
+You can use more descriptive names without data types in the beginning for your projects. Names like **data, mainData, dummyVar, tempList** etc.. should never be used in a project. Use more descriptive names like sales_data_2020, api_token, rate_of_interest etc...
+
+## Conclusions
+
+Proper naming conventions will help collaboration in big teams and it makes the code easier to maintain. We should all strive for better names in the code. It's the hardest job to come up with new and unique names for a variable everytime you create one but this is the difference between an average programmer and a good one.
+
+1.  Choose a naming convention and stick to it
+2.  Don't include dots ( . ) in names
+3.  Use informative names

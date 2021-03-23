@@ -5,6 +5,8 @@ account: vickey.coool
 server: bookdown.org
 hostUrl: https://bookdown.org/__api__
 appId: 6393
-bundleId: 37849
+bundleId: 36914
 url: https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/
-when: 1616494933.33279
+when: 1615794199.54388
+asMultiple: FALSE
+asStatic: FALSE

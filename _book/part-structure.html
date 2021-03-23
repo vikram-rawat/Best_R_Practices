@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 (PART) Structure | Best Coding Practices for R</title>
+  <meta name="description" content="This book explains how the code must be written for production" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 (PART) Structure | Best Coding Practices for R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This book explains how the code must be written for production" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 (PART) Structure | Best Coding Practices for R" />
+  
+  <meta name="twitter:description" content="This book explains how the code must be written for production" />
+  
+
+<meta name="author" content="Vikram Singh Rawat" />
+
+
+<meta name="date" content="2021-03-18" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="folder.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Best Coding Practices for R </a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Introduction</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>CoverPage</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="part-structure.html"><a href="part-structure.html"><i class="fa fa-check"></i><b>2</b> (PART) Structure</a></li>
+<li class="chapter" data-level="3" data-path="folder.html"><a href="folder.html"><i class="fa fa-check"></i><b>3</b> Folder Structure</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="folder.html"><a href="folder.html#organizing-files"><i class="fa fa-check"></i><b>3.1</b> Organizing files</a></li>
+<li class="chapter" data-level="3.2" data-path="folder.html"><a href="folder.html#create-projects"><i class="fa fa-check"></i><b>3.2</b> Create Projects</a></li>
+<li class="chapter" data-level="3.3" data-path="folder.html"><a href="folder.html#naming-files"><i class="fa fa-check"></i><b>3.3</b> Naming files</a></li>
+<li class="chapter" data-level="3.4" data-path="folder.html"><a href="folder.html#folders-based-on-file-type"><i class="fa fa-check"></i><b>3.4</b> Folders Based on File-Type</a></li>
+<li class="chapter" data-level="3.5" data-path="folder.html"><a href="folder.html#creating-sub-folders"><i class="fa fa-check"></i><b>3.5</b> Creating Sub-folders</a></li>
+<li class="chapter" data-level="3.6" data-path="folder.html"><a href="folder.html#conclusion"><i class="fa fa-check"></i><b>3.6</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>4</b> Code Structure</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="code.html"><a href="code.html#create-sections"><i class="fa fa-check"></i><b>4.1</b> Create Sections</a></li>
+<li class="chapter" data-level="4.2" data-path="code.html"><a href="code.html#order-of-code"><i class="fa fa-check"></i><b>4.2</b> Order of Code</a></li>
+<li class="chapter" data-level="4.3" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>4.3</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>5</b> Functions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="func.html"><a href="func.html#metadata-or-information"><i class="fa fa-check"></i><b>5.1</b> Metadata or Information</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>6</b> Naming Conventions</a></li>
+<li class="chapter" data-level="7" data-path="pkgManagement.html"><a href="pkgManagement.html"><i class="fa fa-check"></i><b>7</b> Package Management</a></li>
+<li class="part"><span><b>II Memory</b></span></li>
+<li class="chapter" data-level="8" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>8</b> Type System</a></li>
+<li class="chapter" data-level="9" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>9</b> Pass By Value-Reference</a></li>
+<li class="part"><span><b>III Speed</b></span></li>
+<li class="chapter" data-level="10" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>10</b> For Loops</a></li>
+<li class="chapter" data-level="11" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>11</b> Multithreading</a></li>
+<li class="chapter" data-level="12" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>12</b> Vectorize</a></li>
+<li class="chapter" data-level="13" data-path="bench.html"><a href="bench.html"><i class="fa fa-check"></i><b>13</b> Benchmarking</a></li>
+<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> packages</a></li>
+<li class="part"><span><b>IV Production Tools</b></span></li>
+<li class="chapter" data-level="15" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>15</b> Docker</a></li>
+<li class="chapter" data-level="16" data-path="proxy.html"><a href="proxy.html"><i class="fa fa-check"></i><b>16</b> Proxy Server</a></li>
+<li class="chapter" data-level="17" data-path="cloud.html"><a href="cloud.html"><i class="fa fa-check"></i><b>17</b> Cloud Services</a></li>
+<li class="part"><span><b>V Shiny Tips</b></span></li>
+<li class="chapter" data-level="18" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>18</b> Speed</a></li>
+<li class="chapter" data-level="19" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>19</b> Memory</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Best Coding Practices for R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="part-structure" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> (PART) Structure</h1>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="folder.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/02-struct_01_folder.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["best_r_practices.pdf", "best_r_practices.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

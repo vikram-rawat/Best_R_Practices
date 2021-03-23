@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-02-01" />
+<meta name="date" content="2021-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="intro.html"/>
 <link rel="next" href="code.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,69 @@
 
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -74,11 +137,49 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>CoverPage</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="part"><span><b>II Structure</b></span></li>
-<li class="chapter" data-level="2" data-path="folder.html"><a href="folder.html"><i class="fa fa-check"></i><b>2</b> Folder Structure</a></li>
-<li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code Structure</a></li>
-<li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a></li>
-<li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions</a></li>
-<li class="chapter" data-level="6" data-path="pkgManagement.html"><a href="pkgManagement.html"><i class="fa fa-check"></i><b>6</b> Package Management</a></li>
+<li class="chapter" data-level="2" data-path="folder.html"><a href="folder.html"><i class="fa fa-check"></i><b>2</b> Folder Structure</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="folder.html"><a href="folder.html#organizing-files"><i class="fa fa-check"></i><b>2.1</b> Organizing files</a></li>
+<li class="chapter" data-level="2.2" data-path="folder.html"><a href="folder.html#create-projects"><i class="fa fa-check"></i><b>2.2</b> Create Projects</a></li>
+<li class="chapter" data-level="2.3" data-path="folder.html"><a href="folder.html#naming-files"><i class="fa fa-check"></i><b>2.3</b> Naming files</a></li>
+<li class="chapter" data-level="2.4" data-path="folder.html"><a href="folder.html#folders-based-on-file-type"><i class="fa fa-check"></i><b>2.4</b> Folders Based on File-Type</a></li>
+<li class="chapter" data-level="2.5" data-path="folder.html"><a href="folder.html#creating-sub-folders"><i class="fa fa-check"></i><b>2.5</b> Creating Sub-folders</a></li>
+<li class="chapter" data-level="2.6" data-path="folder.html"><a href="folder.html#conclusion"><i class="fa fa-check"></i><b>2.6</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code Structure</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#create-sections"><i class="fa fa-check"></i><b>3.1</b> Create Sections</a></li>
+<li class="chapter" data-level="3.2" data-path="code.html"><a href="code.html#order-of-code"><i class="fa fa-check"></i><b>3.2</b> Order of Code</a></li>
+<li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.3</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="func.html"><a href="func.html#metadata-or-information"><i class="fa fa-check"></i><b>4.1</b> Metadata or Information</a></li>
+<li class="chapter" data-level="4.2" data-path="func.html"><a href="func.html#pass-everything-through-parameters"><i class="fa fa-check"></i><b>4.2</b> Pass everything through parameters</a></li>
+<li class="chapter" data-level="4.3" data-path="func.html"><a href="func.html#use-return-statement"><i class="fa fa-check"></i><b>4.3</b> Use Return Statement</a></li>
+<li class="chapter" data-level="4.4" data-path="func.html"><a href="func.html#keep-a-consistency-in-return-type"><i class="fa fa-check"></i><b>4.4</b> Keep a consistency in Return Type</a></li>
+<li class="chapter" data-level="4.5" data-path="func.html"><a href="func.html#use-sensible-names-for-parameters"><i class="fa fa-check"></i><b>4.5</b> Use Sensible Names for parameters</a></li>
+<li class="chapter" data-level="4.6" data-path="func.html"><a href="func.html#use-trycatch"><i class="fa fa-check"></i><b>4.6</b> use tryCatch</a></li>
+<li class="chapter" data-level="4.7" data-path="func.html"><a href="func.html#write-simple-and-unique-functions"><i class="fa fa-check"></i><b>4.7</b> Write simple and unique functions</a></li>
+<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.8</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="names.html"><a href="names.html#popular-naming-conventions"><i class="fa fa-check"></i><b>5.1</b> Popular naming conventions</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="names.html"><a href="names.html#camelcase"><i class="fa fa-check"></i><b>5.1.1</b> camelCase</a></li>
+<li class="chapter" data-level="5.1.2" data-path="names.html"><a href="names.html#pascalcase"><i class="fa fa-check"></i><b>5.1.2</b> PascalCase</a></li>
+<li class="chapter" data-level="5.1.3" data-path="names.html"><a href="names.html#snake_case"><i class="fa fa-check"></i><b>5.1.3</b> snake_case</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="names.html"><a href="names.html#informative-names"><i class="fa fa-check"></i><b>5.2</b> Informative Names</a></li>
+<li class="chapter" data-level="5.3" data-path="names.html"><a href="names.html#conclusions"><i class="fa fa-check"></i><b>5.3</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="envManagement.html"><a href="envManagement.html"><i class="fa fa-check"></i><b>6</b> Environment Management</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="envManagement.html"><a href="envManagement.html#renv-for-package-management"><i class="fa fa-check"></i><b>6.1</b> renv for package management</a></li>
+<li class="chapter" data-level="6.2" data-path="envManagement.html"><a href="envManagement.html#config-for-external-dependencies"><i class="fa fa-check"></i><b>6.2</b> config for external dependencies</a></li>
+<li class="chapter" data-level="6.3" data-path="envManagement.html"><a href="envManagement.html#conclusion-3"><i class="fa fa-check"></i><b>6.3</b> Conclusion</a></li>
+</ul></li>
 <li class="part"><span><b>III Memory</b></span></li>
 <li class="chapter" data-level="7" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>7</b> Type System</a></li>
 <li class="chapter" data-level="8" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>8</b> Pass By Value-Reference</a></li>
@@ -117,7 +218,87 @@
             <section class="normal" id="section-">
 <div id="folder" class="section level1" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Folder Structure</h1>
+<div id="organizing-files" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Organizing files</h2>
+<blockquote>
+<p>The best way to organize your code is to write a <strong>package</strong>.</p>
+</blockquote>
+<p>Organizing your code is the first and foremost thing you should learn. Because as the project grows and multiple files are put into a folder it gets harder to navigate the code. A proper folder structure definitely helps in these times. I Just couldn’t emphasis it enough that best way to organize your code is to write a package. But even when you are not planning to write a package. There are best practices to make it readable and make a smooth navigation.</p>
+</div>
+<div id="create-projects" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Create Projects</h2>
+<p>It’s such a minor thing to say but I still till date see code like this:</p>
+<pre><code>setwd(&quot;c://myproject_name/&quot;)</code></pre>
+<p>It was a good practice like 5 - 6 years ago. Now Rstudio has a feature to create project.</p>
+<div class="figure">
+<img src="figures/scrn_new_project.jpg" alt="" />
+<p class="caption">new project</p>
+</div>
+<p>Once you create a project it is easier to manage your files and folders and it’s easier to give it somebody as well. It has virtually the same effect but then you can use Rstudio a little better. It’s something I recommend to every user regardless of the skill level.</p>
+</div>
+<div id="naming-files" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Naming files</h2>
+<p>I data science most common problem is that we don’t change the file names of excel or csv files provided by business people. And most of the time those file names are totally abbreviated with spaces in between and multiple cases like <code>Total Sales Mike 202002-AZ1P2R.csv</code>. This name is useful for the MIS or Business Analyst as they have a different way of organizing files then yours. They might do it because they have to keep a record of different people and have to provide it anytime asked. But as a Data Scientist your work is entirely different. You are not delivering files you are writing code. Let me reiterate this fact <strong>YOU ARE WRITING CODE</strong>. In most of the scenarios <strong>Data Science is more like programming less like science</strong>. Even though it has proportion of both of them. Using fundamentals of programming practices will help you out in long term. So change such file names to <code>sales_data_mike_feb2020.csv</code> or something similar. There are no right or wrong names just what makes more sense to a new user.</p>
+<p>There is a trick about naming conventions:</p>
+<ol style="list-style-type: decimal">
+<li>use all lower case or upper case ( helps you in never forgetting the cases )</li>
+<li>use underscore in between ( Because file names are mostly long Camel Or Pascal cases may confuse users)</li>
+<li>make the name as general as possible ( make sure a newcomer should be able to understand it without any problem)</li>
+<li>In choosing a name there are no wrong answers only confusing ones</li>
+</ol>
+</div>
+<div id="folders-based-on-file-type" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Folders Based on File-Type</h2>
+<p>A Very common practice is to keep different file types in different folder. One of the main mistake I see people writing code like this.</p>
+<pre><code>DBI::dbGetQuery(conn,
+&quot;
+select 
+    count(*) as numbers,
+    max(colname) as maxSome,
+    min(colname) as minSome,
+  from
+    tablename
+  group by
+    col1,
+    col2,
+    col3
+  order by 
+    numbers
+&quot;)</code></pre>
+<p>or codes like this.</p>
+<pre><code>shiny::HTML(
+&quot;
+   &lt;p&gt;At Mozilla, we’re a global community of&lt;/p&gt;
 
+    &lt;ul&gt; &lt;!-- changed to list in the tutorial --&gt;
+      &lt;li&gt;technologists&lt;/li&gt;
+      &lt;li&gt;thinkers&lt;/li&gt;
+      &lt;li&gt;builders&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;working together to keep the Internet alive and accessible, so people worldwide can be informed contributors and creators of the Web. We believe this act of human collaboration across an open platform is essential to individual growth and our collective future.&lt;/p&gt;
+
+    &lt;p&gt;Read the &lt;a href=\&quot;https://www.mozilla.org/en-US/about/manifesto/\&quot;&gt;Mozilla Manifesto&lt;/a&gt; to learn even more about the values and principles that guide the pursuit of our mission.&lt;/p&gt;
+&quot;
+)</code></pre>
+<p>This is a bad coding style. Every time I see this type of code I realize that the person doesn’t believe that either the code will change or It will be extended. <strong><em>There is nothing permanent in the programming</em></strong> neither code, nor frameworks and not even languages. If you keep this type of code in separate SQL files or html files you can easily edit them later, code will be more easier to read and there will be a separation of concern. Tomorrow if you need help in SQL or HTML, a UI designer or a Database designer can look into your code without getting bogged down in R code. It makes bringing more people to the team easier.</p>
+</div>
+<div id="creating-sub-folders" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Creating Sub-folders</h2>
+<p>On bigger projects simple folder structure tend to become more confusing. This is the main concern I have with the data folder every data scientist create and put all the files he has in that single folder. In these scenarios it’s better to have a sub-folder for different file types or may be different roles.</p>
+<p>Like you can create sub-folders based on file-types like CSV’s, json, rds etc.. or you can even create sub-folders based on roles or needs… Like all the data related to one tab or one functionality goes in one folder and so on… There has to be a logical consistency in the folder structure. It’s primarily for you to not get lost in your own folders that you created and secondary for people working with you to understand your code and help in places you need help.</p>
+</div>
+<div id="conclusion" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Conclusion</h2>
+<p>You have to create folders and everything has to be arranged in. Keep everything as organized as you keep your house. There are a certain principles that will help you in it.</p>
+<ol style="list-style-type: decimal">
+<li>Create projects</li>
+<li>Name the files properly</li>
+<li>Create a file for different language</li>
+<li>create sub-folders wherever you fill necessary.</li>
+</ol>
+
+</div>
 </div>
             </section>
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-02-01" />
+<meta name="date" content="2021-03-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="code.html"/>
 <link rel="next" href="names.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -53,6 +53,69 @@
 
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -74,11 +137,49 @@
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>CoverPage</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="part"><span><b>II Structure</b></span></li>
-<li class="chapter" data-level="2" data-path="folder.html"><a href="folder.html"><i class="fa fa-check"></i><b>2</b> Folder Structure</a></li>
-<li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code Structure</a></li>
-<li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a></li>
-<li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions</a></li>
-<li class="chapter" data-level="6" data-path="pkgManagement.html"><a href="pkgManagement.html"><i class="fa fa-check"></i><b>6</b> Package Management</a></li>
+<li class="chapter" data-level="2" data-path="folder.html"><a href="folder.html"><i class="fa fa-check"></i><b>2</b> Folder Structure</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="folder.html"><a href="folder.html#organizing-files"><i class="fa fa-check"></i><b>2.1</b> Organizing files</a></li>
+<li class="chapter" data-level="2.2" data-path="folder.html"><a href="folder.html#create-projects"><i class="fa fa-check"></i><b>2.2</b> Create Projects</a></li>
+<li class="chapter" data-level="2.3" data-path="folder.html"><a href="folder.html#naming-files"><i class="fa fa-check"></i><b>2.3</b> Naming files</a></li>
+<li class="chapter" data-level="2.4" data-path="folder.html"><a href="folder.html#folders-based-on-file-type"><i class="fa fa-check"></i><b>2.4</b> Folders Based on File-Type</a></li>
+<li class="chapter" data-level="2.5" data-path="folder.html"><a href="folder.html#creating-sub-folders"><i class="fa fa-check"></i><b>2.5</b> Creating Sub-folders</a></li>
+<li class="chapter" data-level="2.6" data-path="folder.html"><a href="folder.html#conclusion"><i class="fa fa-check"></i><b>2.6</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code Structure</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#create-sections"><i class="fa fa-check"></i><b>3.1</b> Create Sections</a></li>
+<li class="chapter" data-level="3.2" data-path="code.html"><a href="code.html#order-of-code"><i class="fa fa-check"></i><b>3.2</b> Order of Code</a></li>
+<li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.3</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="func.html"><a href="func.html#metadata-or-information"><i class="fa fa-check"></i><b>4.1</b> Metadata or Information</a></li>
+<li class="chapter" data-level="4.2" data-path="func.html"><a href="func.html#pass-everything-through-parameters"><i class="fa fa-check"></i><b>4.2</b> Pass everything through parameters</a></li>
+<li class="chapter" data-level="4.3" data-path="func.html"><a href="func.html#use-return-statement"><i class="fa fa-check"></i><b>4.3</b> Use Return Statement</a></li>
+<li class="chapter" data-level="4.4" data-path="func.html"><a href="func.html#keep-a-consistency-in-return-type"><i class="fa fa-check"></i><b>4.4</b> Keep a consistency in Return Type</a></li>
+<li class="chapter" data-level="4.5" data-path="func.html"><a href="func.html#use-sensible-names-for-parameters"><i class="fa fa-check"></i><b>4.5</b> Use Sensible Names for parameters</a></li>
+<li class="chapter" data-level="4.6" data-path="func.html"><a href="func.html#use-trycatch"><i class="fa fa-check"></i><b>4.6</b> use tryCatch</a></li>
+<li class="chapter" data-level="4.7" data-path="func.html"><a href="func.html#write-simple-and-unique-functions"><i class="fa fa-check"></i><b>4.7</b> Write simple and unique functions</a></li>
+<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.8</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="names.html"><a href="names.html#popular-naming-conventions"><i class="fa fa-check"></i><b>5.1</b> Popular naming conventions</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="names.html"><a href="names.html#camelcase"><i class="fa fa-check"></i><b>5.1.1</b> camelCase</a></li>
+<li class="chapter" data-level="5.1.2" data-path="names.html"><a href="names.html#pascalcase"><i class="fa fa-check"></i><b>5.1.2</b> PascalCase</a></li>
+<li class="chapter" data-level="5.1.3" data-path="names.html"><a href="names.html#snake_case"><i class="fa fa-check"></i><b>5.1.3</b> snake_case</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="names.html"><a href="names.html#informative-names"><i class="fa fa-check"></i><b>5.2</b> Informative Names</a></li>
+<li class="chapter" data-level="5.3" data-path="names.html"><a href="names.html#conclusions"><i class="fa fa-check"></i><b>5.3</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="envManagement.html"><a href="envManagement.html"><i class="fa fa-check"></i><b>6</b> Environment Management</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="envManagement.html"><a href="envManagement.html#renv-for-package-management"><i class="fa fa-check"></i><b>6.1</b> renv for package management</a></li>
+<li class="chapter" data-level="6.2" data-path="envManagement.html"><a href="envManagement.html#config-for-external-dependencies"><i class="fa fa-check"></i><b>6.2</b> config for external dependencies</a></li>
+<li class="chapter" data-level="6.3" data-path="envManagement.html"><a href="envManagement.html#conclusion-3"><i class="fa fa-check"></i><b>6.3</b> Conclusion</a></li>
+</ul></li>
 <li class="part"><span><b>III Memory</b></span></li>
 <li class="chapter" data-level="7" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>7</b> Type System</a></li>
 <li class="chapter" data-level="8" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>8</b> Pass By Value-Reference</a></li>
@@ -117,7 +218,181 @@
             <section class="normal" id="section-">
 <div id="func" class="section level1" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Functions</h1>
+<p>I can not over emphasize the importance of functions. As a data scientist most of the time you will be writing functions. Only in couple of cases where you have to write complicated classes there too methods are nothing more than functions. Having solid grasp of best practices in functions is a must for everybody working in any language what-so-ever. Hopefully this chapter will help you in best coding practices for functions.</p>
+<div id="metadata-or-information" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Metadata or Information</h2>
+<p>As I mentioned in the previous chapter it is a good practice to create sections for everything you do in R. functions are no exception to the rule. But along with that there are a couple of information you should write along with the function.</p>
+<p>I worked in a few MNC where we had to write metadata of every function before writing it down. It makes it easier for code-reviewer to understand you code and for the entire team to collaborate in the project. It’s good for personal projects too… Let me give you an example of what I mean by this.</p>
+<div class="figure">
+<img src="figures/scrn_functions_metadata.jpg" alt="" />
+<p class="caption">functions metadata</p>
+</div>
+<p>You can see that if you are working on large teams or may be in big corporate settings where anybody can be reassigned to a different project. This data helps by identifying who wrote what and why.</p>
+<p>Examples of some important tags can be :</p>
+<ol style="list-style-type: decimal">
+<li>written by</li>
+<li>written on</li>
+<li>modified by</li>
+<li>modified on</li>
+<li>purpose</li>
+<li>descriptions</li>
+</ol>
+<p>You can create your own tags based on usecases and information needed for further scenarios.</p>
+</div>
+<div id="pass-everything-through-parameters" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Pass everything through parameters</h2>
+<p>I have seen people writing functions with calling things from global environments. Take a look at the code below.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="func.html#cb6-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb6-2"><a href="func.html#cb6-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">return</span>( x <span class="sc">+</span> y)</span>
+<span id="cb6-3"><a href="func.html#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-4"><a href="func.html#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="func.html#cb6-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb6-6"><a href="func.html#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="func.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(<span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<p>Here the value of <em>foo</em> is based on y which is not a part of the function instead it’s in global environment and function always have to search global environment for the object. consider these scenarios:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="func.html#cb8-1" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb8-2"><a href="func.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> y</span>
+<span id="cb8-3"><a href="func.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(</span>
+<span id="cb8-4"><a href="func.html#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">foo</span>(x)</span>
+<span id="cb8-5"><a href="func.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-6"><a href="func.html#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-7"><a href="func.html#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="func.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">bar</span>(<span class="dv">5</span>, <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<p>you would assume that the answer is 25 but it’s 15 because foo was created in the global environment and it will always look up value in global environment before anything else. This is called <strong>Lexical Scoping</strong> it’s okay if you don’t know it. It is very confusing and could mess up your code at any point in time. I am an experienced R programmer I too have trouble getting my head around it.</p>
+<p>We can avoid all these situations by following the best coding practices that have been used in software industries for years. <strong>Function should be a self contained code</strong> which shouldn’t be impacted by the outer world. Only is certain scenarios you allow to deviate from these rules but it’s a good coding practice none the less. now in the above example instead of relying on the global variable if I just had created a parameter for Y, my code would be simpler to write and easier to understand and I would not have to think about lexical scoping on every step.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="func.html#cb10-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>( x, y ){</span>
+<span id="cb10-2"><a href="func.html#cb10-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">return</span>( x <span class="sc">+</span> y )</span>
+<span id="cb10-3"><a href="func.html#cb10-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-4"><a href="func.html#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="func.html#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="func.html#cb10-6" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>( x, y ){</span>
+<span id="cb10-7"><a href="func.html#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(</span>
+<span id="cb10-8"><a href="func.html#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">foo</span>( x, y )    </span>
+<span id="cb10-9"><a href="func.html#cb10-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb10-10"><a href="func.html#cb10-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-11"><a href="func.html#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="func.html#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">bar</span>(<span class="dv">5</span>, <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## [1] 25</code></pre>
+<p>Now this code returns 25 as we all expected and trust me the Y is still available in global environment but that doesn’t impact the foo or bar at all. Now you can nest this function under multiple other functions and it will behave exactly like it should.</p>
+<p>There is a golden rule you should take away from this section. <strong>Avoid Global Variables at all costs</strong>. As much as possible pass everything through the parameters. That what they are for right !!!</p>
+</div>
+<div id="use-return-statement" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Use Return Statement</h2>
+<p>It is a very simple thing yet most of the R users never worry about it because R takes care of finer details for you. But return statements actually make your code easier to read.</p>
+<p>Suppose you have to review code return statement makes it easier to glance at the code and understand what is it doing. Almost all the programming languages are habitual with it. There are no good advantage I can tell you for a return statement other than readability. But just by following these practices R community as a whole could get more respect in programming community. So please use Return statements wherever possible. In Big MNC your code will never pass reviewer unless it has return statements.</p>
+<p>It also is good for functions that don’t return anything you can just return true or false depending on the fact that the function ran without producing any error. Functions where you modify a data.table or where you change something in the database etc… It’s a standard practice in old programming languages like C++ and it’s a good practice indeed. We as a community should embrace these practices which will help us down the road.</p>
+</div>
+<div id="keep-a-consistency-in-return-type" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Keep a consistency in Return Type</h2>
+<p><strong>Return type of a function should be consistent regardless of what happens in a code.</strong> You may assume this is so simple that it goes without saying who would in their sane mind return character vector instead of a numerical one and you would be right. But Things get complicated when people start to work in composite data types like <strong>Lists and Dataframes</strong>.</p>
+<p>Working with lists people get confused and forget this basic principle. I have seen function returning list of 2 elements on some conditions and 3 on other and 4 on some more. It makes it harder for users to work on those return values.</p>
+<p>Don’t even get me started on dataframes. People write functions that do some magic stuff on dataframes and it sometimes return a dataframe of 10 columns, sometime 11 and sometime 8. It’s such a common mistake to make. I understand if you are fetching a table from database and returning that same table via functions but during manipulations you must add empty columns or delete existing ones to make it consistent for the end user regardless of the conditions you have in the functions.</p>
+</div>
+<div id="use-sensible-names-for-parameters" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Use Sensible Names for parameters</h2>
+<p>Yet another simple thing but because most of us including me come from non computer science background we have a tendency to use names like <strong>x, y, z, beta, theta, gamma, string etc…</strong> in our function parameters. I too am guilty of doing it in above code for foo and bar functions and in general. Many good and well established libraries in R are guilty of this sin too… But in long run these words don’t make much sense. It’s hard to maintain that code and it’s hard for user as well. Let’s take an example :</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="func.html#cb12-1" aria-hidden="true" tabindex="-1"></a>join <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) x <span class="sc">+</span> y</span>
+<span id="cb12-2"><a href="func.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="func.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">join</span>(<span class="at">x =</span> <span class="dv">12</span>, <span class="at">y =</span> <span class="dv">12</span>)</span></code></pre></div>
+<pre><code>## [1] 24</code></pre>
+<p>do you see that as a user who hasn’t written or even looked at the code it’s already hard for him to understand what does x and y stands for. Only to get an error like this.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="func.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">join</span>(<span class="at">x =</span> <span class="st">&quot;mtcars&quot;</span>, <span class="at">y =</span> <span class="st">&quot;iris&quot;</span>)</span></code></pre></div>
+<pre><code>## Error in x + y: non-numeric argument to binary operator</code></pre>
+<p>I know it is a stupid example but I see it every time in real code. When you only need numeric values why not include that information in the parameter name. something like:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="func.html#cb16-1" aria-hidden="true" tabindex="-1"></a>join <span class="ot">&lt;-</span> <span class="cf">function</span>(num_x, num_y) num_x <span class="sc">+</span> num_y</span></code></pre></div>
+<p>It may not seem like much but this small change makes the life of the user so much better where he doesn’t need to consult the documentation again and again. Their are other ways you can come up with sensible names in your code just to avoid this issue. It’s a standard practice during code review to check the names and these names are never allowed in production environment. We will discuss more about names in another chapter but for now understand that parameter names are just as important as the name of the function and it should be meaningful and easier to understand. There should be some information buried in the name.</p>
+</div>
+<div id="use-trycatch" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> use tryCatch</h2>
+<p>During deployment we would not like the shiny app or rest api or the chron job to fail. It’s not a good experience to have for either the developer or the client. Best way to avoid it is wrap every function in a tryCatch block and log the errors. This way if you app has some bugs ( which every app does ). It will not crash and not destroy the experience of all the other people using it.</p>
+<p>Let’s bring back the foo function :</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="func.html#cb17-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>( x, y ){</span>
+<span id="cb17-2"><a href="func.html#cb17-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">tryCatch</span>(</span>
+<span id="cb17-3"><a href="func.html#cb17-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">expr =</span> {</span>
+<span id="cb17-4"><a href="func.html#cb17-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">return</span>( x <span class="sc">+</span> y )</span>
+<span id="cb17-5"><a href="func.html#cb17-5" aria-hidden="true" tabindex="-1"></a>     },</span>
+<span id="cb17-6"><a href="func.html#cb17-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">error =</span> <span class="cf">function</span>(e){</span>
+<span id="cb17-7"><a href="func.html#cb17-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">print</span>(</span>
+<span id="cb17-8"><a href="func.html#cb17-8" aria-hidden="true" tabindex="-1"></a>         <span class="fu">sprintf</span>(<span class="st">&quot;An error occurred in foo at %s : %s&quot;</span>,</span>
+<span id="cb17-9"><a href="func.html#cb17-9" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">Sys.time</span>(),</span>
+<span id="cb17-10"><a href="func.html#cb17-10" aria-hidden="true" tabindex="-1"></a>                 e)</span>
+<span id="cb17-11"><a href="func.html#cb17-11" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb17-12"><a href="func.html#cb17-12" aria-hidden="true" tabindex="-1"></a>     })</span>
+<span id="cb17-13"><a href="func.html#cb17-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb17-14"><a href="func.html#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="func.html#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(<span class="st">&quot;mtcars&quot;</span>, <span class="st">&quot;iris&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;An error occurred in foo at 2021-03-23 15:51:11 : Error in x + y: non-numeric argument to binary operator\n&quot;</code></pre>
+<p>Now imagine this line to be printed in a json file or inserted in a database with time stamp and other information instead of crashing the entire code only a particular functionality will not run which is huge. This is the difference between staying late on Saturday night to fix a bug vs telling them that I will fix it on Monday. To me that is big enough.</p>
+</div>
+<div id="write-simple-and-unique-functions" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> Write simple and unique functions</h2>
+<p><strong>Task of one function should be to do one thing and one thing only</strong>. There are numerous times when people assume they have written excellent code because everything is in a function.</p>
+<p>Purpose of a function is to reduce one unique task in a single line. If your function does multiple things then it’s a good Idea to <strong><em>Break your function into multiple one and then create a function which uses all of them</em></strong>.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="func.html#cb19-1" aria-hidden="true" tabindex="-1"></a>average_func <span class="ot">&lt;-</span> <span class="cf">function</span>( mult_params ){</span>
+<span id="cb19-2"><a href="func.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
+<span id="cb19-3"><a href="func.html#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">expr =</span> {</span>
+<span id="cb19-4"><a href="func.html#cb19-4" aria-hidden="true" tabindex="-1"></a>      <span class="do">###</span></span>
+<span id="cb19-5"><a href="func.html#cb19-5" aria-hidden="true" tabindex="-1"></a>      <span class="co"># code to do stuff 1</span></span>
+<span id="cb19-6"><a href="func.html#cb19-6" aria-hidden="true" tabindex="-1"></a>      <span class="do">###</span></span>
+<span id="cb19-7"><a href="func.html#cb19-7" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb19-8"><a href="func.html#cb19-8" aria-hidden="true" tabindex="-1"></a>      <span class="do">###</span></span>
+<span id="cb19-9"><a href="func.html#cb19-9" aria-hidden="true" tabindex="-1"></a>      <span class="co"># code to do stuff 2</span></span>
+<span id="cb19-10"><a href="func.html#cb19-10" aria-hidden="true" tabindex="-1"></a>      <span class="do">###</span></span>
+<span id="cb19-11"><a href="func.html#cb19-11" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb19-12"><a href="func.html#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e){</span>
+<span id="cb19-13"><a href="func.html#cb19-13" aria-hidden="true" tabindex="-1"></a>      <span class="do">###</span></span>
+<span id="cb19-14"><a href="func.html#cb19-14" aria-hidden="true" tabindex="-1"></a>      <span class="co"># code to log errors</span></span>
+<span id="cb19-15"><a href="func.html#cb19-15" aria-hidden="true" tabindex="-1"></a>      <span class="do">###</span></span>
+<span id="cb19-16"><a href="func.html#cb19-16" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb19-17"><a href="func.html#cb19-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now imagine if today you are logging on a json file and tomorrow client wants to log it into a database. Changing it on every function is not only time consuming but dangerous in terms that now you can break the code.</p>
+<p>Now compare that to this code.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="func.html#cb20-1" aria-hidden="true" tabindex="-1"></a>stuff_1 <span class="ot">&lt;-</span> <span class="cf">function</span>(params_1){</span>
+<span id="cb20-2"><a href="func.html#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="do">###</span></span>
+<span id="cb20-3"><a href="func.html#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># code to do stuff 1</span></span>
+<span id="cb20-4"><a href="func.html#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">###</span></span>
+<span id="cb20-5"><a href="func.html#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-6"><a href="func.html#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="func.html#cb20-7" aria-hidden="true" tabindex="-1"></a>stuff_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(params_2){</span>
+<span id="cb20-8"><a href="func.html#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="do">###</span></span>
+<span id="cb20-9"><a href="func.html#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># code to do stuff 1</span></span>
+<span id="cb20-10"><a href="func.html#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="do">###</span></span>
+<span id="cb20-11"><a href="func.html#cb20-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-12"><a href="func.html#cb20-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-13"><a href="func.html#cb20-13" aria-hidden="true" tabindex="-1"></a>log_func <span class="ot">&lt;-</span> <span class="cf">function</span>( log_params){</span>
+<span id="cb20-14"><a href="func.html#cb20-14" aria-hidden="true" tabindex="-1"></a>  <span class="do">###</span></span>
+<span id="cb20-15"><a href="func.html#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># code to log errors</span></span>
+<span id="cb20-16"><a href="func.html#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="do">###</span></span>
+<span id="cb20-17"><a href="func.html#cb20-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-18"><a href="func.html#cb20-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-19"><a href="func.html#cb20-19" aria-hidden="true" tabindex="-1"></a>best_func <span class="ot">&lt;-</span> <span class="cf">function</span>( mult_params ){</span>
+<span id="cb20-20"><a href="func.html#cb20-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tryCatch</span>(</span>
+<span id="cb20-21"><a href="func.html#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">expr =</span> {</span>
+<span id="cb20-22"><a href="func.html#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stuff_1</span>()</span>
+<span id="cb20-23"><a href="func.html#cb20-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stuff_2</span>()</span>
+<span id="cb20-24"><a href="func.html#cb20-24" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb20-25"><a href="func.html#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">error =</span> <span class="cf">function</span>(e){</span>
+<span id="cb20-26"><a href="func.html#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">log_func</span>()</span>
+<span id="cb20-27"><a href="func.html#cb20-27" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb20-28"><a href="func.html#cb20-28" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Here in this code every function has a clear responsibility and the main function is just a composite of multiple unique functions and it will be very easy to debug this code or change the functionality entirely.</p>
+</div>
+<div id="conclusion-2" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Conclusion</h2>
+<p>In this chapter we discussed the best practices for writing functions in R. Here are the key takeaways from the chapter.</p>
+<ol style="list-style-type: decimal">
+<li>write information about the function at top of it.</li>
+<li>avoid global variable and pass everything through parameters</li>
+<li>use return statement to end your function</li>
+<li>keep consistency in return types of a function</li>
+<li>use logical names for parameter</li>
+<li>use tryCatch in every function</li>
+<li>functions are supposed to do one thing and one thing only</li>
+</ol>
 
+</div>
 </div>
             </section>
 
