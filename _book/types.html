@@ -305,8 +305,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb57-12"><a href="types.html#cb57-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
 ##        expr    min     lq    mean  median     uq    max neval cld
-##  vectorized   54.4   54.8   66.35   55.65   57.4  127.8    10  a 
-##      scalar 2939.1 3275.1 3436.90 3345.55 3666.0 4008.7    10   b</code></pre>
+##  vectorized   53.6   54.9   64.30   56.45   57.4  135.9    10  a 
+##      scalar 2899.0 3409.1 3441.47 3474.15 3642.7 3754.7    10   b</code></pre>
 <p>Even then I would ask you to go ahead with R because the difference will most probably in 1-2 milliseconds which will never impact your performance any serious way. But this is something you should remember that vectorized R is way faster than even python but scalar manipulations in R are a bit slower. Choose vectorized version of the code whenever possible even if you do a bit more steps in it, it will still be faster than the scalar versions.</p>
 </div>
 <div id="dates-are-basically-integers-under-the-hood." class="section level3" number="8.1.2">
@@ -331,10 +331,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb67-2"><a href="types.html#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb67-3"><a href="types.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(y)</span></code></pre></div>
 <pre><code>## $sec
-## [1] 55.88912
+## [1] 53.62599
 ## 
 ## $min
-## [1] 42
+## [1] 47
 ## 
 ## $hour
 ## [1] 19

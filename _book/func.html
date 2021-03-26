@@ -371,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb29-13"><a href="func.html#cb29-13" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb29-14"><a href="func.html#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-15"><a href="func.html#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(<span class="st">&quot;mtcars&quot;</span>, <span class="st">&quot;iris&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;An error occurred in foo at 2021-03-26 19:42:54 : Error in x + y: non-numeric argument to binary operator\n&quot;</code></pre>
+<pre><code>## [1] &quot;An error occurred in foo at 2021-03-26 19:47:52 : Error in x + y: non-numeric argument to binary operator\n&quot;</code></pre>
 <p>Now imagine this line to be printed in a json file or inserted in a database with time stamp and other information instead of crashing the entire code only a particular functionality will not run which is huge. This is the difference between staying late on Saturday night to fix a bug vs telling them that I will fix it on Monday. To me that is big enough.</p>
 </div>
 <div id="write-simple-and-unique-functions" class="section level2" number="4.7">
@@ -462,7 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             &quot;input...\n&quot;)
 ##     UseMethod(&quot;tokens&quot;)
 ## }
-## &lt;bytecode: 0x000000002062c810&gt;
+## &lt;bytecode: 0x000000002061f3d0&gt;
 ## &lt;environment: namespace:quanteda&gt;</code></pre>
 <p>And you can check which methods are available for which classes by using</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="func.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">class =</span> <span class="st">&quot;dfm&quot;</span>)</span></code></pre></div>
@@ -521,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## {
 ##     UseMethod(&quot;textstat_lexdiv&quot;)
 ## }
-## &lt;bytecode: 0x0000000020605088&gt;
+## &lt;bytecode: 0x00000000205f5d28&gt;
 ## &lt;environment: namespace:quanteda&gt;</code></pre>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="func.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># works but the implementation is still hidden because method will be decided based on the class provided to the method at the exact moment of calculation</span></span></code></pre></div>
 <p>But If you still want to know how to know the definition of a method of the class. Just use this code.</p>
@@ -562,7 +562,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             &quot;all&quot;]
 ##     compute_lexdiv_dfm_stats(x, measure = measure, log.base = log.base)
 ## }
-## &lt;bytecode: 0x0000000020c295c8&gt;
+## &lt;bytecode: 0x0000000020c18f18&gt;
 ## &lt;environment: namespace:quanteda&gt;</code></pre>
 <p>If you want to understand more of this learn OOPS in R. R has multiple oops system and R is a highly Object oriented programming but the style is different from other languages. This book is all about best practices in R and thus we are not going to go deep into fundamentals of R programming here but this trick is worth knowing.</p>
 <hr>

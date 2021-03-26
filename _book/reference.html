@@ -309,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="reference.html#cb123-1" aria-hidden="true" tabindex="-1"></a>mt_tbl <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(mtcars)</span>
 <span id="cb123-2"><a href="reference.html#cb123-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb123-3"><a href="reference.html#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tracemem</span>(mt_tbl)</span></code></pre></div>
-<pre><code>## [1] &quot;&lt;000000002676FBA0&gt;&quot;</code></pre>
+<pre><code>## [1] &quot;&lt;000000001F2F2998&gt;&quot;</code></pre>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="reference.html#cb125-1" aria-hidden="true" tabindex="-1"></a>dummy_tbl <span class="ot">&lt;-</span> mt_tbl</span>
 <span id="cb125-2"><a href="reference.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="do">## No tracemem yet</span></span>
 <span id="cb125-3"><a href="reference.html#cb125-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -349,8 +349,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb130-4"><a href="reference.html#cb130-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gear) <span class="sc">%&gt;%</span></span>
 <span id="cb130-5"><a href="reference.html#cb130-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb130-6"><a href="reference.html#cb130-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gear)</span></code></pre></div>
-<pre><code>## tracemem[0x000000002676fba0 -&gt; 0x0000000026751920]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
-## tracemem[0x0000000026751920 -&gt; 0x00000000267519d0]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
+<pre><code>## tracemem[0x000000001f2f2998 -&gt; 0x000000002674eaa0]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
+## tracemem[0x000000002674eaa0 -&gt; 0x000000002674eb50]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
 <pre><code>## # A tibble: 3 x 1
 ##    gear
 ##   &lt;dbl&gt;
@@ -364,8 +364,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb133-4"><a href="reference.html#cb133-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gear) <span class="sc">%&gt;%</span></span>
 <span id="cb133-5"><a href="reference.html#cb133-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb133-6"><a href="reference.html#cb133-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gear)</span></code></pre></div>
-<pre><code>## tracemem[0x000000002676fba0 -&gt; 0x00000000269037a8]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
-## tracemem[0x00000000269037a8 -&gt; 0x0000000026903858]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
+<pre><code>## tracemem[0x000000001f2f2998 -&gt; 0x000000001cac0f70]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
+## tracemem[0x000000001cac0f70 -&gt; 0x000000001cac1020]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
 <p>now we are modifying the results somewhere and thus a copy is created. The actual rules are very very complicated. But in simple term as long as you don’t modify any thing R doesn’t create a copy and everything is passed down by reference.</p>
 <p>It impacts speed too… Let check it by an example</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="reference.html#cb135-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
@@ -385,9 +385,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb136-6"><a href="reference.html#cb136-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb136-7"><a href="reference.html#cb136-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##  expr     min      lq    mean   median      uq     max neval cld
-##   foo  8.3321  8.4346  9.0041  8.55765  8.9522 12.1517    10  a 
-##   bar 22.7959 22.9301 24.0792 23.30765 23.9799 28.8234    10   b</code></pre>
+##  expr     min      lq     mean   median      uq     max neval cld
+##   foo  8.3176  8.5530  8.93793  8.67110  9.0896 10.6070    10  a 
+##   bar 22.9564 24.5223 25.17333 25.19995 25.5941 27.7006    10   b</code></pre>
 <p>As you can see the difference in time is because <code>bar</code> is creating a copy of the object. And you may assume that it will create a copy at every time you change a object and you will be dead wrong as R is smart enough to understand that It can get away with only single copy of the object. Lets create a function that changes more things in x and see the difference.</p>
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="reference.html#cb138-1" aria-hidden="true" tabindex="-1"></a>bar_new <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb138-2"><a href="reference.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  x[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -403,10 +403,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb138-12"><a href="reference.html#cb138-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb138-13"><a href="reference.html#cb138-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##     expr     min      lq     mean   median      uq     max neval cld
-##      foo  8.2674  8.2994  8.55083  8.52115  8.7722  9.0764    10  a 
-##      bar 22.7673 22.9007 31.51179 23.43545 25.6712 99.1793    10   b
-##  bar_new 22.9896 23.3754 23.89767 23.44770 24.2275 25.9499    10   b</code></pre>
+##     expr     min      lq     mean   median      uq      max neval cld
+##      foo  8.5962  8.6897  8.93464  8.94415  9.1575   9.3593    10  a 
+##      bar 24.6341 25.4560 36.26707 26.28290 31.4604 116.2226    10   b
+##  bar_new 24.7265 25.2791 26.65085 26.15610 27.9294  29.1779    10  ab</code></pre>
 <p>Now as you can see that while the function foo and bar have significant differences in performance, same is not true for bar and bar_new. Because bar_new too creates a copy but maintains that copy for the entire function.</p>
 <p>So R is smart enough to understand when to create a copy and when not to create a copy. Once a copy is created it is retained in R and R uses it smartly. We can gain speed and memory benefits by making sure all the modification is done inside a single function. So that R doesn’t create much copies.</p>
 <p>Instead of using bar 3 times it’s better to use bar_new once. So that you don’t copy it multiple times. See the difference for yourself. And thus <strong>try to keep all the modifications close and in as less functions as possible</strong>.</p>
@@ -421,8 +421,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb140-9"><a href="reference.html#cb140-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##     expr     min      lq      mean   median       uq      max neval cld
-##      bar 67.9847 73.0376 110.09637 75.26350 130.1980 264.0576    10   b
-##  bar_new 23.0963 24.2927  25.77776 24.96485  27.1684  29.9117    10  a</code></pre>
+##      bar 68.8816 69.9204 109.85306 78.48405 135.1931 256.9276    10   b
+##  bar_new 22.5922 23.2799  24.12812 23.83595  24.4711  26.4884    10  a</code></pre>
 <p>best is to group these modifications together.</p>
 <p>So the gist of the matter is:</p>
 <ol style="list-style-type: decimal">
