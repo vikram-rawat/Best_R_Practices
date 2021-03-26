@@ -1,1 +1,318 @@
 # Pass By Value-Reference {#reference}
+
+In programming we have a concept of how to pass a value to a function. If we can do away with modification of the object inside the function then it's okay to pass the original object and let it change else we can create a copy of it and let the function modify it at will without effecting the object itself.
+
+understanding this concept is very crucial if you want to write efficient code. Let's dive deeper into it.
+
+## Understanding the system
+
+There are mostly 2 systems available for passing the objects from one function to another. Let's understand both of them.
+
+### Pass by Value
+
+This is when you create a copy of the original object and pass it to the function. Because you are actually passing just a copy to the function whatever you do to the object doesn't impact the original one. Let's check it by an example.
+
+```{r}
+
+x <- list(y = 1:10)
+
+pass_by_value <- function(x){
+  x$y <- 10:1
+}
+
+pass_by_value(x)
+x$y
+```
+
+now x was passed to the function and modified yet it remains same because only copy of the object was passed to the function ( Well, not precisely but this is what we will discuss later).
+
+### Pass by reference
+
+This is when you pass the entire object as is. Basically you pass the pointer to the original object and now if you change the object you change the original copy of it. Let's check the same example again.
+
+```{r}
+
+x <- new.env()
+x$y <- 1:10
+
+pass_by_value <- function(x){
+  x$y <- 10:1
+}
+
+pass_by_value(x)
+x$y
+```
+
+Now x was passed by reference and no copy was assigned to the function. So when you changed the object inside the function original object was changed.
+
+Hope you now understand practically what does the word mean.
+
+## Copy on modify
+
+R has no effective means to specify when to pass with value and when to pass with reference. And because there are only 2 ways to deal with this problem everybody assumes that R does create a copy of the object every time it passes the object through a function. But R has a different way of doing things which is called **copy of modify**. There are better blogs written over it and nuances are very peculiar which while writing code you shouldn't worry about much. I will try to simplify the concept from the practical point of you view so that you can use it in real life without much thought to it.
+
+R basically passes an object by references until you modify it. Let's check it live:
+
+```{r}
+
+mt_tbl <- data.frame(mtcars)
+
+tracemem(mt_tbl)
+
+dummy_tbl <- mt_tbl
+## No tracemem yet
+
+mpg_col <- as.character(mt_tbl$mpg)
+## No tracemem yet
+
+mt_tbl[
+  (mt_tbl$cyl == 6) &
+  (mt_tbl$hp > 90),
+]
+## No tracemem yet
+
+subset(
+  mt_tbl,
+  cyl == 6)
+## No tracemem yet
+```
+
+`tracemem` is a function that will return memory address every time the object is copied. So far it didn't return anything even though it passed through so many functions and each of those functions must be using multiple functions internally. Yet no copy of the object was made. Because **So Far we haven't modified anything**. now look at the code below.
+
+```{r}
+
+mt_tbl %>%
+  filter(cyl == 6,
+         hp > 90) %>%
+  group_by(gear) %>%
+  summarise(n()) %>%
+  select(gear)
+```
+
+dplyr will change the data.frame to tibble and trigger tracemem This is one of the reason I absolutely love and recommend **data.table** to everybody. Which manages memory very efficiently it's at par with any in memory table of a DB. If you are actually concerned about memory use data.table.
+
+```{r}
+
+new_tbl <- mt_tbl %>%
+  filter(cyl == 6,
+         hp > 90) %>%
+  group_by(gear) %>%
+  summarise(n()) %>%
+  select(gear)
+```
+
+now we are modifying the results somewhere and thus a copy is created. The actual rules are very very complicated. But in simple term as long as you don't modify any thing R doesn't create a copy and everything is passed down by reference.
+
+It impacts speed too... Let check it by an example
+
+```{r}
+
+foo <- function(x){
+  sum(x)
+}
+
+bar <- function(x){
+  x[[1]] <- 1
+  sum(x)
+}
+```
+
+As you can see both the functions are identical the only difference is that in `bar` I am modifying the object while in `foo` I am not changing the object. Let's run a speed test...
+
+```{r}
+
+x <- rnorm(1e7)
+
+microbenchmark::microbenchmark(
+  foo = foo(x),
+  bar = bar(x),
+  times = 10
+)
+
+```
+
+As you can see the difference in time is because `bar` is creating a copy of the object. And you may assume that it will create a copy at every time you change a object and you will be dead wrong as R is smart enough to understand that It can get away with only single copy of the object. Lets create a function that changes more things in x and see the difference.
+
+```{r}
+
+bar_new <- function(x){
+  x[[1]] <- 1
+  x[[10]] <- 10
+  x[[1e3]] <- 1e3
+  sum(x)
+}
+
+microbenchmark::microbenchmark(
+  foo = foo(x),
+  bar = bar(x),
+  bar_new = bar_new(x),
+  times = 10
+)
+```
+
+Now as you can see that while the function foo and bar have significant differences in performance, same is not true for bar and bar_new. Because bar_new too creates a copy but maintains that copy for the entire function.
+
+So R is smart enough to understand when to create a copy and when not to create a copy. Once a copy is created it is retained in R and R uses it smartly. We can gain speed and memory benefits by making sure all the modification is done inside a single function. So that R doesn't create much copies.
+
+Instead of using bar 3 times it's better to use bar_new once. So that you don't copy it multiple times. See the difference for yourself. And thus **try to keep all the modifications close and in as less functions as possible**.
+
+```{r}
+
+microbenchmark::microbenchmark(
+  bar = {
+    bar(x)
+    bar(x)
+    bar(x)
+    },
+  bar_new = bar_new(x),
+  times = 10
+)
+```
+
+best is to group these modifications together.
+
+So the gist of the matter is:
+
+1.  R passes everything by reference until you modify it
+2.  R creates a copy when you modify the object
+3.  You should always keep all the Object modifications in same function
+
+## for pass by reference
+
+As I told you before R has no way of specifying when the object will be pass by reference and when it will be passed by value. And there are certainly times you wish you had passed it by value and certainly times when you wish you passed it by reference.
+
+When you modify something inside a function you create a copy of it. So take example of a loop inside and outside a function
+
+```{r}
+x <- numeric(10)
+for(i in 1:10){
+  x[[i]] <- rnorm(1)
+}
+x
+```
+
+It modifies the object in place. Now lets wrap it in a function and see what happens.
+
+```{r}
+x <- numeric(10)
+
+foo <- function(x){
+  for(i in 1:10){
+    x[[i]] <- rnorm(1)
+  }
+  return(x)
+}
+
+foo(x)
+x
+```
+
+Now x is not modified because it is being modified inside a function. This is crucial at times when you are running a long job that might take hours to complete just to find an error in the middle. You might want to start the loop from the exact position you left off. With this sort of code you will not reach that. Let's generate an error in the code and uses bigger number.
+
+```{r}
+
+total_length <- 1e2
+```
+
+```{r error=TRUE, include = TRUE}
+
+set.seed(1)
+
+x <- numeric(total_length)
+
+foo <- function(number){
+  y <- sample(1:total_length,1)
+  for(i in 1:total_length){
+    number[[i]] <- i
+    if(y == i){
+      stop(sprintf("there is an error at %s", y))
+    }
+  }
+  return(number)
+}
+
+foo(x) ## You will get an Error
+```
+
+If you run this code you will get an error at some number and x will still be the same. All the processing of code till that moment is lost for everybody. Which is not what you want if each iteration took just 2 minutes to run. This difference could mean hours in some scenarios.
+
+R has 4 datatypes that provide mutable objects or pass by reference semantics.
+
+1.  R6 Classes
+2.  environments
+3.  data.table
+4.  listenv
+
+I wouldn't recommend writing an R6 class just to run a simple loop, however if your use case is pretty complex R6 would be a valid solution for it. We already saw how environments can be used for pass by reference. But passing around environments is not a good idea it requires you to know too much about the language and be very careful with what you are doing hence I only prefer 2 approaches. One with data.table and other with listenv package.
+
+But their usecase is very different. One should be used where you are comfortable with lists are more suited while other should be used where data.frame or vectors are more suited for the task. Doing it for listenv is very easy. It's the same code with just the new listenv object.
+
+```{r error=TRUE, include = TRUE}
+
+foo_list <- function(list){
+  y <- sample(1:total_length,1)
+  for(i in 1:total_length){
+    list$x[[i]] <- i
+    if(y == i){
+      stop(sprintf("there is an error at %s", y))
+    }
+  }
+}
+
+list_env <- listenv::listenv()
+list_env$x <- numeric(total_length)
+
+foo_list(list_env)
+```
+
+Now again we got an errors but this time all the other changes have been saved in x.
+
+```{r}
+list_env$x
+
+```
+
+Same thing could be done in data.table as well. let's write a new function for doing it. data.table has 2 ways of looping through the vectors.
+
+1.  With `:=` operator which is slow but useful for more data insertion than one by one
+2.  with `set` function which is faster where you need to insert data one by one.
+
+Let's use the second approach to write a function.
+
+```{r error=TRUE, include = TRUE}
+
+x_dt <- data.table::data.table(x = numeric(total_length))
+
+foo_dt <- function(dt){
+  y <- sample(1:total_length,1)
+  for(i in 1:total_length){
+    data.table::set(
+      x = dt,
+      i = i,
+      j = "x",
+      value = i)
+
+    if(y == i){
+      stop(sprintf("there is an error at %s", y))
+    }
+  }
+}
+
+foo_dt(x_dt)
+```
+
+Now just like again even though we got errors we can still check the ones that have been completed during the loop.
+
+```{r}
+x_dt$x
+```
+
+So let me make things simpler. When you want to modify objects in place you need to use 1 of the 2 approach. **When you are working on data.frames and vectors use data.table while when you are working on anything else, anything in general, use listenv approach**.
+
+## Conclusion
+
+This chapter focused on how to save memory of your R program by using objects through reference and avoid creating copies of the object. Let's summarize what we have read so far.
+
+1.  keep all the modifications of objects in a single function
+2.  use pass by reference through listenv and data.table for saving memory
+3.  avoid creating multiple copies of an object at all costs

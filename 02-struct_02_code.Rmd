@@ -45,9 +45,44 @@ If you think you will forget it. There is a golden rule you must remember. ***Pu
 
 Just by doing this you will be able to navigate better in your code. There aren't any hard and fast rules for this only logical and sensible ones. Feel free to come up with your own layout that helps you in your analysis journey.
 
-## Conclusion
+## Indentation
+
+It goes without saying that indentation makes your code readable. Python is not the only language who has the luxury of indentation. No matter what language you work in your code should be properly indented so that we can understand the nature of code written. There are a few things you can understand about indentation.
+
+Maintain same number of spaces throughout your code. Your editor will help you out with it for sure but even if you are working on multiple editors. If you choose 2 spaces or 4 spaces as an equivalent of tabs you should stick to it. This is a golden rule you should never break.
+
+Then maintain the same style in your code. Look at the code below.
+
+```{r}
+
+foo <- function(
+  first_arg, second_arg, third_arg
+){
+  create_file <- readxl::read_excel(path = first_arg, sheet = second_arg, 
+                                    range = third_arg)
+}
+
+bar <- function(
+  first_arg,
+  second_arg,
+  third_arg
+){
+  create_file <- readxl::read_excel(
+    path = first_arg, 
+    sheet = second_arg, 
+    range = third_arg
+    )
+}
+```
+
+function foo is written horizontal and bar is written vertical. I would prefer styling of function bar but you may choose one and stick to it for entire project. Mixing styles is not considered good and might create problem in code review.
+
+There is a package by name `grkstyle` which implements vertical arrangement of code as mentioned above. You can look into it as well.
+
+## Conclusion'
 
 In this chapter we discussed how to structure your code to make it more meaningful to read and easier to debug. The key takeaways from this chapter is:
 
 1.  Create sections to write beautiful and navigable code
 2.  Put those sections in a logical order
+3.  Don't

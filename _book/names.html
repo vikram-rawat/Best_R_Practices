@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Naming Conventions | Best Coding Practices for R</title>
-  <meta name="description" content="This book explains how the code must be written for production" />
+  <meta name="description" content="This book explains the most important things you need to know while you are writing production level R code." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Naming Conventions | Best Coding Practices for R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This book explains how the code must be written for production" />
+  <meta property="og:description" content="This book explains the most important things you need to know while you are writing production level R code." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 5 Naming Conventions | Best Coding Practices for R" />
   
-  <meta name="twitter:description" content="This book explains how the code must be written for production" />
+  <meta name="twitter:description" content="This book explains the most important things you need to know while you are writing production level R code." />
   
 
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-03-23" />
+<meta name="date" content="2021-03-26" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -150,18 +150,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#create-sections"><i class="fa fa-check"></i><b>3.1</b> Create Sections</a></li>
 <li class="chapter" data-level="3.2" data-path="code.html"><a href="code.html#order-of-code"><i class="fa fa-check"></i><b>3.2</b> Order of Code</a></li>
-<li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.3</b> Conclusion</a></li>
+<li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#indentation"><i class="fa fa-check"></i><b>3.3</b> Indentation</a></li>
+<li class="chapter" data-level="3.4" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.4</b> Conclusion’</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="func.html"><a href="func.html#metadata-or-information"><i class="fa fa-check"></i><b>4.1</b> Metadata or Information</a></li>
+<li class="chapter" data-level="4.1" data-path="func.html"><a href="func.html#metadata-or-information-header"><i class="fa fa-check"></i><b>4.1</b> Metadata or Information header</a></li>
 <li class="chapter" data-level="4.2" data-path="func.html"><a href="func.html#pass-everything-through-parameters"><i class="fa fa-check"></i><b>4.2</b> Pass everything through parameters</a></li>
 <li class="chapter" data-level="4.3" data-path="func.html"><a href="func.html#use-return-statement"><i class="fa fa-check"></i><b>4.3</b> Use Return Statement</a></li>
 <li class="chapter" data-level="4.4" data-path="func.html"><a href="func.html#keep-a-consistency-in-return-type"><i class="fa fa-check"></i><b>4.4</b> Keep a consistency in Return Type</a></li>
-<li class="chapter" data-level="4.5" data-path="func.html"><a href="func.html#use-sensible-names-for-parameters"><i class="fa fa-check"></i><b>4.5</b> Use Sensible Names for parameters</a></li>
+<li class="chapter" data-level="4.5" data-path="func.html"><a href="func.html#use-sensible-names-for-parameters-too"><i class="fa fa-check"></i><b>4.5</b> Use Sensible Names for parameters too…</a></li>
 <li class="chapter" data-level="4.6" data-path="func.html"><a href="func.html#use-trycatch"><i class="fa fa-check"></i><b>4.6</b> use tryCatch</a></li>
 <li class="chapter" data-level="4.7" data-path="func.html"><a href="func.html#write-simple-and-unique-functions"><i class="fa fa-check"></i><b>4.7</b> Write simple and unique functions</a></li>
-<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.8</b> Conclusion</a></li>
+<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#use-packagefunction-approach"><i class="fa fa-check"></i><b>4.8</b> Use Package::Function() approach</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="func.html"><a href="func.html#you-should-load-libraries-in-the-order-of-their-usage"><i class="fa fa-check"></i><b>4.8.1</b> You should load libraries in the order of their usage</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.9</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions</a>
 <ul>
@@ -180,22 +185,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2" data-path="envManagement.html"><a href="envManagement.html#config-for-external-dependencies"><i class="fa fa-check"></i><b>6.2</b> config for external dependencies</a></li>
 <li class="chapter" data-level="6.3" data-path="envManagement.html"><a href="envManagement.html#conclusion-3"><i class="fa fa-check"></i><b>6.3</b> Conclusion</a></li>
 </ul></li>
+<li class="chapter" data-level="7" data-path="dataManagement.html"><a href="dataManagement.html"><i class="fa fa-check"></i><b>7</b> data Management</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="dataManagement.html"><a href="dataManagement.html#dont-use-numbers"><i class="fa fa-check"></i><b>7.1</b> Don’t use numbers</a></li>
+<li class="chapter" data-level="7.2" data-path="dataManagement.html"><a href="dataManagement.html#use-databases"><i class="fa fa-check"></i><b>7.2</b> Use Databases</a></li>
+<li class="chapter" data-level="7.3" data-path="dataManagement.html"><a href="dataManagement.html#keep-a-copy"><i class="fa fa-check"></i><b>7.3</b> Keep a Copy</a></li>
+<li class="chapter" data-level="7.4" data-path="dataManagement.html"><a href="dataManagement.html#use-efficient-packages"><i class="fa fa-check"></i><b>7.4</b> Use Efficient Packages</a></li>
+</ul></li>
 <li class="part"><span><b>III Memory</b></span></li>
-<li class="chapter" data-level="7" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>7</b> Type System</a></li>
-<li class="chapter" data-level="8" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>8</b> Pass By Value-Reference</a></li>
+<li class="chapter" data-level="8" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>8</b> Type System</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="types.html"><a href="types.html#things-you-should-know"><i class="fa fa-check"></i><b>8.1</b> Things you should know</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="types.html"><a href="types.html#r-dont-have-scalar-data-types"><i class="fa fa-check"></i><b>8.1.1</b> R don’t have scalar data types</a></li>
+<li class="chapter" data-level="8.1.2" data-path="types.html"><a href="types.html#dates-are-basically-integers-under-the-hood."><i class="fa fa-check"></i><b>8.1.2</b> Dates are basically integers under the hood.</a></li>
+<li class="chapter" data-level="8.1.3" data-path="types.html"><a href="types.html#posixlt-are-basically-lists-under-the-hood"><i class="fa fa-check"></i><b>8.1.3</b> POSIXlt are basically lists under the hood</a></li>
+<li class="chapter" data-level="8.1.4" data-path="types.html"><a href="types.html#integers-are-smaller-than-numeric"><i class="fa fa-check"></i><b>8.1.4</b> Integers are smaller than numeric</a></li>
+<li class="chapter" data-level="8.1.5" data-path="types.html"><a href="types.html#define-your-datatypes-before-the-variable"><i class="fa fa-check"></i><b>8.1.5</b> define your datatypes before the variable</a></li>
+<li class="chapter" data-level="8.1.6" data-path="types.html"><a href="types.html#lists-are-better-than-dataframe-under-a-loop"><i class="fa fa-check"></i><b>8.1.6</b> lists are better than dataframe under a loop</a></li>
+<li class="chapter" data-level="8.1.7" data-path="types.html"><a href="types.html#use-lists-whenever-possible"><i class="fa fa-check"></i><b>8.1.7</b> use lists whenever possible</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="types.html"><a href="types.html#choose-data-types-carefully"><i class="fa fa-check"></i><b>8.2</b> Choose data types carefully</a></li>
+<li class="chapter" data-level="8.3" data-path="types.html"><a href="types.html#dont-change-datatypes"><i class="fa fa-check"></i><b>8.3</b> don’t change datatypes</a></li>
+<li class="chapter" data-level="8.4" data-path="types.html"><a href="types.html#future-of-type-system-in-r"><i class="fa fa-check"></i><b>8.4</b> Future of type-system in R</a></li>
+<li class="chapter" data-level="8.5" data-path="types.html"><a href="types.html#conclusion-4"><i class="fa fa-check"></i><b>8.5</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>9</b> Pass By Value-Reference</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="reference.html"><a href="reference.html#understanding-the-system"><i class="fa fa-check"></i><b>9.1</b> Understanding the system</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="reference.html"><a href="reference.html#pass-by-value"><i class="fa fa-check"></i><b>9.1.1</b> Pass by Value</a></li>
+<li class="chapter" data-level="9.1.2" data-path="reference.html"><a href="reference.html#pass-by-reference"><i class="fa fa-check"></i><b>9.1.2</b> Pass by reference</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="reference.html"><a href="reference.html#copy-on-modify"><i class="fa fa-check"></i><b>9.2</b> Copy on modify</a></li>
+<li class="chapter" data-level="9.3" data-path="reference.html"><a href="reference.html#for-pass-by-reference"><i class="fa fa-check"></i><b>9.3</b> for pass by reference</a></li>
+<li class="chapter" data-level="9.4" data-path="reference.html"><a href="reference.html#conclusion-5"><i class="fa fa-check"></i><b>9.4</b> Conclusion</a></li>
+</ul></li>
 <li class="part"><span><b>IV Speed</b></span></li>
-<li class="chapter" data-level="9" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>9</b> For Loops</a></li>
-<li class="chapter" data-level="10" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>10</b> Multithreading</a></li>
-<li class="chapter" data-level="11" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>11</b> Vectorize</a></li>
-<li class="chapter" data-level="12" data-path="bench.html"><a href="bench.html"><i class="fa fa-check"></i><b>12</b> Benchmarking</a></li>
-<li class="chapter" data-level="13" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>13</b> packages</a></li>
+<li class="chapter" data-level="10" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>10</b> For Loops</a></li>
+<li class="chapter" data-level="11" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>11</b> Multithreading</a></li>
+<li class="chapter" data-level="12" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>12</b> Vectorize</a></li>
+<li class="chapter" data-level="13" data-path="bench.html"><a href="bench.html"><i class="fa fa-check"></i><b>13</b> Benchmarking</a></li>
+<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> packages</a></li>
 <li class="part"><span><b>V Production Tools</b></span></li>
-<li class="chapter" data-level="14" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>14</b> Docker</a></li>
-<li class="chapter" data-level="15" data-path="proxy.html"><a href="proxy.html"><i class="fa fa-check"></i><b>15</b> Proxy Server</a></li>
-<li class="chapter" data-level="16" data-path="cloud.html"><a href="cloud.html"><i class="fa fa-check"></i><b>16</b> Cloud Services</a></li>
+<li class="chapter" data-level="15" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>15</b> Docker</a></li>
+<li class="chapter" data-level="16" data-path="proxy.html"><a href="proxy.html"><i class="fa fa-check"></i><b>16</b> Proxy Server</a></li>
+<li class="chapter" data-level="17" data-path="cloud.html"><a href="cloud.html"><i class="fa fa-check"></i><b>17</b> Cloud Services</a></li>
 <li class="part"><span><b>VI Shiny Tips</b></span></li>
-<li class="chapter" data-level="17" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>17</b> Speed</a></li>
-<li class="chapter" data-level="18" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>18</b> Memory</a></li>
+<li class="chapter" data-level="18" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>18</b> Speed</a></li>
+<li class="chapter" data-level="19" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>19</b> Memory</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -242,10 +280,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="informative-names" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Informative Names</h2>
 <p>I may sound like a tidyverse fanboy ( I am not) but classes and data types in R are quite opaque so names of functions and objects should reflect precisely what they represent. There is no harm in using names with data-types before them</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="names.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># int_currency &lt;- 1:10</span></span>
-<span id="cb21-2"><a href="names.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># chr_letters &lt;- letters</span></span>
-<span id="cb21-3"><a href="names.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dt_mtcars &lt;- data.table::data.table(mtcars)</span></span>
-<span id="cb21-4"><a href="names.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># tbl_mtcars &lt;- tibble::tibble(mtcars)</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="names.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># int_currency &lt;- 1:10</span></span>
+<span id="cb46-2"><a href="names.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># chr_letters &lt;- letters</span></span>
+<span id="cb46-3"><a href="names.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co"># dt_mtcars &lt;- data.table::data.table(mtcars)</span></span>
+<span id="cb46-4"><a href="names.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co"># tbl_mtcars &lt;- tibble::tibble(mtcars)</span></span></code></pre></div>
 <p>Above advice may be more useful for package developers but it can be used in broad scenarios even on a project where there are multiple working on a same project. If I know what datatype I am dealing with I don’t have to go through the entire code and working on top of it becomes that much easier.</p>
 <p>You can use more descriptive names without data types in the beginning for your projects. Names like <strong>data, mainData, dummyVar, tempList</strong> etc.. should never be used in a project. Use more descriptive names like sales_data_2020, api_token, rate_of_interest etc…</p>
 </div>
@@ -310,7 +348,7 @@ gitbook.start({
 },
 "download": ["best_r_practices.pdf", "best_r_practices.epub"],
 "toc": {
-"collapse": "subsection"
+"collapse": "section"
 }
 });
 });

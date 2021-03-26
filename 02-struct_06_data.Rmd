@@ -1,0 +1,6 @@
+# data Management {#dataManagement}
+
+## Don't use numbers 
+## Use Databases
+## Keep a Copy
+## Use Efficient Packages 

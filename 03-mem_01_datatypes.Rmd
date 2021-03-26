@@ -1,3 +1,275 @@
-# (PART) Memory {-}
+# (PART) Memory {.unnumbered}
 
 # Type System {#types}
+
+> ***With Great power comes great responsibility***
+>
+> -- ( Uncle Ben ) *Man who raised spider-man*
+
+Despite what most people believe R too has data types. Every language tries to consume the memory space as efficiently as possible and for that they have pre-specified memory layouts that work almost all the same in every language. If you have worked on SQL databases the role of data types are exactly the same across all the languages. R just makes it easier to infer the data-type from your code so that you don't have to declare it specifically.
+
+primal data types for vectors in R are :
+
+-   logical
+
+-   numeric
+
+-   integer
+
+-   complex
+
+-   character
+
+-   raw
+
+then there are composite data types like date, posixct, even a dataframe is a list with some rules.
+
+## Things you should know
+
+There are a certain things you should know about data types in R.
+
+### R don't have scalar data types
+
+```{r}
+x <- 10L
+x
+```
+
+There is a reason `[1]` is written before the number 10. It's because unlike other languages R don't have scalar values. Everything in R is a vector. It may be a vector of length 1 or 1 billion but it's all still a vector. This is one of the primary reason R works more like **SQL** ( *as most data guy love* ) and less like **JAVA** ( *as most programmers love* ).
+
+It gives huge speed to data manipulation as all the operations are more like ***In Memory Columnar Table***. But in return when you are creating a webpage or an API or something where you need a scalar value to be updated again and again. R consumes more resources to do that kind of thing.
+
+```{r}
+
+microbenchmark::microbenchmark(
+vectorized = {
+  x <- rnorm(1e3)
+},
+scalar = {
+  y <- numeric(1L)
+  for(i in 1:1e3){
+  y[[i]] <- rnorm(1)
+  }
+},
+times = 10
+)
+
+```
+
+Even then I would ask you to go ahead with R because the difference will most probably in 1-2 milliseconds which will never impact your performance any serious way. But this is something you should remember that vectorized R is way faster than even python but scalar manipulations in R are a bit slower. Choose vectorized version of the code whenever possible even if you do a bit more steps in it, it will still be faster than the scalar versions.
+
+### Dates are basically integers under the hood.
+
+```{r}
+
+x <- Sys.Date()
+class(x)
+# "Date"
+as.integer(x)
+```
+
+This number means it has been 18 thousand 7 hundred days since 1970 which is roughly (365 \* 50)
+
+### POSIXlt are basically lists under the hood
+
+```{r}
+
+unclass(x)
+
+y <- Sys.time()
+y <- as.POSIXlt(y)
+class(y)
+# "POSIXlt"
+
+unclass(y)
+```
+
+because it stores metadata along with it, use posixct whenever possible.
+
+### Integers are smaller than numeric
+
+```{r}
+
+x <- sample(1:1e3, 1e8, replace = TRUE)
+class(x)
+# [1] "integer"
+y <- as.numeric(x)
+class(y)
+# [1] "numeric"
+
+object.size(x)
+# 400000048 bytes
+object.size(y)
+# 800000048 bytes
+```
+
+See the difference yourself. It's about twice the size of the original integer vector. It's all because of datatypes. You should use integer only when you need one. There is a cool trick to let R know that you are creating an integer. Just add L at the end.
+
+```{r}
+
+x <- 1
+class(x)
+#[1] "numeric"
+
+y <- 1L
+class(y)
+# [1] "integer"
+```
+
+**Letter L** at the end after a number will tell R that you want an integer. Please use integers when you need one.
+
+### define your datatypes before the variable
+
+```{r}
+
+i <- integer(1e3)
+class(i)
+length(i)
+
+l <- logical(1e3)
+class(l)
+length(l)
+
+n <- numeric(1e3)
+class(n)
+length(n)
+
+c <- character(1e3)
+class(c)
+length(c)
+
+```
+
+Just like any other language even in R you can create an empty vector of a predefined length which are initialized at 0 or "" or FALSE based on the data types. Use this functionality when you want to create a column or vector you know nothing about except data type.
+
+Defining data-types beforehand is an excellent programming practice and we as R user should use it more often. It also removes burden on the compiler to try to guess the data-type.
+
+### lists are better than dataframe under a loop
+
+```{r}
+
+# x_dataframe <- data.frame(x = 1:1e3L)
+# 
+# for(i in 1:1e4L){
+#   x_dataframe$x[[i]] <- i
+# }
+# This code will produce an error because you can't increase the row count of a dataframe like that.
+
+x_list <- list(x = 1:1e3L)
+
+for(i in 1:1e4L){
+  x_list$x[[i]] <- i
+}
+
+x_dataframe <- as.data.frame(x_list)
+class(x_dataframe)
+```
+
+you can not create additional rows easily in data.frame. but all dataframes are lists under the hood with some additional rules. you can convert them to list run a loop and convert back to data.frame. It's not only efficient but it's faster too...
+
+### use lists whenever possible
+
+Other languages have structs to handle multiple object types. R have lists and lists are most versatile piece of data-type you will find across any language. There are tons of example like the one I provided above where lists are more efficient because they don't have any restrictions.
+
+In my personal use case I have seen people trying to put a square peg in round hole by using data.frames at places where a simple list will be more efficient and appropriate. Please use list as frequently as possible and remember, ***always opt for lower level data type for better memory management***.
+
+## Choose data types carefully
+
+As we saw in examples above choosing the right data-type can mean a lot in
+
+```{r}
+
+x <- seq.Date(
+  from = as.Date("2000-01-01"),
+  to = Sys.Date(),
+  length.out = 1e4)
+
+x <- sample(x, 1e8, TRUE)
+
+y <- data.table::as.IDate(x)
+
+length(x) == length(y)
+
+object.size(x)
+object.size(y)
+```
+
+as you can see the base date type consumes around twice the memory compared to **IDate** data type from data.table. It may be because one is using numeric data types under the hood and other is using integers under the hood and it makes a huge difference when you are working on big data, to understand the data types in R and properly map them to save more space on your RAM.
+
+Despite what most people say RAM and CPU are not cheap, throwing more processor on something should only be done when the code is properly optimized. I don't want you to be hyper optimize your code on every sentence you write but being aware of some best practices will surely help you along the way. Go to next section for speed optimization as well.
+
+There are many packages in R we will talk about that provide speed ups to the code and saves memory too... We will talk about them later in the book. At this point all I can say is if R is slow or it crashes may be the data-type you have chosen is not right fit for the job. Try changing it and it will work just fine.
+
+## don't change datatypes
+
+R gives you an option to do this.
+
+```{r}
+
+x <- "Hello world"
+
+print(x)
+
+x <- 1L
+
+print(x)
+
+```
+
+Now you just assigned x as a character vector and then replaced x as an integer vector. This is something you can do but it's something you should never do. changing the datatype of a vector is not recommended in any programming language unless you are trying to convert from one data-type to another. like :
+
+```{r}
+
+x <- "2020-01-01"
+class(x)
+x <- as.Date(x)
+class(x)
+
+
+y <- c("1", "2", "3")
+class(y)
+y <- as.integer(y)
+class(y)
+```
+
+This and many operations like this where you know beforehand that you need to change the data-type is a good example of cases where you must change the data-types. So apart from cases where data-conversion is needed you should never change the data-types ever. It's a bad practice to do so.
+
+This is one of the scenario when you have the power but you mustn't use it.
+
+## Future of type-system in R
+
+Type system is important when you really want to save memory. It's specially true when you are dealing with huge volume of data and you want to save RAM more efficiently as possible, which is what an R users bread and butter. It's more like when you need it you really can't do without it. Every programming language is understanding this now. R is no exception to the rule. people are coming up with excellent theories on how to integrate a type system in R. Sooner or Later we will have a proper type system.
+
+Currently, There is a package called [**Typed** by **Antoine Fabri**](https://github.com/moodymudskipper/typed) on CRAN. You can install it directly from cran. It will not give you speed benefits though because it doesn't talk to compiler directly but it surely will restrict people to using wrong data-types where you don't need them. It's helpful when you write functions where you only need vector of certain lengths and a certain type so that further operations can be optimized.
+
+Then there are packages like [contractr by By Alexi Turcotte, Aviral Goel, Filip Křikava, Jan Vitek](https://github.com/PRL-PRG/contractr) which can talk to compilers directly. Package is still in early development have no claims or documents available at their homepage at <https://prl-prg.github.io/contractr/>. But they are trying to insert type system through roxygen arguements above a function. I think this will be useful for package developers. It has a long way to go but we are thinking in right direction at least. For more information you should watch this video
+
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/GMrLtYg0VGA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+These packages are no substitute for an inbuilt type system and we may ignore it but we really need a type system going forward. Lets hope for the best and have our fingers crossed for the moment.
+
+## Conclusion
+
+In This chapter we focused on multiple data-types in R and how to save memory and CPU time by utilizing the best one in it. There are only a few but critical takeaways from this chapter :
+
+1.  remember:
+
+    1.  R don't have scalars
+
+    2.  dates are integers
+
+    3.  POSIXlt should rarely be used
+
+    4.  use integers when you can
+
+    5.  define data-types beforehand
+
+    6.  use lists wherever possible
+
+2.  choose data-types carefully
+
+3.  Don't change data-types unless necessary
+
+4.  In Future we will have a type-system and we should learn to love types early on.

@@ -2,7 +2,7 @@
 
 I can not over emphasize the importance of functions. As a data scientist most of the time you will be writing functions. Only in couple of cases where you have to write complicated classes there too methods are nothing more than functions. Having solid grasp of best practices in functions is a must for everybody working in any language what-so-ever. Hopefully this chapter will help you in best coding practices for functions.
 
-## Metadata or Information
+## Metadata or Information header
 
 As I mentioned in the previous chapter it is a good practice to create sections for everything you do in R. functions are no exception to the rule. But along with that there are a couple of information you should write along with the function.
 
@@ -93,7 +93,7 @@ Working with lists people get confused and forget this basic principle. I have s
 
 Don't even get me started on dataframes. People write functions that do some magic stuff on dataframes and it sometimes return a dataframe of 10 columns, sometime 11 and sometime 8. It's such a common mistake to make. I understand if you are fetching a table from database and returning that same table via functions but during manipulations you must add empty columns or delete existing ones to make it consistent for the end user regardless of the conditions you have in the functions.
 
-## Use Sensible Names for parameters
+## Use Sensible Names for parameters too...
 
 Yet another simple thing but because most of us including me come from non computer science background we have a tendency to use names like **x, y, z, beta, theta, gamma, string etc...** in our function parameters. I too am guilty of doing it in above code for foo and bar functions and in general. Many good and well established libraries in R are guilty of this sin too... But in long run these words don't make much sense. It's hard to maintain that code and it's hard for user as well. Let's take an example :
 
@@ -106,7 +106,7 @@ join(x = 12, y = 12)
 
 do you see that as a user who hasn't written or even looked at the code it's already hard for him to understand what does x and y stands for. Only to get an error like this.
 
-```{r error=TRUE}
+```{r error=TRUE, include=TRUE}
 
 join(x = "mtcars", y = "iris")
 
@@ -213,6 +213,84 @@ best_func <- function( mult_params ){
 
 Here in this code every function has a clear responsibility and the main function is just a composite of multiple unique functions and it will be very easy to debug this code or change the functionality entirely.
 
+## Use Package::Function() approach
+
+R classes work differently than the traditional oops we all are aware of. Instead of `object_of_class.Method` syntax like other programmings have, we in R use `method( object_of_class )` syntax. Where just by changing name collision is a pretty common thing.
+
+It's a pretty common thing in R that 2 packages use same function name for different operations. So It's always better to use `qualified imports` fancy name for mentioning which package does the function comes from.
+
+### You should load libraries in the order of their usage
+
+```{r}
+
+# library("not_used_much")
+# library("least_used")
+# library("fairly_used")
+# library("most_used")
+# library("cant_do_without_it")
+```
+
+R uses the loading sequence to identify which function to give preference. It's usually to the last package loaded. It's called masking and it's not a reliable technique but it's better to arrange your code in that order for sake of simplicity.
+
+and Yes do not forget to mention the package name clearly. like prefer writing this always:
+
+```{r}
+
+# dplyr::filter()
+# stats::filter()
+# 
+# ## instead of 
+# 
+# filter()
+```
+
+<hr>
+
+**NOTE**:
+
+In R you can view any function definition by running the function without `()` round brackets. like this
+
+```{r echo=TRUE}
+
+quanteda::tokens
+```
+
+And you can check which methods are available for which classes by using
+
+```{r echo=TRUE}
+
+methods(class = "dfm")
+```
+
+Or you can check how many classes have a method by same name with.
+
+```{r echo=TRUE, eval=TRUE, error=TRUE}
+methods(generic.function = "textstat_lexdiv")
+```
+
+now most of these methods are hidden from general usage so you might not be able to view them.
+
+```{r echo=TRUE}
+# textstat_lexdiv.dfm 
+# will not work will produce an error
+# Error: object 'textstat_lexdiv.dfm' not found
+
+textstat_lexdiv
+
+# works but the implementation is still hidden because method will be decided based on the class provided to the method at the exact moment of calculation
+```
+
+But If you still want to know how to know the definition of a method of the class. Just use this code.
+
+```{r echo=TRUE, eval=TRUE, include=TRUE}
+
+getAnywhere("textstat_lexdiv.dfm")
+```
+
+If you want to understand more of this learn OOPS in R. R has multiple oops system and R is a highly Object oriented programming but the style is different from other languages. This book is all about best practices in R and thus we are not going to go deep into fundamentals of R programming here but this trick is worth knowing.
+
+<hr>
+
 ## Conclusion
 
 In this chapter we discussed the best practices for writing functions in R. Here are the key takeaways from the chapter.
@@ -224,3 +302,4 @@ In this chapter we discussed the best practices for writing functions in R. Here
 5.  use logical names for parameter
 6.  use tryCatch in every function
 7.  functions are supposed to do one thing and one thing only
+8.  Use qualified imports with syntax package::functions every time possible
