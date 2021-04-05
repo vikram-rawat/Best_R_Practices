@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-03-26" />
+<meta name="date" content="2021-04-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,11 +162,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="func.html"><a href="func.html#use-sensible-names-for-parameters-too"><i class="fa fa-check"></i><b>4.5</b> Use Sensible Names for parameters too…</a></li>
 <li class="chapter" data-level="4.6" data-path="func.html"><a href="func.html#use-trycatch"><i class="fa fa-check"></i><b>4.6</b> use tryCatch</a></li>
 <li class="chapter" data-level="4.7" data-path="func.html"><a href="func.html#write-simple-and-unique-functions"><i class="fa fa-check"></i><b>4.7</b> Write simple and unique functions</a></li>
-<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#use-packagefunction-approach"><i class="fa fa-check"></i><b>4.8</b> Use Package::Function() approach</a>
+<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#dont-load-libraries-or-source-code-inside-a-function"><i class="fa fa-check"></i><b>4.8</b> Don’t load libraries or source code inside a function</a></li>
+<li class="chapter" data-level="4.9" data-path="func.html"><a href="func.html#use-packagefunction-approach"><i class="fa fa-check"></i><b>4.9</b> Use Package::Function() approach</a>
 <ul>
-<li class="chapter" data-level="4.8.1" data-path="func.html"><a href="func.html#you-should-load-libraries-in-the-order-of-their-usage"><i class="fa fa-check"></i><b>4.8.1</b> You should load libraries in the order of their usage</a></li>
+<li class="chapter" data-level="4.9.1" data-path="func.html"><a href="func.html#you-should-load-libraries-in-the-order-of-their-usage"><i class="fa fa-check"></i><b>4.9.1</b> You should load libraries in the order of their usage</a></li>
 </ul></li>
-<li class="chapter" data-level="4.9" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.9</b> Conclusion</a></li>
+<li class="chapter" data-level="4.10" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.10</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions</a>
 <ul>
@@ -181,9 +182,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="envManagement.html"><a href="envManagement.html"><i class="fa fa-check"></i><b>6</b> Environment Management</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="envManagement.html"><a href="envManagement.html#renv-for-package-management"><i class="fa fa-check"></i><b>6.1</b> renv for package management</a></li>
-<li class="chapter" data-level="6.2" data-path="envManagement.html"><a href="envManagement.html#config-for-external-dependencies"><i class="fa fa-check"></i><b>6.2</b> config for external dependencies</a></li>
-<li class="chapter" data-level="6.3" data-path="envManagement.html"><a href="envManagement.html#conclusion-3"><i class="fa fa-check"></i><b>6.3</b> Conclusion</a></li>
+<li class="chapter" data-level="6.1" data-path="envManagement.html"><a href="envManagement.html#avoid-package-dependencies-when-possible"><i class="fa fa-check"></i><b>6.1</b> Avoid package dependencies when possible</a></li>
+<li class="chapter" data-level="6.2" data-path="envManagement.html"><a href="envManagement.html#renv-for-package-management"><i class="fa fa-check"></i><b>6.2</b> renv for package management</a></li>
+<li class="chapter" data-level="6.3" data-path="envManagement.html"><a href="envManagement.html#config-for-external-dependencies"><i class="fa fa-check"></i><b>6.3</b> config for external dependencies</a></li>
+<li class="chapter" data-level="6.4" data-path="envManagement.html"><a href="envManagement.html#conclusion-3"><i class="fa fa-check"></i><b>6.4</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="dataManagement.html"><a href="dataManagement.html"><i class="fa fa-check"></i><b>7</b> data Management</a>
 <ul>
@@ -202,48 +204,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="dataManagement.html"><a href="dataManagement.html#conclusion-4"><i class="fa fa-check"></i><b>7.6</b> Conclusion</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="debug.html"><a href="debug.html"><i class="fa fa-check"></i><b>8</b> Debugging</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="debug.html"><a href="debug.html#version-control-system"><i class="fa fa-check"></i><b>8.1</b> Version Control System</a></li>
+<li class="chapter" data-level="8.2" data-path="debug.html"><a href="debug.html#make-small-commits"><i class="fa fa-check"></i><b>8.2</b> Make small commits</a></li>
+<li class="chapter" data-level="8.3" data-path="debug.html"><a href="debug.html#use-proper-parenthesis"><i class="fa fa-check"></i><b>8.3</b> Use proper parenthesis</a></li>
+<li class="chapter" data-level="8.4" data-path="debug.html"><a href="debug.html#always-use-named-parameters"><i class="fa fa-check"></i><b>8.4</b> Always use named parameters</a></li>
+<li class="chapter" data-level="8.5" data-path="debug.html"><a href="debug.html#log-the-errors"><i class="fa fa-check"></i><b>8.5</b> Log the errors</a></li>
+<li class="chapter" data-level="8.6" data-path="debug.html"><a href="debug.html#browser-is-your-friend"><i class="fa fa-check"></i><b>8.6</b> Browser() is your friend</a></li>
+<li class="chapter" data-level="8.7" data-path="debug.html"><a href="debug.html#dont-use-t-or-f"><i class="fa fa-check"></i><b>8.7</b> Don’t Use T or F</a></li>
+<li class="chapter" data-level="8.8" data-path="debug.html"><a href="debug.html#avoid-already-described-names"><i class="fa fa-check"></i><b>8.8</b> Avoid already described names</a></li>
+</ul></li>
 <li class="part"><span><b>III Memory</b></span></li>
-<li class="chapter" data-level="8" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>8</b> Type System</a>
+<li class="chapter" data-level="9" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>9</b> Type System</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="types.html"><a href="types.html#things-you-should-know"><i class="fa fa-check"></i><b>8.1</b> Things you should know</a>
+<li class="chapter" data-level="9.1" data-path="types.html"><a href="types.html#things-you-should-know"><i class="fa fa-check"></i><b>9.1</b> Things you should know</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="types.html"><a href="types.html#r-dont-have-scalar-data-types"><i class="fa fa-check"></i><b>8.1.1</b> R don’t have scalar data types</a></li>
-<li class="chapter" data-level="8.1.2" data-path="types.html"><a href="types.html#dates-are-basically-integers-under-the-hood."><i class="fa fa-check"></i><b>8.1.2</b> Dates are basically integers under the hood.</a></li>
-<li class="chapter" data-level="8.1.3" data-path="types.html"><a href="types.html#posixlt-are-basically-lists-under-the-hood"><i class="fa fa-check"></i><b>8.1.3</b> POSIXlt are basically lists under the hood</a></li>
-<li class="chapter" data-level="8.1.4" data-path="types.html"><a href="types.html#integers-are-smaller-than-numeric"><i class="fa fa-check"></i><b>8.1.4</b> Integers are smaller than numeric</a></li>
-<li class="chapter" data-level="8.1.5" data-path="types.html"><a href="types.html#define-your-datatypes-before-the-variable"><i class="fa fa-check"></i><b>8.1.5</b> define your datatypes before the variable</a></li>
-<li class="chapter" data-level="8.1.6" data-path="types.html"><a href="types.html#lists-are-better-than-dataframe-under-a-loop"><i class="fa fa-check"></i><b>8.1.6</b> lists are better than dataframe under a loop</a></li>
-<li class="chapter" data-level="8.1.7" data-path="types.html"><a href="types.html#use-lists-whenever-possible"><i class="fa fa-check"></i><b>8.1.7</b> use lists whenever possible</a></li>
+<li class="chapter" data-level="9.1.1" data-path="types.html"><a href="types.html#r-dont-have-scalar-data-types"><i class="fa fa-check"></i><b>9.1.1</b> R don’t have scalar data types</a></li>
+<li class="chapter" data-level="9.1.2" data-path="types.html"><a href="types.html#dates-are-basically-integers-under-the-hood."><i class="fa fa-check"></i><b>9.1.2</b> Dates are basically integers under the hood.</a></li>
+<li class="chapter" data-level="9.1.3" data-path="types.html"><a href="types.html#posixlt-are-basically-lists-under-the-hood"><i class="fa fa-check"></i><b>9.1.3</b> POSIXlt are basically lists under the hood</a></li>
+<li class="chapter" data-level="9.1.4" data-path="types.html"><a href="types.html#integers-are-smaller-than-numeric"><i class="fa fa-check"></i><b>9.1.4</b> Integers are smaller than numeric</a></li>
+<li class="chapter" data-level="9.1.5" data-path="types.html"><a href="types.html#define-your-datatypes-before-the-variable"><i class="fa fa-check"></i><b>9.1.5</b> define your datatypes before the variable</a></li>
+<li class="chapter" data-level="9.1.6" data-path="types.html"><a href="types.html#lists-are-better-than-dataframe-under-a-loop"><i class="fa fa-check"></i><b>9.1.6</b> lists are better than dataframe under a loop</a></li>
+<li class="chapter" data-level="9.1.7" data-path="types.html"><a href="types.html#use-lists-whenever-possible"><i class="fa fa-check"></i><b>9.1.7</b> use lists whenever possible</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="types.html"><a href="types.html#choose-data-types-carefully"><i class="fa fa-check"></i><b>8.2</b> Choose data types carefully</a></li>
-<li class="chapter" data-level="8.3" data-path="types.html"><a href="types.html#dont-change-datatypes"><i class="fa fa-check"></i><b>8.3</b> don’t change datatypes</a></li>
-<li class="chapter" data-level="8.4" data-path="types.html"><a href="types.html#future-of-type-system-in-r"><i class="fa fa-check"></i><b>8.4</b> Future of type-system in R</a></li>
-<li class="chapter" data-level="8.5" data-path="types.html"><a href="types.html#conclusion-5"><i class="fa fa-check"></i><b>8.5</b> Conclusion</a></li>
+<li class="chapter" data-level="9.2" data-path="types.html"><a href="types.html#choose-data-types-carefully"><i class="fa fa-check"></i><b>9.2</b> Choose data types carefully</a></li>
+<li class="chapter" data-level="9.3" data-path="types.html"><a href="types.html#dont-change-datatypes"><i class="fa fa-check"></i><b>9.3</b> don’t change datatypes</a></li>
+<li class="chapter" data-level="9.4" data-path="types.html"><a href="types.html#future-of-type-system-in-r"><i class="fa fa-check"></i><b>9.4</b> Future of type-system in R</a></li>
+<li class="chapter" data-level="9.5" data-path="types.html"><a href="types.html#conclusion-5"><i class="fa fa-check"></i><b>9.5</b> Conclusion</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>9</b> Pass By Value-Reference</a>
+<li class="chapter" data-level="10" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>10</b> Pass By Value-Reference</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="reference.html"><a href="reference.html#understanding-the-system"><i class="fa fa-check"></i><b>9.1</b> Understanding the system</a>
+<li class="chapter" data-level="10.1" data-path="reference.html"><a href="reference.html#understanding-the-system"><i class="fa fa-check"></i><b>10.1</b> Understanding the system</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="reference.html"><a href="reference.html#pass-by-value"><i class="fa fa-check"></i><b>9.1.1</b> Pass by Value</a></li>
-<li class="chapter" data-level="9.1.2" data-path="reference.html"><a href="reference.html#pass-by-reference"><i class="fa fa-check"></i><b>9.1.2</b> Pass by reference</a></li>
+<li class="chapter" data-level="10.1.1" data-path="reference.html"><a href="reference.html#pass-by-value"><i class="fa fa-check"></i><b>10.1.1</b> Pass by Value</a></li>
+<li class="chapter" data-level="10.1.2" data-path="reference.html"><a href="reference.html#pass-by-reference"><i class="fa fa-check"></i><b>10.1.2</b> Pass by reference</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="reference.html"><a href="reference.html#copy-on-modify"><i class="fa fa-check"></i><b>9.2</b> Copy on modify</a></li>
-<li class="chapter" data-level="9.3" data-path="reference.html"><a href="reference.html#for-pass-by-reference"><i class="fa fa-check"></i><b>9.3</b> for pass by reference</a></li>
-<li class="chapter" data-level="9.4" data-path="reference.html"><a href="reference.html#conclusion-6"><i class="fa fa-check"></i><b>9.4</b> Conclusion</a></li>
+<li class="chapter" data-level="10.2" data-path="reference.html"><a href="reference.html#copy-on-modify"><i class="fa fa-check"></i><b>10.2</b> Copy on modify</a></li>
+<li class="chapter" data-level="10.3" data-path="reference.html"><a href="reference.html#for-pass-by-reference"><i class="fa fa-check"></i><b>10.3</b> for pass by reference</a></li>
+<li class="chapter" data-level="10.4" data-path="reference.html"><a href="reference.html#conclusion-6"><i class="fa fa-check"></i><b>10.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="releasememory.html"><a href="releasememory.html"><i class="fa fa-check"></i><b>11</b> Release Memory</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="releasememory.html"><a href="releasememory.html#use-rm"><i class="fa fa-check"></i><b>11.1</b> use rm()</a></li>
+<li class="chapter" data-level="11.2" data-path="releasememory.html"><a href="releasememory.html#use-gc"><i class="fa fa-check"></i><b>11.2</b> use gc()</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="releasememory.html"><a href="releasememory.html#r-version-3.5"><i class="fa fa-check"></i><b>11.2.1</b> R version 3.5</a></li>
+<li class="chapter" data-level="11.2.2" data-path="releasememory.html"><a href="releasememory.html#r-version-4.0"><i class="fa fa-check"></i><b>11.2.2</b> R version 4.0</a></li>
+<li class="chapter" data-level="11.2.3" data-path="releasememory.html"><a href="releasememory.html#inside-a-heavy-loop"><i class="fa fa-check"></i><b>11.2.3</b> Inside a heavy loop</a></li>
+<li class="chapter" data-level="11.2.4" data-path="releasememory.html"><a href="releasememory.html#anything-that-takes-more-than-30-seconds"><i class="fa fa-check"></i><b>11.2.4</b> anything that takes more than 30 seconds</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="releasememory.html"><a href="releasememory.html#conclusion-7"><i class="fa fa-check"></i><b>11.3</b> Conclusion</a></li>
 </ul></li>
 <li class="part"><span><b>IV Speed</b></span></li>
-<li class="chapter" data-level="10" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>10</b> For Loops</a></li>
-<li class="chapter" data-level="11" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>11</b> Multithreading</a></li>
-<li class="chapter" data-level="12" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>12</b> Vectorize</a></li>
-<li class="chapter" data-level="13" data-path="bench.html"><a href="bench.html"><i class="fa fa-check"></i><b>13</b> Benchmarking</a></li>
-<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> packages</a></li>
+<li class="chapter" data-level="12" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>12</b> For Loops</a></li>
+<li class="chapter" data-level="13" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>13</b> Multithreading</a></li>
+<li class="chapter" data-level="14" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>14</b> Vectorize</a></li>
+<li class="chapter" data-level="15" data-path="bench.html"><a href="bench.html"><i class="fa fa-check"></i><b>15</b> Benchmarking</a></li>
+<li class="chapter" data-level="16" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>16</b> packages</a></li>
 <li class="part"><span><b>V Production Tools</b></span></li>
-<li class="chapter" data-level="15" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>15</b> Docker</a></li>
-<li class="chapter" data-level="16" data-path="proxy.html"><a href="proxy.html"><i class="fa fa-check"></i><b>16</b> Proxy Server</a></li>
-<li class="chapter" data-level="17" data-path="cloud.html"><a href="cloud.html"><i class="fa fa-check"></i><b>17</b> Cloud Services</a></li>
+<li class="chapter" data-level="17" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>17</b> Docker</a></li>
+<li class="chapter" data-level="18" data-path="proxy.html"><a href="proxy.html"><i class="fa fa-check"></i><b>18</b> Proxy Server</a></li>
+<li class="chapter" data-level="19" data-path="cloud.html"><a href="cloud.html"><i class="fa fa-check"></i><b>19</b> Cloud Services</a></li>
 <li class="part"><span><b>VI Shiny Tips</b></span></li>
-<li class="chapter" data-level="18" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>18</b> Speed</a></li>
-<li class="chapter" data-level="19" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>19</b> Memory</a></li>
+<li class="chapter" data-level="20" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>20</b> Speed</a></li>
+<li class="chapter" data-level="21" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>21</b> Memory</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -280,6 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>written by</li>
 <li>written on</li>
+<li>parameters</li>
 <li>modified by</li>
 <li>modified on</li>
 <li>purpose</li>
@@ -371,7 +397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb29-13"><a href="func.html#cb29-13" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb29-14"><a href="func.html#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-15"><a href="func.html#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(<span class="st">&quot;mtcars&quot;</span>, <span class="st">&quot;iris&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;An error occurred in foo at 2021-03-26 19:47:52 : Error in x + y: non-numeric argument to binary operator\n&quot;</code></pre>
+<pre><code>## [1] &quot;An error occurred in foo at 2021-04-05 10:25:34 : Error in x + y: non-numeric argument to binary operator\n&quot;</code></pre>
 <p>Now imagine this line to be printed in a json file or inserted in a database with time stamp and other information instead of crashing the entire code only a particular functionality will not run which is huge. This is the difference between staying late on Saturday night to fix a bug vs telling them that I will fix it on Monday. To me that is big enough.</p>
 </div>
 <div id="write-simple-and-unique-functions" class="section level2" number="4.7">
@@ -427,29 +453,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb32-28"><a href="func.html#cb32-28" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Here in this code every function has a clear responsibility and the main function is just a composite of multiple unique functions and it will be very easy to debug this code or change the functionality entirely.</p>
 </div>
-<div id="use-packagefunction-approach" class="section level2" number="4.8">
-<h2><span class="header-section-number">4.8</span> Use Package::Function() approach</h2>
+<div id="dont-load-libraries-or-source-code-inside-a-function" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Don’t load libraries or source code inside a function</h2>
+<p>You may assume nobody does it. But I have seen people doing it times and times again.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="func.html#cb33-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>( x ){</span>
+<span id="cb33-2"><a href="func.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(data.table)</span>
+<span id="cb33-3"><a href="func.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setDT</span>(x)</span>
+<span id="cb33-4"><a href="func.html#cb33-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb33-5"><a href="func.html#cb33-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-6"><a href="func.html#cb33-6" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>( x ){</span>
+<span id="cb33-7"><a href="func.html#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">source</span>(<span class="at">file =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb33-8"><a href="func.html#cb33-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>In functional programming terminology these functions are called <code>impure functions</code> . Function which change the global environment or some persistent changes are called impure functions. They require very delicate handling of the entire project. If I don’t know how many packages and what version of them am I dependent on or what files have I loaded in my environment it makes debugging the code a lot more harder.</p>
+<p>By following this style of code you are making the debugging harder for your project. In fact I would argue that you should remove all the external dependencies from a function. Take this code for example.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="func.html#cb34-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb34-2"><a href="func.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-3"><a href="func.html#cb34-3" aria-hidden="true" tabindex="-1"></a>  exl <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="at">path =</span> <span class="st">&quot;increased/external/dependency&quot;</span>)</span>
+<span id="cb34-4"><a href="func.html#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="func.html#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="do">##  </span></span>
+<span id="cb34-6"><a href="func.html#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="do">### do some data operation in the function</span></span>
+<span id="cb34-7"><a href="func.html#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="do">##</span></span>
+<span id="cb34-8"><a href="func.html#cb34-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-9"><a href="func.html#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(exl)</span>
+<span id="cb34-10"><a href="func.html#cb34-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-11"><a href="func.html#cb34-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-12"><a href="func.html#cb34-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-13"><a href="func.html#cb34-13" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb34-14"><a href="func.html#cb34-14" aria-hidden="true" tabindex="-1"></a>  x,</span>
+<span id="cb34-15"><a href="func.html#cb34-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">filepath =</span> <span class="st">&quot;increased/external/dependency&quot;</span>){</span>
+<span id="cb34-16"><a href="func.html#cb34-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-17"><a href="func.html#cb34-17" aria-hidden="true" tabindex="-1"></a>  exl <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="at">path =</span> filepath)</span>
+<span id="cb34-18"><a href="func.html#cb34-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-19"><a href="func.html#cb34-19" aria-hidden="true" tabindex="-1"></a>  <span class="do">##  </span></span>
+<span id="cb34-20"><a href="func.html#cb34-20" aria-hidden="true" tabindex="-1"></a>  <span class="do">### do some data operation in the function</span></span>
+<span id="cb34-21"><a href="func.html#cb34-21" aria-hidden="true" tabindex="-1"></a>  <span class="do">##</span></span>
+<span id="cb34-22"><a href="func.html#cb34-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb34-23"><a href="func.html#cb34-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(exl)</span>
+<span id="cb34-24"><a href="func.html#cb34-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Foo and bar are both doing the same thing and both are relying on an external path for code to work. But because bar is clearly stating the filepath as an argument it is easier to change and adapt to new needs.</p>
+<p>If you still need to rely on a package call it from the main script not from a function. And if you absolutely need some functions of a package inside a particular function then use <code>qualified imports</code> and don’t load the entire package.</p>
+</div>
+<div id="use-packagefunction-approach" class="section level2" number="4.9">
+<h2><span class="header-section-number">4.9</span> Use Package::Function() approach</h2>
 <p>R classes work differently than the traditional oops we all are aware of. Instead of <code>object_of_class.Method</code> syntax like other programmings have, we in R use <code>method( object_of_class )</code> syntax. Where just by changing name collision is a pretty common thing.</p>
 <p>It’s a pretty common thing in R that 2 packages use same function name for different operations. So It’s always better to use <code>qualified imports</code> fancy name for mentioning which package does the function comes from.</p>
-<div id="you-should-load-libraries-in-the-order-of-their-usage" class="section level3" number="4.8.1">
-<h3><span class="header-section-number">4.8.1</span> You should load libraries in the order of their usage</h3>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="func.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;not_used_much&quot;)</span></span>
-<span id="cb33-2"><a href="func.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;least_used&quot;)</span></span>
-<span id="cb33-3"><a href="func.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;fairly_used&quot;)</span></span>
-<span id="cb33-4"><a href="func.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;most_used&quot;)</span></span>
-<span id="cb33-5"><a href="func.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;cant_do_without_it&quot;)</span></span></code></pre></div>
+<div id="you-should-load-libraries-in-the-order-of-their-usage" class="section level3" number="4.9.1">
+<h3><span class="header-section-number">4.9.1</span> You should load libraries in the order of their usage</h3>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="func.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;not_used_much&quot;)</span></span>
+<span id="cb35-2"><a href="func.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;least_used&quot;)</span></span>
+<span id="cb35-3"><a href="func.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;fairly_used&quot;)</span></span>
+<span id="cb35-4"><a href="func.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;most_used&quot;)</span></span>
+<span id="cb35-5"><a href="func.html#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="co"># library(&quot;cant_do_without_it&quot;)</span></span></code></pre></div>
 <p>R uses the loading sequence to identify which function to give preference. It’s usually to the last package loaded. It’s called masking and it’s not a reliable technique but it’s better to arrange your code in that order for sake of simplicity.</p>
 <p>and Yes do not forget to mention the package name clearly. like prefer writing this always:</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="func.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr::filter()</span></span>
-<span id="cb34-2"><a href="func.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># stats::filter()</span></span>
-<span id="cb34-3"><a href="func.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb34-4"><a href="func.html#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ## instead of </span></span>
-<span id="cb34-5"><a href="func.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb34-6"><a href="func.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># filter()</span></span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="func.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dplyr::filter()</span></span>
+<span id="cb36-2"><a href="func.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># stats::filter()</span></span>
+<span id="cb36-3"><a href="func.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb36-4"><a href="func.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ## instead of </span></span>
+<span id="cb36-5"><a href="func.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb36-6"><a href="func.html#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># filter()</span></span></code></pre></div>
 <hr>
 <p><strong>NOTE</strong>:</p>
 <p>In R you can view any function definition by running the function without <code>()</code> round brackets. like this</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="func.html#cb35-1" aria-hidden="true" tabindex="-1"></a>quanteda<span class="sc">::</span>tokens</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="func.html#cb37-1" aria-hidden="true" tabindex="-1"></a>quanteda<span class="sc">::</span>tokens</span></code></pre></div>
 <pre><code>## function (x, what = &quot;word&quot;, remove_punct = FALSE, remove_symbols = FALSE, 
 ##     remove_numbers = FALSE, remove_url = FALSE, remove_separators = TRUE, 
 ##     split_hyphens = FALSE, include_docvars = TRUE, padding = FALSE, 
@@ -462,10 +528,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             &quot;input...\n&quot;)
 ##     UseMethod(&quot;tokens&quot;)
 ## }
-## &lt;bytecode: 0x000000002061f3d0&gt;
+## &lt;bytecode: 0x000000001cd29248&gt;
 ## &lt;environment: namespace:quanteda&gt;</code></pre>
 <p>And you can check which methods are available for which classes by using</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="func.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">class =</span> <span class="st">&quot;dfm&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="func.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">class =</span> <span class="st">&quot;dfm&quot;</span>)</span></code></pre></div>
 <pre><code>##   [1] -                     !                     $                    
 ##   [4] $&lt;-                   %%                    %*%                  
 ##   [7] %/%                   &amp;                     *                    
@@ -504,15 +570,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [106] View                 
 ## see &#39;?methods&#39; for accessing help and source code</code></pre>
 <p>Or you can check how many classes have a method by same name with.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="func.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">generic.function =</span> <span class="st">&quot;textstat_lexdiv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="func.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">generic.function =</span> <span class="st">&quot;textstat_lexdiv&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] textstat_lexdiv.default* textstat_lexdiv.dfm*     textstat_lexdiv.tokens* 
 ## see &#39;?methods&#39; for accessing help and source code</code></pre>
 <p>now most of these methods are hidden from general usage so you might not be able to view them.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="func.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># textstat_lexdiv.dfm </span></span>
-<span id="cb41-2"><a href="func.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># will not work will produce an error</span></span>
-<span id="cb41-3"><a href="func.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Error: object &#39;textstat_lexdiv.dfm&#39; not found</span></span>
-<span id="cb41-4"><a href="func.html#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="func.html#cb41-5" aria-hidden="true" tabindex="-1"></a>textstat_lexdiv</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="func.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># textstat_lexdiv.dfm </span></span>
+<span id="cb43-2"><a href="func.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># will not work will produce an error</span></span>
+<span id="cb43-3"><a href="func.html#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Error: object &#39;textstat_lexdiv.dfm&#39; not found</span></span>
+<span id="cb43-4"><a href="func.html#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="func.html#cb43-5" aria-hidden="true" tabindex="-1"></a>textstat_lexdiv</span></code></pre></div>
 <pre><code>## function (x, measure = c(&quot;TTR&quot;, &quot;C&quot;, &quot;R&quot;, &quot;CTTR&quot;, &quot;U&quot;, &quot;S&quot;, &quot;K&quot;, 
 ##     &quot;I&quot;, &quot;D&quot;, &quot;Vm&quot;, &quot;Maas&quot;, &quot;MATTR&quot;, &quot;MSTTR&quot;, &quot;all&quot;), remove_numbers = TRUE, 
 ##     remove_punct = TRUE, remove_symbols = TRUE, remove_hyphens = FALSE, 
@@ -521,11 +587,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## {
 ##     UseMethod(&quot;textstat_lexdiv&quot;)
 ## }
-## &lt;bytecode: 0x00000000205f5d28&gt;
+## &lt;bytecode: 0x000000001ccf1698&gt;
 ## &lt;environment: namespace:quanteda&gt;</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="func.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># works but the implementation is still hidden because method will be decided based on the class provided to the method at the exact moment of calculation</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="func.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># works but the implementation is still hidden because method will be decided based on the class provided to the method at the exact moment of calculation</span></span></code></pre></div>
 <p>But If you still want to know how to know the definition of a method of the class. Just use this code.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="func.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getAnywhere</span>(<span class="st">&quot;textstat_lexdiv.dfm&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="func.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getAnywhere</span>(<span class="st">&quot;textstat_lexdiv.dfm&quot;</span>)</span></code></pre></div>
 <pre><code>## A single object matching &#39;textstat_lexdiv.dfm&#39; was found
 ## It was found in the following places
 ##   registered S3 method for textstat_lexdiv from namespace quanteda
@@ -562,14 +628,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             &quot;all&quot;]
 ##     compute_lexdiv_dfm_stats(x, measure = measure, log.base = log.base)
 ## }
-## &lt;bytecode: 0x0000000020c18f18&gt;
+## &lt;bytecode: 0x000000001e1aa050&gt;
 ## &lt;environment: namespace:quanteda&gt;</code></pre>
 <p>If you want to understand more of this learn OOPS in R. R has multiple oops system and R is a highly Object oriented programming but the style is different from other languages. This book is all about best practices in R and thus we are not going to go deep into fundamentals of R programming here but this trick is worth knowing.</p>
 <hr>
 </div>
 </div>
-<div id="conclusion-2" class="section level2" number="4.9">
-<h2><span class="header-section-number">4.9</span> Conclusion</h2>
+<div id="conclusion-2" class="section level2" number="4.10">
+<h2><span class="header-section-number">4.10</span> Conclusion</h2>
 <p>In this chapter we discussed the best practices for writing functions in R. Here are the key takeaways from the chapter.</p>
 <ol style="list-style-type: decimal">
 <li>write information about the function at top of it.</li>
@@ -579,6 +645,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>use logical names for parameter</li>
 <li>use tryCatch in every function</li>
 <li>functions are supposed to do one thing and one thing only</li>
+<li>don’t try to change global environment without letting the user know</li>
 <li>Use qualified imports with syntax package::functions every time possible</li>
 </ol>
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-03-26" />
+<meta name="date" content="2021-04-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,11 +162,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="func.html"><a href="func.html#use-sensible-names-for-parameters-too"><i class="fa fa-check"></i><b>4.5</b> Use Sensible Names for parameters too…</a></li>
 <li class="chapter" data-level="4.6" data-path="func.html"><a href="func.html#use-trycatch"><i class="fa fa-check"></i><b>4.6</b> use tryCatch</a></li>
 <li class="chapter" data-level="4.7" data-path="func.html"><a href="func.html#write-simple-and-unique-functions"><i class="fa fa-check"></i><b>4.7</b> Write simple and unique functions</a></li>
-<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#use-packagefunction-approach"><i class="fa fa-check"></i><b>4.8</b> Use Package::Function() approach</a>
+<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#dont-load-libraries-or-source-code-inside-a-function"><i class="fa fa-check"></i><b>4.8</b> Don’t load libraries or source code inside a function</a></li>
+<li class="chapter" data-level="4.9" data-path="func.html"><a href="func.html#use-packagefunction-approach"><i class="fa fa-check"></i><b>4.9</b> Use Package::Function() approach</a>
 <ul>
-<li class="chapter" data-level="4.8.1" data-path="func.html"><a href="func.html#you-should-load-libraries-in-the-order-of-their-usage"><i class="fa fa-check"></i><b>4.8.1</b> You should load libraries in the order of their usage</a></li>
+<li class="chapter" data-level="4.9.1" data-path="func.html"><a href="func.html#you-should-load-libraries-in-the-order-of-their-usage"><i class="fa fa-check"></i><b>4.9.1</b> You should load libraries in the order of their usage</a></li>
 </ul></li>
-<li class="chapter" data-level="4.9" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.9</b> Conclusion</a></li>
+<li class="chapter" data-level="4.10" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.10</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions</a>
 <ul>
@@ -181,9 +182,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6" data-path="envManagement.html"><a href="envManagement.html"><i class="fa fa-check"></i><b>6</b> Environment Management</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="envManagement.html"><a href="envManagement.html#renv-for-package-management"><i class="fa fa-check"></i><b>6.1</b> renv for package management</a></li>
-<li class="chapter" data-level="6.2" data-path="envManagement.html"><a href="envManagement.html#config-for-external-dependencies"><i class="fa fa-check"></i><b>6.2</b> config for external dependencies</a></li>
-<li class="chapter" data-level="6.3" data-path="envManagement.html"><a href="envManagement.html#conclusion-3"><i class="fa fa-check"></i><b>6.3</b> Conclusion</a></li>
+<li class="chapter" data-level="6.1" data-path="envManagement.html"><a href="envManagement.html#avoid-package-dependencies-when-possible"><i class="fa fa-check"></i><b>6.1</b> Avoid package dependencies when possible</a></li>
+<li class="chapter" data-level="6.2" data-path="envManagement.html"><a href="envManagement.html#renv-for-package-management"><i class="fa fa-check"></i><b>6.2</b> renv for package management</a></li>
+<li class="chapter" data-level="6.3" data-path="envManagement.html"><a href="envManagement.html#config-for-external-dependencies"><i class="fa fa-check"></i><b>6.3</b> config for external dependencies</a></li>
+<li class="chapter" data-level="6.4" data-path="envManagement.html"><a href="envManagement.html#conclusion-3"><i class="fa fa-check"></i><b>6.4</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="dataManagement.html"><a href="dataManagement.html"><i class="fa fa-check"></i><b>7</b> data Management</a>
 <ul>
@@ -202,48 +204,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="dataManagement.html"><a href="dataManagement.html#conclusion-4"><i class="fa fa-check"></i><b>7.6</b> Conclusion</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="debug.html"><a href="debug.html"><i class="fa fa-check"></i><b>8</b> Debugging</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="debug.html"><a href="debug.html#version-control-system"><i class="fa fa-check"></i><b>8.1</b> Version Control System</a></li>
+<li class="chapter" data-level="8.2" data-path="debug.html"><a href="debug.html#make-small-commits"><i class="fa fa-check"></i><b>8.2</b> Make small commits</a></li>
+<li class="chapter" data-level="8.3" data-path="debug.html"><a href="debug.html#use-proper-parenthesis"><i class="fa fa-check"></i><b>8.3</b> Use proper parenthesis</a></li>
+<li class="chapter" data-level="8.4" data-path="debug.html"><a href="debug.html#always-use-named-parameters"><i class="fa fa-check"></i><b>8.4</b> Always use named parameters</a></li>
+<li class="chapter" data-level="8.5" data-path="debug.html"><a href="debug.html#log-the-errors"><i class="fa fa-check"></i><b>8.5</b> Log the errors</a></li>
+<li class="chapter" data-level="8.6" data-path="debug.html"><a href="debug.html#browser-is-your-friend"><i class="fa fa-check"></i><b>8.6</b> Browser() is your friend</a></li>
+<li class="chapter" data-level="8.7" data-path="debug.html"><a href="debug.html#dont-use-t-or-f"><i class="fa fa-check"></i><b>8.7</b> Don’t Use T or F</a></li>
+<li class="chapter" data-level="8.8" data-path="debug.html"><a href="debug.html#avoid-already-described-names"><i class="fa fa-check"></i><b>8.8</b> Avoid already described names</a></li>
+</ul></li>
 <li class="part"><span><b>III Memory</b></span></li>
-<li class="chapter" data-level="8" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>8</b> Type System</a>
+<li class="chapter" data-level="9" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>9</b> Type System</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="types.html"><a href="types.html#things-you-should-know"><i class="fa fa-check"></i><b>8.1</b> Things you should know</a>
+<li class="chapter" data-level="9.1" data-path="types.html"><a href="types.html#things-you-should-know"><i class="fa fa-check"></i><b>9.1</b> Things you should know</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="types.html"><a href="types.html#r-dont-have-scalar-data-types"><i class="fa fa-check"></i><b>8.1.1</b> R don’t have scalar data types</a></li>
-<li class="chapter" data-level="8.1.2" data-path="types.html"><a href="types.html#dates-are-basically-integers-under-the-hood."><i class="fa fa-check"></i><b>8.1.2</b> Dates are basically integers under the hood.</a></li>
-<li class="chapter" data-level="8.1.3" data-path="types.html"><a href="types.html#posixlt-are-basically-lists-under-the-hood"><i class="fa fa-check"></i><b>8.1.3</b> POSIXlt are basically lists under the hood</a></li>
-<li class="chapter" data-level="8.1.4" data-path="types.html"><a href="types.html#integers-are-smaller-than-numeric"><i class="fa fa-check"></i><b>8.1.4</b> Integers are smaller than numeric</a></li>
-<li class="chapter" data-level="8.1.5" data-path="types.html"><a href="types.html#define-your-datatypes-before-the-variable"><i class="fa fa-check"></i><b>8.1.5</b> define your datatypes before the variable</a></li>
-<li class="chapter" data-level="8.1.6" data-path="types.html"><a href="types.html#lists-are-better-than-dataframe-under-a-loop"><i class="fa fa-check"></i><b>8.1.6</b> lists are better than dataframe under a loop</a></li>
-<li class="chapter" data-level="8.1.7" data-path="types.html"><a href="types.html#use-lists-whenever-possible"><i class="fa fa-check"></i><b>8.1.7</b> use lists whenever possible</a></li>
+<li class="chapter" data-level="9.1.1" data-path="types.html"><a href="types.html#r-dont-have-scalar-data-types"><i class="fa fa-check"></i><b>9.1.1</b> R don’t have scalar data types</a></li>
+<li class="chapter" data-level="9.1.2" data-path="types.html"><a href="types.html#dates-are-basically-integers-under-the-hood."><i class="fa fa-check"></i><b>9.1.2</b> Dates are basically integers under the hood.</a></li>
+<li class="chapter" data-level="9.1.3" data-path="types.html"><a href="types.html#posixlt-are-basically-lists-under-the-hood"><i class="fa fa-check"></i><b>9.1.3</b> POSIXlt are basically lists under the hood</a></li>
+<li class="chapter" data-level="9.1.4" data-path="types.html"><a href="types.html#integers-are-smaller-than-numeric"><i class="fa fa-check"></i><b>9.1.4</b> Integers are smaller than numeric</a></li>
+<li class="chapter" data-level="9.1.5" data-path="types.html"><a href="types.html#define-your-datatypes-before-the-variable"><i class="fa fa-check"></i><b>9.1.5</b> define your datatypes before the variable</a></li>
+<li class="chapter" data-level="9.1.6" data-path="types.html"><a href="types.html#lists-are-better-than-dataframe-under-a-loop"><i class="fa fa-check"></i><b>9.1.6</b> lists are better than dataframe under a loop</a></li>
+<li class="chapter" data-level="9.1.7" data-path="types.html"><a href="types.html#use-lists-whenever-possible"><i class="fa fa-check"></i><b>9.1.7</b> use lists whenever possible</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="types.html"><a href="types.html#choose-data-types-carefully"><i class="fa fa-check"></i><b>8.2</b> Choose data types carefully</a></li>
-<li class="chapter" data-level="8.3" data-path="types.html"><a href="types.html#dont-change-datatypes"><i class="fa fa-check"></i><b>8.3</b> don’t change datatypes</a></li>
-<li class="chapter" data-level="8.4" data-path="types.html"><a href="types.html#future-of-type-system-in-r"><i class="fa fa-check"></i><b>8.4</b> Future of type-system in R</a></li>
-<li class="chapter" data-level="8.5" data-path="types.html"><a href="types.html#conclusion-5"><i class="fa fa-check"></i><b>8.5</b> Conclusion</a></li>
+<li class="chapter" data-level="9.2" data-path="types.html"><a href="types.html#choose-data-types-carefully"><i class="fa fa-check"></i><b>9.2</b> Choose data types carefully</a></li>
+<li class="chapter" data-level="9.3" data-path="types.html"><a href="types.html#dont-change-datatypes"><i class="fa fa-check"></i><b>9.3</b> don’t change datatypes</a></li>
+<li class="chapter" data-level="9.4" data-path="types.html"><a href="types.html#future-of-type-system-in-r"><i class="fa fa-check"></i><b>9.4</b> Future of type-system in R</a></li>
+<li class="chapter" data-level="9.5" data-path="types.html"><a href="types.html#conclusion-5"><i class="fa fa-check"></i><b>9.5</b> Conclusion</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>9</b> Pass By Value-Reference</a>
+<li class="chapter" data-level="10" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>10</b> Pass By Value-Reference</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="reference.html"><a href="reference.html#understanding-the-system"><i class="fa fa-check"></i><b>9.1</b> Understanding the system</a>
+<li class="chapter" data-level="10.1" data-path="reference.html"><a href="reference.html#understanding-the-system"><i class="fa fa-check"></i><b>10.1</b> Understanding the system</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="reference.html"><a href="reference.html#pass-by-value"><i class="fa fa-check"></i><b>9.1.1</b> Pass by Value</a></li>
-<li class="chapter" data-level="9.1.2" data-path="reference.html"><a href="reference.html#pass-by-reference"><i class="fa fa-check"></i><b>9.1.2</b> Pass by reference</a></li>
+<li class="chapter" data-level="10.1.1" data-path="reference.html"><a href="reference.html#pass-by-value"><i class="fa fa-check"></i><b>10.1.1</b> Pass by Value</a></li>
+<li class="chapter" data-level="10.1.2" data-path="reference.html"><a href="reference.html#pass-by-reference"><i class="fa fa-check"></i><b>10.1.2</b> Pass by reference</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="reference.html"><a href="reference.html#copy-on-modify"><i class="fa fa-check"></i><b>9.2</b> Copy on modify</a></li>
-<li class="chapter" data-level="9.3" data-path="reference.html"><a href="reference.html#for-pass-by-reference"><i class="fa fa-check"></i><b>9.3</b> for pass by reference</a></li>
-<li class="chapter" data-level="9.4" data-path="reference.html"><a href="reference.html#conclusion-6"><i class="fa fa-check"></i><b>9.4</b> Conclusion</a></li>
+<li class="chapter" data-level="10.2" data-path="reference.html"><a href="reference.html#copy-on-modify"><i class="fa fa-check"></i><b>10.2</b> Copy on modify</a></li>
+<li class="chapter" data-level="10.3" data-path="reference.html"><a href="reference.html#for-pass-by-reference"><i class="fa fa-check"></i><b>10.3</b> for pass by reference</a></li>
+<li class="chapter" data-level="10.4" data-path="reference.html"><a href="reference.html#conclusion-6"><i class="fa fa-check"></i><b>10.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="releasememory.html"><a href="releasememory.html"><i class="fa fa-check"></i><b>11</b> Release Memory</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="releasememory.html"><a href="releasememory.html#use-rm"><i class="fa fa-check"></i><b>11.1</b> use rm()</a></li>
+<li class="chapter" data-level="11.2" data-path="releasememory.html"><a href="releasememory.html#use-gc"><i class="fa fa-check"></i><b>11.2</b> use gc()</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="releasememory.html"><a href="releasememory.html#r-version-3.5"><i class="fa fa-check"></i><b>11.2.1</b> R version 3.5</a></li>
+<li class="chapter" data-level="11.2.2" data-path="releasememory.html"><a href="releasememory.html#r-version-4.0"><i class="fa fa-check"></i><b>11.2.2</b> R version 4.0</a></li>
+<li class="chapter" data-level="11.2.3" data-path="releasememory.html"><a href="releasememory.html#inside-a-heavy-loop"><i class="fa fa-check"></i><b>11.2.3</b> Inside a heavy loop</a></li>
+<li class="chapter" data-level="11.2.4" data-path="releasememory.html"><a href="releasememory.html#anything-that-takes-more-than-30-seconds"><i class="fa fa-check"></i><b>11.2.4</b> anything that takes more than 30 seconds</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="releasememory.html"><a href="releasememory.html#conclusion-7"><i class="fa fa-check"></i><b>11.3</b> Conclusion</a></li>
 </ul></li>
 <li class="part"><span><b>IV Speed</b></span></li>
-<li class="chapter" data-level="10" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>10</b> For Loops</a></li>
-<li class="chapter" data-level="11" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>11</b> Multithreading</a></li>
-<li class="chapter" data-level="12" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>12</b> Vectorize</a></li>
-<li class="chapter" data-level="13" data-path="bench.html"><a href="bench.html"><i class="fa fa-check"></i><b>13</b> Benchmarking</a></li>
-<li class="chapter" data-level="14" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>14</b> packages</a></li>
+<li class="chapter" data-level="12" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>12</b> For Loops</a></li>
+<li class="chapter" data-level="13" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>13</b> Multithreading</a></li>
+<li class="chapter" data-level="14" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>14</b> Vectorize</a></li>
+<li class="chapter" data-level="15" data-path="bench.html"><a href="bench.html"><i class="fa fa-check"></i><b>15</b> Benchmarking</a></li>
+<li class="chapter" data-level="16" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>16</b> packages</a></li>
 <li class="part"><span><b>V Production Tools</b></span></li>
-<li class="chapter" data-level="15" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>15</b> Docker</a></li>
-<li class="chapter" data-level="16" data-path="proxy.html"><a href="proxy.html"><i class="fa fa-check"></i><b>16</b> Proxy Server</a></li>
-<li class="chapter" data-level="17" data-path="cloud.html"><a href="cloud.html"><i class="fa fa-check"></i><b>17</b> Cloud Services</a></li>
+<li class="chapter" data-level="17" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>17</b> Docker</a></li>
+<li class="chapter" data-level="18" data-path="proxy.html"><a href="proxy.html"><i class="fa fa-check"></i><b>18</b> Proxy Server</a></li>
+<li class="chapter" data-level="19" data-path="cloud.html"><a href="cloud.html"><i class="fa fa-check"></i><b>19</b> Cloud Services</a></li>
 <li class="part"><span><b>VI Shiny Tips</b></span></li>
-<li class="chapter" data-level="18" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>18</b> Speed</a></li>
-<li class="chapter" data-level="19" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>19</b> Memory</a></li>
+<li class="chapter" data-level="20" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>20</b> Speed</a></li>
+<li class="chapter" data-level="21" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>21</b> Memory</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -268,20 +293,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 6</span> Environment Management</h1>
 <p>If you create a product today be it an API or Shiny App or Even a normal R-script. One thing you can’t be sure of is to update the packages or the version of R. There are companies where you can not access different version of a package because multiple projects are relying on the same copy of the package. It’s hard to update your package in these companies and you will need to get permissions from top admins to do so. Thus it’s better to rely on as less packages as possible and that too on the popular ones.</p>
 <p>But even after you have created a code you would want to keep a record of all the packages and their version as it is for that particular project. This is where environments come in handy.</p>
-<div id="renv-for-package-management" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> renv for package management</h2>
+<div id="avoid-package-dependencies-when-possible" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Avoid package dependencies when possible</h2>
+<p>Adding one tiny package to your work flow adds recursive dependency not only on the package that you imported but all the other package that your package is relying on and on packages that those packages rely on and so on and on…</p>
+<p>I have also worked on organizations where you have to write an email to explain why you need a certain package to be installed on Rstudio cloud and why you can’t get away with already installed packages. I hope you never have to work in such environment ever. But it’s a better software practice to keep dependencies as minimum as possible. Because each new thing brings a whole set of debugging issues and problems.</p>
+<p>Mostly this applies to the fact that you can get away with an <code>lapply</code> instead of relying on <code>purrr::map</code> . If your data is very small and you don’t do much fancy stuff with it, May be you can get away with <code>base R dataframes</code> instead of <code>tibble</code> or <code>data.table</code>. With new R 4.1.0 you might as well can get away with base pipe <code>|&gt;</code> without magrittr pipe <code>%&gt;%</code>. These are certain examples I can think out of my head. But the implications are huge.</p>
+<p><strong>If you can achieve something without relying on external dependencies be it a package or anything else you should always choose the one with less dependencies.</strong></p>
+</div>
+<div id="renv-for-package-management" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> renv for package management</h2>
 <p>There was a package called Packrat a few years ago I would have suggested you to use that always. But currently there is a package I have been using for over a year now by name renv. It does everything that you need to recreate your environment anywhere else.</p>
 <p>Basically you need to activate the package in your project. By using this command.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="envManagement.html#cb47-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">activate</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="envManagement.html#cb49-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">activate</span>()</span></code></pre></div>
 <p>Then take a snapshot of current project where it will record a list of all the packages used in your project by this command.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="envManagement.html#cb48-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="envManagement.html#cb50-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div>
 <p>and When you want to reproduce it on a docker container or a remote machine or any place else. You would simple need to run.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="envManagement.html#cb49-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="envManagement.html#cb51-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div>
 <p>and it generates a lock file with all the information about a project including the version or R and the versions of the packages used so at any time you can recreate the entire environment again.</p>
 <p>I could give you multiple ways of tackling the same problem. But this book is about the best possible one so this is it. You just need to use this package to solve almost all of your problems.</p>
 </div>
-<div id="config-for-external-dependencies" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> config for external dependencies</h2>
+<div id="config-for-external-dependencies" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> config for external dependencies</h2>
 <p>There is a package called config that allows you to read yaml format in R. That is a standard practice to keep all the <strong>Credentials, tokens, API keys etc..</strong> in a config file. There are many other ways you can secure credentials and everything but config is easiest amongst them all and you can use it for storing all the parameters and external path variables that your code requires. It could be an address to external file storage or anything else.</p>
 <p>It’s good to keep all the variable your code requires outside the main code so that when you need to update them you don’t need to change the entire code itself. Below is a snippet of config file from one of my project.</p>
 <pre><code>default:
@@ -305,10 +337,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>as you can see I haven’t only kept the passwords and user names but external files as well. Tomorrow if I have to change the logging file I will just have to update it here without opening any R code. It removes so much burden on reading the code again and again.</p>
 <p>Use it whenever possible.</p>
 </div>
-<div id="conclusion-3" class="section level2" number="6.3">
-<h2><span class="header-section-number">6.3</span> Conclusion</h2>
+<div id="conclusion-3" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Conclusion</h2>
 <p>This chapter doesn’t discuss much on concepts but the takeaways from the chapter are:</p>
 <ol style="list-style-type: decimal">
+<li>Use as less packages as possible, it helps in code maintenance and debugging.</li>
 <li>Use <strong>renv</strong> for all the project you plan to maintain or keep for long term</li>
 <li>Use <strong>config</strong> to manage all the external dependencies your project have or might have</li>
 </ol>
@@ -352,7 +385,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/02-struct_05_pkgManagement.Rmd",
+"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/02-struct_05_envmanagement.Rmd",
 "text": "Edit"
 },
 "history": {

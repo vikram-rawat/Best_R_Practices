@@ -16,10 +16,11 @@ Examples of some important tags can be :
 
 1.  written by
 2.  written on
-3.  modified by
-4.  modified on
-5.  purpose
-6.  descriptions
+3.  parameters
+4.  modified by
+5.  modified on
+6.  purpose
+7.  descriptions
 
 You can create your own tags based on usecases and information needed for further scenarios.
 
@@ -213,6 +214,59 @@ best_func <- function( mult_params ){
 
 Here in this code every function has a clear responsibility and the main function is just a composite of multiple unique functions and it will be very easy to debug this code or change the functionality entirely.
 
+## Don't load libraries or source code inside a function
+
+You may assume nobody does it. But I have seen people doing it times and times again.
+
+```{r}
+
+foo <- function( x ){
+  library(data.table)
+  setDT(x)
+}
+
+bar <- function( x ){
+  source(file = "")
+}
+```
+
+In functional programming terminology these functions are called `impure functions` . Function which change the global environment or some persistent changes are called impure functions. They require very delicate handling of the entire project. If I don't know how many packages and what version of them am I dependent on or what files have I loaded in my environment it makes debugging the code a lot more harder.
+
+By following this style of code you are making the debugging harder for your project. In fact I would argue that you should remove all the external dependencies from a function. Take this code for example.
+
+```{r}
+
+foo <- function(x){
+  
+  exl <- readxl::read_excel(path = "increased/external/dependency")
+
+  ##  
+  ### do some data operation in the function
+  ##
+  
+  return(exl)
+}
+
+
+bar <- function(
+  x,
+  filepath = "increased/external/dependency"){
+  
+  exl <- readxl::read_excel(path = filepath)
+
+  ##  
+  ### do some data operation in the function
+  ##
+  
+  return(exl)
+}
+
+```
+
+Foo and bar are both doing the same thing and both are relying on an external path for code to work. But because bar is clearly stating the filepath as an argument it is easier to change and adapt to new needs.
+
+If you still need to rely on a package call it from the main script not from a function. And if you absolutely need some functions of a package inside a particular function then use `qualified imports` and don't load the entire package.
+
 ## Use Package::Function() approach
 
 R classes work differently than the traditional oops we all are aware of. Instead of `object_of_class.Method` syntax like other programmings have, we in R use `method( object_of_class )` syntax. Where just by changing name collision is a pretty common thing.
@@ -302,4 +356,5 @@ In this chapter we discussed the best practices for writing functions in R. Here
 5.  use logical names for parameter
 6.  use tryCatch in every function
 7.  functions are supposed to do one thing and one thing only
-8.  Use qualified imports with syntax package::functions every time possible
+8.  don't try to change global environment without letting the user know
+9.  Use qualified imports with syntax package::functions every time possible

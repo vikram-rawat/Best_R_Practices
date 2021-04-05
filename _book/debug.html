@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 19 Cloud Services | Best Coding Practices for R</title>
+  <title>Chapter 8 Debugging | Best Coding Practices for R</title>
   <meta name="description" content="This book explains the most important things you need to know while you are writing production level R code." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 19 Cloud Services | Best Coding Practices for R" />
+  <meta property="og:title" content="Chapter 8 Debugging | Best Coding Practices for R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 19 Cloud Services | Best Coding Practices for R" />
+  <meta name="twitter:title" content="Chapter 8 Debugging | Best Coding Practices for R" />
   
   <meta name="twitter:description" content="This book explains the most important things you need to know while you are writing production level R code." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="proxy.html"/>
-<link rel="next" href="shinyspeed.html"/>
+<link rel="prev" href="dataManagement.html"/>
+<link rel="next" href="types.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -289,9 +289,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="cloud" class="section level1" number="19">
-<h1><span class="header-section-number">Chapter 19</span> Cloud Services</h1>
+<div id="debug" class="section level1" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Debugging</h1>
+<p>Debugging is a huge topic and it takes years of experience to master. To understand the limitations of a language and to understand the errors requires too much study and experience. This is something that you learn through experience. But there are certain thing which you can do to make your life easier while debugging.</p>
+<p>These are the tips I think everyone should follow for better debugging experience.</p>
+<div id="version-control-system" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Version Control System</h2>
+<p>Use a version control system. For those who don’t know it means you can commit changes to a central repository and compare the changes anytime. <strong>GitHub</strong> and <strong>BitBucket</strong> are the most popular of these solution.</p>
+<p>Github allows a free account for every individual. Even for personal projects I would recommend you to use github or any version control system as such. For bigger projects use the one your organization recommends. This will help you compare changes you commit and go back to the old version that is up and running.</p>
+<p>It sounds easy but the power to compare what you changed in the code can help you pin point the error as quickly as possible.</p>
+</div>
+<div id="make-small-commits" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Make small commits</h2>
+<p>You should always use small commits. I have seen people who keep the code with themselves for days and change a thousand thing in the code before pushing it to github. I too am one of those people.</p>
+</div>
+<div id="use-proper-parenthesis" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Use proper parenthesis</h2>
+</div>
+<div id="always-use-named-parameters" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Always use named parameters</h2>
+</div>
+<div id="log-the-errors" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> Log the errors</h2>
+</div>
+<div id="browser-is-your-friend" class="section level2" number="8.6">
+<h2><span class="header-section-number">8.6</span> Browser() is your friend</h2>
+</div>
+<div id="dont-use-t-or-f" class="section level2" number="8.7">
+<h2><span class="header-section-number">8.7</span> Don’t Use T or F</h2>
+</div>
+<div id="avoid-already-described-names" class="section level2" number="8.8">
+<h2><span class="header-section-number">8.8</span> Avoid already described names</h2>
 
+</div>
 </div>
 
 
@@ -301,8 +331,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="proxy.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="shinyspeed.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dataManagement.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="types.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -333,7 +363,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/05-prod_03_cloud.Rmd",
+"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/02-struct_07_debug.Rmd",
 "text": "Edit"
 },
 "history": {

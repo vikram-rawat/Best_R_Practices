@@ -1,4 +1,4 @@
-# (PART) Memory {.unnumbered}
+# (PART) Memory {-}
 
 # Type System {#types}
 

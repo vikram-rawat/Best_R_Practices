@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 19 Cloud Services | Best Coding Practices for R</title>
+  <title>Chapter 11 Release Memory | Best Coding Practices for R</title>
   <meta name="description" content="This book explains the most important things you need to know while you are writing production level R code." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 19 Cloud Services | Best Coding Practices for R" />
+  <meta property="og:title" content="Chapter 11 Release Memory | Best Coding Practices for R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 19 Cloud Services | Best Coding Practices for R" />
+  <meta name="twitter:title" content="Chapter 11 Release Memory | Best Coding Practices for R" />
   
   <meta name="twitter:description" content="This book explains the most important things you need to know while you are writing production level R code." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="proxy.html"/>
-<link rel="next" href="shinyspeed.html"/>
+<link rel="prev" href="reference.html"/>
+<link rel="next" href="loops.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -289,9 +289,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="cloud" class="section level1" number="19">
-<h1><span class="header-section-number">Chapter 19</span> Cloud Services</h1>
+<div id="releasememory" class="section level1" number="11">
+<h1><span class="header-section-number">Chapter 11</span> Release Memory</h1>
+<p>Sometimes even after applying all the best techniques to save memory you still need more space. In those cases you need to understand that R has 2 techniques available to you. These techniques are mostly useful in different context. I mostly recommend using <code>gc()</code> inside a loop and <code>rm()</code> inside an ETL or R script.</p>
+<div id="use-rm" class="section level2" number="11.1">
+<h2><span class="header-section-number">11.1</span> use rm()</h2>
+<p><code>rm</code> function deletes any object from R and releases some memory that could be used for further operations. It’s excellent for cases where you have a lot of intermediate results saved inside an R script that is supposed to run through an ETL. like this</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="releasememory.html#cb161-1" aria-hidden="true" tabindex="-1"></a>value <span class="ot">&lt;-</span> <span class="fu">length</span>(mtcars<span class="sc">$</span>mpg)</span>
+<span id="cb161-2"><a href="releasememory.html#cb161-2" aria-hidden="true" tabindex="-1"></a>sorted_mpg <span class="ot">&lt;-</span> <span class="fu">sort</span>(mtcars<span class="sc">$</span>mpg)</span>
+<span id="cb161-3"><a href="releasememory.html#cb161-3" aria-hidden="true" tabindex="-1"></a>median_values <span class="ot">&lt;-</span> sorted_mpg[value<span class="sc">/</span><span class="dv">2</span>] <span class="sc">+</span> sorted_mpg[(value<span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb161-4"><a href="releasememory.html#cb161-4" aria-hidden="true" tabindex="-1"></a>median_mpg <span class="ot">&lt;-</span> median_values<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb161-5"><a href="releasememory.html#cb161-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-6"><a href="releasememory.html#cb161-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;sorted_mpg&quot;</span>, <span class="st">&quot;median_values&quot;</span>))</span></code></pre></div>
+<p>In these scenarios where you are running scripts like these and storing intermediate result for further processing it’s okay to use <code>rm</code> function. However when you wrap it inside a function only the final result stays and everything else is lost anyways so you don’t need to use <code>rm</code> function at all.</p>
+<p>I would not advice anyone to use this function unless you are writing an ETL script on a data that is large enough that you would need space after every iteration. Even in those scenarios you can get away with not using intermediate variables for storing the results. But if you must and only and only in those very rare cases this function should be used. In broader cases R’s garbage collection will have you covered.</p>
+</div>
+<div id="use-gc" class="section level2" number="11.2">
+<h2><span class="header-section-number">11.2</span> use gc()</h2>
+<p>Garbage collection is a process by which a software or a program returns the memory back to OS or frees it for it’s own usage. R has significantly improved it’s memory management in recent years. All the blogs you read about R being slow and memory hungry are mostly written during 2014-2017. They aren’t true anymore.</p>
+<div id="r-version-3.5" class="section level3" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> R version 3.5</h3>
+<p>In R version 3.5 <code>altrep</code> was introduced which helps in saving a lot of memory in special cases like loops. Packages like <code>vroom</code> have achieved significant speed ups because now they didn’t have to load all the data in memory and can only load as much as they need. If you want to read more about it you should visit this page <a href="https://svn.r-project.org/R/branches/ALTREP/ALTREP.html" class="uri">https://svn.r-project.org/R/branches/ALTREP/ALTREP.html</a>.</p>
+</div>
+<div id="r-version-4.0" class="section level3" number="11.2.2">
+<h3><span class="header-section-number">11.2.2</span> R version 4.0</h3>
+<p>In R version 4.0 <code>ARC</code> ( <strong>automatic reference counting</strong> )was introduced in R. Previously R used to keep a track of how many copies an object has with <code>NRC</code> ( <strong>named reference counting</strong> )and that had only 3 option, 0, 1 and 2; where I think 2 meant many. Now with ARC R can increase and decrease these numbers for keeping a better track of how many object points to the same memory address. You can read more about in a blog post here: <a href="https://msmith.de/2020/05/14/exploring-r-reference-counting.html#:~:text=The%20CRAN%20NEWS%20accompanying%20R,further%20optimizations%20in%20the%20future." class="uri">https://msmith.de/2020/05/14/exploring-r-reference-counting.html#:~:text=The%20CRAN%20NEWS%20accompanying%20R,further%20optimizations%20in%20the%20future.</a>.</p>
+<p>So the gist of the matter is that R has been improving performance and memory management for a very long time.</p>
+<p>Now coming back to the main point. R has a function by name <code>gc</code> to run a garbage collector and release the memory that is not needed anymore. It’s useful to run it in mostly 2 situations.</p>
+</div>
+<div id="inside-a-heavy-loop" class="section level3" number="11.2.3">
+<h3><span class="header-section-number">11.2.3</span> Inside a heavy loop</h3>
+<p>Loops are slow in R and sometime when are you doing heavy manipulation in a loop. R might consume more memory than it’s needed and will slow the further processes. This is the point I use a gc() inside a loop.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="releasememory.html#cb162-1" aria-hidden="true" tabindex="-1"></a>gc_after_a_number <span class="ot">&lt;-</span> <span class="fl">1e2</span></span>
+<span id="cb162-2"><a href="releasememory.html#cb162-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-3"><a href="releasememory.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>){</span>
+<span id="cb162-4"><a href="releasememory.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">### heavy calculations</span></span>
+<span id="cb162-5"><a href="releasememory.html#cb162-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( i <span class="sc">%%</span> gc_after_a_number <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb162-6"><a href="releasememory.html#cb162-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gc</span>()</span>
+<span id="cb162-7"><a href="releasememory.html#cb162-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb162-8"><a href="releasememory.html#cb162-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Here in the code above I am running a long loop but after every 100 iterations I am freeing up memory by running a gc() function. After how many iterations do you want to use a loop is totally dependent on what are you doing inside a loop. It could go from anywhere between 10 to 10 thousand depending upon the situation. It surely helps and I would recommend everyone to use it but only for very heavy calculations.</p>
+</div>
+<div id="anything-that-takes-more-than-30-seconds" class="section level3" number="11.2.4">
+<h3><span class="header-section-number">11.2.4</span> anything that takes more than 30 seconds</h3>
+<p>If you know a function takes more than 30 second to execute. I would suggest you to run a gc() after it. It helps keep a check on R’s memory. It’s useful even if you are running a shiny app or an API. If anything takes more than 30 second it’s worth running the gc() function because than adding a few milliseconds will not be your main problem for sure.</p>
+</div>
+</div>
+<div id="conclusion-7" class="section level2" number="11.3">
+<h2><span class="header-section-number">11.3</span> Conclusion</h2>
+<p>In this chapter we learned how to free up memory for more usage in R. This should help you manage your R environment better. Let’s see what we have studied so far.</p>
+<ol style="list-style-type: decimal">
+<li>Don’t use rm unless necessary</li>
+<li>rm should only be used in an ETL or a manual script</li>
+<li>Most of the time you can avoid rm</li>
+<li>use gc() inside heavy loops after every few iteration</li>
+<li>use gc() after every heavy transaction which takes more than a couple of seconds.</li>
+</ol>
 
+</div>
 </div>
 
 
@@ -301,8 +356,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="proxy.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="shinyspeed.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="reference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="loops.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -333,7 +388,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/05-prod_03_cloud.Rmd",
+"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/03-mem_03_releasemem.Rmd",
 "text": "Edit"
 },
 "history": {

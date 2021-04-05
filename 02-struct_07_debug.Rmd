@@ -1,0 +1,29 @@
+# Debugging {#debug}
+
+Debugging is a huge topic and it takes years of experience to master. To understand the limitations of a language and to understand the errors requires too much study and experience. This is something that you learn through experience. But there are certain thing which you can do to make your life easier while debugging.
+
+These are the tips I think everyone should follow for better debugging experience.
+
+## Version Control System
+
+Use a version control system. For those who don't know it means you can commit changes to a central repository and compare the changes anytime. **GitHub** and **BitBucket** are the most popular of these solution.
+
+Github allows a free account for every individual. Even for personal projects I would recommend you to use github or any version control system as such. For bigger projects use the one your organization recommends. This will help you compare changes you commit and go back to the old version that is up and running.
+
+It sounds easy but the power to compare what you changed in the code can help you pin point the error as quickly as possible.
+
+## Make small commits
+
+You should always use small commits. I have seen people who keep the code with themselves for days and change a thousand thing in the code before pushing it to github. I too am one of those people.
+
+## Use proper parenthesis
+
+## Always use named parameters
+
+## Log the errors
+
+## Browser() is your friend
+
+## Don't Use T or F
+
+## Avoid already described names

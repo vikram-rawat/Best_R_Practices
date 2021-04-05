@@ -4,6 +4,16 @@ If you create a product today be it an API or Shiny App or Even a normal R-scrip
 
 But even after you have created a code you would want to keep a record of all the packages and their version as it is for that particular project. This is where environments come in handy.
 
+## Avoid package dependencies when possible
+
+Adding one tiny package to your work flow adds recursive dependency not only on the package that you imported but all the other package that your package is relying on and on packages that those packages rely on and so on and on...
+
+I have also worked on organizations where you have to write an email to explain why you need a certain package to be installed on Rstudio cloud and why you can't get away with already installed packages. I hope you never have to work in such environment ever. But it's a better software practice to keep dependencies as minimum as possible. Because each new thing brings a whole set of debugging issues and problems.
+
+Mostly this applies to the fact that you can get away with an `lapply` instead of relying on `purrr::map` . If your data is very small and you don't do much fancy stuff with it, May be you can get away with `base R dataframes` instead of `tibble` or `data.table`. With new R 4.1.0 you might as well can get away with base pipe `|>` without magrittr pipe `%>%`. These are certain examples I can think out of my head. But the implications are huge.
+
+**If you can achieve something without relying on external dependencies be it a package or anything else you should always choose the one with less dependencies.**
+
 ## renv for package management
 
 There was a package called Packrat a few years ago I would have suggested you to use that always. But currently there is a package I have been using for over a year now by name renv. It does everything that you need to recreate your environment anywhere else.
@@ -62,7 +72,6 @@ There is a package called config that allows you to read yaml format in R. That 
 
 It's good to keep all the variable your code requires outside the main code so that when you need to update them you don't need to change the entire code itself. Below is a snippet of config file from one of my project.
 
-
     default:
       datawarehouse:
         driver: Postgres
@@ -90,5 +99,6 @@ Use it whenever possible.
 
 This chapter doesn't discuss much on concepts but the takeaways from the chapter are:
 
-1.  Use **renv** for all the project you plan to maintain or keep for long term
-2.  Use **config** to manage all the external dependencies your project have or might have
+1.  Use as less packages as possible, it helps in code maintenance and debugging.
+2.  Use **renv** for all the project you plan to maintain or keep for long term
+3.  Use **config** to manage all the external dependencies your project have or might have

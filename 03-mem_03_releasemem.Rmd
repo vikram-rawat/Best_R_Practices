@@ -1,0 +1,69 @@
+# Release Memory {#releasememory}
+
+Sometimes even after applying all the best techniques to save memory you still need more space. In those cases you need to understand that R has 2 techniques available to you. These techniques are mostly useful in different context. I mostly recommend using `gc()` inside a loop and `rm()` inside an ETL or R script.
+
+## use rm()
+
+`rm` function deletes any object from R and releases some memory that could be used for further operations. It's excellent for cases where you have a lot of intermediate results saved inside an R script that is supposed to run through an ETL. like this
+
+```{r}
+
+value <- length(mtcars$mpg)
+sorted_mpg <- sort(mtcars$mpg)
+median_values <- sorted_mpg[value/2] + sorted_mpg[(value/2) + 1]
+median_mpg <- median_values/2
+
+rm(list = c("value", "sorted_mpg", "median_values"))
+```
+
+In these scenarios where you are running scripts like these and storing intermediate result for further processing it's okay to use `rm` function. However when you wrap it inside a function only the final result stays and everything else is lost anyways so you don't need to use `rm` function at all.
+
+I would not advice anyone to use this function unless you are writing an ETL script on a data that is large enough that you would need space after every iteration. Even in those scenarios you can get away with not using intermediate variables for storing the results. But if you must and only and only in those very rare cases this function should be used. In broader cases R's garbage collection will have you covered.
+
+## use gc()
+
+Garbage collection is a process by which a software or a program returns the memory back to OS or frees it for it's own usage. R has significantly improved it's memory management in recent years. All the blogs you read about R being slow and memory hungry are mostly written during 2014-2017. They aren't true anymore.
+
+### R version 3.5
+
+In R version 3.5 `altrep` was introduced which helps in saving a lot of memory in special cases like loops. Packages like `vroom` have achieved significant speed ups because now they didn't have to load all the data in memory and can only load as much as they need. If you want to read more about it you should visit this page <https://svn.r-project.org/R/branches/ALTREP/ALTREP.html>.
+
+### R version 4.0
+
+In R version 4.0 `ARC` ( **automatic reference counting** )was introduced in R. Previously R used to keep a track of how many copies an object has with `NRC` ( **named reference counting** )and that had only 3 option, 0, 1 and 2; where I think 2 meant many. Now with ARC R can increase and decrease these numbers for keeping a better track of how many object points to the same memory address. You can read more about in a blog post here: <https://msmith.de/2020/05/14/exploring-r-reference-counting.html#:~:text=The%20CRAN%20NEWS%20accompanying%20R,further%20optimizations%20in%20the%20future.>.
+
+So the gist of the matter is that R has been improving performance and memory management for a very long time.
+
+Now coming back to the main point. R has a function by name `gc` to run a garbage collector and release the memory that is not needed anymore. It's useful to run it in mostly 2 situations.
+
+### Inside a heavy loop
+
+Loops are slow in R and sometime when are you doing heavy manipulation in a loop. R might consume more memory than it's needed and will slow the further processes. This is the point I use a gc() inside a loop.
+
+```{r}
+
+gc_after_a_number <- 1e2
+
+for(i in 1:1e4){
+  ### heavy calculations
+  if( i %% gc_after_a_number == 0){
+    gc()
+  }
+}
+```
+
+Here in the code above I am running a long loop but after every 100 iterations I am freeing up memory by running a gc() function. After how many iterations do you want to use a loop is totally dependent on what are you doing inside a loop. It could go from anywhere between 10 to 10 thousand depending upon the situation. It surely helps and I would recommend everyone to use it but only for very heavy calculations.
+
+### anything that takes more than 30 seconds
+
+If you know a function takes more than 30 second to execute. I would suggest you to run a gc() after it. It helps keep a check on R's memory. It's useful even if you are running a shiny app or an API. If anything takes more than 30 second it's worth running the gc() function because than adding a few milliseconds will not be your main problem for sure.
+
+## Conclusion
+
+In this chapter we learned how to free up memory for more usage in R. This should help you manage your R environment better. Let's see what we have studied so far.
+
+1.  Don't use rm unless necessary
+2.  rm should only be used in an ETL or a manual script
+3.  Most of the time you can avoid rm
+4.  use gc() inside heavy loops after every few iteration
+5.  use gc() after every heavy transaction which takes more than a couple of seconds.
