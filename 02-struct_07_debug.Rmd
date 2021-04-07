@@ -1,12 +1,12 @@
 # Debugging {#debug}
 
-Debugging is a huge topic and it takes years of experience to master. To understand the limitations of a language and to understand the errors requires too much study and experience. This is something that you learn through experience. But there are certain thing which you can do to make your life easier while debugging.
+Debugging is a part of being a programmer. You just can't escape it. It's a huge topic and it takes years of experience to master. To understand the limitations of a language and to understand the errors requires too much study and experience. This is something that you learn through experience. But there are certain thing which you can do to make your life easier while debugging.
 
 These are the tips I think everyone should follow for better debugging experience.
 
 ## Version Control System
 
-Use a version control system. For those who don't know it means you can commit changes to a central repository and compare the changes anytime. **GitHub** and **BitBucket** are the most popular of these solution.
+Use a version control system. For those who don't know, it means you can commit changes to a central repository and compare the changes anytime. **GitHub** and **BitBucket** are the most popular of these solution.
 
 Github allows a free account for every individual. Even for personal projects I would recommend you to use github or any version control system as such. For bigger projects use the one your organization recommends. This will help you compare changes you commit and go back to the old version that is up and running.
 
@@ -16,14 +16,88 @@ It sounds easy but the power to compare what you changed in the code can help yo
 
 You should always use small commits. I have seen people who keep the code with themselves for days and change a thousand thing in the code before pushing it to github. I too am one of those people.
 
-## Use proper parenthesis
+Make small changes to your code and see if it's working and then commit those changes. The smaller the commits the better debugging experience you have. Then it's easier to roll back the changes and it's easier to read the code to understand what might have caused this error.
+
+## Use curly brackets {}
+
+R gives you the ability to write code without `{}` but It makes your code harder to read and understand the blocks in segregation. I have seen people write code like this
+
+```{r}
+# if statements
+if( TRUE ) print(TRUE) else print(FALSE)
+
+# loops
+for(i in 1:10) print(i)
+
+# functions
+function(x) print(x)
+```
+
+It sure makes your code look concise but only when it's as small as what I wrote. Even then I would advice you to use curly brackets in all possible scenarios. Which helps specially when the code gets bigger or when you are using multiple of these statements together. Let's take this code for example.
+
+```{r}
+function(x)
+  for(i in 1:10)
+    if( i %% 2 == 0 ) print(TRUE) else print(FALSE)
+```
+
+During big apps you are never sure of how many lines you need to write inside a function or a loop or a conditional and you have to update your code frequently. Without curly brackets it gets harder and harder to pin point the block that is causing the error.
+
+So in short using curly brackets help you understand the logic a little better and makes it easier to pin point the block that's causing the error.
 
 ## Always use named parameters
 
+Let's compare two code in the below chunk.
+
+```{r}
+# Code with named parameters
+#
+# call_cognitive_endpoint(
+#   endpoint = speech$get_endpoint(),
+#   operation = "models/base",
+#   body = list(),
+#   options = list(),
+#   headers = list(`content-type` = 'audio/wav'),
+#   http_verb = "POST"
+# )
+
+# -----------------
+
+# Code without named parameters
+#
+# call_cognitive_endpoint(  
+#   speech$get_endpoint(),
+#   "models/base",
+#   list(),
+#   list(),
+#   list(`content-type` = 'audio/wav'),
+#   "POST"
+# )
+
+```
+
+They are commented because we are only focusing on the structure of the function not the working of the function. Which of these codes looks more readable to you?
+
+Can you be sure in the below function that you have provided arguments in the right order and you are using the function exactly as it is meant to be used? This is why named parameters actually save time during debugging compared to unnamed one. This also makes code transferable which means that any new person in the team can quickly pick up where you left of, because may be you are so familiar with a function that you assume naming the parameter is not required at all but someone else might not be so much familiar with it.
+
+In big organizations where people come and go and anybody can be reassigned to the same code it helps to make it easy to read. And it will you in the long run when you will read your own code after say 1 to 2 years.
+
 ## Log the errors
 
+This is an old advice I used in functions chapter where I asked you to use tryCatch in all the functions so that it doesn't brake during production. To extend that I would also argue to add logs specially the errors onto a json file or a database table.
+
+When you are running your code on your own computer you might get only 1000 bugs and you are prepared to handle those bugs in production. But suppose you create a shiny app that is used by 1000 more people. In those circumstances you will encounter which you might not be able to reproduce so easily and no body will tell you what bug your app still has. Logging errors is a standard practice in programming domain and it's necessary for production grade apps, be it shiny app or a REST api.
+
+There are many packages available in R for logging I don't have a preference on any of them. It's good to use a database instead of json.
+
 ## Browser() is your friend
+
+To me `browser()` function feels like a scene from movie matrix where you can stop everything around you and decide what is going wrong in the world.
 
 ## Don't Use T or F
 
 ## Avoid already described names
+
+## Use Simple code
+
+R gives you a lot of flexibility in coding style. You can write very succinct and precise code with R with highly complex methods. But try to spread your code in decent number of lines so that you can read it later on.
