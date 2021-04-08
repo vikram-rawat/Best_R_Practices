@@ -260,17 +260,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>IV Speed</b></span></li>
 <li class="chapter" data-level="12" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>12</b> For Loops</a></li>
-<li class="chapter" data-level="13" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>13</b> Multithreading</a></li>
-<li class="chapter" data-level="14" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>14</b> Vectorize</a></li>
-<li class="chapter" data-level="15" data-path="bench.html"><a href="bench.html"><i class="fa fa-check"></i><b>15</b> Benchmarking</a></li>
-<li class="chapter" data-level="16" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>16</b> packages</a></li>
-<li class="part"><span><b>V Production Tools</b></span></li>
-<li class="chapter" data-level="17" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>17</b> Docker</a></li>
-<li class="chapter" data-level="18" data-path="proxy.html"><a href="proxy.html"><i class="fa fa-check"></i><b>18</b> Proxy Server</a></li>
-<li class="chapter" data-level="19" data-path="cloud.html"><a href="cloud.html"><i class="fa fa-check"></i><b>19</b> Cloud Services</a></li>
-<li class="part"><span><b>VI Shiny Tips</b></span></li>
-<li class="chapter" data-level="20" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>20</b> Speed</a></li>
-<li class="chapter" data-level="21" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>21</b> Memory</a></li>
+<li class="chapter" data-level="13" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>13</b> Vectorize</a></li>
+<li class="chapter" data-level="14" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>14</b> Multithreading</a></li>
+<li class="chapter" data-level="15" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>15</b> packages</a></li>
+<li class="part"><span><b>V Shiny Tips</b></span></li>
+<li class="chapter" data-level="16" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>16</b> Speed</a></li>
+<li class="chapter" data-level="17" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>17</b> Memory</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -336,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="reference.html#cb134-1" aria-hidden="true" tabindex="-1"></a>mt_tbl <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(mtcars)</span>
 <span id="cb134-2"><a href="reference.html#cb134-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb134-3"><a href="reference.html#cb134-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tracemem</span>(mt_tbl)</span></code></pre></div>
-<pre><code>## [1] &quot;&lt;0000000025F2D968&gt;&quot;</code></pre>
+<pre><code>## [1] &quot;&lt;000000002102A018&gt;&quot;</code></pre>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="reference.html#cb136-1" aria-hidden="true" tabindex="-1"></a>dummy_tbl <span class="ot">&lt;-</span> mt_tbl</span>
 <span id="cb136-2"><a href="reference.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="do">## No tracemem yet</span></span>
 <span id="cb136-3"><a href="reference.html#cb136-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -376,8 +371,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb141-4"><a href="reference.html#cb141-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gear) <span class="sc">%&gt;%</span></span>
 <span id="cb141-5"><a href="reference.html#cb141-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb141-6"><a href="reference.html#cb141-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gear)</span></code></pre></div>
-<pre><code>## tracemem[0x0000000025f2d968 -&gt; 0x000000001f734328]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
-## tracemem[0x000000001f734328 -&gt; 0x000000001f7343d8]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
+<pre><code>## tracemem[0x000000002102a018 -&gt; 0x000000001f6e5340]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
+## tracemem[0x000000001f6e5340 -&gt; 0x000000001f6e53f0]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
 <pre><code>## # A tibble: 3 x 1
 ##    gear
 ##   &lt;dbl&gt;
@@ -391,8 +386,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb144-4"><a href="reference.html#cb144-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gear) <span class="sc">%&gt;%</span></span>
 <span id="cb144-5"><a href="reference.html#cb144-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb144-6"><a href="reference.html#cb144-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gear)</span></code></pre></div>
-<pre><code>## tracemem[0x0000000025f2d968 -&gt; 0x000000001f6de968]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
-## tracemem[0x000000001f6de968 -&gt; 0x000000001f6deac8]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
+<pre><code>## tracemem[0x000000002102a018 -&gt; 0x000000001210d438]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
+## tracemem[0x000000001210d438 -&gt; 0x000000001210d598]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
 <p>now we are modifying the results somewhere and thus a copy is created. The actual rules are very very complicated. But in simple term as long as you don’t modify any thing R doesn’t create a copy and everything is passed down by reference.</p>
 <p>It impacts speed too… Let check it by an example</p>
 <div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="reference.html#cb146-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
@@ -413,8 +408,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb147-7"><a href="reference.html#cb147-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##  expr     min      lq     mean   median      uq     max neval cld
-##   foo 12.5654 13.3033 14.32646 13.88725 15.7125 16.9652    10  a 
-##   bar 44.2500 48.3177 50.52667 50.19855 54.2066 55.8911    10   b</code></pre>
+##   foo 11.9105 12.2818 14.82111 15.79535 16.5839 17.6239    10  a 
+##   bar 43.7296 46.1267 51.63794 53.09970 54.9008 60.1391    10   b</code></pre>
 <p>As you can see the difference in time is because <code>bar</code> is creating a copy of the object. And you may assume that it will create a copy at every time you change a object and you will be dead wrong as R is smart enough to understand that It can get away with only single copy of the object. Lets create a function that changes more things in x and see the difference.</p>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="reference.html#cb149-1" aria-hidden="true" tabindex="-1"></a>bar_new <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb149-2"><a href="reference.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  x[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -431,9 +426,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb149-13"><a href="reference.html#cb149-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##     expr     min      lq     mean   median      uq      max neval cld
-##      foo 13.4535 13.6495 14.67290 14.51165 15.3104  16.3266    10  a 
-##      bar 46.9109 48.5413 64.51684 51.30735 55.0255 182.9378    10   b
-##  bar_new 46.1871 50.0535 51.25850 50.46605 52.3996  60.1599    10   b</code></pre>
+##      foo 12.8104 13.3793 14.06511 13.73810 14.5042  16.5827    10  a 
+##      bar 41.8389 43.7278 67.34676 48.98095 55.9648 233.5697    10   b
+##  bar_new 45.1673 47.3395 52.72819 53.01470 55.8336  62.7163    10   b</code></pre>
 <p>Now as you can see that while the function foo and bar have significant differences in performance, same is not true for bar and bar_new. Because bar_new too creates a copy but maintains that copy for the entire function.</p>
 <p>So R is smart enough to understand when to create a copy and when not to create a copy. Once a copy is created it is retained in R and R uses it smartly. We can gain speed and memory benefits by making sure all the modification is done inside a single function. So that R doesn’t create much copies.</p>
 <p>Instead of using bar 3 times it’s better to use bar_new once. So that you don’t copy it multiple times. See the difference for yourself. And thus <strong>try to keep all the modifications close and in as less functions as possible</strong>.</p>
@@ -448,8 +443,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb151-9"><a href="reference.html#cb151-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##     expr      min       lq      mean    median       uq      max neval cld
-##      bar 141.9846 146.8969 173.58112 154.13350 156.7963 277.8917    10   b
-##  bar_new  45.1615  46.2468  60.06102  47.89885  50.0065 161.3366    10  a</code></pre>
+##      bar 136.4276 156.3787 178.23409 157.79395 177.2848 277.0703    10   b
+##  bar_new  44.6654  46.9144  60.23031  48.50875  49.5110 170.4889    10  a</code></pre>
 <p>best is to group these modifications together.</p>
 <p>So the gist of the matter is:</p>
 <ol style="list-style-type: decimal">

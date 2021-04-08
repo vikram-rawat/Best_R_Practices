@@ -260,17 +260,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>IV Speed</b></span></li>
 <li class="chapter" data-level="12" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>12</b> For Loops</a></li>
-<li class="chapter" data-level="13" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>13</b> Multithreading</a></li>
-<li class="chapter" data-level="14" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>14</b> Vectorize</a></li>
-<li class="chapter" data-level="15" data-path="bench.html"><a href="bench.html"><i class="fa fa-check"></i><b>15</b> Benchmarking</a></li>
-<li class="chapter" data-level="16" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>16</b> packages</a></li>
-<li class="part"><span><b>V Production Tools</b></span></li>
-<li class="chapter" data-level="17" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>17</b> Docker</a></li>
-<li class="chapter" data-level="18" data-path="proxy.html"><a href="proxy.html"><i class="fa fa-check"></i><b>18</b> Proxy Server</a></li>
-<li class="chapter" data-level="19" data-path="cloud.html"><a href="cloud.html"><i class="fa fa-check"></i><b>19</b> Cloud Services</a></li>
-<li class="part"><span><b>VI Shiny Tips</b></span></li>
-<li class="chapter" data-level="20" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>20</b> Speed</a></li>
-<li class="chapter" data-level="21" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>21</b> Memory</a></li>
+<li class="chapter" data-level="13" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>13</b> Vectorize</a></li>
+<li class="chapter" data-level="14" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>14</b> Multithreading</a></li>
+<li class="chapter" data-level="15" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>15</b> packages</a></li>
+<li class="part"><span><b>V Shiny Tips</b></span></li>
+<li class="chapter" data-level="16" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>16</b> Speed</a></li>
+<li class="chapter" data-level="17" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>17</b> Memory</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -331,9 +326,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb68-11"><a href="types.html#cb68-11" aria-hidden="true" tabindex="-1"></a><span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb68-12"><a href="types.html#cb68-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##        expr    min     lq    mean  median     uq     max neval cld
-##  vectorized  107.0  108.6  119.06  111.45  131.1   149.8    10  a 
-##      scalar 6677.2 6893.5 7936.97 7836.60 8482.1 10383.5    10   b</code></pre>
+##        expr    min     lq    mean  median     uq    max neval cld
+##  vectorized   68.7   70.5   80.65   72.20   85.5  114.7    10  a 
+##      scalar 4187.5 4898.3 5407.74 5400.75 5852.9 6407.8    10   b</code></pre>
 <p>Even then I would ask you to go ahead with R because the difference will most probably in 1-2 milliseconds which will never impact your performance any serious way. But this is something you should remember that vectorized R is way faster than even python but scalar manipulations in R are a bit slower. Choose vectorized version of the code whenever possible even if you do a bit more steps in it, it will still be faster than the scalar versions.</p>
 </div>
 <div id="dates-are-basically-integers-under-the-hood." class="section level3" number="9.1.2">
@@ -358,10 +353,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb78-2"><a href="types.html#cb78-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb78-3"><a href="types.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(y)</span></code></pre></div>
 <pre><code>## $sec
-## [1] 1.320375
+## [1] 55.73888
 ## 
 ## $min
-## [1] 29
+## [1] 45
 ## 
 ## $hour
 ## [1] 10

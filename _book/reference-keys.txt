@@ -88,12 +88,8 @@ inside-a-heavy-loop
 anything-that-takes-more-than-30-seconds
 conclusion-8
 loops
-multithreading
 Vectorize
-bench
+multithreading
 packages
-syntax
-proxy
-cloud
 shinyspeed
 shinymemory

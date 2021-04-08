@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 14 Vectorize | Best Coding Practices for R</title>
+  <title>Chapter 13 Vectorize | Best Coding Practices for R</title>
   <meta name="description" content="This book explains the most important things you need to know while you are writing production level R code." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 14 Vectorize | Best Coding Practices for R" />
+  <meta property="og:title" content="Chapter 13 Vectorize | Best Coding Practices for R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 14 Vectorize | Best Coding Practices for R" />
+  <meta name="twitter:title" content="Chapter 13 Vectorize | Best Coding Practices for R" />
   
   <meta name="twitter:description" content="This book explains the most important things you need to know while you are writing production level R code." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="multithreading.html"/>
-<link rel="next" href="bench.html"/>
+<link rel="prev" href="loops.html"/>
+<link rel="next" href="multithreading.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -260,17 +260,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>IV Speed</b></span></li>
 <li class="chapter" data-level="12" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>12</b> For Loops</a></li>
-<li class="chapter" data-level="13" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>13</b> Multithreading</a></li>
-<li class="chapter" data-level="14" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>14</b> Vectorize</a></li>
-<li class="chapter" data-level="15" data-path="bench.html"><a href="bench.html"><i class="fa fa-check"></i><b>15</b> Benchmarking</a></li>
-<li class="chapter" data-level="16" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>16</b> packages</a></li>
-<li class="part"><span><b>V Production Tools</b></span></li>
-<li class="chapter" data-level="17" data-path="syntax.html"><a href="syntax.html"><i class="fa fa-check"></i><b>17</b> Docker</a></li>
-<li class="chapter" data-level="18" data-path="proxy.html"><a href="proxy.html"><i class="fa fa-check"></i><b>18</b> Proxy Server</a></li>
-<li class="chapter" data-level="19" data-path="cloud.html"><a href="cloud.html"><i class="fa fa-check"></i><b>19</b> Cloud Services</a></li>
-<li class="part"><span><b>VI Shiny Tips</b></span></li>
-<li class="chapter" data-level="20" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>20</b> Speed</a></li>
-<li class="chapter" data-level="21" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>21</b> Memory</a></li>
+<li class="chapter" data-level="13" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>13</b> Vectorize</a></li>
+<li class="chapter" data-level="14" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>14</b> Multithreading</a></li>
+<li class="chapter" data-level="15" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>15</b> packages</a></li>
+<li class="part"><span><b>V Shiny Tips</b></span></li>
+<li class="chapter" data-level="16" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>16</b> Speed</a></li>
+<li class="chapter" data-level="17" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>17</b> Memory</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -291,8 +286,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="Vectorize" class="section level1" number="14">
-<h1><span class="header-section-number">Chapter 14</span> Vectorize</h1>
+<div id="Vectorize" class="section level1" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Vectorize</h1>
 
 </div>
             </section>
@@ -300,8 +295,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="multithreading.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="bench.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="loops.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multithreading.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -332,7 +327,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/04-speed_03_vectorize.Rmd",
+"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/04-speed_02_vectorize.Rmd",
 "text": "Edit"
 },
 "history": {
