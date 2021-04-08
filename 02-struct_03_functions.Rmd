@@ -298,52 +298,7 @@ and Yes do not forget to mention the package name clearly. like prefer writing t
 # filter()
 ```
 
-<hr>
-
-**NOTE**:
-
-In R you can view any function definition by running the function without `()` round brackets. like this
-
-```{r echo=TRUE}
-
-quanteda::tokens
-```
-
-And you can check which methods are available for which classes by using
-
-```{r echo=TRUE}
-
-methods(class = "dfm")
-```
-
-Or you can check how many classes have a method by same name with.
-
-```{r echo=TRUE, eval=TRUE, error=TRUE}
-methods(generic.function = "textstat_lexdiv")
-```
-
-now most of these methods are hidden from general usage so you might not be able to view them.
-
-```{r echo=TRUE}
-# textstat_lexdiv.dfm 
-# will not work will produce an error
-# Error: object 'textstat_lexdiv.dfm' not found
-
-textstat_lexdiv
-
-# works but the implementation is still hidden because method will be decided based on the class provided to the method at the exact moment of calculation
-```
-
-But If you still want to know how to know the definition of a method of the class. Just use this code.
-
-```{r echo=TRUE, eval=TRUE, include=TRUE}
-
-getAnywhere("textstat_lexdiv.dfm")
-```
-
-If you want to understand more of this learn OOPS in R. R has multiple oops system and R is a highly Object oriented programming but the style is different from other languages. This book is all about best practices in R and thus we are not going to go deep into fundamentals of R programming here but this trick is worth knowing.
-
-<hr>
+For your small project this might not be a big deal but when multiple people are working on a code everybody might not be familiar with the packages you are using and they might not know that there is a naming collision between 2 functions. It's a best practice to explicitly tell R that this function comes from this package. It saves a lot of your time and for the person who is going to maintain your code too... And it makes your debug experience a little better.
 
 ## Conclusion
 

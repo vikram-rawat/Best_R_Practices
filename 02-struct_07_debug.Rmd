@@ -4,6 +4,60 @@ Debugging is a part of being a programmer. You just can't escape it. It's a huge
 
 These are the tips I think everyone should follow for better debugging experience.
 
+## Browser() and print() are your friend
+
+To me `browser()` function feels like a scene from movie matrix where you can stop everything around you and decide what is going wrong in the world. When you want to debug any function or a point where you assume that the error lies here, you should use browser() inside that function or script. Don't be scared of using browser() this function makes you familiar with your code and R itself.
+
+`Browser` is useful only when you know what function to look at. `Print` is your friend when you want to narrow down the candidates which are causing the error. Printing the objects on the console with help you understand what is happening inside a given function at the moment. It's very useful for interactive web apps where reproducing the error is a little tricky.
+
+A combination of print and browser can save a lot of your time. And yes **make sure you delete the browser functions from your file**. You can use `ctrl + shift + f` to search the entire project and every file in it for searching anything, including browser function.
+
+## **Read the functions**
+
+R gives you the ability to read the function and it comes very handy during debugging a function you have not written. You can view any function definition by running the function without `()` round brackets. like this
+
+```{r echo=TRUE}
+
+quanteda::tokens
+```
+
+And you can check which methods are available for which classes by using
+
+```{r echo=TRUE}
+
+methods(class = "dfm")
+```
+
+Or you can check how many classes have a method by same name with.
+
+```{r echo=TRUE, eval=TRUE, error=TRUE}
+
+methods(generic.function = "print")[1:20]
+```
+
+now most of these methods are hidden from general usage so you might not be able to view them.
+
+```{r echo=TRUE}
+# textstat_lexdiv.dfm 
+# will not work will produce an error
+# Error: object 'textstat_lexdiv.dfm' not found
+
+quanteda.textstats::textstat_lexdiv
+
+# works but the implementation is still hidden because method will be decided based on the class provided to the method at the exact moment of calculation
+```
+
+But If you still want to know how to know the definition of a method of the class. Just use this code.
+
+```{r echo=TRUE, eval=TRUE, include=TRUE}
+
+getAnywhere("textstat_lexdiv.dfm")
+```
+
+If you want to understand more of this learn OOPS in R. R has multiple object oriented systems and R is a highly Object oriented programming but the style is different from other languages. This book is all about best practices in R and thus we are not going to go deep into fundamentals of R programming here but this trick is worth knowing.
+
+These tricks will help you read code that is loaded on your environment but you have not written them. Reading someone else's code makes you a better coder. And it helps you understand why this code is breaking up.
+
 ## Version Control System
 
 Use a version control system. For those who don't know, it means you can commit changes to a central repository and compare the changes anytime. **GitHub** and **BitBucket** are the most popular of these solution.
@@ -18,7 +72,7 @@ You should always use small commits. I have seen people who keep the code with t
 
 Make small changes to your code and see if it's working and then commit those changes. The smaller the commits the better debugging experience you have. Then it's easier to roll back the changes and it's easier to read the code to understand what might have caused this error.
 
-## Use curly brackets {}
+## Use curly brackets
 
 R gives you the ability to write code without `{}` but It makes your code harder to read and understand the blocks in segregation. I have seen people write code like this
 
@@ -90,14 +144,65 @@ When you are running your code on your own computer you might get only 1000 bugs
 
 There are many packages available in R for logging I don't have a preference on any of them. It's good to use a database instead of json.
 
-## Browser() is your friend
+## Don't Use already used names
 
-To me `browser()` function feels like a scene from movie matrix where you can stop everything around you and decide what is going wrong in the world.
+R allows you to override variable and function names that exist. But this is something you shouldn't do. Not even once. I get it when you don't know it collides with something but when you do you should avoid those names at all costs.
 
-## Don't Use T or F
+Take fro example `T` and `F` are just variables which have `TRUE` and `FALSE` values stored in them. They are not a replacement for boolean values.
 
-## Avoid already described names
+```{r}
+
+T <- FALSE
+myvar <- TRUE
+if( myvar == T ) print(TRUE) else print(FALSE)
+```
+
+Here all your logic is gone because someone thought of renaming A variable T. Most common such error occurs on naming the object remember that these are all valid functions in base R.
+
+1.  dt
+2.  df
+3.  data
+
+These are just a few examples where you can mess up your code very easily without realizing that you are doing something very wrong here. Just like other programming languages will throw an error if you use an already defined name and wont allow you to reuse it, you should treat R the same even though it will not throw an error and you might be lucky enough that it will never throw and error. But you should get into a habit of not reusing function and object names in R as well.
 
 ## Use Simple code
 
-R gives you a lot of flexibility in coding style. You can write very succinct and precise code with R with highly complex methods. But try to spread your code in decent number of lines so that you can read it later on.
+R gives you a lot of flexibility in coding style. You can write very succinct and precise code with R with highly complex methods. But try to spread your code in decent number of lines so that you can read it later on. Let me give you a very basic example.
+
+```{r}
+
+x <- y <- z <- 1:10
+
+## or
+
+x <- 3; y <- 5; z <- 8
+
+## or
+
+foo <- function(x){
+  y <<- x
+}
+## <<- is permisable only in very very very rare scenarios
+```
+
+This is doable in R but doesn't mean you should do it. This code could easily have been split into 6 lines and it will increase the readability of your code. People from specially `maths` , `finance`, `science` etc... background love to write complicated equations and they carry the same attitude to their coding style too... However **coding is more about code maintenance than about writing code** and you can't hope that next person will have equal abilities that you do.
+
+**Write simple and beautiful code is the best advice I can give in this entire chapter**. This makes your life easier and of the people working with you.
+
+## Conclusion
+
+In this chapter we discussed multiple strategies of dealing with and avoiding debugging complexities. Hope if you follow most of these tricks you will feel that you are a better debugger than you were before and it will save you a lot of time in the process. To recap what we have learned today.
+
+1.  Use print to point of where your code fails
+2.  use browser to check the code
+3.  always delete browser functions
+4.  read the function
+5.  You can even read hidden methods in R
+6.  Use version control system
+7.  make small commits
+8.  use curly brackets in all your code
+9.  Pass all arguments to a function through their name and not the position
+10. log the errors
+11. avoid already used function or object names
+12. write simple code
+13. avoid using `T`, `F` , `<<-` & `;`
