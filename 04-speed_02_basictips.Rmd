@@ -1,0 +1,153 @@
+# (PART) Speed {.unnumbered}
+
+# Some Tips to make R code faster {#speedtips}
+
+"Make it work, then make it beautiful, then if you really, really have to, make it fast. 90 percent of the time, if you make it beautiful, it will already be fast. So really, just make it beautiful!"
+
+-- Joe Armstrong
+
+In IT sector speed is very important. People rewrite tons of algorithms back again in c, c++, go and java. Just to gain that miliseconds or may be microseconds performance over one another. When you compared to these languages R is a very slow language. If you really need to get nanosecond level of optimizations in R that are not possible without going to Rcpp; which by the way is a very easy wrapper for R user around C++. But still R code can be optimized to a level where you can get production level efficiency in R without too much trouble. And R is not slow compared to interpreted languages like python, Javascript, ruby etc...
+
+## Use Latest version of R
+
+Each iteration of R is improving something to gain more speed with less and less memory. It's always useful if you need more speed to switch to Latest version of R and see if you get any speed gains. In general if you are using old versions of R or old functions that are deprecated and are no longer recommended by switching to a new version or new methods you will get a speed advantage for sure.
+
+Constant criticism that R is slow has made R to work in this respect and R is evolving according to the needs of time. There is not much to add here. If possible use the latest version, packages or methods mostly they might have more speed.
+
+## Benchmark the findings
+
+R is very obscure language there are no direct rules for speed gains. You might think you are making the code fast but in turn you could make it slow. The worst part about R is that you can write very very very slow code in R without realizing what are you missing. same R code can run 1K times faster when optimized. **R is a very easy language to write slow code in.** This is something you should keep in mind while writing the code.
+
+This is the reason you should benchmark your options, It may not give you much speed improvement, it may not give you any speed improvement at all. If you want to optimize R you must learn to benchmark the options. I would not go in details but **microbenchmark** is the best package for this task. Other packages have too many assumptions.
+
+## Algorithm matters more than language
+
+Lets understand this by a very simple example. Let's start with the worst way you could code in any language called `recursive functions` and mark my words **Never Use Recursive Functions**. You are always better off without them. Let's try to see if we can find the good old fibonacci numbers and first 20 of them.
+
+```{r}
+
+recurse_fib_r <- function(fnum){
+  if(fnum <= 1) {
+    return(fnum)
+  } else {
+    return(
+      recurse_fib_r(fnum-1) + recurse_fib_r(fnum-2)
+      )
+  }
+}
+```
+
+```{Rcpp}
+#include <Rcpp.h>
+
+//[[Rcpp::export]]
+int recurse_fib_rcpp(int fnum){
+  if(fnum <= 1) {
+    return(fnum) ;
+  } else {
+    return recurse_fib_rcpp( fnum - 1 ) + recurse_fib_rcpp( fnum - 2 ) ;
+  }
+}
+
+```
+
+lets compare both the functions now.
+
+```{r}
+
+microbenchmark::microbenchmark(
+  mapply( recurse_fib_rcpp, 1:30 ),
+  mapply( recurse_fib_r, 1:30 ),
+  times = 10
+)
+```
+
+```{r include=FALSE}
+gc()
+```
+
+Lets try to save computation by saving the results
+
+```{r}
+mem_fib_r <- function(fnum){
+ if(fnum <= 1) {
+    return(fnum)
+  } else {
+    return(
+      memoised_fib_r(fnum - 1) + memoised_fib_r( fnum - 2)
+      )
+  }
+}
+
+memoised_fib_r <- memoise::memoise(mem_fib_r)
+```
+
+```{r}
+
+microbenchmark::microbenchmark(
+  mapply( recurse_fib_rcpp, 1:30 ),
+  mapply( memoised_fib_r, 1:30 ),
+  times = 10
+)
+```
+
+We can still write a better algorithm by writing a loop
+
+```{r}
+
+save_fib_r <- function(fnum){
+  fnum <- fnum + 1
+  vec <- integer(fnum)
+  vec[[2]] <- 1
+  if(fnum > 2){
+    for(i in 3:fnum){
+      vec[[i]] <- vec[[ i - 1]] + vec[[ i - 2]]
+    }
+  }
+  
+  return(vec[[fnum]])
+}
+```
+
+Lets compare the results
+
+```{r}
+
+microbenchmark::microbenchmark(
+  mapply( recurse_fib_rcpp, 1:30 ),
+  mapply( save_fib_r, 1:30 ),
+  times = 10
+)
+```
+
+Because other functions is vectorized but I am only asking for a single number I am doing the same calculations multiple time inside mapply function.
+
+```{r}
+save_vec_fib_r <- function(fnum){
+  fnum <- fnum + 1
+  vec <- integer(fnum)
+  vec[[2]] <- 1
+  if(fnum > 2){
+    for(i in 3:fnum){
+      vec[[i]] <- vec[[ i - 1]] + vec[[ i - 2]]
+    }
+  }
+  
+  return(vec)
+}
+```
+
+Now let's compare the differences
+
+```{r}
+
+microbenchmark::microbenchmark(
+  mapply( save_fib_r, 1:1e3 ),
+  save_vec_fib_r(1e3),
+  times = 10
+)
+```
+
+## Read the function
+
+## Use simple functions

@@ -88,7 +88,16 @@ inside-a-heavy-loop
 anything-that-takes-more-than-30-seconds
 conclusion-8
 loops
-Vectorize
+data-types
+are-faster-than
+apply-family
+vectorize
+speedtips
+use-latest-version-of-r
+benchmark-the-findings
+algorithm-matters-more-than-language
+read-the-function
+use-simple-functions
 multithreading
 packages
 shinyspeed

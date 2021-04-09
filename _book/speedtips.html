@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Code Structure | Best Coding Practices for R</title>
+  <title>Chapter 13 Some Tips to make R code faster | Best Coding Practices for R</title>
   <meta name="description" content="This book explains the most important things you need to know while you are writing production level R code." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Code Structure | Best Coding Practices for R" />
+  <meta property="og:title" content="Chapter 13 Some Tips to make R code faster | Best Coding Practices for R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Code Structure | Best Coding Practices for R" />
+  <meta name="twitter:title" content="Chapter 13 Some Tips to make R code faster | Best Coding Practices for R" />
   
   <meta name="twitter:description" content="This book explains the most important things you need to know while you are writing production level R code." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="folder.html"/>
-<link rel="next" href="func.html"/>
+<link rel="prev" href="loops.html"/>
+<link rel="next" href="multithreading.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -301,82 +301,138 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="code" class="section level1" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Code Structure</h1>
-<p>Once you have arranged the files and folders in a logical way then comes the fact that the code itself should be arranged in such a way that it feels easy to go through. Always remember <strong>Code is read more often then it’s written</strong>. Your world should revolve around this line. If you delegate your work while leaving your firm to someone else than the person who is handling your code should be able to understand everything you were trying to do. You will be in that position someday and you would wish your colleagues must have done the same. Even if you aren’t sharing your code to somebody one day when you will return back to the project after say 7 to 8 months you will be surprised to see the mess you created back then. With this in mind hope this will help you in your journey.</p>
-<div id="create-sections" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Create Sections</h2>
-<p>Rstudio gives you an ability to create section by pressing ( ctrl + shift + R ), or you can create one</p>
-<p>by adding 4 dashes (-) after a comment or 4 hash symbol (#) after a comment.</p>
-<pre><code># some comment ----
-# some comment ####</code></pre>
-<p>Both are valid syntax. you can name your section in the comment. Same rule applies for the Rmarkdown documents as well you should always name your code chunk.</p>
-<pre><code># ```{r chunkname, cache=TRUE}</code></pre>
-<p>It also helps you jump between sections (Shift+Alt+J). You can easily switch between sections and fold them at will. It helps you not only in navigation but keeping a layout of the entire code as well.</p>
-<p>A 800+ line files will look something like this.</p>
-<div class="figure">
-<img src="figures/scrn_sections.jpg" alt="" />
-<p class="caption">code chunk</p>
+<div id="speedtips" class="section level1" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Some Tips to make R code faster</h1>
+<p>“Make it work, then make it beautiful, then if you really, really have to, make it fast. 90 percent of the time, if you make it beautiful, it will already be fast. So really, just make it beautiful!”</p>
+<p>– Joe Armstrong</p>
+<p>In IT sector speed is very important. People rewrite tons of algorithms back again in c, c++, go and java. Just to gain that miliseconds or may be microseconds performance over one another. When you compared to these languages R is a very slow language. If you really need to get nanosecond level of optimizations in R that are not possible without going to Rcpp; which by the way is a very easy wrapper for R user around C++. But still R code can be optimized to a level where you can get production level efficiency in R without too much trouble. And R is not slow compared to interpreted languages like python, Javascript, ruby etc…</p>
+<div id="use-latest-version-of-r" class="section level2" number="13.1">
+<h2><span class="header-section-number">13.1</span> Use Latest version of R</h2>
+<p>Each iteration of R is improving something to gain more speed with less and less memory. It’s always useful if you need more speed to switch to Latest version of R and see if you get any speed gains. In general if you are using old versions of R or old functions that are deprecated and are no longer recommended by switching to a new version or new methods you will get a speed advantage for sure.</p>
+<p>Constant criticism that R is slow has made R to work in this respect and R is evolving according to the needs of time. There is not much to add here. If possible use the latest version, packages or methods mostly they might have more speed.</p>
 </div>
-<p>It makes your code beautiful to look and makes it maintainable in long run.</p>
+<div id="benchmark-the-findings" class="section level2" number="13.2">
+<h2><span class="header-section-number">13.2</span> Benchmark the findings</h2>
+<p>R is very obscure language there are no direct rules for speed gains. You might think you are making the code fast but in turn you could make it slow. The worst part about R is that you can write very very very slow code in R without realizing what are you missing. same R code can run 1K times faster when optimized. <strong>R is a very easy language to write slow code in.</strong> This is something you should keep in mind while writing the code.</p>
+<p>This is the reason you should benchmark your options, It may not give you much speed improvement, it may not give you any speed improvement at all. If you want to optimize R you must learn to benchmark the options. I would not go in details but <strong>microbenchmark</strong> is the best package for this task. Other packages have too many assumptions.</p>
 </div>
-<div id="order-of-code" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Order of Code</h2>
-<p>When you write code there are standard practices that are used across the domain and you should definitely use them. These are simple rules that most beginners aren’t concerned about but the more experience you gain the more you start to realize the latent power of code organization. Here are a simple tip you should use.</p>
-<ol style="list-style-type: decimal">
-<li>Call your libraries on top of code</li>
-<li>Set all default variables or global options and all the path variables at the top of the code.</li>
-<li>Source all the code at the beginning</li>
-<li>Call all the data-files at the top</li>
-</ol>
-<p>In this exact order. This coherence keeps all your code easy to find. Most annoying thing in debugging someone else code is finding path variables laid out inside functions. Please don’t ever do that. That is not a good practices. Take a look at one of my file</p>
-<div class="figure">
-<img src="figures/scrn_section_order.jpg" alt="" />
-<p class="caption">code order</p>
+<div id="algorithm-matters-more-than-language" class="section level2" number="13.3">
+<h2><span class="header-section-number">13.3</span> Algorithm matters more than language</h2>
+<p>Lets understand this by a very simple example. Let’s start with the worst way you could code in any language called <code>recursive functions</code> and mark my words <strong>Never Use Recursive Functions</strong>. You are always better off without them. Let’s try to see if we can find the good old fibonacci numbers and first 20 of them.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="speedtips.html#cb173-1" aria-hidden="true" tabindex="-1"></a>recurse_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
+<span id="cb173-2"><a href="speedtips.html#cb173-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum <span class="sc">&lt;=</span> <span class="dv">1</span>) {</span>
+<span id="cb173-3"><a href="speedtips.html#cb173-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(fnum)</span>
+<span id="cb173-4"><a href="speedtips.html#cb173-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb173-5"><a href="speedtips.html#cb173-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
+<span id="cb173-6"><a href="speedtips.html#cb173-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">recurse_fib_r</span>(fnum<span class="dv">-1</span>) <span class="sc">+</span> <span class="fu">recurse_fib_r</span>(fnum<span class="dv">-2</span>)</span>
+<span id="cb173-7"><a href="speedtips.html#cb173-7" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb173-8"><a href="speedtips.html#cb173-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb173-9"><a href="speedtips.html#cb173-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb174-1"><a href="speedtips.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
+<span id="cb174-2"><a href="speedtips.html#cb174-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-3"><a href="speedtips.html#cb174-3" aria-hidden="true" tabindex="-1"></a><span class="co">//[[Rcpp::export]]</span></span>
+<span id="cb174-4"><a href="speedtips.html#cb174-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> recurse_fib_rcpp(<span class="dt">int</span> fnum){</span>
+<span id="cb174-5"><a href="speedtips.html#cb174-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum &lt;= <span class="dv">1</span>) {</span>
+<span id="cb174-6"><a href="speedtips.html#cb174-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(fnum) ;</span>
+<span id="cb174-7"><a href="speedtips.html#cb174-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb174-8"><a href="speedtips.html#cb174-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> recurse_fib_rcpp( fnum - <span class="dv">1</span> ) + recurse_fib_rcpp( fnum - <span class="dv">2</span> ) ;</span>
+<span id="cb174-9"><a href="speedtips.html#cb174-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb174-10"><a href="speedtips.html#cb174-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>lets compare both the functions now.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="speedtips.html#cb175-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb175-2"><a href="speedtips.html#cb175-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( recurse_fib_rcpp, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
+<span id="cb175-3"><a href="speedtips.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( recurse_fib_r, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
+<span id="cb175-4"><a href="speedtips.html#cb175-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb175-5"><a href="speedtips.html#cb175-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Unit: milliseconds
+##                            expr       min       lq       mean     median
+##  mapply(recurse_fib_rcpp, 1:30)   10.3127   10.562   12.84923   13.38575
+##     mapply(recurse_fib_r, 1:30) 4838.6412 4911.283 5365.45518 5435.20670
+##         uq       max neval cld
+##    13.5092   18.9751    10  a 
+##  5446.5246 6165.9305    10   b</code></pre>
+<p>Lets try to save computation by saving the results</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="speedtips.html#cb177-1" aria-hidden="true" tabindex="-1"></a>mem_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
+<span id="cb177-2"><a href="speedtips.html#cb177-2" aria-hidden="true" tabindex="-1"></a> <span class="cf">if</span>(fnum <span class="sc">&lt;=</span> <span class="dv">1</span>) {</span>
+<span id="cb177-3"><a href="speedtips.html#cb177-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(fnum)</span>
+<span id="cb177-4"><a href="speedtips.html#cb177-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb177-5"><a href="speedtips.html#cb177-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
+<span id="cb177-6"><a href="speedtips.html#cb177-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">memoised_fib_r</span>(fnum <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">memoised_fib_r</span>( fnum <span class="sc">-</span> <span class="dv">2</span>)</span>
+<span id="cb177-7"><a href="speedtips.html#cb177-7" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb177-8"><a href="speedtips.html#cb177-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb177-9"><a href="speedtips.html#cb177-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb177-10"><a href="speedtips.html#cb177-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb177-11"><a href="speedtips.html#cb177-11" aria-hidden="true" tabindex="-1"></a>memoised_fib_r <span class="ot">&lt;-</span> memoise<span class="sc">::</span><span class="fu">memoise</span>(mem_fib_r)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="speedtips.html#cb178-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb178-2"><a href="speedtips.html#cb178-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( recurse_fib_rcpp, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
+<span id="cb178-3"><a href="speedtips.html#cb178-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( memoised_fib_r, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
+<span id="cb178-4"><a href="speedtips.html#cb178-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb178-5"><a href="speedtips.html#cb178-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Unit: milliseconds
+##                            expr     min     lq     mean   median      uq
+##  mapply(recurse_fib_rcpp, 1:30) 10.2122 10.887 11.59755 11.47625 12.2490
+##    mapply(memoised_fib_r, 1:30)  2.4867  2.902  7.83596  3.11120  3.6502
+##      max neval cld
+##  13.9800    10   a
+##  50.1744    10   a</code></pre>
+<p>We can still write a better algorithm by writing a loop</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="speedtips.html#cb180-1" aria-hidden="true" tabindex="-1"></a>save_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
+<span id="cb180-2"><a href="speedtips.html#cb180-2" aria-hidden="true" tabindex="-1"></a>  fnum <span class="ot">&lt;-</span> fnum <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb180-3"><a href="speedtips.html#cb180-3" aria-hidden="true" tabindex="-1"></a>  vec <span class="ot">&lt;-</span> <span class="fu">integer</span>(fnum)</span>
+<span id="cb180-4"><a href="speedtips.html#cb180-4" aria-hidden="true" tabindex="-1"></a>  vec[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb180-5"><a href="speedtips.html#cb180-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum <span class="sc">&gt;</span> <span class="dv">2</span>){</span>
+<span id="cb180-6"><a href="speedtips.html#cb180-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span>fnum){</span>
+<span id="cb180-7"><a href="speedtips.html#cb180-7" aria-hidden="true" tabindex="-1"></a>      vec[[i]] <span class="ot">&lt;-</span> vec[[ i <span class="sc">-</span> <span class="dv">1</span>]] <span class="sc">+</span> vec[[ i <span class="sc">-</span> <span class="dv">2</span>]]</span>
+<span id="cb180-8"><a href="speedtips.html#cb180-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb180-9"><a href="speedtips.html#cb180-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb180-10"><a href="speedtips.html#cb180-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb180-11"><a href="speedtips.html#cb180-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vec[[fnum]])</span>
+<span id="cb180-12"><a href="speedtips.html#cb180-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Lets compare the results</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="speedtips.html#cb181-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb181-2"><a href="speedtips.html#cb181-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( recurse_fib_rcpp, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
+<span id="cb181-3"><a href="speedtips.html#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( save_fib_r, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
+<span id="cb181-4"><a href="speedtips.html#cb181-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb181-5"><a href="speedtips.html#cb181-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Unit: microseconds
+##                            expr     min      lq     mean  median      uq
+##  mapply(recurse_fib_rcpp, 1:30) 11279.6 11365.6 12951.81 12016.2 13664.0
+##        mapply(save_fib_r, 1:30)   197.4   269.5  1202.90   313.8   364.4
+##      max neval cld
+##  18894.0    10   b
+##   9326.8    10  a</code></pre>
+<p>Because other functions is vectorized but I am only asking for a single number I am doing the same calculations multiple time inside mapply function.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="speedtips.html#cb183-1" aria-hidden="true" tabindex="-1"></a>save_vec_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
+<span id="cb183-2"><a href="speedtips.html#cb183-2" aria-hidden="true" tabindex="-1"></a>  fnum <span class="ot">&lt;-</span> fnum <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb183-3"><a href="speedtips.html#cb183-3" aria-hidden="true" tabindex="-1"></a>  vec <span class="ot">&lt;-</span> <span class="fu">integer</span>(fnum)</span>
+<span id="cb183-4"><a href="speedtips.html#cb183-4" aria-hidden="true" tabindex="-1"></a>  vec[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb183-5"><a href="speedtips.html#cb183-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum <span class="sc">&gt;</span> <span class="dv">2</span>){</span>
+<span id="cb183-6"><a href="speedtips.html#cb183-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span>fnum){</span>
+<span id="cb183-7"><a href="speedtips.html#cb183-7" aria-hidden="true" tabindex="-1"></a>      vec[[i]] <span class="ot">&lt;-</span> vec[[ i <span class="sc">-</span> <span class="dv">1</span>]] <span class="sc">+</span> vec[[ i <span class="sc">-</span> <span class="dv">2</span>]]</span>
+<span id="cb183-8"><a href="speedtips.html#cb183-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb183-9"><a href="speedtips.html#cb183-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb183-10"><a href="speedtips.html#cb183-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb183-11"><a href="speedtips.html#cb183-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vec)</span>
+<span id="cb183-12"><a href="speedtips.html#cb183-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Now let’s compare the differences</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="speedtips.html#cb184-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb184-2"><a href="speedtips.html#cb184-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( save_fib_r, <span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span> ),</span>
+<span id="cb184-3"><a href="speedtips.html#cb184-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save_vec_fib_r</span>(<span class="fl">1e3</span>),</span>
+<span id="cb184-4"><a href="speedtips.html#cb184-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb184-5"><a href="speedtips.html#cb184-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Unit: microseconds
+##                        expr     min      lq      mean  median       uq      max
+##  mapply(save_fib_r, 1:1000) 89555.9 92689.6 100563.30 96297.3 103632.1 124244.9
+##        save_vec_fib_r(1000)   136.8   141.2    986.89   171.7    276.6   8166.2
+##  neval cld
+##     10   b
+##     10  a</code></pre>
 </div>
-<p>If you think you will forget it. There is a golden rule you must remember. <strong><em>Put all the external dependencies on top of your code</em></strong>. Everything that I mentioned above is external to the code in the file. In exact order.</p>
-<ol style="list-style-type: decimal">
-<li>Libraries are external to the file.</li>
-<li>path variables</li>
-<li>other files apart from one you are working is external as well.</li>
-<li>databases and CSV</li>
-</ol>
-<p>Just by doing this you will be able to navigate better in your code. There aren’t any hard and fast rules for this only logical and sensible ones. Feel free to come up with your own layout that helps you in your analysis journey.</p>
+<div id="read-the-function" class="section level2" number="13.4">
+<h2><span class="header-section-number">13.4</span> Read the function</h2>
 </div>
-<div id="indentation" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Indentation</h2>
-<p>It goes without saying that indentation makes your code readable. Python is not the only language who has the luxury of indentation. No matter what language you work in your code should be properly indented so that we can understand the nature of code written. There are a few things you can understand about indentation.</p>
-<p>Maintain same number of spaces throughout your code. Your editor will help you out with it for sure but even if you are working on multiple editors. If you choose 2 spaces or 4 spaces as an equivalent of tabs you should stick to it. This is a golden rule you should never break.</p>
-<p>Then maintain the same style in your code. Look at the code below.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="code.html#cb14-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb14-2"><a href="code.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  first_arg, second_arg, third_arg</span>
-<span id="cb14-3"><a href="code.html#cb14-3" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb14-4"><a href="code.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  create_file <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="at">path =</span> first_arg, <span class="at">sheet =</span> second_arg, </span>
-<span id="cb14-5"><a href="code.html#cb14-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">range =</span> third_arg)</span>
-<span id="cb14-6"><a href="code.html#cb14-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-7"><a href="code.html#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="code.html#cb14-8" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb14-9"><a href="code.html#cb14-9" aria-hidden="true" tabindex="-1"></a>  first_arg,</span>
-<span id="cb14-10"><a href="code.html#cb14-10" aria-hidden="true" tabindex="-1"></a>  second_arg,</span>
-<span id="cb14-11"><a href="code.html#cb14-11" aria-hidden="true" tabindex="-1"></a>  third_arg</span>
-<span id="cb14-12"><a href="code.html#cb14-12" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb14-13"><a href="code.html#cb14-13" aria-hidden="true" tabindex="-1"></a>  create_file <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(</span>
-<span id="cb14-14"><a href="code.html#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> first_arg, </span>
-<span id="cb14-15"><a href="code.html#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> second_arg, </span>
-<span id="cb14-16"><a href="code.html#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">range =</span> third_arg</span>
-<span id="cb14-17"><a href="code.html#cb14-17" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb14-18"><a href="code.html#cb14-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>function foo is written horizontal and bar is written vertical. I would prefer styling of function bar but you may choose one and stick to it for entire project. Mixing styles is not considered good and might create problem in code review.</p>
-<p>There is a package by name <code>grkstyle</code> which implements vertical arrangement of code as mentioned above. You can look into it as well.</p>
-</div>
-<div id="conclusion-1" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Conclusion’</h2>
-<p>In this chapter we discussed how to structure your code to make it more meaningful to read and easier to debug. The key takeaways from this chapter is:</p>
-<ol style="list-style-type: decimal">
-<li>Create sections to write beautiful and navigable code</li>
-<li>Put those sections in a logical order</li>
-<li>Don’t</li>
-</ol>
+<div id="use-simple-functions" class="section level2" number="13.5">
+<h2><span class="header-section-number">13.5</span> Use simple functions</h2>
 
 </div>
 </div>
@@ -385,8 +441,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="folder.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="func.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="loops.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multithreading.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -417,7 +473,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/02-struct_02_code.Rmd",
+"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/04-speed_02_basictips.Rmd",
 "text": "Edit"
 },
 "history": {

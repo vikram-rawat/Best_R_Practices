@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-04-08" />
+<meta name="date" content="2021-04-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="releasememory.html"/>
-<link rel="next" href="Vectorize.html"/>
+<link rel="next" href="speedtips.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -258,9 +258,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="releasememory.html"><a href="releasememory.html#conclusion-8"><i class="fa fa-check"></i><b>11.3</b> Conclusion</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>12</b> For Loops</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="loops.html"><a href="loops.html#data-types"><i class="fa fa-check"></i><b>12.1</b> data-types</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="loops.html"><a href="loops.html#are-faster-than"><i class="fa fa-check"></i><b>12.1.1</b> [[ are faster than [</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>12.2</b> apply family</a></li>
+<li class="chapter" data-level="12.3" data-path="loops.html"><a href="loops.html#vectorize"><i class="fa fa-check"></i><b>12.3</b> Vectorize</a></li>
+</ul></li>
 <li class="part"><span><b>IV Speed</b></span></li>
-<li class="chapter" data-level="12" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>12</b> For Loops</a></li>
-<li class="chapter" data-level="13" data-path="Vectorize.html"><a href="Vectorize.html"><i class="fa fa-check"></i><b>13</b> Vectorize</a></li>
+<li class="chapter" data-level="13" data-path="speedtips.html"><a href="speedtips.html"><i class="fa fa-check"></i><b>13</b> Some Tips to make R code faster</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="speedtips.html"><a href="speedtips.html#use-latest-version-of-r"><i class="fa fa-check"></i><b>13.1</b> Use Latest version of R</a></li>
+<li class="chapter" data-level="13.2" data-path="speedtips.html"><a href="speedtips.html#benchmark-the-findings"><i class="fa fa-check"></i><b>13.2</b> Benchmark the findings</a></li>
+<li class="chapter" data-level="13.3" data-path="speedtips.html"><a href="speedtips.html#algorithm-matters-more-than-language"><i class="fa fa-check"></i><b>13.3</b> Algorithm matters more than language</a></li>
+<li class="chapter" data-level="13.4" data-path="speedtips.html"><a href="speedtips.html#read-the-function"><i class="fa fa-check"></i><b>13.4</b> Read the function</a></li>
+<li class="chapter" data-level="13.5" data-path="speedtips.html"><a href="speedtips.html#use-simple-functions"><i class="fa fa-check"></i><b>13.5</b> Use simple functions</a></li>
+</ul></li>
 <li class="chapter" data-level="14" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>14</b> Multithreading</a></li>
 <li class="chapter" data-level="15" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>15</b> packages</a></li>
 <li class="part"><span><b>V Shiny Tips</b></span></li>
@@ -288,15 +303,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="loops" class="section level1" number="12">
 <h1><span class="header-section-number">Chapter 12</span> For Loops</h1>
+<p>This is a topic that I wanted to discuss for a long time. People read blogs from 2014-2016 and assume that for loops in R are bad. You should not use</p>
+<div id="data-types" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> data-types</h2>
+<div id="are-faster-than" class="section level3" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> [[ are faster than [</h3>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="loops.html#cb172-1" aria-hidden="true" tabindex="-1"></a>set_df_col <span class="ot">&lt;-</span> <span class="cf">function</span>(dt){</span>
+<span id="cb172-2"><a href="loops.html#cb172-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>){</span>
+<span id="cb172-3"><a href="loops.html#cb172-3" aria-hidden="true" tabindex="-1"></a>  dt<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i<span class="sc">*</span><span class="dv">2</span></span>
+<span id="cb172-4"><a href="loops.html#cb172-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb172-5"><a href="loops.html#cb172-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb172-6"><a href="loops.html#cb172-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-7"><a href="loops.html#cb172-7" aria-hidden="true" tabindex="-1"></a>set_dt_num <span class="ot">&lt;-</span> <span class="cf">function</span>(dt){</span>
+<span id="cb172-8"><a href="loops.html#cb172-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>){</span>
+<span id="cb172-9"><a href="loops.html#cb172-9" aria-hidden="true" tabindex="-1"></a>  data.table<span class="sc">::</span><span class="fu">set</span>(</span>
+<span id="cb172-10"><a href="loops.html#cb172-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> dt,</span>
+<span id="cb172-11"><a href="loops.html#cb172-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">i =</span> i,</span>
+<span id="cb172-12"><a href="loops.html#cb172-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">j =</span> <span class="dv">1</span>,</span>
+<span id="cb172-13"><a href="loops.html#cb172-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> i<span class="sc">*</span><span class="dv">2</span>)</span>
+<span id="cb172-14"><a href="loops.html#cb172-14" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb172-15"><a href="loops.html#cb172-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb172-16"><a href="loops.html#cb172-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-17"><a href="loops.html#cb172-17" aria-hidden="true" tabindex="-1"></a>set_dt_col <span class="ot">&lt;-</span> <span class="cf">function</span>(dt){</span>
+<span id="cb172-18"><a href="loops.html#cb172-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>){</span>
+<span id="cb172-19"><a href="loops.html#cb172-19" aria-hidden="true" tabindex="-1"></a>  data.table<span class="sc">::</span><span class="fu">set</span>(</span>
+<span id="cb172-20"><a href="loops.html#cb172-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> dt,</span>
+<span id="cb172-21"><a href="loops.html#cb172-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">i =</span> i,</span>
+<span id="cb172-22"><a href="loops.html#cb172-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">j =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb172-23"><a href="loops.html#cb172-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> i<span class="sc">*</span><span class="dv">2</span>)</span>
+<span id="cb172-24"><a href="loops.html#cb172-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb172-25"><a href="loops.html#cb172-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="apply-family" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> apply family</h2>
+</div>
+<div id="vectorize" class="section level2" number="12.3">
+<h2><span class="header-section-number">12.3</span> Vectorize</h2>
 
 </div>
+</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
 <a href="releasememory.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="Vectorize.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="speedtips.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
