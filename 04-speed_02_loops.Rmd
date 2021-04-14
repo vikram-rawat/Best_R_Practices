@@ -1,0 +1,158 @@
+# For Loops {#loops}
+
+This is a topic that I wanted to discuss for a long time. People read blogs from 2014-2016 and assume that for loops in R are bad. You should not use
+
+## initialize objects before loops
+
+## data-types
+
+```{r}
+set_df_col <- function(dt){
+  for(i in 1:1e4){
+  dt$x[[i]] <- i*2
+  }
+}
+
+set_dt_num <- function(dt){
+  for(i in 1:1e4){
+  data.table::set(
+    x = dt,
+    i = i,
+    j = 1,
+    value = i*2)
+  }
+}
+
+set_dt_col <- function(dt){
+  for(i in 1:1e4){
+  data.table::set(
+    x = dt,
+    i = i,
+    j = "x",
+    value = i*2)
+  }
+}
+```
+
+## apply family
+
+## Vectorize your code
+
+R is vectorized to the core. Every function in R is vectorized. Even the comparison operators are vectorized. This is a core strength of R. If you can break your task down to vectorized operation you can make it faster even after adding more steps to it. Let's take an example.
+
+```{r}
+
+dummy_text <- sample(
+  x = letters,
+  size = 1e3,
+  replace = TRUE
+)
+
+dummy_category <- sample(
+  x = c(1,2,3),
+  size = 1e3,
+  replace = TRUE
+)
+
+main_table <- data.frame(dummy_text, dummy_category)
+```
+
+Now this table has a 1000 text that I want to join into a a huge corpus based on their category. Anybody familiar with other programming languages like python or java or c++ will look for a loop that can solve it. If you try that approach it might go like this.
+
+```{r}
+
+join_text_norm <- function(df = main_table){
+  
+  text <- character(length(unique(df$dummy_category)))
+  
+  for(i in seq_along(df$dummy_category)){
+    if ( df$dummy_category[[i]] == 1 ) {
+        text[[1]] <- paste0(text[[1]], df$dummy_text[[i]])
+    } else   if ( df$dummy_category[[i]] == 2 ) {
+        text[[2]] <- paste0(text[[2]], df$dummy_text[[i]])
+    } else {
+      text[[3]] <- paste0(text[[3]], df$dummy_text[[i]])
+    }
+  }
+  
+  return(text)
+  
+}
+
+join_text_norm()
+```
+
+This is not the most optimized function but this can get the job done. And I am breaking a golden rule here.
+
+### never repeat a calculation
+
+in the above code I could save the some time by storing the value of text into a variable and stop R from calculating it again and again.
+
+```{r}
+
+join_text_saved <- function(
+  df = main_table
+  ){
+  
+  text <- character(length(unique(df$dummy_category)))
+
+  for(i in seq_along(df$dummy_category)){
+    curr_text <- df$dummy_text[[i]]
+    curr_cat <- df$dummy_category[[i]]
+    
+    if (curr_cat  == 1 ) {
+        text[[1]] <- paste0(text[[1]], curr_text)
+    } else   if ( curr_cat == 2 ) {
+        text[[2]] <- paste0(text[[2]], curr_text)
+    } else {
+      text[[3]] <- paste0(text[[3]], curr_text)
+    }
+  }
+  
+  return(text)
+}
+
+join_text_saved()
+```
+
+```{r}
+microbenchmark::microbenchmark(
+  join_text_norm(df = main_table),
+  join_text_saved(df = main_table)
+)
+```
+
+We did not save much on it but we still saved one millisecond on just a 1000 loop. It's an excellent practice of not to repeat calculation.
+
+Now coming back to the point. You could try this approach just like every other programming language does. Or you can try a vectorized approach with the built in paste function with collapse argument.
+
+```{r}
+
+collapsed_fun <- function(
+  df =  main_table
+  ){
+  text <- df %>% 
+  split(f = dummy_category) %>% 
+  lapply(function(x)
+    paste0(x$dummy_text,collapse = "")
+    ) %>% 
+  unlist()
+  
+  return(text)
+}
+
+collapsed_fun(main_table)
+```
+
+Let's compare it with the loop approach.
+
+```{r}
+
+microbenchmark::microbenchmark(
+  join_text_norm(),
+  join_text_saved(),
+  collapsed_fun()
+)
+```
+
+Collapsed function is faster than all the other approach for just 1000 loops. Imagine doing it for 1 million. Vectorized function in those cases will be 1000 times faster than loops.

@@ -11,7 +11,7 @@ Sometimes even after applying all the best techniques to save memory you still n
 value <- length(mtcars$mpg)
 sorted_mpg <- sort(mtcars$mpg)
 median_values <- sorted_mpg[value/2] + sorted_mpg[(value/2) + 1]
-median_mpg <- median_values/2
+median_mpg <- median_values / 2
 
 rm(list = c("value", "sorted_mpg", "median_values"))
 ```
@@ -58,6 +58,153 @@ Here in the code above I am running a long loop but after every 100 iterations I
 
 If you know a function takes more than 30 second to execute. I would suggest you to run a gc() after it. It helps keep a check on R's memory. It's useful even if you are running a shiny app or an API. If anything takes more than 30 second it's worth running the gc() function because than adding a few milliseconds will not be your main problem for sure.
 
+## Cache / Store calculations
+
+It's a good practice in general to not repeat the same calculations over and over again. let's check that with simple function.
+
+It's a very famous problem of print `foo` when a number is divisible by 3 printing `bar` when it's divisible by 5 and `foobar` when it's divisible by both 3 and 5 or 15.
+
+```{r}
+
+foo <- function(
+  num
+){
+  x <- data.frame(y = 1:num)
+  z <- integer(num)
+  
+  for(i in 1:num){
+    if(
+        x$y[[i]] %% 3 == 0 &&
+        x$y[[i]] %% 5 == 0
+    ){
+      z <- "foobar"
+    } else if( x$y[[i]] %% 3 == 0){
+      z <- "foo"
+    } else if ( x$y[[i]] %% 5 == 0){
+      z <- "bar"
+    } else {
+      z <- i
+    }
+  }
+  
+  return(z)
+  
+}
+
+```
+
+Now look at the code above is it readable? what If I want to change the number of iterations. I will have to change it at 2 different places but that's okay because I have wrapped in a function. But the key point is that I am also calculating `x$y[[i]]` multiple times and If I have make changes to it I will have to change it in `4` places. Let's make it a little readable by storing the calculation and thus making our code readable and make it good enough that future changes can be done easily.
+
+```{r}
+
+bar <- function(
+  num
+){
+  
+  x <- data.frame(y = 1:num)
+  z <- integer(num)
+  
+  for(i in 1:num){
+    curr_value <- x$y[[i]]
+    
+    if(
+        curr_value %% 3 == 0 &&
+        curr_value %% 5 == 0
+    ){
+       z <- "foobar"
+    } else if( curr_value %% 3 == 0){
+      z <- "foo"
+    } else if ( curr_value %% 5 == 0){
+      z <- "bar"
+    } else {
+      z <- i
+    }
+  }
+  return(z)
+}
+```
+
+Let's check which is faster of the above implementations.
+
+```{r}
+microbenchmark::microbenchmark(
+  foo(1e4),
+  bar(1e4)
+)
+```
+
+We are saving almost half the time just because we are saving some intermediate calculations. You will be amazed to see how often can you do this. And it makes your code
+
+-   more performant
+
+-   more readable
+
+-   more adaptable
+
+-   more memory efficient
+
+Don't force the computer to calculate something it has already calculated. This simple thing has brought into life big concepts like mem-cache or reddis. R too has the ability to cache it's results. There is a package by name `memoise`. It can store the results of a previous calculation in RAM. It's a classical case of RAM vs CPU trade off. You are using some RAM so that your CPU doesn't have to work over and over again.
+
+Let's try to calculate factorials to demonstrate how we can use it.
+
+```{r}
+
+fact <- function(num){
+  if( num == 0){
+    return(1)
+  } else {
+    return(
+      num * fact(num - 1)
+    )
+  }
+}
+```
+
+Now because being a recursive function, which you should avoid writing at all costs, It does the same computation over and over again. It goes something like this
+
+1.  fact(0) \* fact(1)
+
+    1.  fact(1) \* fact(2)
+
+        1.  fact(2) \* fact(3)
+
+            1.  fact(4) \* fact(5)
+
+                1.  fact(5) \* fact(6)
+
+                    1.  ...................
+
+now it's calculating same thing over and over again without caching it. It makes it a valid candidate for memoise.
+
+```{r}
+
+mem_fact <- function(num){
+  if( num == 0){
+    return(1)
+  } else {
+    return(
+      num * mem_fact(num - 1)
+    )
+  }
+}
+
+mem_fact <- memoise::memoise(mem_fact)
+```
+
+This is how you write a simple memoise function. Let's compare the results.
+
+```{r}
+
+microbenchmark::microbenchmark(
+  fact(100),
+  mem_fact(100)
+)
+```
+
+In this case we haven't achieved much performance over the base code but if we run this function multiple times it will just fetch the results from RAM and save computations in which case it will be worth the effort. We will go through example in next chapters where memoise will be faster too...
+
+memoise is not the only package which does this sort of caching. There is a package by name `cachem` which is used in shiny and you will find some other products like redis which do the same thing but at scale. It's an important technique to know for saving both time and memory.
+
 ## Conclusion
 
 In this chapter we learned how to free up memory for more usage in R. This should help you manage your R environment better. Let's see what we have studied so far.
@@ -67,3 +214,4 @@ In this chapter we learned how to free up memory for more usage in R. This shoul
 3.  Most of the time you can avoid rm
 4.  use gc() inside heavy loops after every few iteration
 5.  use gc() after every heavy transaction which takes more than a couple of seconds.
+6.  Don't repeat calculations

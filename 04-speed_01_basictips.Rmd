@@ -1,0 +1,341 @@
+# (PART) Speed {-}
+
+# Some Tips to make R code faster {#speedtips}
+
+"Make it work, then make it beautiful, then if you really, really have to, make it fast. 90 percent of the time, if you make it beautiful, it will already be fast. So really, just make it beautiful!"
+
+-- Joe Armstrong
+
+In IT sector speed is very important. People rewrite tons of algorithms back again in c, c++, go and java. Just to gain that milliseconds or may be microseconds performance over one another. When you compared to these languages R is a very slow language. If you really need to get nanosecond level of optimization in R that are not possible without going to Rcpp; which by the way is a very easy wrapper for R user around C++. But still R code can be optimized to a level where you can get production level efficiency in R without too much trouble. And R is not slow compared to interpreted languages like python, Javascript, ruby etc...
+
+## Use Latest version of R
+
+Each iteration of R is improving something to gain more speed with less and less memory. It's always useful if you need more speed to switch to Latest version of R and see if you get any speed gains. In general if you are using old versions of R or old functions that are deprecated and are no longer recommended by switching to a new version or new methods you will get a speed advantage for sure.
+
+Constant criticism that R is slow has made R to work in this respect and R is evolving according to the needs of time. There is not much to add here. If possible use the latest version, packages or methods mostly they might have more speed.
+
+## Benchmark the findings
+
+R is very obscure language there are no direct rules for speed gains. You might think you are making the code fast but in turn you could make it slow. The worst part about R is that you can write very very very slow code in R without realizing what are you missing. same R code can run 1K times faster when optimized. **R is a very easy language to write slow code in.** This is something you should keep in mind while writing the code.
+
+This is the reason you should benchmark your options, It may not give you much speed improvement, it may not give you any speed improvement at all. If you want to optimize R you must learn to benchmark the options. I would not go in details but **microbenchmark** is the best package for this task. Other packages have too many assumptions.
+
+## Algorithm matters more than language
+
+I see many people who write R for a single project and than because they can't make it run fast they switch to other languages like python mostly because they have read a few blog post written 5 to 10 years ago on how slow R is. In IT sector speed matters most and I would agree that if you could save a few milliseconds just by following a few basic rules please do that. Because when you create a shiny App or a Plumber API which many people hit at the same time every millisecond counts. But **Don't get occupied by optimizing your code before it starts to work**.
+
+Let me give you a basic structure, if your API can handle 40-50 requests per second on a single core you are at very high speed. Which means 20 to 30ms for each request. Usually network latency and disk caching and talking to DB etc... takes more time. APIs mostly go from 200 to 500 ms per second in complex web apps. And R may not be the fastest language in the world but it sure can reach this level with minimum effort possible. Rest is all about scaling your app.
+
+So before you think about switching the language or saying that R in general is a slow language ask yourself have you optimized your code yet. Because if you don't optimize your code it doesn't matter what language you write it in. It will always be slow. Let me beat c++ with R and show you what I mean.
+
+Lets understand this by a very simple example. Let's start with the worst way you could code in any language called `recursive functions` and mark my words **Never Use Recursive Functions**. You are always better off without them. Let's try to see if we can find the good old fibonacci numbers and first 30 of them. We will write them in R and C++ alike.
+
+```{r}
+
+recurse_fib_r <- function(fnum){
+  if(fnum <= 1) {
+    return(fnum)
+  } else {
+    return(
+      recurse_fib_r(fnum-1) + recurse_fib_r(fnum-2)
+      )
+  }
+}
+```
+
+```{Rcpp}
+#include <Rcpp.h>
+
+//[[Rcpp::export]]
+int recurse_fib_rcpp(int fnum){
+  if(fnum <= 1) {
+    return(fnum) ;
+  } else {
+    return recurse_fib_rcpp( fnum - 1 ) + recurse_fib_rcpp( fnum - 2 ) ;
+  }
+}
+
+```
+
+lets compare both the functions now.
+
+```{r}
+
+microbenchmark::microbenchmark(
+  mapply( recurse_fib_rcpp, 1:30 ),
+  mapply( recurse_fib_r, 1:30 ),
+  times = 10
+)
+```
+
+While c++ is still at milliseconds R has reached to seconds and that too for only 30 fibonacci numbers. This is not acceptable at any level you work on. Even if you are writing basic scripts this is not permissible to be sitting on your computer at all. Let's try to save memory by caching the results of previous operations.
+
+```{r include=FALSE}
+gc()
+```
+
+Lets try to save computation by using memoise package for caching intermediate results.
+
+```{r}
+mem_fib_r <- function(fnum){
+ if(fnum <= 1) {
+    return(fnum)
+  } else {
+    return(
+      memoised_fib_r(fnum - 1) + memoised_fib_r( fnum - 2)
+      )
+  }
+}
+
+memoised_fib_r <- memoise::memoise(mem_fib_r)
+```
+
+Lets compare it with c++
+
+```{r}
+
+microbenchmark::microbenchmark(
+  mapply( recurse_fib_rcpp, 1:30 ),
+  mapply( memoised_fib_r, 1:30 ),
+  times = 10
+)
+```
+
+We have beat the c++ just by a very simple optimization. But If we write a simple function that doesn't use recursion we can still get better performance. Let's write a better algorithm by writing a loop.
+
+```{r}
+
+save_fib_r <- function(fnum){
+  fnum <- fnum + 1
+  vec <- integer(fnum)
+  vec[[2]] <- 1
+  if(fnum > 2){
+    for(i in 3:fnum){
+      vec[[i]] <- vec[[ i - 1]] + vec[[ i - 2]]
+    }
+  }
+  
+  return(vec[[fnum]])
+}
+```
+
+Lets compare the results.
+
+```{r}
+
+microbenchmark::microbenchmark(
+  mapply( recurse_fib_rcpp, 1:30 ),
+  mapply( save_fib_r, 1:30 ),
+  times = 10
+)
+```
+
+Now we are beating it with around 40x speed or more. But I think we can do better. This functions is vectorized but I am only asking for a single number I am doing the same calculations multiple time inside mapply function. If instead of using mapply I call the entire vec directly I will save computation.
+
+```{r}
+save_vec_fib_r <- function(fnum){
+  vec <- integer(fnum)
+  vec[[2]] <- 1
+  if(fnum > 2){
+    for(i in 3:fnum){
+      vec[[i]] <- vec[[ i - 1]] + vec[[ i - 2]]
+    }
+  }
+  
+  return(vec)
+}
+```
+
+Now let's compare the differences
+
+```{r}
+
+microbenchmark::microbenchmark(
+  mapply( save_fib_r, 1:1e3 ),
+  save_vec_fib_r(1e3),
+  times = 10
+)
+```
+
+Now the difference is not only huge but we are calculating 1000 fibonacci numbers instead of just 30 we were working on previously. But I agree that I didn't gave c++ a chance. Languages have come and gone c++ have stood the test of time. It's the fastest language there is and R is nowhere close to it. I was just trying to compare an optimized version with an un-optimized one.
+
+Let's rewrite this same function in Rcpp just to see how far we are from the fastest programming language.
+
+```{Rcpp}
+
+#include <Rcpp.h>
+
+using namespace Rcpp;
+
+//[[Rcpp::export]]
+IntegerVector fib_rcpp(int fnum){
+
+  IntegerVector vec(fnum);
+  vec[0] = 0;
+  vec[1] = 1;
+  if(fnum > 1){
+    for(int i = 2; i < fnum; ++i) {
+      vec[i] = vec[ i - 1] + vec[ i - 2];
+    }
+  }
+  
+  return vec;
+}
+
+```
+
+```{r}
+
+microbenchmark::microbenchmark(
+  fib_rcpp(1e5),
+  save_vec_fib_r(1e5)
+)
+
+```
+
+So optimized R is about `28-30` times slower than the optimized rcpp code, which is a very good spot to be at. And to top it off now we are working on 1e5 numbers and that too within milliseconds in R. I wouldn't loose a sleep over it.
+
+So always try to optimize the language before going anywhere else. R is the most easiest language to write slow code in but the code can be optimized to 1000x easily with a few hacks like I just did.
+
+## Read the function
+
+You may assume just because you are using a base function that would be optimized to the core and thus it will be fastest solution out there. However that's far from truth sometime base R functions are overextended to check a few basic assumptions. You should get into a habit of reading the code. It's beneficial for debugging and for optimization as well.
+
+Let start small, R has a built in function by name replace and it does exactly what is intended from it it replaces a value from an index of a vector. But let's read it.
+
+```{r}
+
+replace
+```
+
+It's no more than a basic function you could write yourself. Let's check another one of my favorite function.
+
+```{r}
+stopifnot
+```
+
+Again it's basic R function, a huge one though. I wouldn't recommend you to rewrite it but if you just need a stop call on a basic condition you will be writing faster code with just simple `if` and `stop` function.
+
+Let's see that again in other base code.
+
+```{r}
+
+ifelse
+```
+
+You might think ifelse is an optimized function in base R which is faster and optimized at the compiler level or interpretator level. But in fact if you read the function carefully and realize that it's wasting on checking if you are passing an atomic vector and you are better off just using the last 5-6 lines of the function for a faster result.
+
+These are just the basic examples I could think out of my mind and there are tons of such example where you could optimize a function just by reading it and realizing you might not need so much of hassle in the first place.
+
+You could avoid meta-programming or non-standard evaluation of these functions just by rewriting some of it's parts yourself. Reading the function will give you insight into what's it trying to do and is it fast enough for your use case and can you optimize it yourself. This thing applies to package level codes as well. And sometimes, not always it's good to rewrite a custom solution for yourself.
+
+## use [[ instead of [ when you can
+
+```{r}
+x <- data.frame(y = 1:1e4)
+
+microbenchmark::microbenchmark(
+  "[[" = for(i in 1:1e4){
+    x$y[[i]] <- i * 2
+  },
+  "[" = for(i in 1:1e4){
+    x$y[i] <- i * 2
+  },
+  times = 10
+)
+
+```
+
+The difference is just in milliseconds but there is a difference non the less. If you use it precisely you might save a few millisecond when you need them with just a basic understanding that this too could help you at times.
+
+Best way to navigate a nested list is through `[[` function by passing a character vector. Take this as an example
+
+```{r }
+
+x <- list(
+  y = list(
+    z = list(
+      a = 1
+    )
+  )
+)
+
+x[[c("y", "z", "a")]]
+```
+
+or if you want to extract just `z` then
+
+```{r}
+x[[c("y", "z")]]
+```
+
+It's pretty helpful when you are working on json objects. take this for an example.
+
+```{r}
+
+x <- list(
+  y = list(
+    list(
+      z = 1
+    ),
+    list(
+      z = 2
+    ),
+    list(
+      z = 3
+    ),
+    list(
+      z = 4
+    ),
+    list(
+      z = 5
+    )
+  )
+)
+
+lapply(x$y,`[[`, "z")
+```
+
+These tricks will help you get some juice out of your machine.
+
+## Use Conditionals to break computations
+
+Somebody told me that
+
+> ***the key to going BIG is doing as LITTLE as possible***.
+
+R understands it and does that by default. Let's check an example where this is true.
+
+```{r}
+
+foo <- function(x){
+  if( x == 10){
+    bar()
+  }
+  
+  print(x)
+
+}
+
+foo(1)
+```
+
+This function worked perfectly fine even though we haven't created any function by name `bar()`. R haven't evaluated that expression at all. In most of the other programming languages this is not possible at all. During compilation we will get an error.
+
+```{r}
+
+microbenchmark::microbenchmark(
+  shell = order(1:1e5,method = "shell"),  
+  radix = order(1:1e5,method = "radix")  
+)
+
+microbenchmark::microbenchmark(
+  shell = order(1:1e3, method = "shell"),  
+  radix = order(1:1e3, method = "radix")  
+)
+
+if( TRUE || stop()) print("true")
+
+```
+
+## Use simple functions
