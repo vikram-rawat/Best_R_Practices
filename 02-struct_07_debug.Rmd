@@ -4,6 +4,78 @@ Debugging is a part of being a programmer. You just can't escape it. It's a huge
 
 These are the tips I think everyone should follow for better debugging experience.
 
+## Write Unit Tests
+
+When you are writing a function and you have enough time to document the expected results of a function it's a good practice to write down your expectations as a code. In R there is an excellent package called `testthat` for doing it. You don't need to create a package to test your code. You can simply test your functions by sourcing the entire file.
+
+Sky is the limit when you want to test your code. You have to decide how much time you have and how much are willing to write for testing. There has to be a minimum limit of tests for each sprint. That actually keeps you in track.
+
+Let's start with a very simple example.
+
+```{r}
+
+library(testthat)
+
+foo <- function(name){
+  if(length(name) == 0){
+    stop("please provide a character")
+  }
+  if(! is.na(name)){
+    if( !is.character(name) ){
+      stop("please provide a character")
+    }
+    x <- sprintf("Hello %s, good morning", name)
+    return(x)
+  } else{
+    return("please provide a name")
+  }
+}
+
+testthat::test_that(
+  desc = "testing foo",
+  code = {
+    ## check original result
+    expect_equal(
+      object = foo("vikram"),
+      expected = "Hello vikram, good morning"
+    )
+    ## check results of NA
+    expect_equal(
+      object = foo(NA),
+      expected = "please provide a name"
+    )
+    ## check length of actual content
+    expect_length(
+      object = foo("vikram"),
+      n = 1
+    )
+    ## check Error on passing numeric code
+    expect_error(
+      object = foo(1)
+    )
+    ## check Error on passing Date code
+    expect_error(
+      object = foo(Sys.Date())
+    )
+    ## check the error on NULL values
+    expect_error(
+      object = foo(NULL)
+    )
+  }
+)
+
+```
+
+This is how you need to write test for a simple hello world example. To tell you the truth I started with just basic equal test but then I realized
+
+-   what if someone passes a number or a date
+
+-   what is someone passes a null value
+
+-   what is someone passes a NA
+
+So on and so forth I started modifying the function and this is how you will too... This will make your function more secure and you will see less crashes. This is the reason I would like to begin this chapter with an emphasis on the fact that you should test your code.
+
 ## Browser() and print() are your friend
 
 To me `browser()` function feels like a scene from movie matrix where you can stop everything around you and decide what is going wrong in the world. When you want to debug any function or a point where you assume that the error lies here, you should use browser() inside that function or script. Don't be scared of using browser() this function makes you familiar with your code and R itself.
@@ -193,16 +265,17 @@ This is doable in R but doesn't mean you should do it. This code could easily ha
 
 In this chapter we discussed multiple strategies of dealing with and avoiding debugging complexities. Hope if you follow most of these tricks you will feel that you are a better debugger than you were before and it will save you a lot of time in the process. To recap what we have learned today.
 
-1.  Use print to point of where your code fails
-2.  use browser to check the code
-3.  always delete browser functions
-4.  read the function
-5.  You can even read hidden methods in R
-6.  Use version control system
-7.  make small commits
-8.  use curly brackets in all your code
-9.  Pass all arguments to a function through their name and not the position
-10. log the errors
-11. avoid already used function or object names
-12. write simple code
-13. avoid using `T`, `F` , `<<-` & `;`
+1.  Write Tests as much as possible
+2.  Use print to point of where your code fails
+3.  use browser to check the code
+4.  always delete browser functions
+5.  read the function
+6.  You can even read hidden methods in R
+7.  Use version control system
+8.  make small commits
+9.  use curly brackets in all your code
+10. Pass all arguments to a function through their name and not the position
+11. log the errors
+12. avoid already used function or object names
+13. write simple code
+14. avoid using `T`, `F` , `<<-` & `;`

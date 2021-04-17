@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-04-14" />
+<meta name="date" content="2021-04-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -206,16 +206,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="debug.html"><a href="debug.html"><i class="fa fa-check"></i><b>8</b> Debugging</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="debug.html"><a href="debug.html#browser-and-print-are-your-friend"><i class="fa fa-check"></i><b>8.1</b> Browser() and print() are your friend</a></li>
-<li class="chapter" data-level="8.2" data-path="debug.html"><a href="debug.html#read-the-functions"><i class="fa fa-check"></i><b>8.2</b> <strong>Read the functions</strong></a></li>
-<li class="chapter" data-level="8.3" data-path="debug.html"><a href="debug.html#version-control-system"><i class="fa fa-check"></i><b>8.3</b> Version Control System</a></li>
-<li class="chapter" data-level="8.4" data-path="debug.html"><a href="debug.html#make-small-commits"><i class="fa fa-check"></i><b>8.4</b> Make small commits</a></li>
-<li class="chapter" data-level="8.5" data-path="debug.html"><a href="debug.html#use-curly-brackets"><i class="fa fa-check"></i><b>8.5</b> Use curly brackets</a></li>
-<li class="chapter" data-level="8.6" data-path="debug.html"><a href="debug.html#always-use-named-parameters"><i class="fa fa-check"></i><b>8.6</b> Always use named parameters</a></li>
-<li class="chapter" data-level="8.7" data-path="debug.html"><a href="debug.html#log-the-errors"><i class="fa fa-check"></i><b>8.7</b> Log the errors</a></li>
-<li class="chapter" data-level="8.8" data-path="debug.html"><a href="debug.html#dont-use-already-used-names"><i class="fa fa-check"></i><b>8.8</b> Don’t Use already used names</a></li>
-<li class="chapter" data-level="8.9" data-path="debug.html"><a href="debug.html#use-simple-code"><i class="fa fa-check"></i><b>8.9</b> Use Simple code</a></li>
-<li class="chapter" data-level="8.10" data-path="debug.html"><a href="debug.html#conclusion-5"><i class="fa fa-check"></i><b>8.10</b> Conclusion</a></li>
+<li class="chapter" data-level="8.1" data-path="debug.html"><a href="debug.html#write-unit-tests"><i class="fa fa-check"></i><b>8.1</b> Write Unit Tests</a></li>
+<li class="chapter" data-level="8.2" data-path="debug.html"><a href="debug.html#browser-and-print-are-your-friend"><i class="fa fa-check"></i><b>8.2</b> Browser() and print() are your friend</a></li>
+<li class="chapter" data-level="8.3" data-path="debug.html"><a href="debug.html#read-the-functions"><i class="fa fa-check"></i><b>8.3</b> <strong>Read the functions</strong></a></li>
+<li class="chapter" data-level="8.4" data-path="debug.html"><a href="debug.html#version-control-system"><i class="fa fa-check"></i><b>8.4</b> Version Control System</a></li>
+<li class="chapter" data-level="8.5" data-path="debug.html"><a href="debug.html#make-small-commits"><i class="fa fa-check"></i><b>8.5</b> Make small commits</a></li>
+<li class="chapter" data-level="8.6" data-path="debug.html"><a href="debug.html#use-curly-brackets"><i class="fa fa-check"></i><b>8.6</b> Use curly brackets</a></li>
+<li class="chapter" data-level="8.7" data-path="debug.html"><a href="debug.html#always-use-named-parameters"><i class="fa fa-check"></i><b>8.7</b> Always use named parameters</a></li>
+<li class="chapter" data-level="8.8" data-path="debug.html"><a href="debug.html#log-the-errors"><i class="fa fa-check"></i><b>8.8</b> Log the errors</a></li>
+<li class="chapter" data-level="8.9" data-path="debug.html"><a href="debug.html#dont-use-already-used-names"><i class="fa fa-check"></i><b>8.9</b> Don’t Use already used names</a></li>
+<li class="chapter" data-level="8.10" data-path="debug.html"><a href="debug.html#use-simple-code"><i class="fa fa-check"></i><b>8.10</b> Use Simple code</a></li>
+<li class="chapter" data-level="8.11" data-path="debug.html"><a href="debug.html#conclusion-5"><i class="fa fa-check"></i><b>8.11</b> Conclusion</a></li>
 </ul></li>
 <li class="part"><span><b>III Memory</b></span></li>
 <li class="chapter" data-level="9" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>9</b> Type System</a>
@@ -315,29 +316,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pass-by-value" class="section level3" number="10.1.1">
 <h3><span class="header-section-number">10.1.1</span> Pass by Value</h3>
 <p>This is when you create a copy of the original object and pass it to the function. Because you are actually passing just a copy to the function whatever you do to the object doesn’t impact the original one. Let’s check it by an example.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="reference.html#cb130-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb130-2"><a href="reference.html#cb130-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-3"><a href="reference.html#cb130-3" aria-hidden="true" tabindex="-1"></a>pass_by_value <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb130-4"><a href="reference.html#cb130-4" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
-<span id="cb130-5"><a href="reference.html#cb130-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb130-6"><a href="reference.html#cb130-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb130-7"><a href="reference.html#cb130-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pass_by_value</span>(x)</span>
-<span id="cb130-8"><a href="reference.html#cb130-8" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>y</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="reference.html#cb137-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb137-2"><a href="reference.html#cb137-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-3"><a href="reference.html#cb137-3" aria-hidden="true" tabindex="-1"></a>pass_by_value <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb137-4"><a href="reference.html#cb137-4" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb137-5"><a href="reference.html#cb137-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb137-6"><a href="reference.html#cb137-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-7"><a href="reference.html#cb137-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pass_by_value</span>(x)</span>
+<span id="cb137-8"><a href="reference.html#cb137-8" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>y</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <p>now x was passed to the function and modified yet it remains same because only copy of the object was passed to the function ( Well, not precisely but this is what we will discuss later).</p>
 </div>
 <div id="pass-by-reference" class="section level3" number="10.1.2">
 <h3><span class="header-section-number">10.1.2</span> Pass by reference</h3>
 <p>This is when you pass the entire object as is. Basically you pass the pointer to the original object and now if you change the object you change the original copy of it. Let’s check the same example again.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="reference.html#cb132-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">new.env</span>()</span>
-<span id="cb132-2"><a href="reference.html#cb132-2" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb132-3"><a href="reference.html#cb132-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb132-4"><a href="reference.html#cb132-4" aria-hidden="true" tabindex="-1"></a>pass_by_value <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb132-5"><a href="reference.html#cb132-5" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
-<span id="cb132-6"><a href="reference.html#cb132-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb132-7"><a href="reference.html#cb132-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb132-8"><a href="reference.html#cb132-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pass_by_value</span>(x)</span>
-<span id="cb132-9"><a href="reference.html#cb132-9" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>y</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="reference.html#cb139-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">new.env</span>()</span>
+<span id="cb139-2"><a href="reference.html#cb139-2" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb139-3"><a href="reference.html#cb139-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-4"><a href="reference.html#cb139-4" aria-hidden="true" tabindex="-1"></a>pass_by_value <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb139-5"><a href="reference.html#cb139-5" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb139-6"><a href="reference.html#cb139-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb139-7"><a href="reference.html#cb139-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb139-8"><a href="reference.html#cb139-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pass_by_value</span>(x)</span>
+<span id="cb139-9"><a href="reference.html#cb139-9" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>y</span></code></pre></div>
 <pre><code>##  [1] 10  9  8  7  6  5  4  3  2  1</code></pre>
 <p>Now x was passed by reference and no copy was assigned to the function. So when you changed the object inside the function original object was changed.</p>
 <p>Hope you now understand practically what does the word mean.</p>
@@ -347,20 +348,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.2</span> Copy on modify</h2>
 <p>R has no effective means to specify when to pass with value and when to pass with reference. And because there are only 2 ways to deal with this problem everybody assumes that R does create a copy of the object every time it passes the object through a function. But R has a different way of doing things which is called <strong>copy of modify</strong>. There are better blogs written over it and nuances are very peculiar which while writing code you shouldn’t worry about much. I will try to simplify the concept from the practical point of you view so that you can use it in real life without much thought to it.</p>
 <p>R basically passes an object by references until you modify it. Let’s check it live:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="reference.html#cb134-1" aria-hidden="true" tabindex="-1"></a>mt_tbl <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(mtcars)</span>
-<span id="cb134-2"><a href="reference.html#cb134-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-3"><a href="reference.html#cb134-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tracemem</span>(mt_tbl)</span></code></pre></div>
-<pre><code>## [1] &quot;&lt;00000000218D89E8&gt;&quot;</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="reference.html#cb136-1" aria-hidden="true" tabindex="-1"></a>dummy_tbl <span class="ot">&lt;-</span> mt_tbl</span>
-<span id="cb136-2"><a href="reference.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="do">## No tracemem yet</span></span>
-<span id="cb136-3"><a href="reference.html#cb136-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb136-4"><a href="reference.html#cb136-4" aria-hidden="true" tabindex="-1"></a>mpg_col <span class="ot">&lt;-</span> <span class="fu">as.character</span>(mt_tbl<span class="sc">$</span>mpg)</span>
-<span id="cb136-5"><a href="reference.html#cb136-5" aria-hidden="true" tabindex="-1"></a><span class="do">## No tracemem yet</span></span>
-<span id="cb136-6"><a href="reference.html#cb136-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb136-7"><a href="reference.html#cb136-7" aria-hidden="true" tabindex="-1"></a>mt_tbl[</span>
-<span id="cb136-8"><a href="reference.html#cb136-8" aria-hidden="true" tabindex="-1"></a>  (mt_tbl<span class="sc">$</span>cyl <span class="sc">==</span> <span class="dv">6</span>) <span class="sc">&amp;</span></span>
-<span id="cb136-9"><a href="reference.html#cb136-9" aria-hidden="true" tabindex="-1"></a>  (mt_tbl<span class="sc">$</span>hp <span class="sc">&gt;</span> <span class="dv">90</span>),</span>
-<span id="cb136-10"><a href="reference.html#cb136-10" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="reference.html#cb141-1" aria-hidden="true" tabindex="-1"></a>mt_tbl <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(mtcars)</span>
+<span id="cb141-2"><a href="reference.html#cb141-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-3"><a href="reference.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tracemem</span>(mt_tbl)</span></code></pre></div>
+<pre><code>## [1] &quot;&lt;00000000263283E8&gt;&quot;</code></pre>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="reference.html#cb143-1" aria-hidden="true" tabindex="-1"></a>dummy_tbl <span class="ot">&lt;-</span> mt_tbl</span>
+<span id="cb143-2"><a href="reference.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="do">## No tracemem yet</span></span>
+<span id="cb143-3"><a href="reference.html#cb143-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb143-4"><a href="reference.html#cb143-4" aria-hidden="true" tabindex="-1"></a>mpg_col <span class="ot">&lt;-</span> <span class="fu">as.character</span>(mt_tbl<span class="sc">$</span>mpg)</span>
+<span id="cb143-5"><a href="reference.html#cb143-5" aria-hidden="true" tabindex="-1"></a><span class="do">## No tracemem yet</span></span>
+<span id="cb143-6"><a href="reference.html#cb143-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb143-7"><a href="reference.html#cb143-7" aria-hidden="true" tabindex="-1"></a>mt_tbl[</span>
+<span id="cb143-8"><a href="reference.html#cb143-8" aria-hidden="true" tabindex="-1"></a>  (mt_tbl<span class="sc">$</span>cyl <span class="sc">==</span> <span class="dv">6</span>) <span class="sc">&amp;</span></span>
+<span id="cb143-9"><a href="reference.html#cb143-9" aria-hidden="true" tabindex="-1"></a>  (mt_tbl<span class="sc">$</span>hp <span class="sc">&gt;</span> <span class="dv">90</span>),</span>
+<span id="cb143-10"><a href="reference.html#cb143-10" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
 <pre><code>##                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4      21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
@@ -369,11 +370,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Merc 280       19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
 ## Merc 280C      17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
 ## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="reference.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="do">## No tracemem yet</span></span>
-<span id="cb138-2"><a href="reference.html#cb138-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-3"><a href="reference.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(</span>
-<span id="cb138-4"><a href="reference.html#cb138-4" aria-hidden="true" tabindex="-1"></a>  mt_tbl,</span>
-<span id="cb138-5"><a href="reference.html#cb138-5" aria-hidden="true" tabindex="-1"></a>  cyl <span class="sc">==</span> <span class="dv">6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="reference.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="do">## No tracemem yet</span></span>
+<span id="cb145-2"><a href="reference.html#cb145-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb145-3"><a href="reference.html#cb145-3" aria-hidden="true" tabindex="-1"></a><span class="fu">subset</span>(</span>
+<span id="cb145-4"><a href="reference.html#cb145-4" aria-hidden="true" tabindex="-1"></a>  mt_tbl,</span>
+<span id="cb145-5"><a href="reference.html#cb145-5" aria-hidden="true" tabindex="-1"></a>  cyl <span class="sc">==</span> <span class="dv">6</span>)</span></code></pre></div>
 <pre><code>##                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## Mazda RX4      21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
 ## Mazda RX4 Wag  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
@@ -382,16 +383,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Merc 280       19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
 ## Merc 280C      17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
 ## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="reference.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="do">## No tracemem yet</span></span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="reference.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="do">## No tracemem yet</span></span></code></pre></div>
 <p><code>tracemem</code> is a function that will return memory address every time the object is copied. So far it didn’t return anything even though it passed through so many functions and each of those functions must be using multiple functions internally. Yet no copy of the object was made. Because <strong>So Far we haven’t modified anything</strong>. now look at the code below.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="reference.html#cb141-1" aria-hidden="true" tabindex="-1"></a>mt_tbl <span class="sc">%&gt;%</span></span>
-<span id="cb141-2"><a href="reference.html#cb141-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">6</span>,</span>
-<span id="cb141-3"><a href="reference.html#cb141-3" aria-hidden="true" tabindex="-1"></a>         hp <span class="sc">&gt;</span> <span class="dv">90</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb141-4"><a href="reference.html#cb141-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gear) <span class="sc">%&gt;%</span></span>
-<span id="cb141-5"><a href="reference.html#cb141-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb141-6"><a href="reference.html#cb141-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gear)</span></code></pre></div>
-<pre><code>## tracemem[0x00000000218d89e8 -&gt; 0x0000000012205d60]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
-## tracemem[0x0000000012205d60 -&gt; 0x0000000012205e10]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="reference.html#cb148-1" aria-hidden="true" tabindex="-1"></a>mt_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb148-2"><a href="reference.html#cb148-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">6</span>,</span>
+<span id="cb148-3"><a href="reference.html#cb148-3" aria-hidden="true" tabindex="-1"></a>         hp <span class="sc">&gt;</span> <span class="dv">90</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb148-4"><a href="reference.html#cb148-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gear) <span class="sc">%&gt;%</span></span>
+<span id="cb148-5"><a href="reference.html#cb148-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb148-6"><a href="reference.html#cb148-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gear)</span></code></pre></div>
+<pre><code>## tracemem[0x00000000263283e8 -&gt; 0x00000000262aedc8]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
+## tracemem[0x00000000262aedc8 -&gt; 0x00000000262af138]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
 <pre><code>## # A tibble: 3 x 1
 ##    gear
 ##   &lt;dbl&gt;
@@ -399,71 +400,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2     4
 ## 3     5</code></pre>
 <p>dplyr will change the data.frame to tibble and trigger tracemem This is one of the reason I absolutely love and recommend <strong>data.table</strong> to everybody. Which manages memory very efficiently it’s at par with any in memory table of a DB. If you are actually concerned about memory use data.table.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="reference.html#cb144-1" aria-hidden="true" tabindex="-1"></a>new_tbl <span class="ot">&lt;-</span> mt_tbl <span class="sc">%&gt;%</span></span>
-<span id="cb144-2"><a href="reference.html#cb144-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">6</span>,</span>
-<span id="cb144-3"><a href="reference.html#cb144-3" aria-hidden="true" tabindex="-1"></a>         hp <span class="sc">&gt;</span> <span class="dv">90</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb144-4"><a href="reference.html#cb144-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gear) <span class="sc">%&gt;%</span></span>
-<span id="cb144-5"><a href="reference.html#cb144-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb144-6"><a href="reference.html#cb144-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gear)</span></code></pre></div>
-<pre><code>## tracemem[0x00000000218d89e8 -&gt; 0x00000000216a4f20]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
-## tracemem[0x00000000216a4f20 -&gt; 0x00000000216a5130]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="reference.html#cb151-1" aria-hidden="true" tabindex="-1"></a>new_tbl <span class="ot">&lt;-</span> mt_tbl <span class="sc">%&gt;%</span></span>
+<span id="cb151-2"><a href="reference.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">6</span>,</span>
+<span id="cb151-3"><a href="reference.html#cb151-3" aria-hidden="true" tabindex="-1"></a>         hp <span class="sc">&gt;</span> <span class="dv">90</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb151-4"><a href="reference.html#cb151-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gear) <span class="sc">%&gt;%</span></span>
+<span id="cb151-5"><a href="reference.html#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb151-6"><a href="reference.html#cb151-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gear)</span></code></pre></div>
+<pre><code>## tracemem[0x00000000263283e8 -&gt; 0x00000000205bbf18]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
+## tracemem[0x00000000205bbf18 -&gt; 0x00000000205bbfc8]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
 <p>now we are modifying the results somewhere and thus a copy is created. The actual rules are very very complicated. But in simple term as long as you don’t modify any thing R doesn’t create a copy and everything is passed down by reference.</p>
 <p>It impacts speed too… Let check it by an example</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="reference.html#cb146-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb146-2"><a href="reference.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x)</span>
-<span id="cb146-3"><a href="reference.html#cb146-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb146-4"><a href="reference.html#cb146-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb146-5"><a href="reference.html#cb146-5" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb146-6"><a href="reference.html#cb146-6" aria-hidden="true" tabindex="-1"></a>  x[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb146-7"><a href="reference.html#cb146-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x)</span>
-<span id="cb146-8"><a href="reference.html#cb146-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="reference.html#cb153-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb153-2"><a href="reference.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x)</span>
+<span id="cb153-3"><a href="reference.html#cb153-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb153-4"><a href="reference.html#cb153-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-5"><a href="reference.html#cb153-5" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb153-6"><a href="reference.html#cb153-6" aria-hidden="true" tabindex="-1"></a>  x[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb153-7"><a href="reference.html#cb153-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x)</span>
+<span id="cb153-8"><a href="reference.html#cb153-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>As you can see both the functions are identical the only difference is that in <code>bar</code> I am modifying the object while in <code>foo</code> I am not changing the object. Let’s run a speed test…</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="reference.html#cb147-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e7</span>)</span>
-<span id="cb147-2"><a href="reference.html#cb147-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb147-3"><a href="reference.html#cb147-3" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb147-4"><a href="reference.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">foo =</span> <span class="fu">foo</span>(x),</span>
-<span id="cb147-5"><a href="reference.html#cb147-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">bar =</span> <span class="fu">bar</span>(x),</span>
-<span id="cb147-6"><a href="reference.html#cb147-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb147-7"><a href="reference.html#cb147-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="reference.html#cb154-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e7</span>)</span>
+<span id="cb154-2"><a href="reference.html#cb154-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-3"><a href="reference.html#cb154-3" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb154-4"><a href="reference.html#cb154-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">foo =</span> <span class="fu">foo</span>(x),</span>
+<span id="cb154-5"><a href="reference.html#cb154-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">bar =</span> <span class="fu">bar</span>(x),</span>
+<span id="cb154-6"><a href="reference.html#cb154-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb154-7"><a href="reference.html#cb154-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##  expr       min        lq     mean    median      uq     max neval cld
-##   foo  9.688201  9.732801 10.18014  9.898751  9.9996 11.8835    10  a 
-##   bar 34.948601 35.227700 37.20223 36.536801 37.2750 42.5740    10   b</code></pre>
+##  expr     min      lq     mean   median      uq     max neval cld
+##   foo 10.4718 10.9983 11.22202 11.19210 11.3930 12.2349    10  a 
+##   bar 38.0444 38.7043 40.24979 39.36565 42.2759 44.8084    10   b</code></pre>
 <p>As you can see the difference in time is because <code>bar</code> is creating a copy of the object. And you may assume that it will create a copy at every time you change a object and you will be dead wrong as R is smart enough to understand that It can get away with only single copy of the object. Lets create a function that changes more things in x and see the difference.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="reference.html#cb149-1" aria-hidden="true" tabindex="-1"></a>bar_new <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb149-2"><a href="reference.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  x[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb149-3"><a href="reference.html#cb149-3" aria-hidden="true" tabindex="-1"></a>  x[[<span class="dv">10</span>]] <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb149-4"><a href="reference.html#cb149-4" aria-hidden="true" tabindex="-1"></a>  x[[<span class="fl">1e3</span>]] <span class="ot">&lt;-</span> <span class="fl">1e3</span></span>
-<span id="cb149-5"><a href="reference.html#cb149-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x)</span>
-<span id="cb149-6"><a href="reference.html#cb149-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb149-7"><a href="reference.html#cb149-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb149-8"><a href="reference.html#cb149-8" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb149-9"><a href="reference.html#cb149-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">foo =</span> <span class="fu">foo</span>(x),</span>
-<span id="cb149-10"><a href="reference.html#cb149-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">bar =</span> <span class="fu">bar</span>(x),</span>
-<span id="cb149-11"><a href="reference.html#cb149-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">bar_new =</span> <span class="fu">bar_new</span>(x),</span>
-<span id="cb149-12"><a href="reference.html#cb149-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb149-13"><a href="reference.html#cb149-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="reference.html#cb156-1" aria-hidden="true" tabindex="-1"></a>bar_new <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb156-2"><a href="reference.html#cb156-2" aria-hidden="true" tabindex="-1"></a>  x[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb156-3"><a href="reference.html#cb156-3" aria-hidden="true" tabindex="-1"></a>  x[[<span class="dv">10</span>]] <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb156-4"><a href="reference.html#cb156-4" aria-hidden="true" tabindex="-1"></a>  x[[<span class="fl">1e3</span>]] <span class="ot">&lt;-</span> <span class="fl">1e3</span></span>
+<span id="cb156-5"><a href="reference.html#cb156-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum</span>(x)</span>
+<span id="cb156-6"><a href="reference.html#cb156-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb156-7"><a href="reference.html#cb156-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb156-8"><a href="reference.html#cb156-8" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb156-9"><a href="reference.html#cb156-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">foo =</span> <span class="fu">foo</span>(x),</span>
+<span id="cb156-10"><a href="reference.html#cb156-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">bar =</span> <span class="fu">bar</span>(x),</span>
+<span id="cb156-11"><a href="reference.html#cb156-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">bar_new =</span> <span class="fu">bar_new</span>(x),</span>
+<span id="cb156-12"><a href="reference.html#cb156-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb156-13"><a href="reference.html#cb156-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##     expr       min      lq     mean   median      uq      max neval cld
-##      foo  9.699001 10.1509 10.38096 10.38315 10.4809  11.3248    10  a 
-##      bar 34.436700 35.5067 36.67689 35.78475 36.9576  42.1530    10   b
-##  bar_new 34.857601 36.3195 47.68726 37.46795 41.9459 136.0422    10   b</code></pre>
+##     expr     min      lq     mean   median      uq      max neval cld
+##      foo 10.7043 11.3592 11.62990 11.61865 12.0008  12.6743    10  a 
+##      bar 38.6637 40.1778 52.58814 42.24700 43.1239 153.4661    10   b
+##  bar_new 38.4663 39.5924 40.14206 39.93975 40.8550  41.8485    10   b</code></pre>
 <p>Now as you can see that while the function foo and bar have significant differences in performance, same is not true for bar and bar_new. Because bar_new too creates a copy but maintains that copy for the entire function.</p>
 <p>So R is smart enough to understand when to create a copy and when not to create a copy. Once a copy is created it is retained in R and R uses it smartly. We can gain speed and memory benefits by making sure all the modification is done inside a single function. So that R doesn’t create much copies.</p>
 <p>Instead of using bar 3 times it’s better to use bar_new once. So that you don’t copy it multiple times. See the difference for yourself. And thus <strong>try to keep all the modifications close and in as less functions as possible</strong>.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="reference.html#cb151-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb151-2"><a href="reference.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">bar =</span> {</span>
-<span id="cb151-3"><a href="reference.html#cb151-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bar</span>(x)</span>
-<span id="cb151-4"><a href="reference.html#cb151-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bar</span>(x)</span>
-<span id="cb151-5"><a href="reference.html#cb151-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bar</span>(x)</span>
-<span id="cb151-6"><a href="reference.html#cb151-6" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb151-7"><a href="reference.html#cb151-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">bar_new =</span> <span class="fu">bar_new</span>(x),</span>
-<span id="cb151-8"><a href="reference.html#cb151-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb151-9"><a href="reference.html#cb151-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="reference.html#cb158-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb158-2"><a href="reference.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">bar =</span> {</span>
+<span id="cb158-3"><a href="reference.html#cb158-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bar</span>(x)</span>
+<span id="cb158-4"><a href="reference.html#cb158-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bar</span>(x)</span>
+<span id="cb158-5"><a href="reference.html#cb158-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bar</span>(x)</span>
+<span id="cb158-6"><a href="reference.html#cb158-6" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb158-7"><a href="reference.html#cb158-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">bar_new =</span> <span class="fu">bar_new</span>(x),</span>
+<span id="cb158-8"><a href="reference.html#cb158-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb158-9"><a href="reference.html#cb158-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##     expr      min       lq      mean   median       uq      max neval cld
-##      bar 105.5833 110.1889 130.33217 126.1174 141.4911 203.0658    10   a
-##  bar_new  34.3112  35.3356  74.64514  38.9864  42.2765 314.9410    10   a</code></pre>
+##      bar 118.7920 121.7907 165.93941 124.7116 209.3095 373.6063    10   b
+##  bar_new  38.6579  40.4935  49.25405  42.5546  44.6277 112.8874    10  a</code></pre>
 <p>best is to group these modifications together.</p>
 <p>So the gist of the matter is:</p>
 <ol style="list-style-type: decimal">
@@ -476,46 +477,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.3</span> for pass by reference</h2>
 <p>As I told you before R has no way of specifying when the object will be pass by reference and when it will be passed by value. And there are certainly times you wish you had passed it by value and certainly times when you wish you passed it by reference.</p>
 <p>When you modify something inside a function you create a copy of it. So take example of a loop inside and outside a function</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="reference.html#cb153-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10</span>)</span>
-<span id="cb153-2"><a href="reference.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
-<span id="cb153-3"><a href="reference.html#cb153-3" aria-hidden="true" tabindex="-1"></a>  x[[i]] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
-<span id="cb153-4"><a href="reference.html#cb153-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb153-5"><a href="reference.html#cb153-5" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
-<pre><code>##  [1]  1.07349504 -0.74505968  1.57746097 -0.87309620  0.54503681 -1.29199010
-##  [7]  0.06103493  2.12154970 -0.75069536  0.69455322</code></pre>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="reference.html#cb160-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10</span>)</span>
+<span id="cb160-2"><a href="reference.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb160-3"><a href="reference.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  x[[i]] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb160-4"><a href="reference.html#cb160-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb160-5"><a href="reference.html#cb160-5" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>##  [1] -0.09111472  0.95546332 -0.95193040  1.05718413 -0.10028263  1.07194179
+##  [7] -1.03605101 -0.11276019 -1.39981715  0.50443449</code></pre>
 <p>It modifies the object in place. Now lets wrap it in a function and see what happens.</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="reference.html#cb155-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10</span>)</span>
-<span id="cb155-2"><a href="reference.html#cb155-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-3"><a href="reference.html#cb155-3" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb155-4"><a href="reference.html#cb155-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
-<span id="cb155-5"><a href="reference.html#cb155-5" aria-hidden="true" tabindex="-1"></a>    x[[i]] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
-<span id="cb155-6"><a href="reference.html#cb155-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb155-7"><a href="reference.html#cb155-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
-<span id="cb155-8"><a href="reference.html#cb155-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb155-9"><a href="reference.html#cb155-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb155-10"><a href="reference.html#cb155-10" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(x)</span></code></pre></div>
-<pre><code>##  [1] -1.2954617 -2.1806300  1.1405635 -0.3407702  0.4838938 -1.0449569
-##  [7] -0.1391577  0.6156692 -2.0094063 -0.6113098</code></pre>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="reference.html#cb157-1" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="reference.html#cb162-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10</span>)</span>
+<span id="cb162-2"><a href="reference.html#cb162-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-3"><a href="reference.html#cb162-3" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb162-4"><a href="reference.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb162-5"><a href="reference.html#cb162-5" aria-hidden="true" tabindex="-1"></a>    x[[i]] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb162-6"><a href="reference.html#cb162-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb162-7"><a href="reference.html#cb162-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
+<span id="cb162-8"><a href="reference.html#cb162-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb162-9"><a href="reference.html#cb162-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-10"><a href="reference.html#cb162-10" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(x)</span></code></pre></div>
+<pre><code>##  [1] -0.5127087 -0.5229969 -0.0609522  0.8727074  0.7730965 -0.3000277
+##  [7]  0.6336184 -0.6485831 -0.8129703 -0.4704990</code></pre>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="reference.html#cb164-1" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>##  [1] 0 0 0 0 0 0 0 0 0 0</code></pre>
 <p>Now x is not modified because it is being modified inside a function. This is crucial at times when you are running a long job that might take hours to complete just to find an error in the middle. You might want to start the loop from the exact position you left off. With this sort of code you will not reach that. Let’s generate an error in the code and uses bigger number.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="reference.html#cb159-1" aria-hidden="true" tabindex="-1"></a>total_length <span class="ot">&lt;-</span> <span class="fl">1e2</span></span></code></pre></div>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="reference.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb160-2"><a href="reference.html#cb160-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-3"><a href="reference.html#cb160-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(total_length)</span>
-<span id="cb160-4"><a href="reference.html#cb160-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-5"><a href="reference.html#cb160-5" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(number){</span>
-<span id="cb160-6"><a href="reference.html#cb160-6" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>total_length,<span class="dv">1</span>)</span>
-<span id="cb160-7"><a href="reference.html#cb160-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>total_length){</span>
-<span id="cb160-8"><a href="reference.html#cb160-8" aria-hidden="true" tabindex="-1"></a>    number[[i]] <span class="ot">&lt;-</span> i</span>
-<span id="cb160-9"><a href="reference.html#cb160-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(y <span class="sc">==</span> i){</span>
-<span id="cb160-10"><a href="reference.html#cb160-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="fu">sprintf</span>(<span class="st">&quot;there is an error at %s&quot;</span>, y))</span>
-<span id="cb160-11"><a href="reference.html#cb160-11" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb160-12"><a href="reference.html#cb160-12" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb160-13"><a href="reference.html#cb160-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(number)</span>
-<span id="cb160-14"><a href="reference.html#cb160-14" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb160-15"><a href="reference.html#cb160-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-16"><a href="reference.html#cb160-16" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(x) <span class="do">## You will get an Error</span></span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="reference.html#cb166-1" aria-hidden="true" tabindex="-1"></a>total_length <span class="ot">&lt;-</span> <span class="fl">1e2</span></span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="reference.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb167-2"><a href="reference.html#cb167-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-3"><a href="reference.html#cb167-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(total_length)</span>
+<span id="cb167-4"><a href="reference.html#cb167-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-5"><a href="reference.html#cb167-5" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(number){</span>
+<span id="cb167-6"><a href="reference.html#cb167-6" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>total_length,<span class="dv">1</span>)</span>
+<span id="cb167-7"><a href="reference.html#cb167-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>total_length){</span>
+<span id="cb167-8"><a href="reference.html#cb167-8" aria-hidden="true" tabindex="-1"></a>    number[[i]] <span class="ot">&lt;-</span> i</span>
+<span id="cb167-9"><a href="reference.html#cb167-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(y <span class="sc">==</span> i){</span>
+<span id="cb167-10"><a href="reference.html#cb167-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="fu">sprintf</span>(<span class="st">&quot;there is an error at %s&quot;</span>, y))</span>
+<span id="cb167-11"><a href="reference.html#cb167-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb167-12"><a href="reference.html#cb167-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb167-13"><a href="reference.html#cb167-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(number)</span>
+<span id="cb167-14"><a href="reference.html#cb167-14" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb167-15"><a href="reference.html#cb167-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb167-16"><a href="reference.html#cb167-16" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(x) <span class="do">## You will get an Error</span></span></code></pre></div>
 <pre><code>## Error in foo(x): there is an error at 68</code></pre>
 <p>If you run this code you will get an error at some number and x will still be the same. All the processing of code till that moment is lost for everybody. Which is not what you want if each iteration took just 2 minutes to run. This difference could mean hours in some scenarios.</p>
 <p>R has 4 datatypes that provide mutable objects or pass by reference semantics.</p>
@@ -527,23 +528,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>I wouldn’t recommend writing an R6 class just to run a simple loop, however if your use case is pretty complex R6 would be a valid solution for it. We already saw how environments can be used for pass by reference. But passing around environments is not a good idea it requires you to know too much about the language and be very careful with what you are doing hence I only prefer 2 approaches. One with data.table and other with listenv package.</p>
 <p>But their usecase is very different. One should be used where you are comfortable with lists are more suited while other should be used where data.frame or vectors are more suited for the task. Doing it for listenv is very easy. It’s the same code with just the new listenv object.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="reference.html#cb162-1" aria-hidden="true" tabindex="-1"></a>foo_list <span class="ot">&lt;-</span> <span class="cf">function</span>(list){</span>
-<span id="cb162-2"><a href="reference.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>total_length,<span class="dv">1</span>)</span>
-<span id="cb162-3"><a href="reference.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>total_length){</span>
-<span id="cb162-4"><a href="reference.html#cb162-4" aria-hidden="true" tabindex="-1"></a>    list<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i</span>
-<span id="cb162-5"><a href="reference.html#cb162-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(y <span class="sc">==</span> i){</span>
-<span id="cb162-6"><a href="reference.html#cb162-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="fu">sprintf</span>(<span class="st">&quot;there is an error at %s&quot;</span>, y))</span>
-<span id="cb162-7"><a href="reference.html#cb162-7" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb162-8"><a href="reference.html#cb162-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb162-9"><a href="reference.html#cb162-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb162-10"><a href="reference.html#cb162-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-11"><a href="reference.html#cb162-11" aria-hidden="true" tabindex="-1"></a>list_env <span class="ot">&lt;-</span> listenv<span class="sc">::</span><span class="fu">listenv</span>()</span>
-<span id="cb162-12"><a href="reference.html#cb162-12" aria-hidden="true" tabindex="-1"></a>list_env<span class="sc">$</span>x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(total_length)</span>
-<span id="cb162-13"><a href="reference.html#cb162-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-14"><a href="reference.html#cb162-14" aria-hidden="true" tabindex="-1"></a><span class="fu">foo_list</span>(list_env)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="reference.html#cb169-1" aria-hidden="true" tabindex="-1"></a>foo_list <span class="ot">&lt;-</span> <span class="cf">function</span>(list){</span>
+<span id="cb169-2"><a href="reference.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>total_length,<span class="dv">1</span>)</span>
+<span id="cb169-3"><a href="reference.html#cb169-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>total_length){</span>
+<span id="cb169-4"><a href="reference.html#cb169-4" aria-hidden="true" tabindex="-1"></a>    list<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i</span>
+<span id="cb169-5"><a href="reference.html#cb169-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(y <span class="sc">==</span> i){</span>
+<span id="cb169-6"><a href="reference.html#cb169-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="fu">sprintf</span>(<span class="st">&quot;there is an error at %s&quot;</span>, y))</span>
+<span id="cb169-7"><a href="reference.html#cb169-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb169-8"><a href="reference.html#cb169-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb169-9"><a href="reference.html#cb169-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb169-10"><a href="reference.html#cb169-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb169-11"><a href="reference.html#cb169-11" aria-hidden="true" tabindex="-1"></a>list_env <span class="ot">&lt;-</span> listenv<span class="sc">::</span><span class="fu">listenv</span>()</span>
+<span id="cb169-12"><a href="reference.html#cb169-12" aria-hidden="true" tabindex="-1"></a>list_env<span class="sc">$</span>x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(total_length)</span>
+<span id="cb169-13"><a href="reference.html#cb169-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb169-14"><a href="reference.html#cb169-14" aria-hidden="true" tabindex="-1"></a><span class="fu">foo_list</span>(list_env)</span></code></pre></div>
 <pre><code>## Error in foo_list(list_env): there is an error at 39</code></pre>
 <p>Now again we got an errors but this time all the other changes have been saved in x.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="reference.html#cb164-1" aria-hidden="true" tabindex="-1"></a>list_env<span class="sc">$</span>x</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="reference.html#cb171-1" aria-hidden="true" tabindex="-1"></a>list_env<span class="sc">$</span>x</span></code></pre></div>
 <pre><code>##   [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
 ##  [26] 26 27 28 29 30 31 32 33 34 35 36 37 38 39  0  0  0  0  0  0  0  0  0  0  0
 ##  [51]  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
@@ -554,27 +555,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>with <code>set</code> function which is faster where you need to insert data one by one.</li>
 </ol>
 <p>Let’s use the second approach to write a function.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="reference.html#cb166-1" aria-hidden="true" tabindex="-1"></a>x_dt <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(<span class="at">x =</span> <span class="fu">numeric</span>(total_length))</span>
-<span id="cb166-2"><a href="reference.html#cb166-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb166-3"><a href="reference.html#cb166-3" aria-hidden="true" tabindex="-1"></a>foo_dt <span class="ot">&lt;-</span> <span class="cf">function</span>(dt){</span>
-<span id="cb166-4"><a href="reference.html#cb166-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>total_length,<span class="dv">1</span>)</span>
-<span id="cb166-5"><a href="reference.html#cb166-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>total_length){</span>
-<span id="cb166-6"><a href="reference.html#cb166-6" aria-hidden="true" tabindex="-1"></a>    data.table<span class="sc">::</span><span class="fu">set</span>(</span>
-<span id="cb166-7"><a href="reference.html#cb166-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> dt,</span>
-<span id="cb166-8"><a href="reference.html#cb166-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">i =</span> i,</span>
-<span id="cb166-9"><a href="reference.html#cb166-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">j =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb166-10"><a href="reference.html#cb166-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> i)</span>
-<span id="cb166-11"><a href="reference.html#cb166-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb166-12"><a href="reference.html#cb166-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(y <span class="sc">==</span> i){</span>
-<span id="cb166-13"><a href="reference.html#cb166-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="fu">sprintf</span>(<span class="st">&quot;there is an error at %s&quot;</span>, y))</span>
-<span id="cb166-14"><a href="reference.html#cb166-14" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb166-15"><a href="reference.html#cb166-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb166-16"><a href="reference.html#cb166-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb166-17"><a href="reference.html#cb166-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb166-18"><a href="reference.html#cb166-18" aria-hidden="true" tabindex="-1"></a><span class="fu">foo_dt</span>(x_dt)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="reference.html#cb173-1" aria-hidden="true" tabindex="-1"></a>x_dt <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(<span class="at">x =</span> <span class="fu">numeric</span>(total_length))</span>
+<span id="cb173-2"><a href="reference.html#cb173-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-3"><a href="reference.html#cb173-3" aria-hidden="true" tabindex="-1"></a>foo_dt <span class="ot">&lt;-</span> <span class="cf">function</span>(dt){</span>
+<span id="cb173-4"><a href="reference.html#cb173-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>total_length,<span class="dv">1</span>)</span>
+<span id="cb173-5"><a href="reference.html#cb173-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>total_length){</span>
+<span id="cb173-6"><a href="reference.html#cb173-6" aria-hidden="true" tabindex="-1"></a>    data.table<span class="sc">::</span><span class="fu">set</span>(</span>
+<span id="cb173-7"><a href="reference.html#cb173-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> dt,</span>
+<span id="cb173-8"><a href="reference.html#cb173-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">i =</span> i,</span>
+<span id="cb173-9"><a href="reference.html#cb173-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">j =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb173-10"><a href="reference.html#cb173-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> i)</span>
+<span id="cb173-11"><a href="reference.html#cb173-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-12"><a href="reference.html#cb173-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(y <span class="sc">==</span> i){</span>
+<span id="cb173-13"><a href="reference.html#cb173-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">stop</span>(<span class="fu">sprintf</span>(<span class="st">&quot;there is an error at %s&quot;</span>, y))</span>
+<span id="cb173-14"><a href="reference.html#cb173-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb173-15"><a href="reference.html#cb173-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb173-16"><a href="reference.html#cb173-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb173-17"><a href="reference.html#cb173-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb173-18"><a href="reference.html#cb173-18" aria-hidden="true" tabindex="-1"></a><span class="fu">foo_dt</span>(x_dt)</span></code></pre></div>
 <pre><code>## Error in foo_dt(x_dt): there is an error at 1</code></pre>
 <p>Now just like again even though we got errors we can still check the ones that have been completed during the loop.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="reference.html#cb168-1" aria-hidden="true" tabindex="-1"></a>x_dt<span class="sc">$</span>x</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="reference.html#cb175-1" aria-hidden="true" tabindex="-1"></a>x_dt<span class="sc">$</span>x</span></code></pre></div>
 <pre><code>##   [1] 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 ##  [38] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 ##  [75] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</code></pre>

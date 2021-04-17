@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-04-14" />
+<meta name="date" content="2021-04-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -206,16 +206,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8" data-path="debug.html"><a href="debug.html"><i class="fa fa-check"></i><b>8</b> Debugging</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="debug.html"><a href="debug.html#browser-and-print-are-your-friend"><i class="fa fa-check"></i><b>8.1</b> Browser() and print() are your friend</a></li>
-<li class="chapter" data-level="8.2" data-path="debug.html"><a href="debug.html#read-the-functions"><i class="fa fa-check"></i><b>8.2</b> <strong>Read the functions</strong></a></li>
-<li class="chapter" data-level="8.3" data-path="debug.html"><a href="debug.html#version-control-system"><i class="fa fa-check"></i><b>8.3</b> Version Control System</a></li>
-<li class="chapter" data-level="8.4" data-path="debug.html"><a href="debug.html#make-small-commits"><i class="fa fa-check"></i><b>8.4</b> Make small commits</a></li>
-<li class="chapter" data-level="8.5" data-path="debug.html"><a href="debug.html#use-curly-brackets"><i class="fa fa-check"></i><b>8.5</b> Use curly brackets</a></li>
-<li class="chapter" data-level="8.6" data-path="debug.html"><a href="debug.html#always-use-named-parameters"><i class="fa fa-check"></i><b>8.6</b> Always use named parameters</a></li>
-<li class="chapter" data-level="8.7" data-path="debug.html"><a href="debug.html#log-the-errors"><i class="fa fa-check"></i><b>8.7</b> Log the errors</a></li>
-<li class="chapter" data-level="8.8" data-path="debug.html"><a href="debug.html#dont-use-already-used-names"><i class="fa fa-check"></i><b>8.8</b> Don’t Use already used names</a></li>
-<li class="chapter" data-level="8.9" data-path="debug.html"><a href="debug.html#use-simple-code"><i class="fa fa-check"></i><b>8.9</b> Use Simple code</a></li>
-<li class="chapter" data-level="8.10" data-path="debug.html"><a href="debug.html#conclusion-5"><i class="fa fa-check"></i><b>8.10</b> Conclusion</a></li>
+<li class="chapter" data-level="8.1" data-path="debug.html"><a href="debug.html#write-unit-tests"><i class="fa fa-check"></i><b>8.1</b> Write Unit Tests</a></li>
+<li class="chapter" data-level="8.2" data-path="debug.html"><a href="debug.html#browser-and-print-are-your-friend"><i class="fa fa-check"></i><b>8.2</b> Browser() and print() are your friend</a></li>
+<li class="chapter" data-level="8.3" data-path="debug.html"><a href="debug.html#read-the-functions"><i class="fa fa-check"></i><b>8.3</b> <strong>Read the functions</strong></a></li>
+<li class="chapter" data-level="8.4" data-path="debug.html"><a href="debug.html#version-control-system"><i class="fa fa-check"></i><b>8.4</b> Version Control System</a></li>
+<li class="chapter" data-level="8.5" data-path="debug.html"><a href="debug.html#make-small-commits"><i class="fa fa-check"></i><b>8.5</b> Make small commits</a></li>
+<li class="chapter" data-level="8.6" data-path="debug.html"><a href="debug.html#use-curly-brackets"><i class="fa fa-check"></i><b>8.6</b> Use curly brackets</a></li>
+<li class="chapter" data-level="8.7" data-path="debug.html"><a href="debug.html#always-use-named-parameters"><i class="fa fa-check"></i><b>8.7</b> Always use named parameters</a></li>
+<li class="chapter" data-level="8.8" data-path="debug.html"><a href="debug.html#log-the-errors"><i class="fa fa-check"></i><b>8.8</b> Log the errors</a></li>
+<li class="chapter" data-level="8.9" data-path="debug.html"><a href="debug.html#dont-use-already-used-names"><i class="fa fa-check"></i><b>8.9</b> Don’t Use already used names</a></li>
+<li class="chapter" data-level="8.10" data-path="debug.html"><a href="debug.html#use-simple-code"><i class="fa fa-check"></i><b>8.10</b> Use Simple code</a></li>
+<li class="chapter" data-level="8.11" data-path="debug.html"><a href="debug.html#conclusion-5"><i class="fa fa-check"></i><b>8.11</b> Conclusion</a></li>
 </ul></li>
 <li class="part"><span><b>III Memory</b></span></li>
 <li class="chapter" data-level="9" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>9</b> Type System</a>
@@ -326,147 +327,147 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let me give you a basic structure, if your API can handle 40-50 requests per second on a single core you are at very high speed. Which means 20 to 30ms for each request. Usually network latency and disk caching and talking to DB etc… takes more time. APIs mostly go from 200 to 500 ms per second in complex web apps. And R may not be the fastest language in the world but it sure can reach this level with minimum effort possible. Rest is all about scaling your app.</p>
 <p>So before you think about switching the language or saying that R in general is a slow language ask yourself have you optimized your code yet. Because if you don’t optimize your code it doesn’t matter what language you write it in. It will always be slow. Let me beat c++ with R and show you what I mean.</p>
 <p>Lets understand this by a very simple example. Let’s start with the worst way you could code in any language called <code>recursive functions</code> and mark my words <strong>Never Use Recursive Functions</strong>. You are always better off without them. Let’s try to see if we can find the good old fibonacci numbers and first 30 of them. We will write them in R and C++ alike.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="speedtips.html#cb180-1" aria-hidden="true" tabindex="-1"></a>recurse_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
-<span id="cb180-2"><a href="speedtips.html#cb180-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum <span class="sc">&lt;=</span> <span class="dv">1</span>) {</span>
-<span id="cb180-3"><a href="speedtips.html#cb180-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(fnum)</span>
-<span id="cb180-4"><a href="speedtips.html#cb180-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb180-5"><a href="speedtips.html#cb180-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
-<span id="cb180-6"><a href="speedtips.html#cb180-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">recurse_fib_r</span>(fnum<span class="dv">-1</span>) <span class="sc">+</span> <span class="fu">recurse_fib_r</span>(fnum<span class="dv">-2</span>)</span>
-<span id="cb180-7"><a href="speedtips.html#cb180-7" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb180-8"><a href="speedtips.html#cb180-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb180-9"><a href="speedtips.html#cb180-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb181"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb181-1"><a href="speedtips.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
-<span id="cb181-2"><a href="speedtips.html#cb181-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-3"><a href="speedtips.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="co">//[[Rcpp::export]]</span></span>
-<span id="cb181-4"><a href="speedtips.html#cb181-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> recurse_fib_rcpp(<span class="dt">int</span> fnum){</span>
-<span id="cb181-5"><a href="speedtips.html#cb181-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum &lt;= <span class="dv">1</span>) {</span>
-<span id="cb181-6"><a href="speedtips.html#cb181-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(fnum) ;</span>
-<span id="cb181-7"><a href="speedtips.html#cb181-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb181-8"><a href="speedtips.html#cb181-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> recurse_fib_rcpp( fnum - <span class="dv">1</span> ) + recurse_fib_rcpp( fnum - <span class="dv">2</span> ) ;</span>
-<span id="cb181-9"><a href="speedtips.html#cb181-9" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb181-10"><a href="speedtips.html#cb181-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="speedtips.html#cb187-1" aria-hidden="true" tabindex="-1"></a>recurse_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
+<span id="cb187-2"><a href="speedtips.html#cb187-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum <span class="sc">&lt;=</span> <span class="dv">1</span>) {</span>
+<span id="cb187-3"><a href="speedtips.html#cb187-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(fnum)</span>
+<span id="cb187-4"><a href="speedtips.html#cb187-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb187-5"><a href="speedtips.html#cb187-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
+<span id="cb187-6"><a href="speedtips.html#cb187-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">recurse_fib_r</span>(fnum<span class="dv">-1</span>) <span class="sc">+</span> <span class="fu">recurse_fib_r</span>(fnum<span class="dv">-2</span>)</span>
+<span id="cb187-7"><a href="speedtips.html#cb187-7" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb187-8"><a href="speedtips.html#cb187-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb187-9"><a href="speedtips.html#cb187-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb188-1"><a href="speedtips.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
+<span id="cb188-2"><a href="speedtips.html#cb188-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb188-3"><a href="speedtips.html#cb188-3" aria-hidden="true" tabindex="-1"></a><span class="co">//[[Rcpp::export]]</span></span>
+<span id="cb188-4"><a href="speedtips.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> recurse_fib_rcpp(<span class="dt">int</span> fnum){</span>
+<span id="cb188-5"><a href="speedtips.html#cb188-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum &lt;= <span class="dv">1</span>) {</span>
+<span id="cb188-6"><a href="speedtips.html#cb188-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span>(fnum) ;</span>
+<span id="cb188-7"><a href="speedtips.html#cb188-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb188-8"><a href="speedtips.html#cb188-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> recurse_fib_rcpp( fnum - <span class="dv">1</span> ) + recurse_fib_rcpp( fnum - <span class="dv">2</span> ) ;</span>
+<span id="cb188-9"><a href="speedtips.html#cb188-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb188-10"><a href="speedtips.html#cb188-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>lets compare both the functions now.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="speedtips.html#cb182-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb182-2"><a href="speedtips.html#cb182-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( recurse_fib_rcpp, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
-<span id="cb182-3"><a href="speedtips.html#cb182-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( recurse_fib_r, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
-<span id="cb182-4"><a href="speedtips.html#cb182-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb182-5"><a href="speedtips.html#cb182-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="speedtips.html#cb189-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb189-2"><a href="speedtips.html#cb189-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( recurse_fib_rcpp, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
+<span id="cb189-3"><a href="speedtips.html#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( recurse_fib_r, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
+<span id="cb189-4"><a href="speedtips.html#cb189-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb189-5"><a href="speedtips.html#cb189-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##                            expr         min       lq        mean      median
-##  mapply(recurse_fib_rcpp, 1:30)    7.888901    8.098    9.966571    8.643251
-##     mapply(recurse_fib_r, 1:30) 3521.249301 3606.504 3798.752461 3668.693851
-##         uq       max neval cld
-##    11.2901   14.7574    10  a 
-##  3816.2088 4424.1599    10   b</code></pre>
+##                            expr       min        lq       mean     median
+##  mapply(recurse_fib_rcpp, 1:30)    8.4562    8.6023    9.05045    8.89035
+##     mapply(recurse_fib_r, 1:30) 3690.7954 3738.1778 3762.02318 3758.30615
+##         uq      max neval cld
+##     9.1544   10.442    10  a 
+##  3781.5624 3859.896    10   b</code></pre>
 <p>While c++ is still at milliseconds R has reached to seconds and that too for only 30 fibonacci numbers. This is not acceptable at any level you work on. Even if you are writing basic scripts this is not permissible to be sitting on your computer at all. Let’s try to save memory by caching the results of previous operations.</p>
 <p>Lets try to save computation by using memoise package for caching intermediate results.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="speedtips.html#cb184-1" aria-hidden="true" tabindex="-1"></a>mem_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
-<span id="cb184-2"><a href="speedtips.html#cb184-2" aria-hidden="true" tabindex="-1"></a> <span class="cf">if</span>(fnum <span class="sc">&lt;=</span> <span class="dv">1</span>) {</span>
-<span id="cb184-3"><a href="speedtips.html#cb184-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(fnum)</span>
-<span id="cb184-4"><a href="speedtips.html#cb184-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb184-5"><a href="speedtips.html#cb184-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
-<span id="cb184-6"><a href="speedtips.html#cb184-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">memoised_fib_r</span>(fnum <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">memoised_fib_r</span>( fnum <span class="sc">-</span> <span class="dv">2</span>)</span>
-<span id="cb184-7"><a href="speedtips.html#cb184-7" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb184-8"><a href="speedtips.html#cb184-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb184-9"><a href="speedtips.html#cb184-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb184-10"><a href="speedtips.html#cb184-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb184-11"><a href="speedtips.html#cb184-11" aria-hidden="true" tabindex="-1"></a>memoised_fib_r <span class="ot">&lt;-</span> memoise<span class="sc">::</span><span class="fu">memoise</span>(mem_fib_r)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="speedtips.html#cb191-1" aria-hidden="true" tabindex="-1"></a>mem_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
+<span id="cb191-2"><a href="speedtips.html#cb191-2" aria-hidden="true" tabindex="-1"></a> <span class="cf">if</span>(fnum <span class="sc">&lt;=</span> <span class="dv">1</span>) {</span>
+<span id="cb191-3"><a href="speedtips.html#cb191-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(fnum)</span>
+<span id="cb191-4"><a href="speedtips.html#cb191-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb191-5"><a href="speedtips.html#cb191-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
+<span id="cb191-6"><a href="speedtips.html#cb191-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">memoised_fib_r</span>(fnum <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">memoised_fib_r</span>( fnum <span class="sc">-</span> <span class="dv">2</span>)</span>
+<span id="cb191-7"><a href="speedtips.html#cb191-7" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb191-8"><a href="speedtips.html#cb191-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb191-9"><a href="speedtips.html#cb191-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb191-10"><a href="speedtips.html#cb191-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-11"><a href="speedtips.html#cb191-11" aria-hidden="true" tabindex="-1"></a>memoised_fib_r <span class="ot">&lt;-</span> memoise<span class="sc">::</span><span class="fu">memoise</span>(mem_fib_r)</span></code></pre></div>
 <p>Lets compare it with c++</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="speedtips.html#cb185-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb185-2"><a href="speedtips.html#cb185-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( recurse_fib_rcpp, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
-<span id="cb185-3"><a href="speedtips.html#cb185-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( memoised_fib_r, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
-<span id="cb185-4"><a href="speedtips.html#cb185-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb185-5"><a href="speedtips.html#cb185-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="speedtips.html#cb192-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb192-2"><a href="speedtips.html#cb192-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( recurse_fib_rcpp, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
+<span id="cb192-3"><a href="speedtips.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( memoised_fib_r, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
+<span id="cb192-4"><a href="speedtips.html#cb192-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb192-5"><a href="speedtips.html#cb192-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##                            expr      min       lq      mean   median        uq
-##  mapply(recurse_fib_rcpp, 1:30) 7.830701 8.253201 10.607791 9.555551 13.736501
-##    mapply(memoised_fib_r, 1:30) 2.145802 2.374900  4.926241 2.846851  3.364401
-##      max neval cld
-##  14.1601    10   b
-##  24.3793    10  a</code></pre>
+##                            expr    min     lq    mean median      uq     max
+##  mapply(recurse_fib_rcpp, 1:30) 8.8252 9.0397 9.79056 9.2534 10.6878 12.3909
+##    mapply(memoised_fib_r, 1:30) 2.4038 2.5537 4.51961 2.6848  2.8904 20.9557
+##  neval cld
+##     10   b
+##     10  a</code></pre>
 <p>We have beat the c++ just by a very simple optimization. But If we write a simple function that doesn’t use recursion we can still get better performance. Let’s write a better algorithm by writing a loop.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="speedtips.html#cb187-1" aria-hidden="true" tabindex="-1"></a>save_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
-<span id="cb187-2"><a href="speedtips.html#cb187-2" aria-hidden="true" tabindex="-1"></a>  fnum <span class="ot">&lt;-</span> fnum <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb187-3"><a href="speedtips.html#cb187-3" aria-hidden="true" tabindex="-1"></a>  vec <span class="ot">&lt;-</span> <span class="fu">integer</span>(fnum)</span>
-<span id="cb187-4"><a href="speedtips.html#cb187-4" aria-hidden="true" tabindex="-1"></a>  vec[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb187-5"><a href="speedtips.html#cb187-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum <span class="sc">&gt;</span> <span class="dv">2</span>){</span>
-<span id="cb187-6"><a href="speedtips.html#cb187-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span>fnum){</span>
-<span id="cb187-7"><a href="speedtips.html#cb187-7" aria-hidden="true" tabindex="-1"></a>      vec[[i]] <span class="ot">&lt;-</span> vec[[ i <span class="sc">-</span> <span class="dv">1</span>]] <span class="sc">+</span> vec[[ i <span class="sc">-</span> <span class="dv">2</span>]]</span>
-<span id="cb187-8"><a href="speedtips.html#cb187-8" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb187-9"><a href="speedtips.html#cb187-9" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb187-10"><a href="speedtips.html#cb187-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb187-11"><a href="speedtips.html#cb187-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vec[[fnum]])</span>
-<span id="cb187-12"><a href="speedtips.html#cb187-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="speedtips.html#cb194-1" aria-hidden="true" tabindex="-1"></a>save_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
+<span id="cb194-2"><a href="speedtips.html#cb194-2" aria-hidden="true" tabindex="-1"></a>  fnum <span class="ot">&lt;-</span> fnum <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb194-3"><a href="speedtips.html#cb194-3" aria-hidden="true" tabindex="-1"></a>  vec <span class="ot">&lt;-</span> <span class="fu">integer</span>(fnum)</span>
+<span id="cb194-4"><a href="speedtips.html#cb194-4" aria-hidden="true" tabindex="-1"></a>  vec[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb194-5"><a href="speedtips.html#cb194-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum <span class="sc">&gt;</span> <span class="dv">2</span>){</span>
+<span id="cb194-6"><a href="speedtips.html#cb194-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span>fnum){</span>
+<span id="cb194-7"><a href="speedtips.html#cb194-7" aria-hidden="true" tabindex="-1"></a>      vec[[i]] <span class="ot">&lt;-</span> vec[[ i <span class="sc">-</span> <span class="dv">1</span>]] <span class="sc">+</span> vec[[ i <span class="sc">-</span> <span class="dv">2</span>]]</span>
+<span id="cb194-8"><a href="speedtips.html#cb194-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb194-9"><a href="speedtips.html#cb194-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb194-10"><a href="speedtips.html#cb194-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb194-11"><a href="speedtips.html#cb194-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vec[[fnum]])</span>
+<span id="cb194-12"><a href="speedtips.html#cb194-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Lets compare the results.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="speedtips.html#cb188-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb188-2"><a href="speedtips.html#cb188-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( recurse_fib_rcpp, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
-<span id="cb188-3"><a href="speedtips.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( save_fib_r, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
-<span id="cb188-4"><a href="speedtips.html#cb188-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb188-5"><a href="speedtips.html#cb188-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="speedtips.html#cb195-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb195-2"><a href="speedtips.html#cb195-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( recurse_fib_rcpp, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
+<span id="cb195-3"><a href="speedtips.html#cb195-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( save_fib_r, <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span> ),</span>
+<span id="cb195-4"><a href="speedtips.html#cb195-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb195-5"><a href="speedtips.html#cb195-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##                            expr      min       lq      mean    median       uq
-##  mapply(recurse_fib_rcpp, 1:30) 8308.201 8405.501 8886.6309 8597.7005 8637.401
-##        mapply(save_fib_r, 1:30)  132.601  134.801  882.7707  148.4005  171.201
-##        max neval cld
-##  11761.701    10   b
-##   7487.001    10  a</code></pre>
+##                            expr    min     lq    mean  median     uq    max
+##  mapply(recurse_fib_rcpp, 1:30) 8461.1 9009.4 9253.10 9336.10 9545.7 9920.8
+##        mapply(save_fib_r, 1:30)  127.0  133.4  886.32  148.75  166.2 7463.1
+##  neval cld
+##     10   b
+##     10  a</code></pre>
 <p>Now we are beating it with around 40x speed or more. But I think we can do better. This functions is vectorized but I am only asking for a single number I am doing the same calculations multiple time inside mapply function. If instead of using mapply I call the entire vec directly I will save computation.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="speedtips.html#cb190-1" aria-hidden="true" tabindex="-1"></a>save_vec_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
-<span id="cb190-2"><a href="speedtips.html#cb190-2" aria-hidden="true" tabindex="-1"></a>  vec <span class="ot">&lt;-</span> <span class="fu">integer</span>(fnum)</span>
-<span id="cb190-3"><a href="speedtips.html#cb190-3" aria-hidden="true" tabindex="-1"></a>  vec[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb190-4"><a href="speedtips.html#cb190-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum <span class="sc">&gt;</span> <span class="dv">2</span>){</span>
-<span id="cb190-5"><a href="speedtips.html#cb190-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span>fnum){</span>
-<span id="cb190-6"><a href="speedtips.html#cb190-6" aria-hidden="true" tabindex="-1"></a>      vec[[i]] <span class="ot">&lt;-</span> vec[[ i <span class="sc">-</span> <span class="dv">1</span>]] <span class="sc">+</span> vec[[ i <span class="sc">-</span> <span class="dv">2</span>]]</span>
-<span id="cb190-7"><a href="speedtips.html#cb190-7" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb190-8"><a href="speedtips.html#cb190-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb190-9"><a href="speedtips.html#cb190-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb190-10"><a href="speedtips.html#cb190-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vec)</span>
-<span id="cb190-11"><a href="speedtips.html#cb190-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="speedtips.html#cb197-1" aria-hidden="true" tabindex="-1"></a>save_vec_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
+<span id="cb197-2"><a href="speedtips.html#cb197-2" aria-hidden="true" tabindex="-1"></a>  vec <span class="ot">&lt;-</span> <span class="fu">integer</span>(fnum)</span>
+<span id="cb197-3"><a href="speedtips.html#cb197-3" aria-hidden="true" tabindex="-1"></a>  vec[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb197-4"><a href="speedtips.html#cb197-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum <span class="sc">&gt;</span> <span class="dv">2</span>){</span>
+<span id="cb197-5"><a href="speedtips.html#cb197-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">3</span><span class="sc">:</span>fnum){</span>
+<span id="cb197-6"><a href="speedtips.html#cb197-6" aria-hidden="true" tabindex="-1"></a>      vec[[i]] <span class="ot">&lt;-</span> vec[[ i <span class="sc">-</span> <span class="dv">1</span>]] <span class="sc">+</span> vec[[ i <span class="sc">-</span> <span class="dv">2</span>]]</span>
+<span id="cb197-7"><a href="speedtips.html#cb197-7" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb197-8"><a href="speedtips.html#cb197-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb197-9"><a href="speedtips.html#cb197-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb197-10"><a href="speedtips.html#cb197-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(vec)</span>
+<span id="cb197-11"><a href="speedtips.html#cb197-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now let’s compare the differences</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="speedtips.html#cb191-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb191-2"><a href="speedtips.html#cb191-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( save_fib_r, <span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span> ),</span>
-<span id="cb191-3"><a href="speedtips.html#cb191-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save_vec_fib_r</span>(<span class="fl">1e3</span>),</span>
-<span id="cb191-4"><a href="speedtips.html#cb191-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb191-5"><a href="speedtips.html#cb191-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="speedtips.html#cb198-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb198-2"><a href="speedtips.html#cb198-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mapply</span>( save_fib_r, <span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span> ),</span>
+<span id="cb198-3"><a href="speedtips.html#cb198-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save_vec_fib_r</span>(<span class="fl">1e3</span>),</span>
+<span id="cb198-4"><a href="speedtips.html#cb198-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb198-5"><a href="speedtips.html#cb198-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##                        expr       min        lq       mean   median        uq
-##  mapply(save_fib_r, 1:1000) 66829.101 71824.601 77501.1210 76340.15 83215.401
-##        save_vec_fib_r(1000)   127.601   129.701   723.5508   135.50   146.101
-##        max neval cld
-##  92227.601    10   b
-##   5982.501    10  a</code></pre>
+##                        expr     min      lq     mean   median      uq     max
+##  mapply(save_fib_r, 1:1000) 70153.8 73222.8 75363.20 74719.65 76132.7 83405.3
+##        save_vec_fib_r(1000)   124.5   137.6   801.63   148.75   195.5  6562.7
+##  neval cld
+##     10   b
+##     10  a</code></pre>
 <p>Now the difference is not only huge but we are calculating 1000 fibonacci numbers instead of just 30 we were working on previously. But I agree that I didn’t gave c++ a chance. Languages have come and gone c++ have stood the test of time. It’s the fastest language there is and R is nowhere close to it. I was just trying to compare an optimized version with an un-optimized one.</p>
 <p>Let’s rewrite this same function in Rcpp just to see how far we are from the fastest programming language.</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb193-1"><a href="speedtips.html#cb193-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-2"><a href="speedtips.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
-<span id="cb193-3"><a href="speedtips.html#cb193-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-4"><a href="speedtips.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> Rcpp;</span>
-<span id="cb193-5"><a href="speedtips.html#cb193-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-6"><a href="speedtips.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="co">//[[Rcpp::export]]</span></span>
-<span id="cb193-7"><a href="speedtips.html#cb193-7" aria-hidden="true" tabindex="-1"></a>IntegerVector fib_rcpp(<span class="dt">int</span> fnum){</span>
-<span id="cb193-8"><a href="speedtips.html#cb193-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb193-9"><a href="speedtips.html#cb193-9" aria-hidden="true" tabindex="-1"></a>  IntegerVector vec(fnum);</span>
-<span id="cb193-10"><a href="speedtips.html#cb193-10" aria-hidden="true" tabindex="-1"></a>  vec[<span class="dv">0</span>] = <span class="dv">0</span>;</span>
-<span id="cb193-11"><a href="speedtips.html#cb193-11" aria-hidden="true" tabindex="-1"></a>  vec[<span class="dv">1</span>] = <span class="dv">1</span>;</span>
-<span id="cb193-12"><a href="speedtips.html#cb193-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum &gt; <span class="dv">1</span>){</span>
-<span id="cb193-13"><a href="speedtips.html#cb193-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">2</span>; i &lt; fnum; ++i) {</span>
-<span id="cb193-14"><a href="speedtips.html#cb193-14" aria-hidden="true" tabindex="-1"></a>      vec[i] = vec[ i - <span class="dv">1</span>] + vec[ i - <span class="dv">2</span>];</span>
-<span id="cb193-15"><a href="speedtips.html#cb193-15" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb193-16"><a href="speedtips.html#cb193-16" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb193-17"><a href="speedtips.html#cb193-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb193-18"><a href="speedtips.html#cb193-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> vec;</span>
-<span id="cb193-19"><a href="speedtips.html#cb193-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="speedtips.html#cb194-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb194-2"><a href="speedtips.html#cb194-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fib_rcpp</span>(<span class="fl">1e5</span>),</span>
-<span id="cb194-3"><a href="speedtips.html#cb194-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save_vec_fib_r</span>(<span class="fl">1e5</span>)</span>
-<span id="cb194-4"><a href="speedtips.html#cb194-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb200-1"><a href="speedtips.html#cb200-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-2"><a href="speedtips.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;Rcpp.h&gt;</span></span>
+<span id="cb200-3"><a href="speedtips.html#cb200-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-4"><a href="speedtips.html#cb200-4" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> <span class="kw">namespace</span> Rcpp;</span>
+<span id="cb200-5"><a href="speedtips.html#cb200-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-6"><a href="speedtips.html#cb200-6" aria-hidden="true" tabindex="-1"></a><span class="co">//[[Rcpp::export]]</span></span>
+<span id="cb200-7"><a href="speedtips.html#cb200-7" aria-hidden="true" tabindex="-1"></a>IntegerVector fib_rcpp(<span class="dt">int</span> fnum){</span>
+<span id="cb200-8"><a href="speedtips.html#cb200-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-9"><a href="speedtips.html#cb200-9" aria-hidden="true" tabindex="-1"></a>  IntegerVector vec(fnum);</span>
+<span id="cb200-10"><a href="speedtips.html#cb200-10" aria-hidden="true" tabindex="-1"></a>  vec[<span class="dv">0</span>] = <span class="dv">0</span>;</span>
+<span id="cb200-11"><a href="speedtips.html#cb200-11" aria-hidden="true" tabindex="-1"></a>  vec[<span class="dv">1</span>] = <span class="dv">1</span>;</span>
+<span id="cb200-12"><a href="speedtips.html#cb200-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(fnum &gt; <span class="dv">1</span>){</span>
+<span id="cb200-13"><a href="speedtips.html#cb200-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(<span class="dt">int</span> i = <span class="dv">2</span>; i &lt; fnum; ++i) {</span>
+<span id="cb200-14"><a href="speedtips.html#cb200-14" aria-hidden="true" tabindex="-1"></a>      vec[i] = vec[ i - <span class="dv">1</span>] + vec[ i - <span class="dv">2</span>];</span>
+<span id="cb200-15"><a href="speedtips.html#cb200-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb200-16"><a href="speedtips.html#cb200-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb200-17"><a href="speedtips.html#cb200-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb200-18"><a href="speedtips.html#cb200-18" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> vec;</span>
+<span id="cb200-19"><a href="speedtips.html#cb200-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="speedtips.html#cb201-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb201-2"><a href="speedtips.html#cb201-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fib_rcpp</span>(<span class="fl">1e5</span>),</span>
+<span id="cb201-3"><a href="speedtips.html#cb201-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save_vec_fib_r</span>(<span class="fl">1e5</span>)</span>
+<span id="cb201-4"><a href="speedtips.html#cb201-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##                   expr       min        lq      mean    median        uq
-##        fib_rcpp(1e+05)   223.701   255.101   292.849   285.701   305.251
-##  save_vec_fib_r(1e+05) 12460.401 13223.201 15428.495 14441.901 16589.251
-##        max neval cld
-##   1445.101   100  a 
-##  28415.201   100   b</code></pre>
+##                   expr     min       lq      mean  median       uq     max
+##        fib_rcpp(1e+05)   186.7   209.65   403.348   285.9   351.50 10686.2
+##  save_vec_fib_r(1e+05) 13488.0 14836.10 15642.737 15305.2 16404.45 20726.6
+##  neval cld
+##    100  a 
+##    100   b</code></pre>
 <p>So optimized R is about <code>28-30</code> times slower than the optimized rcpp code, which is a very good spot to be at. And to top it off now we are working on 1e5 numbers and that too within milliseconds in R. I wouldn’t loose a sleep over it.</p>
 <p>So always try to optimize the language before going anywhere else. R is the most easiest language to write slow code in but the code can be optimized to 1000x easily with a few hacks like I just did.</p>
 </div>
@@ -474,16 +475,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">12.4</span> Read the function</h2>
 <p>You may assume just because you are using a base function that would be optimized to the core and thus it will be fastest solution out there. However that’s far from truth sometime base R functions are overextended to check a few basic assumptions. You should get into a habit of reading the code. It’s beneficial for debugging and for optimization as well.</p>
 <p>Let start small, R has a built in function by name replace and it does exactly what is intended from it it replaces a value from an index of a vector. But let’s read it.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="speedtips.html#cb196-1" aria-hidden="true" tabindex="-1"></a>replace</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="speedtips.html#cb203-1" aria-hidden="true" tabindex="-1"></a>replace</span></code></pre></div>
 <pre><code>## function (x, list, values) 
 ## {
 ##     x[list] &lt;- values
 ##     x
 ## }
-## &lt;bytecode: 0x000000001d058e58&gt;
+## &lt;bytecode: 0x000000001d1f58d8&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p>It’s no more than a basic function you could write yourself. Let’s check another one of my favorite function.</p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="speedtips.html#cb198-1" aria-hidden="true" tabindex="-1"></a>stopifnot</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="speedtips.html#cb205-1" aria-hidden="true" tabindex="-1"></a>stopifnot</span></code></pre></div>
 <pre><code>## function (..., exprs, exprObject, local = TRUE) 
 ## {
 ##     n &lt;- ...length()
@@ -538,11 +539,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##     }
 ##     invisible()
 ## }
-## &lt;bytecode: 0x00000000155b0228&gt;
+## &lt;bytecode: 0x00000000155b0810&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p>Again it’s basic R function, a huge one though. I wouldn’t recommend you to rewrite it but if you just need a stop call on a basic condition you will be writing faster code with just simple <code>if</code> and <code>stop</code> function.</p>
 <p>Let’s see that again in other base code.</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="speedtips.html#cb200-1" aria-hidden="true" tabindex="-1"></a>ifelse</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="speedtips.html#cb207-1" aria-hidden="true" tabindex="-1"></a>ifelse</span></code></pre></div>
 <pre><code>## function (test, yes, no) 
 ## {
 ##     if (is.atomic(test)) {
@@ -580,7 +581,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         ans[npos] &lt;- rep(no, length.out = len)[npos]
 ##     ans
 ## }
-## &lt;bytecode: 0x0000000012d408f8&gt;
+## &lt;bytecode: 0x0000000012d40878&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p>You might think ifelse is an optimized function in base R which is faster and optimized at the compiler level or interpretator level. But in fact if you read the function carefully and realize that it’s wasting on checking if you are passing an atomic vector and you are better off just using the last 5-6 lines of the function for a faster result.</p>
 <p>These are just the basic examples I could think out of my mind and there are tons of such example where you could optimize a function just by reading it and realizing you might not need so much of hassle in the first place.</p>
@@ -588,59 +589,59 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="use-instead-of-when-you-can" class="section level2" number="12.5">
 <h2><span class="header-section-number">12.5</span> use [[ instead of [ when you can</h2>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="speedtips.html#cb202-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>)</span>
-<span id="cb202-2"><a href="speedtips.html#cb202-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb202-3"><a href="speedtips.html#cb202-3" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb202-4"><a href="speedtips.html#cb202-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[[&quot;</span> <span class="ot">=</span> <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>){</span>
-<span id="cb202-5"><a href="speedtips.html#cb202-5" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>y[[i]] <span class="ot">&lt;-</span> i <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb202-6"><a href="speedtips.html#cb202-6" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb202-7"><a href="speedtips.html#cb202-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[&quot;</span> <span class="ot">=</span> <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>){</span>
-<span id="cb202-8"><a href="speedtips.html#cb202-8" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>y[i] <span class="ot">&lt;-</span> i <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb202-9"><a href="speedtips.html#cb202-9" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb202-10"><a href="speedtips.html#cb202-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb202-11"><a href="speedtips.html#cb202-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="speedtips.html#cb209-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>)</span>
+<span id="cb209-2"><a href="speedtips.html#cb209-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb209-3"><a href="speedtips.html#cb209-3" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb209-4"><a href="speedtips.html#cb209-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[[&quot;</span> <span class="ot">=</span> <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>){</span>
+<span id="cb209-5"><a href="speedtips.html#cb209-5" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>y[[i]] <span class="ot">&lt;-</span> i <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb209-6"><a href="speedtips.html#cb209-6" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb209-7"><a href="speedtips.html#cb209-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;[&quot;</span> <span class="ot">=</span> <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>){</span>
+<span id="cb209-8"><a href="speedtips.html#cb209-8" aria-hidden="true" tabindex="-1"></a>    x<span class="sc">$</span>y[i] <span class="ot">&lt;-</span> i <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb209-9"><a href="speedtips.html#cb209-9" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb209-10"><a href="speedtips.html#cb209-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb209-11"><a href="speedtips.html#cb209-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##  expr      min       lq     mean   median       uq      max neval cld
-##    [[ 117.5610 122.7889 132.7495 127.1659 136.5901 157.3680    10   a
-##     [ 116.4466 122.8280 148.1442 141.6210 150.4374 263.7422    10   a</code></pre>
+##    [[ 117.1935 120.3873 138.8577 124.2767 126.1147 281.6116    10   a
+##     [ 117.5563 122.1001 123.4950 123.3247 126.3980 127.2683    10   a</code></pre>
 <p>The difference is just in milliseconds but there is a difference non the less. If you use it precisely you might save a few millisecond when you need them with just a basic understanding that this too could help you at times.</p>
 <p>Best way to navigate a nested list is through <code>[[</code> function by passing a character vector. Take this as an example</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="speedtips.html#cb204-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb204-2"><a href="speedtips.html#cb204-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb204-3"><a href="speedtips.html#cb204-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">z =</span> <span class="fu">list</span>(</span>
-<span id="cb204-4"><a href="speedtips.html#cb204-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">a =</span> <span class="dv">1</span></span>
-<span id="cb204-5"><a href="speedtips.html#cb204-5" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb204-6"><a href="speedtips.html#cb204-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb204-7"><a href="speedtips.html#cb204-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb204-8"><a href="speedtips.html#cb204-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb204-9"><a href="speedtips.html#cb204-9" aria-hidden="true" tabindex="-1"></a>x[[<span class="fu">c</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>, <span class="st">&quot;a&quot;</span>)]]</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="speedtips.html#cb211-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb211-2"><a href="speedtips.html#cb211-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb211-3"><a href="speedtips.html#cb211-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">z =</span> <span class="fu">list</span>(</span>
+<span id="cb211-4"><a href="speedtips.html#cb211-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">a =</span> <span class="dv">1</span></span>
+<span id="cb211-5"><a href="speedtips.html#cb211-5" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb211-6"><a href="speedtips.html#cb211-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb211-7"><a href="speedtips.html#cb211-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb211-8"><a href="speedtips.html#cb211-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb211-9"><a href="speedtips.html#cb211-9" aria-hidden="true" tabindex="-1"></a>x[[<span class="fu">c</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>, <span class="st">&quot;a&quot;</span>)]]</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>or if you want to extract just <code>z</code> then</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="speedtips.html#cb206-1" aria-hidden="true" tabindex="-1"></a>x[[<span class="fu">c</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>)]]</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="speedtips.html#cb213-1" aria-hidden="true" tabindex="-1"></a>x[[<span class="fu">c</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>)]]</span></code></pre></div>
 <pre><code>## $a
 ## [1] 1</code></pre>
 <p>It’s pretty helpful when you are working on json objects. take this for an example.</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="speedtips.html#cb208-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb208-2"><a href="speedtips.html#cb208-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">list</span>(</span>
-<span id="cb208-3"><a href="speedtips.html#cb208-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb208-4"><a href="speedtips.html#cb208-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">z =</span> <span class="dv">1</span></span>
-<span id="cb208-5"><a href="speedtips.html#cb208-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb208-6"><a href="speedtips.html#cb208-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb208-7"><a href="speedtips.html#cb208-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">z =</span> <span class="dv">2</span></span>
-<span id="cb208-8"><a href="speedtips.html#cb208-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb208-9"><a href="speedtips.html#cb208-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb208-10"><a href="speedtips.html#cb208-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">z =</span> <span class="dv">3</span></span>
-<span id="cb208-11"><a href="speedtips.html#cb208-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb208-12"><a href="speedtips.html#cb208-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb208-13"><a href="speedtips.html#cb208-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">z =</span> <span class="dv">4</span></span>
-<span id="cb208-14"><a href="speedtips.html#cb208-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb208-15"><a href="speedtips.html#cb208-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
-<span id="cb208-16"><a href="speedtips.html#cb208-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">z =</span> <span class="dv">5</span></span>
-<span id="cb208-17"><a href="speedtips.html#cb208-17" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb208-18"><a href="speedtips.html#cb208-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb208-19"><a href="speedtips.html#cb208-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb208-20"><a href="speedtips.html#cb208-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb208-21"><a href="speedtips.html#cb208-21" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(x<span class="sc">$</span>y,<span class="st">`</span><span class="at">[[</span><span class="st">`</span>, <span class="st">&quot;z&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="speedtips.html#cb215-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb215-2"><a href="speedtips.html#cb215-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb215-3"><a href="speedtips.html#cb215-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb215-4"><a href="speedtips.html#cb215-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">z =</span> <span class="dv">1</span></span>
+<span id="cb215-5"><a href="speedtips.html#cb215-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb215-6"><a href="speedtips.html#cb215-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb215-7"><a href="speedtips.html#cb215-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">z =</span> <span class="dv">2</span></span>
+<span id="cb215-8"><a href="speedtips.html#cb215-8" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb215-9"><a href="speedtips.html#cb215-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb215-10"><a href="speedtips.html#cb215-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">z =</span> <span class="dv">3</span></span>
+<span id="cb215-11"><a href="speedtips.html#cb215-11" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb215-12"><a href="speedtips.html#cb215-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb215-13"><a href="speedtips.html#cb215-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">z =</span> <span class="dv">4</span></span>
+<span id="cb215-14"><a href="speedtips.html#cb215-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb215-15"><a href="speedtips.html#cb215-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(</span>
+<span id="cb215-16"><a href="speedtips.html#cb215-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">z =</span> <span class="dv">5</span></span>
+<span id="cb215-17"><a href="speedtips.html#cb215-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb215-18"><a href="speedtips.html#cb215-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb215-19"><a href="speedtips.html#cb215-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb215-20"><a href="speedtips.html#cb215-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb215-21"><a href="speedtips.html#cb215-21" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(x<span class="sc">$</span>y,<span class="st">`</span><span class="at">[[</span><span class="st">`</span>, <span class="st">&quot;z&quot;</span>)</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 1
 ## 
@@ -664,35 +665,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong><em>the key to going BIG is doing as LITTLE as possible</em></strong>.</p>
 </blockquote>
 <p>R understands it and does that by default. Let’s check an example where this is true.</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="speedtips.html#cb210-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb210-2"><a href="speedtips.html#cb210-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( x <span class="sc">==</span> <span class="dv">10</span>){</span>
-<span id="cb210-3"><a href="speedtips.html#cb210-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bar</span>()</span>
-<span id="cb210-4"><a href="speedtips.html#cb210-4" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb210-5"><a href="speedtips.html#cb210-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb210-6"><a href="speedtips.html#cb210-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)</span>
-<span id="cb210-7"><a href="speedtips.html#cb210-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb210-8"><a href="speedtips.html#cb210-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb210-9"><a href="speedtips.html#cb210-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb210-10"><a href="speedtips.html#cb210-10" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="speedtips.html#cb217-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb217-2"><a href="speedtips.html#cb217-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( x <span class="sc">==</span> <span class="dv">10</span>){</span>
+<span id="cb217-3"><a href="speedtips.html#cb217-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bar</span>()</span>
+<span id="cb217-4"><a href="speedtips.html#cb217-4" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb217-5"><a href="speedtips.html#cb217-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb217-6"><a href="speedtips.html#cb217-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)</span>
+<span id="cb217-7"><a href="speedtips.html#cb217-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb217-8"><a href="speedtips.html#cb217-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb217-9"><a href="speedtips.html#cb217-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb217-10"><a href="speedtips.html#cb217-10" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>This function worked perfectly fine even though we haven’t created any function by name <code>bar()</code>. R haven’t evaluated that expression at all. In most of the other programming languages this is not possible at all. During compilation we will get an error.</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="speedtips.html#cb212-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb212-2"><a href="speedtips.html#cb212-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">shell =</span> <span class="fu">order</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e5</span>,<span class="at">method =</span> <span class="st">&quot;shell&quot;</span>),  </span>
-<span id="cb212-3"><a href="speedtips.html#cb212-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">radix =</span> <span class="fu">order</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e5</span>,<span class="at">method =</span> <span class="st">&quot;radix&quot;</span>)  </span>
-<span id="cb212-4"><a href="speedtips.html#cb212-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="speedtips.html#cb219-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb219-2"><a href="speedtips.html#cb219-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">shell =</span> <span class="fu">order</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e5</span>,<span class="at">method =</span> <span class="st">&quot;shell&quot;</span>),  </span>
+<span id="cb219-3"><a href="speedtips.html#cb219-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">radix =</span> <span class="fu">order</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e5</span>,<span class="at">method =</span> <span class="st">&quot;radix&quot;</span>)  </span>
+<span id="cb219-4"><a href="speedtips.html#cb219-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##   expr   min     lq    mean median     uq    max neval cld
-##  shell 1.401 2.5505 2.44698  2.602 2.7015  3.300   100   a
-##  radix 1.400 2.4005 2.73588  2.601 2.7020 32.801   100   a</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="speedtips.html#cb214-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb214-2"><a href="speedtips.html#cb214-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">shell =</span> <span class="fu">order</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, <span class="at">method =</span> <span class="st">&quot;shell&quot;</span>),  </span>
-<span id="cb214-3"><a href="speedtips.html#cb214-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">radix =</span> <span class="fu">order</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, <span class="at">method =</span> <span class="st">&quot;radix&quot;</span>)  </span>
-<span id="cb214-4"><a href="speedtips.html#cb214-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+##   expr min  lq  mean median  uq  max neval cld
+##  shell 1.4 1.5 1.838    1.5 1.8 21.1   100   a
+##  radix 1.4 1.5 2.289    1.5 1.7 22.8   100   a</code></pre>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="speedtips.html#cb221-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb221-2"><a href="speedtips.html#cb221-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">shell =</span> <span class="fu">order</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, <span class="at">method =</span> <span class="st">&quot;shell&quot;</span>),  </span>
+<span id="cb221-3"><a href="speedtips.html#cb221-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">radix =</span> <span class="fu">order</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, <span class="at">method =</span> <span class="st">&quot;radix&quot;</span>)  </span>
+<span id="cb221-4"><a href="speedtips.html#cb221-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##   expr   min    lq    mean median    uq    max neval cld
-##  shell 2.201 2.501 2.88110  2.502 2.701 26.301   100   a
-##  radix 2.401 2.501 3.00298  2.601 2.701 33.101   100   a</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="speedtips.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>( <span class="cn">TRUE</span> <span class="sc">||</span> <span class="fu">stop</span>()) <span class="fu">print</span>(<span class="st">&quot;true&quot;</span>)</span></code></pre></div>
+##   expr min  lq  mean median  uq  max neval cld
+##  shell 1.4 1.5 2.136    1.6 1.8 41.5   100   a
+##  radix 1.4 1.5 2.247    1.6 1.8 22.0   100   a</code></pre>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="speedtips.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>( <span class="cn">TRUE</span> <span class="sc">||</span> <span class="fu">stop</span>()) <span class="fu">print</span>(<span class="st">&quot;true&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;true&quot;</code></pre>
 </div>
 <div id="use-simple-functions" class="section level2" number="12.7">

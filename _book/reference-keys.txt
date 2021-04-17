@@ -49,6 +49,7 @@ dbplot
 sparklyr
 conclusion-4
 debug
+write-unit-tests
 browser-and-print-are-your-friend
 read-the-functions
 version-control-system
