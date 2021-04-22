@@ -4,7 +4,7 @@ This is a topic that I wanted to discuss for a long time. People read blogs from
 
 ## initialize objects before loops
 
-## data-types
+## base data-types
 
 ```{r}
 set_df_col <- function(dt){

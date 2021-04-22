@@ -1,4 +1,4 @@
-# (PART) Speed {-}
+# (PART) Speed {.unnumbered}
 
 # Some Tips to make R code faster {#speedtips}
 
@@ -14,11 +14,13 @@ Each iteration of R is improving something to gain more speed with less and less
 
 Constant criticism that R is slow has made R to work in this respect and R is evolving according to the needs of time. There is not much to add here. If possible use the latest version, packages or methods mostly they might have more speed.
 
-## Benchmark the findings
+## Benchmark and profiling the code
 
 R is very obscure language there are no direct rules for speed gains. You might think you are making the code fast but in turn you could make it slow. The worst part about R is that you can write very very very slow code in R without realizing what are you missing. same R code can run 1K times faster when optimized. **R is a very easy language to write slow code in.** This is something you should keep in mind while writing the code.
 
 This is the reason you should benchmark your options, It may not give you much speed improvement, it may not give you any speed improvement at all. If you want to optimize R you must learn to benchmark the options. I would not go in details but **microbenchmark** is the best package for this task. Other packages have too many assumptions.
+
+Sometime you may assume your code is slow because you have not used a best practice but your code might be slow for an entirely different reason. To figure out all the parts of code in comparison to one another profiling works like charm. You should use it especially before making your code live. You could save so much of the CPU time just by using profiler and evaluating if you are okay with the speed or you would actually want to sit for hours to save a few milliseconds. It doesn't matter in an ETL script mostly but it matters in an API or Shiny app. You have to decide what's okay and profiling your code will help you with it.
 
 ## Algorithm matters more than language
 
@@ -155,6 +157,7 @@ microbenchmark::microbenchmark(
   save_vec_fib_r(1e3),
   times = 10
 )
+
 ```
 
 Now the difference is not only huge but we are calculating 1000 fibonacci numbers instead of just 30 we were working on previously. But I agree that I didn't gave c++ a chance. Languages have come and gone c++ have stood the test of time. It's the fastest language there is and R is nowhere close to it. I was just trying to compare an optimized version with an un-optimized one.
@@ -320,22 +323,185 @@ foo <- function(x){
 foo(1)
 ```
 
-This function worked perfectly fine even though we haven't created any function by name `bar()`. R haven't evaluated that expression at all. In most of the other programming languages this is not possible at all. During compilation we will get an error.
+This function worked perfectly fine even though we haven't created any function by name `bar()`. R haven't evaluated that expression at all. In most of the other programming languages this is not possible at all. We will get an error During compilation of the function. But R lets you go away with this. And then there are other example like this
+
+```{r}
+
+if( TRUE || stop()) print("TRUE")
+
+```
+
+Here because `||` has lazy evaluation and doesn't read the next option unless first one is false you save time by doing it especially for complex equations.
+
+```{r}
+
+lazy_return <- function(x){
+  
+  y <- 1:x
+  
+  return( y )
+}
+
+eager_return <- function(x){
+  
+  y <- integer(x)
+  for(i in 1:x){
+    y[[i]] <- i
+  }
+
+  return(y)
+}
+
+microbenchmark::microbenchmark(
+  lazy_return(1e5),
+  eager_return(1e5)
+)
+```
+
+ALTREP based vectors have the same effect as well. R hasn't started evaluating `y` in function lazy_return while it evaluated them in eager_return. Just because `y` are not evaluated in lazy_return while they are evaluated in the eager_return.
+
+```{r}
+
+x <- lazy_return(1e3)
+y <- eager_return(1e3)
+ 
+.Internal(inspect(x))
+
+.Internal(inspect(y))
+```
+
+People normally assume that for loops in R are very slow this is the reason eager_return is slow. But when you inspect the internal structure of both `x and y` you will see that x is a compact representation of number 1:1000 and thus it's not using memory and it's not even evaluated yet. While Y is a full fledged vector with all the numbers from 1 to 1000 stored in it. It consumes memory and time.
+
+While all the other calculations on these vectors will work exactly the same and it might not take as much time as you would assume.
 
 ```{r}
 
 microbenchmark::microbenchmark(
-  shell = order(1:1e5,method = "shell"),  
-  radix = order(1:1e5,method = "radix")  
+  altrep = x + x,
+  full_vector = y + y
 )
-
-microbenchmark::microbenchmark(
-  shell = order(1:1e3, method = "shell"),  
-  radix = order(1:1e3, method = "radix")  
-)
-
-if( TRUE || stop()) print("true")
 
 ```
 
-## Use simple functions
+Other such example would be not evaluating a promise until it's needed. In very simple terms R divides every operations into promises that have to be evaluated at a later stage and only when they are needed, Otherwise they might not be evaluated at all.
+
+```{r}
+
+func <- function(x){
+  function(){
+    eager_return(x)
+  }
+}
+x <- 10
+a <- func(x)
+x <- 12
+a()
+
+```
+
+instead of 10 which we used when we created `a` it actually produced 12 because it didn't started evaluating the values until it actually had to evaluate the function.
+
+This function worked fine even though there is no `eval_foo` and `eval_bar` function created here. R simply ignores the evaluation until needed. If the value lies above 10 or below 0 it will create an error saying there is no such function available for R to evaluate.
+
+```{r error=TRUE}
+
+lazy_func(11)
+
+```
+
+Now we got the error. This can be used effectively for reducing burden on the CPU by running only the code that is necessary. It's a general practice that everyone uses even in different programming languages.
+
+So you can use this advice multiple ways, but try to break your code in multiple chunks and evaluate only that you need at the moment. It helps speed up the code a lot.
+
+## Use Faster packages
+
+R is not among fast languages. It's a well known fact. It's meant to write scripts for data science, statistics and analytics etc... This is the reason R uses other languages for faster computation. You can use C++, C, Java and rust directly from R. And because R have been around for almost 30 years somebody somewhere must have created a package you can use to solve your problem. In this regards the knowledge of existing packages to solve a problem in hand is actually better. This is something you can learn through experience or through guru google.
+
+There are multiple such packages that you can use to speed up your workflow.
+
+1.  data.table
+2.  xts
+3.  Matrix
+4.  collapse
+5.  RFast
+
+Out of my head these libraries are very fast and actually can save you a lot of time. But then there are some general libraries that have equally fast alternatives too... Like tidytext vs quanteda. Quanteda uses the memory more efficiently by using sparse matrices and they use c++ functions under the hood, while Tidytext mostly uses tibble which explodes in size very quickly. And then there might be other packages that could have a faster alternative. Like I have been using `qs` package a lot for storing and retrieving data from disk, It's actually faster than base R.
+
+## Some pointers
+
+### R calculates everything
+
+R is a scripting language which means everything you write will be evaluated when the code will run. Compiler optimizations don't work in R. Take an example.
+
+```{r}
+
+year_2_sec <- function(x){
+  y <- x * 365 * 24 * 60 * 60
+  return(y)
+}
+
+year_2_sec_opti <- function(x){
+  y <- x * 31536000
+  return(y)
+}
+
+microbenchmark::microbenchmark(
+  norm = year_2_sec(1:2e5),
+  optimized = year_2_sec_opti(1:2e5)
+)
+```
+
+Even though the difference is very small there is a difference none the less.
+
+It goes for `(` parenthesis and `{` braces too... In R this things are functions and are actually evaluated before a result is displayed. Let's use the same example above but with many parenthesis.
+
+```{r}
+
+microbenchmark::microbenchmark(
+  without_braces = year_2_sec_opti(1:2e5),
+  with_braces = year_2_sec_opti({
+    (((((((((((((((((((1:2e5)))))))))))))))))))
+    })
+
+```
+
+R is not so slow language anymore so these differences are very small to notice but you can make it a habit to use only minimum code needed. This helps.
+
+> ***Fun fact:*** you can only nest a function up to 50 levels after that it breaks. I have tried it before and counted numbers. Don't ask me why...
+
+## .Internal functions
+
+R has some functions that are internal and can be accessed directly. R mostly provides you wrapper around those. Let's take an example
+
+```{r}
+
+integer
+```
+
+Here as you can read R is called an internal method by name vector and passing arguments to it. We can directly use this function as well.
+
+```{r}
+
+x <- .Internal(vector("integer", 10))
+y <- integer(10)
+
+all.equal(x, y )
+```
+
+This can come in handy specially in cases where Base R is performing multiple checks. I can give you examples to do this. But ***I would recommend you to not use .Internal function directly until you are very sure what are you doing.*** In most cases you can find a faster function in some other package that you can use.
+
+## Don't Compile
+
+R has a package called `compiler` that is used to compile any function in R. In old blogs you will still see examples of compilation making your code a little faster. After R 3.5 compilation was on by default. Now every function that you create is compiled and thus it is already optimized and running a compilation on it will not give you any additional speed.
+
+However R compilers still need to be optimized and there are people working on it. Hopefully we will get a better and faster R within a few more years. You can watch a video on it if you want to know more.
+
+\<iframe width="560" height="315" src="[https://www.youtube.com/embed/VdD0nHbcyk4"](https://www.youtube.com/embed/VdD0nHbcyk4") title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen\>\</iframe\>
+
+## use direct object.method structure
+
+R
+
+## Write Rcpp
+
+1.  
