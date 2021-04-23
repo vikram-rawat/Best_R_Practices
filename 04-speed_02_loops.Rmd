@@ -136,7 +136,7 @@ microbenchmark::microbenchmark(
 
 We were able to squeeze 2x + speed with base R vector. So finally we have vector that can do the entire computation at 6ms while the worst dataframe would do it at 7700ms. Which makes our code around 1200x faster. All you need to do is to remember can we do it with a simpler data-type.
 
-This is the best change you can make in your code to make it run faster.
+This is the best change you can make in your code to make it run faster. I always prefer looping over a vector like 90% of the time. In some cases where it's not possible I like to convert the dataframe to list and run a loop and then convert it back to a dataframe. Because dataframe itself is a list with some constraints. Remembering this will help you a lot in speeding up your code.
 
 ## apply family
 

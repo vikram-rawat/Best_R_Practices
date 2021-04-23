@@ -79,10 +79,35 @@ function foo is written horizontal and bar is written vertical. I would prefer s
 
 There is a package by name `grkstyle` which implements vertical arrangement of code as mentioned above. You can look into it as well.
 
+## Give your code a breathing room
+
+Check out this code.
+
+```{r}
+
+y=ts(data=c(23,391,728,512,10),start=2010)
+```
+
+I see people write code like this all the time. Let me tell you one thing. This code could never pass a coding review specially from the aesthetic side as there is no breathing room in the code which makes it unreadable.
+
+In Rstudio you can simply press `ctrl` + `shift` + `a` to auto format your code. It's okay to do it in this case. as it adds spaces between the words where it needs to be.
+
+```{r}
+y = ts(data = c(23, 391, 728, 512, 10), start = 2010)
+```
+
+1.  assignment operator needs space
+2.  elements of vector need spaces
+3.  parameters need space
+
+and you can extend this definition to your code to make it look more beautiful and help other read your code without putting a strain on their eyes.
+
 ## Conclusion'
 
 In this chapter we discussed how to structure your code to make it more meaningful to read and easier to debug. The key takeaways from this chapter is:
 
 1.  Create sections to write beautiful and navigable code
 2.  Put those sections in a logical order
-3.  Don't
+3.  Properly indent your code
+4.  Choose a style and stick with it
+5.  give your code some breathing room
