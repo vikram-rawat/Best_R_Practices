@@ -1,4 +1,4 @@
-# (PART) Speed {.unnumbered}
+# (PART) Speed {-}
 
 # Some Tips to make R code faster {#speedtips}
 
@@ -232,75 +232,6 @@ These are just the basic examples I could think out of my mind and there are ton
 
 You could avoid meta-programming or non-standard evaluation of these functions just by rewriting some of it's parts yourself. Reading the function will give you insight into what's it trying to do and is it fast enough for your use case and can you optimize it yourself. This thing applies to package level codes as well. And sometimes, not always it's good to rewrite a custom solution for yourself.
 
-## use [[ instead of [ when you can
-
-```{r}
-x <- data.frame(y = 1:1e4)
-
-microbenchmark::microbenchmark(
-  "[[" = for(i in 1:1e4){
-    x$y[[i]] <- i * 2
-  },
-  "[" = for(i in 1:1e4){
-    x$y[i] <- i * 2
-  },
-  times = 10
-)
-
-```
-
-The difference is just in milliseconds but there is a difference non the less. If you use it precisely you might save a few millisecond when you need them with just a basic understanding that this too could help you at times.
-
-Best way to navigate a nested list is through `[[` function by passing a character vector. Take this as an example
-
-```{r }
-
-x <- list(
-  y = list(
-    z = list(
-      a = 1
-    )
-  )
-)
-
-x[[c("y", "z", "a")]]
-```
-
-or if you want to extract just `z` then
-
-```{r}
-x[[c("y", "z")]]
-```
-
-It's pretty helpful when you are working on json objects. take this for an example.
-
-```{r}
-
-x <- list(
-  y = list(
-    list(
-      z = 1
-    ),
-    list(
-      z = 2
-    ),
-    list(
-      z = 3
-    ),
-    list(
-      z = 4
-    ),
-    list(
-      z = 5
-    )
-  )
-)
-
-lapply(x$y,`[[`, "z")
-```
-
-These tricks will help you get some juice out of your machine.
-
 ## Use Conditionals to break computations
 
 Somebody told me that
@@ -425,9 +356,78 @@ There are multiple such packages that you can use to speed up your workflow.
 4.  collapse
 5.  RFast
 
-Out of my head these libraries are very fast and actually can save you a lot of time. But then there are some general libraries that have equally fast alternatives too... Like tidytext vs quanteda. Quanteda uses the memory more efficiently by using sparse matrices and they use c++ functions under the hood, while Tidytext mostly uses tibble which explodes in size very quickly. And then there might be other packages that could have a faster alternative. Like I have been using `qs` package a lot for storing and retrieving data from disk, It's actually faster than base R.
+Out of my head I can only think of these very few but general libraries, which are very fast and actually can save you a lot of time. But then there are some general libraries that have equally fast alternatives too... Like tidytext vs quanteda. Quanteda uses the memory more efficiently by using sparse matrices and they use c++ functions under the hood, while Tidytext mostly uses tibble which explodes in size very quickly. And then there might be other packages that could have a faster alternative. Like I have been using `qs` package a lot for storing and retrieving data from disk, It's actually faster than base R.
 
 ## Some pointers
+
+### use [[ instead of [ when you can
+
+```{r}
+x <- data.frame(y = 1:1e4)
+
+microbenchmark::microbenchmark(
+  "[[" = for(i in 1:1e4){
+    x$y[[i]] <- i * 2
+  },
+  "[" = for(i in 1:1e4){
+    x$y[i] <- i * 2
+  },
+  times = 10
+)
+
+```
+
+The difference is just in milliseconds but there is a difference non the less. If you use it precisely you might save a few millisecond when you need them with just a basic understanding that this too could help you at times.
+
+Best way to navigate a nested list is through `[[` function by passing a character vector. Take this as an example
+
+```{r }
+
+x <- list(
+  y = list(
+    z = list(
+      a = 1
+    )
+  )
+)
+
+x[[c("y", "z", "a")]]
+```
+
+or if you want to extract just `z` then
+
+```{r}
+x[[c("y", "z")]]
+```
+
+It's pretty helpful when you are working on json objects. take this for an example.
+
+```{r}
+
+x <- list(
+  y = list(
+    list(
+      z = 1
+    ),
+    list(
+      z = 2
+    ),
+    list(
+      z = 3
+    ),
+    list(
+      z = 4
+    ),
+    list(
+      z = 5
+    )
+  )
+)
+
+lapply(x$y,`[[`, "z")
+```
+
+These tricks will help you get some juice out of your machine.
 
 ### R calculates everything
 
@@ -462,6 +462,7 @@ microbenchmark::microbenchmark(
   with_braces = year_2_sec_opti({
     (((((((((((((((((((1:2e5)))))))))))))))))))
     })
+)
 
 ```
 
@@ -469,7 +470,7 @@ R is not so slow language anymore so these differences are very small to notice 
 
 > ***Fun fact:*** you can only nest a function up to 50 levels after that it breaks. I have tried it before and counted numbers. Don't ask me why...
 
-## .Internal functions
+### .Internal functions
 
 R has some functions that are internal and can be accessed directly. R mostly provides you wrapper around those. Let's take an example
 
@@ -485,23 +486,107 @@ Here as you can read R is called an internal method by name vector and passing a
 x <- .Internal(vector("integer", 10))
 y <- integer(10)
 
-all.equal(x, y )
+all.equal(x, y)
+
 ```
 
 This can come in handy specially in cases where Base R is performing multiple checks. I can give you examples to do this. But ***I would recommend you to not use .Internal function directly until you are very sure what are you doing.*** In most cases you can find a faster function in some other package that you can use.
 
-## Don't Compile
+### Don't Compile
 
 R has a package called `compiler` that is used to compile any function in R. In old blogs you will still see examples of compilation making your code a little faster. After R 3.5 compilation was on by default. Now every function that you create is compiled and thus it is already optimized and running a compilation on it will not give you any additional speed.
 
 However R compilers still need to be optimized and there are people working on it. Hopefully we will get a better and faster R within a few more years. You can watch a video on it if you want to know more.
 
-\<iframe width="560" height="315" src="[https://www.youtube.com/embed/VdD0nHbcyk4"](https://www.youtube.com/embed/VdD0nHbcyk4") title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen\>\</iframe\>
+\<iframe width="560" height="315" src="<https://www.youtube.com/embed/VdD0nHbcyk4%22> title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen\>\</iframe\>
 
-## use direct object.method structure
+### use direct method.object structure
 
-R
+R spends a little amount trying to figure out the class of the method belongs to. Like here
 
-## Write Rcpp
+```{r}
 
-1.  
+methods(generic.function = "as.Date")
+```
+
+Now as you can see based on the type of object you supply as.Date will decide which method to implement. We can speed up our code a bit by directly specifying what objects are we working on.
+
+```{r}
+
+microbenchmark::microbenchmark(
+  oops = as.Date.numeric(10000, origin = as.Date.character("1970-01-01")),
+  norm = as.Date(10000, origin = as.Date("1970-01-01"))
+)
+```
+
+It might not matter much in a single call but in a loop we can definitely use all these tricks to speed up our code.
+
+```{r}
+bad_code <- function(x){
+  
+  y <- numeric(x)
+  
+  for(i in 1:x){
+    y[i] <- as.Date(
+      x = (10000 + (i)), 
+      origin = (as.Date(x = ("1970-01-01")))
+    )
+  }
+  
+  return(y)
+}
+
+faster_code <- function(x){
+
+  y <- numeric(x)
+  
+  for(i in 1:x){
+    y[[i]] <- as.Date.numeric(
+      x = 10000 + i, 
+      origin = as.Date.character(x = "1970-01-01")
+    )
+  }
+  
+  return(y)
+  
+}
+```
+
+```{r}
+microbenchmark::microbenchmark(
+  bad_code(1e4),
+  faster_code(1e4),
+  times = 10
+)
+
+```
+
+as you can see we can extract a few more drops from our CPU if we use these small techniques. It might not be much but again it's not too much to remember. And if you use them precisely you can save seconds off an entire app by saving milliseconds on each operation.
+
+## Export Other languages
+
+There is a limitation on How fast R can go. R is not the fastest language on the world. It might be one of the slowest for sure. But we use it because of the ecosystem it provides. The ability to download packages from CRAN and the assurance that goes along with it is exceptional. No other programming language comes even close to it. And almost anything you want to do with your data can be done from R directly. Statistics, analysis, visualizations, big data, ML and DL there are packages to deal with all of it. This is the reason We mostly use R because of it's ecosystem not because of speed.
+
+But when you have used most of the techniques and it still doesn't work out. You can use JAVA, C++, C, fortran, python or Julia and import those functions directly it R. R has an interface for calling all of the mentioned languages. The most simple one among all those is rcpp. Which makes C++ work like an R code. Fully vectorized and thus making it easier for an R function to be rewritten in C++ very easily.
+
+C++ is a huge language and it will take years of expertise to write c++ code. While basic Rcpp can be learned within a very small time frame and can be used effectively. My advice would be to learn basic c++ from any youtube video within like 2 to 3 hours and then read this book.
+
+<https://teuder.github.io/rcpp4everyone_en/>
+
+## Conclusion
+
+In this chapter we discussed how to speed up R code with basic tips available that you can remember easily while writing code.
+
+1.  R improves itself after every iteration use latest R
+2.  Profile your code to see the slower part
+3.  Benchmark your solution to check the speed
+4.  **Algorithm matters more than the language**
+5.  Always read the function to see what it is doing and do you need all this
+6.  Use if statements to do as little computation as possible
+7.  There is always a faster function from a package available search it
+8.  use `[[` when you can
+9.  don't write extra functions like `(`,`{` or anything as such to save some time
+10. .Internal functions can be used but don't use them you can find faster versions in Other packages
+11. R compiles it's code by default compiler will not help you anymore
+12. If you know the exact implementation use `method.object` syntax
+13. Write Rcpp if necessary

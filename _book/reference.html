@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-04-17" />
+<meta name="date" content="2021-04-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -264,28 +264,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12" data-path="speedtips.html"><a href="speedtips.html"><i class="fa fa-check"></i><b>12</b> Some Tips to make R code faster</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="speedtips.html"><a href="speedtips.html#use-latest-version-of-r"><i class="fa fa-check"></i><b>12.1</b> Use Latest version of R</a></li>
-<li class="chapter" data-level="12.2" data-path="speedtips.html"><a href="speedtips.html#benchmark-the-findings"><i class="fa fa-check"></i><b>12.2</b> Benchmark the findings</a></li>
+<li class="chapter" data-level="12.2" data-path="speedtips.html"><a href="speedtips.html#benchmark-and-profiling-the-code"><i class="fa fa-check"></i><b>12.2</b> Benchmark and profiling the code</a></li>
 <li class="chapter" data-level="12.3" data-path="speedtips.html"><a href="speedtips.html#algorithm-matters-more-than-language"><i class="fa fa-check"></i><b>12.3</b> Algorithm matters more than language</a></li>
 <li class="chapter" data-level="12.4" data-path="speedtips.html"><a href="speedtips.html#read-the-function"><i class="fa fa-check"></i><b>12.4</b> Read the function</a></li>
-<li class="chapter" data-level="12.5" data-path="speedtips.html"><a href="speedtips.html#use-instead-of-when-you-can"><i class="fa fa-check"></i><b>12.5</b> use [[ instead of [ when you can</a></li>
-<li class="chapter" data-level="12.6" data-path="speedtips.html"><a href="speedtips.html#use-conditionals-to-break-computations"><i class="fa fa-check"></i><b>12.6</b> Use Conditionals to break computations</a></li>
-<li class="chapter" data-level="12.7" data-path="speedtips.html"><a href="speedtips.html#use-simple-functions"><i class="fa fa-check"></i><b>12.7</b> Use simple functions</a></li>
+<li class="chapter" data-level="12.5" data-path="speedtips.html"><a href="speedtips.html#use-conditionals-to-break-computations"><i class="fa fa-check"></i><b>12.5</b> Use Conditionals to break computations</a></li>
+<li class="chapter" data-level="12.6" data-path="speedtips.html"><a href="speedtips.html#use-faster-packages"><i class="fa fa-check"></i><b>12.6</b> Use Faster packages</a></li>
+<li class="chapter" data-level="12.7" data-path="speedtips.html"><a href="speedtips.html#some-pointers"><i class="fa fa-check"></i><b>12.7</b> Some pointers</a>
+<ul>
+<li class="chapter" data-level="12.7.1" data-path="speedtips.html"><a href="speedtips.html#use-instead-of-when-you-can"><i class="fa fa-check"></i><b>12.7.1</b> use [[ instead of [ when you can</a></li>
+<li class="chapter" data-level="12.7.2" data-path="speedtips.html"><a href="speedtips.html#r-calculates-everything"><i class="fa fa-check"></i><b>12.7.2</b> R calculates everything</a></li>
+<li class="chapter" data-level="12.7.3" data-path="speedtips.html"><a href="speedtips.html#internal-functions"><i class="fa fa-check"></i><b>12.7.3</b> .Internal functions</a></li>
+<li class="chapter" data-level="12.7.4" data-path="speedtips.html"><a href="speedtips.html#dont-compile"><i class="fa fa-check"></i><b>12.7.4</b> Don’t Compile</a></li>
+<li class="chapter" data-level="12.7.5" data-path="speedtips.html"><a href="speedtips.html#use-direct-method.object-structure"><i class="fa fa-check"></i><b>12.7.5</b> use direct method.object structure</a></li>
+</ul></li>
+<li class="chapter" data-level="12.8" data-path="speedtips.html"><a href="speedtips.html#export-other-languages"><i class="fa fa-check"></i><b>12.8</b> Export Other languages</a></li>
+<li class="chapter" data-level="12.9" data-path="speedtips.html"><a href="speedtips.html#conclusion-9"><i class="fa fa-check"></i><b>12.9</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>13</b> For Loops</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="loops.html"><a href="loops.html#initialize-objects-before-loops"><i class="fa fa-check"></i><b>13.1</b> initialize objects before loops</a></li>
-<li class="chapter" data-level="13.2" data-path="loops.html"><a href="loops.html#data-types"><i class="fa fa-check"></i><b>13.2</b> data-types</a></li>
+<li class="chapter" data-level="13.2" data-path="loops.html"><a href="loops.html#use-simple-data-types"><i class="fa fa-check"></i><b>13.2</b> use simple data-types</a></li>
 <li class="chapter" data-level="13.3" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>13.3</b> apply family</a></li>
 <li class="chapter" data-level="13.4" data-path="loops.html"><a href="loops.html#vectorize-your-code"><i class="fa fa-check"></i><b>13.4</b> Vectorize your code</a>
 <ul>
 <li class="chapter" data-level="13.4.1" data-path="loops.html"><a href="loops.html#never-repeat-a-calculation"><i class="fa fa-check"></i><b>13.4.1</b> never repeat a calculation</a></li>
 </ul></li>
+<li class="chapter" data-level="13.5" data-path="loops.html"><a href="loops.html#do-very-little-inside-loops"><i class="fa fa-check"></i><b>13.5</b> Do very little inside loops</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>14</b> Multithreading</a></li>
-<li class="chapter" data-level="15" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>15</b> packages</a></li>
 <li class="part"><span><b>V Shiny Tips</b></span></li>
-<li class="chapter" data-level="16" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>16</b> Speed</a></li>
-<li class="chapter" data-level="17" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>17</b> Memory</a></li>
+<li class="chapter" data-level="15" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>15</b> Speed</a></li>
+<li class="chapter" data-level="16" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>16</b> Memory</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -351,7 +360,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="reference.html#cb141-1" aria-hidden="true" tabindex="-1"></a>mt_tbl <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(mtcars)</span>
 <span id="cb141-2"><a href="reference.html#cb141-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb141-3"><a href="reference.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tracemem</span>(mt_tbl)</span></code></pre></div>
-<pre><code>## [1] &quot;&lt;00000000263283E8&gt;&quot;</code></pre>
+<pre><code>## [1] &quot;&lt;00000000264396D8&gt;&quot;</code></pre>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="reference.html#cb143-1" aria-hidden="true" tabindex="-1"></a>dummy_tbl <span class="ot">&lt;-</span> mt_tbl</span>
 <span id="cb143-2"><a href="reference.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="do">## No tracemem yet</span></span>
 <span id="cb143-3"><a href="reference.html#cb143-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -391,8 +400,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb148-4"><a href="reference.html#cb148-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gear) <span class="sc">%&gt;%</span></span>
 <span id="cb148-5"><a href="reference.html#cb148-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb148-6"><a href="reference.html#cb148-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gear)</span></code></pre></div>
-<pre><code>## tracemem[0x00000000263283e8 -&gt; 0x00000000262aedc8]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
-## tracemem[0x00000000262aedc8 -&gt; 0x00000000262af138]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
+<pre><code>## tracemem[0x00000000264396d8 -&gt; 0x00000000261c1a28]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
+## tracemem[0x00000000261c1a28 -&gt; 0x00000000261c1d98]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
 <pre><code>## # A tibble: 3 x 1
 ##    gear
 ##   &lt;dbl&gt;
@@ -406,8 +415,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb151-4"><a href="reference.html#cb151-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gear) <span class="sc">%&gt;%</span></span>
 <span id="cb151-5"><a href="reference.html#cb151-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
 <span id="cb151-6"><a href="reference.html#cb151-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(gear)</span></code></pre></div>
-<pre><code>## tracemem[0x00000000263283e8 -&gt; 0x00000000205bbf18]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
-## tracemem[0x00000000205bbf18 -&gt; 0x00000000205bbfc8]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
+<pre><code>## tracemem[0x00000000264396d8 -&gt; 0x0000000021ada6b0]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt; 
+## tracemem[0x0000000021ada6b0 -&gt; 0x0000000021ada760]: initialize &lt;Anonymous&gt; filter_rows filter.data.frame filter group_by summarise select %&gt;% eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir eng_r block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; render_cur_session render_book render_book_script in_dir &lt;Anonymous&gt; &lt;Anonymous&gt;</code></pre>
 <p>now we are modifying the results somewhere and thus a copy is created. The actual rules are very very complicated. But in simple term as long as you don’t modify any thing R doesn’t create a copy and everything is passed down by reference.</p>
 <p>It impacts speed too… Let check it by an example</p>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="reference.html#cb153-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
@@ -427,9 +436,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb154-6"><a href="reference.html#cb154-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb154-7"><a href="reference.html#cb154-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##  expr     min      lq     mean   median      uq     max neval cld
-##   foo 10.4718 10.9983 11.22202 11.19210 11.3930 12.2349    10  a 
-##   bar 38.0444 38.7043 40.24979 39.36565 42.2759 44.8084    10   b</code></pre>
+##  expr     min      lq     mean  median      uq     max neval cld
+##   foo  8.1400  8.2427  8.40834  8.3253  8.3786  9.4184    10  a 
+##   bar 28.0347 28.8283 28.86869 28.8794 28.9966 29.4180    10   b</code></pre>
 <p>As you can see the difference in time is because <code>bar</code> is creating a copy of the object. And you may assume that it will create a copy at every time you change a object and you will be dead wrong as R is smart enough to understand that It can get away with only single copy of the object. Lets create a function that changes more things in x and see the difference.</p>
 <div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="reference.html#cb156-1" aria-hidden="true" tabindex="-1"></a>bar_new <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb156-2"><a href="reference.html#cb156-2" aria-hidden="true" tabindex="-1"></a>  x[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
@@ -446,9 +455,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb156-13"><a href="reference.html#cb156-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##     expr     min      lq     mean   median      uq      max neval cld
-##      foo 10.7043 11.3592 11.62990 11.61865 12.0008  12.6743    10  a 
-##      bar 38.6637 40.1778 52.58814 42.24700 43.1239 153.4661    10   b
-##  bar_new 38.4663 39.5924 40.14206 39.93975 40.8550  41.8485    10   b</code></pre>
+##      foo  8.1340  8.2359  8.36191  8.37340  8.4773   8.5193    10  a 
+##      bar 28.4310 28.7630 36.02982 28.96915 29.2441 100.1655    10   b
+##  bar_new 28.5564 28.7673 29.09568 28.92150 29.1892  30.7277    10   b</code></pre>
 <p>Now as you can see that while the function foo and bar have significant differences in performance, same is not true for bar and bar_new. Because bar_new too creates a copy but maintains that copy for the entire function.</p>
 <p>So R is smart enough to understand when to create a copy and when not to create a copy. Once a copy is created it is retained in R and R uses it smartly. We can gain speed and memory benefits by making sure all the modification is done inside a single function. So that R doesn’t create much copies.</p>
 <p>Instead of using bar 3 times it’s better to use bar_new once. So that you don’t copy it multiple times. See the difference for yourself. And thus <strong>try to keep all the modifications close and in as less functions as possible</strong>.</p>
@@ -462,9 +471,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb158-8"><a href="reference.html#cb158-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb158-9"><a href="reference.html#cb158-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##     expr      min       lq      mean   median       uq      max neval cld
-##      bar 118.7920 121.7907 165.93941 124.7116 209.3095 373.6063    10   b
-##  bar_new  38.6579  40.4935  49.25405  42.5546  44.6277 112.8874    10  a</code></pre>
+##     expr     min      lq     mean   median      uq      max neval cld
+##      bar 86.0658 86.8783 98.62073 87.29505 88.0293 148.2414    10   b
+##  bar_new 28.4509 28.5740 50.51256 28.79500 29.5109 200.7424    10  a</code></pre>
 <p>best is to group these modifications together.</p>
 <p>So the gist of the matter is:</p>
 <ol style="list-style-type: decimal">
@@ -482,8 +491,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb160-3"><a href="reference.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  x[[i]] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
 <span id="cb160-4"><a href="reference.html#cb160-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb160-5"><a href="reference.html#cb160-5" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
-<pre><code>##  [1] -0.09111472  0.95546332 -0.95193040  1.05718413 -0.10028263  1.07194179
-##  [7] -1.03605101 -0.11276019 -1.39981715  0.50443449</code></pre>
+<pre><code>##  [1]  0.002156577  0.527250860 -1.011462254 -0.304480709  0.806666379
+##  [6] -0.569644254 -0.647960995  0.468910360 -0.088721171 -0.227504696</code></pre>
 <p>It modifies the object in place. Now lets wrap it in a function and see what happens.</p>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="reference.html#cb162-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10</span>)</span>
 <span id="cb162-2"><a href="reference.html#cb162-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -495,8 +504,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb162-8"><a href="reference.html#cb162-8" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb162-9"><a href="reference.html#cb162-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb162-10"><a href="reference.html#cb162-10" aria-hidden="true" tabindex="-1"></a><span class="fu">foo</span>(x)</span></code></pre></div>
-<pre><code>##  [1] -0.5127087 -0.5229969 -0.0609522  0.8727074  0.7730965 -0.3000277
-##  [7]  0.6336184 -0.6485831 -0.8129703 -0.4704990</code></pre>
+<pre><code>##  [1]  1.4545761 -0.9141887  0.5323786 -2.7380692  1.2628078  0.4769131
+##  [7] -1.7960012 -2.2655847 -1.0728250 -0.6633129</code></pre>
 <div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="reference.html#cb164-1" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>##  [1] 0 0 0 0 0 0 0 0 0 0</code></pre>
 <p>Now x is not modified because it is being modified inside a function. This is crucial at times when you are running a long job that might take hours to complete just to find an error in the middle. You might want to start the loop from the exact position you left off. With this sort of code you will not reach that. Let’s generate an error in the code and uses bigger number.</p>

@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-04-17" />
+<meta name="date" content="2021-04-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -264,28 +264,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12" data-path="speedtips.html"><a href="speedtips.html"><i class="fa fa-check"></i><b>12</b> Some Tips to make R code faster</a>
 <ul>
 <li class="chapter" data-level="12.1" data-path="speedtips.html"><a href="speedtips.html#use-latest-version-of-r"><i class="fa fa-check"></i><b>12.1</b> Use Latest version of R</a></li>
-<li class="chapter" data-level="12.2" data-path="speedtips.html"><a href="speedtips.html#benchmark-the-findings"><i class="fa fa-check"></i><b>12.2</b> Benchmark the findings</a></li>
+<li class="chapter" data-level="12.2" data-path="speedtips.html"><a href="speedtips.html#benchmark-and-profiling-the-code"><i class="fa fa-check"></i><b>12.2</b> Benchmark and profiling the code</a></li>
 <li class="chapter" data-level="12.3" data-path="speedtips.html"><a href="speedtips.html#algorithm-matters-more-than-language"><i class="fa fa-check"></i><b>12.3</b> Algorithm matters more than language</a></li>
 <li class="chapter" data-level="12.4" data-path="speedtips.html"><a href="speedtips.html#read-the-function"><i class="fa fa-check"></i><b>12.4</b> Read the function</a></li>
-<li class="chapter" data-level="12.5" data-path="speedtips.html"><a href="speedtips.html#use-instead-of-when-you-can"><i class="fa fa-check"></i><b>12.5</b> use [[ instead of [ when you can</a></li>
-<li class="chapter" data-level="12.6" data-path="speedtips.html"><a href="speedtips.html#use-conditionals-to-break-computations"><i class="fa fa-check"></i><b>12.6</b> Use Conditionals to break computations</a></li>
-<li class="chapter" data-level="12.7" data-path="speedtips.html"><a href="speedtips.html#use-simple-functions"><i class="fa fa-check"></i><b>12.7</b> Use simple functions</a></li>
+<li class="chapter" data-level="12.5" data-path="speedtips.html"><a href="speedtips.html#use-conditionals-to-break-computations"><i class="fa fa-check"></i><b>12.5</b> Use Conditionals to break computations</a></li>
+<li class="chapter" data-level="12.6" data-path="speedtips.html"><a href="speedtips.html#use-faster-packages"><i class="fa fa-check"></i><b>12.6</b> Use Faster packages</a></li>
+<li class="chapter" data-level="12.7" data-path="speedtips.html"><a href="speedtips.html#some-pointers"><i class="fa fa-check"></i><b>12.7</b> Some pointers</a>
+<ul>
+<li class="chapter" data-level="12.7.1" data-path="speedtips.html"><a href="speedtips.html#use-instead-of-when-you-can"><i class="fa fa-check"></i><b>12.7.1</b> use [[ instead of [ when you can</a></li>
+<li class="chapter" data-level="12.7.2" data-path="speedtips.html"><a href="speedtips.html#r-calculates-everything"><i class="fa fa-check"></i><b>12.7.2</b> R calculates everything</a></li>
+<li class="chapter" data-level="12.7.3" data-path="speedtips.html"><a href="speedtips.html#internal-functions"><i class="fa fa-check"></i><b>12.7.3</b> .Internal functions</a></li>
+<li class="chapter" data-level="12.7.4" data-path="speedtips.html"><a href="speedtips.html#dont-compile"><i class="fa fa-check"></i><b>12.7.4</b> Don’t Compile</a></li>
+<li class="chapter" data-level="12.7.5" data-path="speedtips.html"><a href="speedtips.html#use-direct-method.object-structure"><i class="fa fa-check"></i><b>12.7.5</b> use direct method.object structure</a></li>
+</ul></li>
+<li class="chapter" data-level="12.8" data-path="speedtips.html"><a href="speedtips.html#export-other-languages"><i class="fa fa-check"></i><b>12.8</b> Export Other languages</a></li>
+<li class="chapter" data-level="12.9" data-path="speedtips.html"><a href="speedtips.html#conclusion-9"><i class="fa fa-check"></i><b>12.9</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>13</b> For Loops</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="loops.html"><a href="loops.html#initialize-objects-before-loops"><i class="fa fa-check"></i><b>13.1</b> initialize objects before loops</a></li>
-<li class="chapter" data-level="13.2" data-path="loops.html"><a href="loops.html#data-types"><i class="fa fa-check"></i><b>13.2</b> data-types</a></li>
+<li class="chapter" data-level="13.2" data-path="loops.html"><a href="loops.html#use-simple-data-types"><i class="fa fa-check"></i><b>13.2</b> use simple data-types</a></li>
 <li class="chapter" data-level="13.3" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>13.3</b> apply family</a></li>
 <li class="chapter" data-level="13.4" data-path="loops.html"><a href="loops.html#vectorize-your-code"><i class="fa fa-check"></i><b>13.4</b> Vectorize your code</a>
 <ul>
 <li class="chapter" data-level="13.4.1" data-path="loops.html"><a href="loops.html#never-repeat-a-calculation"><i class="fa fa-check"></i><b>13.4.1</b> never repeat a calculation</a></li>
 </ul></li>
+<li class="chapter" data-level="13.5" data-path="loops.html"><a href="loops.html#do-very-little-inside-loops"><i class="fa fa-check"></i><b>13.5</b> Do very little inside loops</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>14</b> Multithreading</a></li>
-<li class="chapter" data-level="15" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>15</b> packages</a></li>
 <li class="part"><span><b>V Shiny Tips</b></span></li>
-<li class="chapter" data-level="16" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>16</b> Speed</a></li>
-<li class="chapter" data-level="17" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>17</b> Memory</a></li>
+<li class="chapter" data-level="15" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>15</b> Speed</a></li>
+<li class="chapter" data-level="16" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>16</b> Memory</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -412,9 +421,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb181-3"><a href="releasememory.html#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bar</span>(<span class="fl">1e4</span>)</span>
 <span id="cb181-4"><a href="releasememory.html#cb181-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##        expr     min       lq     mean   median       uq     max neval cld
-##  foo(10000) 29.1097 31.55125 34.08817 32.79830 35.78940 54.3749   100   b
-##  bar(10000) 14.5669 15.43425 16.87183 15.92345 17.62985 29.4345   100  a</code></pre>
+##        expr     min      lq     mean   median       uq     max neval cld
+##  foo(10000) 21.4537 22.3938 23.95090 23.49205 25.20715 35.3819   100   b
+##  bar(10000) 10.4650 11.0484 11.65059 11.33170 11.70855 18.7556   100  a</code></pre>
 <p>We are saving almost half the time just because we are saving some intermediate calculations. You will be amazed to see how often can you do this. And it makes your code</p>
 <ul>
 <li><p>more performant</p></li>
@@ -470,9 +479,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb185-3"><a href="releasememory.html#cb185-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mem_fact</span>(<span class="dv">100</span>)</span>
 <span id="cb185-4"><a href="releasememory.html#cb185-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##           expr  min    lq   mean median    uq     max neval cld
-##      fact(100) 49.3 51.00 100.36  60.00  62.6  3670.7   100   a
-##  mem_fact(100) 67.5 75.45 478.70  86.65 113.5 38005.7   100   a</code></pre>
+##           expr  min    lq    mean median   uq     max neval cld
+##      fact(100) 38.2 38.75  64.348  39.25 39.8  2396.9   100   a
+##  mem_fact(100) 52.6 54.45 313.855  55.95 57.9 25599.4   100   a</code></pre>
 <p>In this case we haven’t achieved much performance over the base code but if we run this function multiple times it will just fetch the results from RAM and save computations in which case it will be worth the effort. We will go through example in next chapters where memoise will be faster too…</p>
 <p>memoise is not the only package which does this sort of caching. There is a package by name <code>cachem</code> which is used in shiny and you will find some other products like redis which do the same thing but at scale. It’s an important technique to know for saving both time and memory.</p>
 </div>
