@@ -18,10 +18,13 @@ R data.table packages provides an interface to set values inside a data-table wi
 
 ```{r}
 
-set_dt_num <- function(dt){
-  for(i in 1:1e3){
+set_dt_num =  function(
+  data_table, 
+  n_row
+  ) {
+  for(i in 1:n_row){
     data.table::set(
-      x = dt,
+      x = data_table,
       i = i,
       j = 1L,
       value = i*2L
@@ -29,34 +32,111 @@ set_dt_num <- function(dt){
   }
 }
 
-set_dt_col <- function(dt){
-  for(i in 1:1e3){
+set_dt_col = function(
+  data_table, 
+  n_row
+  ) {
+  for(i in 1:n_row){
     data.table::set(
-      x = dt,
+      x = data_table,
       i = i,
       j = "x",
       value = i*2
     )
   }
 }
+```
 
-gc()
+```{r}
 
-data_table <- data.table::data.table(x = integer(1e3))
-data_frame <- data.frame(x = integer(1e3))
+n_row <- 1e3
+
+data_table <- data.table::data.table(x = integer(n_row))
+data_frame <- data.frame(x = integer(n_row))
 
 microbenchmark::microbenchmark(
   set_df_col = {
-    for(i in 1:1e3){
+    for(i in 1:n_row){
       data_frame$x[[i]] <- i*2L
     }
   },
-  set_dt_num = set_dt_num(data_table),
-  set_dt_col = set_dt_col(data_table),
+  set_dt_num = set_dt_num(data_table , n_row ),
+  set_dt_col = set_dt_col(data_table , n_row ),
+  times = 10
+)
+```
+
+This Code used to give me around 200x increment over base R in previous versions. From R 4.0 onward R is managing memory pretty efficiently and the base is performing better in this test. Let me try it on a larger data set.
+
+```{r}
+
+n_row <- 1e5
+
+data_table <- data.table::data.table(x = integer(n_row))
+data_frame <- data.frame(x = integer(n_row))
+
+microbenchmark::microbenchmark(
+  set_df_col = {
+    for(i in 1:n_row){
+      data_frame$x[[i]] <- i*2L
+    }
+  },
+  set_dt_num = set_dt_num(data_table , n_row ),
+  set_dt_col = set_dt_col(data_table , n_row ),
+  times = 10
+)
+```
+
+```{r include=FALSE}
+gc()
+```
+
+Now we can see some improvement over the base. On bigger data set we are getting around 10x+ speed with data.table. It was just to establish the fact that data.table performs well over bigger data sets. Yet we can still get a better performance by moving to a lower level data structure.
+
+```{r}
+n_row <- 1e5
+
+data_table <- data.table::data.table(x = integer(n_row))
+data_list <- list(x = integer(n_row))
+
+microbenchmark::microbenchmark(
+  set_list_col = {
+    for(i in 1:n_row){
+      data_list$x[[i]] <- i*2L
+    }
+  },
+  set_dt_num = set_dt_num(data_table , n_row ),
+  set_dt_col = set_dt_col(data_table , n_row ),
   times = 10
 )
 
 ```
+
+Just by moving from data.frame to list we can get a substantial increment over the base. Now we are close to 400x over R data.table. Which is huge. But wait we can do it better. We haven't tried the most atomic level structure in R the VECTORS. Let's benchmark it again with vectors.
+
+```{r}
+n_row <- 1e5
+
+x <- integer(n_row)
+data_list <- list(x = integer(n_row))
+
+microbenchmark::microbenchmark(
+  set_list_col = {
+    for(i in 1:n_row){
+      data_list$x[[i]] <- i*2L
+    }
+  },
+  set_vector = {
+    for(i in 1:n_row){
+      x[[i]] <- i*2L
+    }
+  }
+)
+```
+
+We were able to squeeze 2x + speed with base R vector. So finally we have vector that can do the entire computation at 6ms while the worst dataframe would do it at 7700ms. Which makes our code around 1200x faster. All you need to do is to remember can we do it with a simpler data-type.
+
+This is the best change you can make in your code to make it run faster.
 
 ## apply family
 
