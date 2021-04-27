@@ -23,6 +23,12 @@ A 800+ line files will look something like this.
 
 It makes your code beautiful to look and makes it maintainable in long run.
 
+You can also create subsection in R by adding hash symbols in front of a section.
+
+    ## some comment ----
+    ### some comment ----
+    #### some comment ----
+
 ## Order of Code
 
 When you write code there are standard practices that are used across the domain and you should definitely use them. These are simple rules that most beginners aren't concerned about but the more experience you gain the more you start to realize the latent power of code organization. Here are a simple tip you should use.

@@ -1,5 +1,10 @@
 # For Loops {#loops}
 
+```{r include=FALSE}
+
+library(magrittr)
+```
+
 This is a topic that I wanted to discuss for a long time. People read blogs from 2014-2016 and assume that for loops in R are bad. You should not use them and Loops in R are slow etc. etc... This chapter will help you understand how to use them more effectively.
 
 R loops are not too slow compared to other programming languages like python, ruby etc... But Yes they are slower than the vectorized code. You can get a faster code by doing more with vectorization than a simple loop.
@@ -27,7 +32,7 @@ set_dt_num =  function(
       x = data_table,
       i = i,
       j = 1L,
-      value = i*2L
+      value = i * 2L
     )
   }
 }
@@ -41,7 +46,7 @@ set_dt_col = function(
       x = data_table,
       i = i,
       j = "x",
-      value = i*2
+      value = i * 2L
     )
   }
 }
@@ -57,7 +62,7 @@ data_frame <- data.frame(x = integer(n_row))
 microbenchmark::microbenchmark(
   set_df_col = {
     for(i in 1:n_row){
-      data_frame$x[[i]] <- i*2L
+      data_frame$x[[i]] <- i * 2L
     }
   },
   set_dt_num = set_dt_num(data_table , n_row ),
@@ -78,7 +83,7 @@ data_frame <- data.frame(x = integer(n_row))
 microbenchmark::microbenchmark(
   set_df_col = {
     for(i in 1:n_row){
-      data_frame$x[[i]] <- i*2L
+      data_frame$x[[i]] <- i * 2L
     }
   },
   set_dt_num = set_dt_num(data_table , n_row ),
@@ -139,6 +144,55 @@ We were able to squeeze 2x + speed with base R vector. So finally we have vector
 This is the best change you can make in your code to make it run faster. I always prefer looping over a vector like 90% of the time. In some cases where it's not possible I like to convert the dataframe to list and run a loop and then convert it back to a dataframe. Because dataframe itself is a list with some constraints. Remembering this will help you a lot in speeding up your code.
 
 ## apply family
+
+Use apply family for concise and efficient code. apply functions make your code smaller and more readable and you don't have to write loops so you can focus on your tasks. Whenever possible you should use apply function because there are times when it could be more efficient than a loop. There are only 3 functions that you should really know. You can get away with just these 3 function to solve almost 90% of your tasks.
+
+1.  `lapply` for almost `everything`
+2.  `apply` for looping over `rows`
+3.  `mapply` for looping over `multiple vectors` as an argument to a single function
+
+There is `vapply` too for strictly getting `vector` in return. I have used it very rarely because you can unlist the lapply for same results as well. `Map` is nothing more than mapply with parameter SIMPLIFY as true. `Reduce` can also be used but in very rare circumstances.
+
+There are a certain things you need to know about apply function.
+
+### apply functions are not much faster than loops
+
+Many people wrongly assume that just because you are using apply functions that means your code is vectorized, which is not true at all. Apply functions are loops under the hood and they are meant for convenience not for speed.
+
+```{r}
+microbenchmark::microbenchmark(
+  lapply = lapply(1:1e3, rnorm),
+  forloop = for(i in 1:1e3){
+      rnorm(i)
+    },
+  times = 10
+)
+```
+
+I have tested this on bigger vector and the results are almost identical. There difference is not too much. but lapply gives you optimized loop to begin and thus you should always prefer a lapply where ever it's possible but you should not be scared to use a loop either as the speed is mostly the same.
+
+### Nested lapply have same speed as a normal lapply
+
+```{r}
+
+microbenchmark::microbenchmark(
+  nested = lapply(1:1e3, function(x){
+    rnorm(x)
+  }) %>% 
+  lapply(function(x){
+      sum(x)
+  }),
+  normal = lapply(1:1e3, function(x){
+    rnorm(x) %>% 
+      sum()
+  }),
+  times = 10
+)
+```
+
+as you can see that nesting multiple lapply function doesn't slow the code. However it's not a standard practice to do it and I would not recommend anybody to make your code harder to read by nesting multiple lapply functions.
+
+So let me summarize it lapply is better than loops but it's no where near the speed of a vectorized code. Let's talk about the fastest way to speed up your code.
 
 ## Vectorize your code
 
@@ -226,7 +280,7 @@ microbenchmark::microbenchmark(
 )
 ```
 
-We did not save much on it but we still saved one millisecond on just a 1000 loop. It's an excellent practice of not to repeat calculation.
+We did not save much on it but we still saved one millisecond on just a 1000 loop. It's an excellent practice of not to repeat calculation. Especially when you are calculating multiple things again and again.
 
 Now coming back to the point. You could try this approach just like every other programming language does. Or you can try a vectorized approach with the built in paste function with collapse argument.
 
@@ -261,4 +315,221 @@ microbenchmark::microbenchmark(
 
 Collapsed function is faster than all the other approach for just 1000 loops. Imagine doing it for 1 million. Vectorized function in those cases will be 1000 times faster than loops.
 
-## Do very little inside loops
+The real reason for that is vectorized code uses optimized c for looping which is almost always faster than loops in R. And at times you can get 1000x speed compared to a normal loop. and Thus sometimes you can get away with doing more with vectors than with loops.
+
+### Vectorized code can do 2 or 3 steps more in lesser time
+
+There is a classical example that I read in a book `efficient R` and I was amazed to see why it happened.
+
+```{r}
+
+if_norm <- function(
+  x,
+  size
+){
+  y <- character(size)
+  for(i in 1:1e3){
+    value <- x[[i]]
+    if(value == 0){
+      y[[i]] <- "zero"
+    } else if(value == 1){
+      y[[i]] <- "one"
+    } else {
+      y[[i]] <- "many"
+    }
+  }
+  return(y)
+}
+
+
+if_vector <- function(
+  x,
+  size
+){
+
+  y <- character(size)
+  
+  y[1:size] <- "many"
+  y[x == 1] <- "one"
+  y[x == 0] <- "zero"
+  
+  return(y)
+}
+```
+
+Both the function will return the same vector. However we are doing minimum with the normal function while in vectorized function we are doing redundant operations.
+
+```{r}
+
+size <- 1e3
+
+x <- sample(
+  x = c(0,1,2),
+  size = size,
+  replace = TRUE
+)
+
+all.equal(
+  if_norm(x, size),
+  if_vector(x, size)
+)
+```
+
+Let's check the speed of both the functions. Even though We are doing 3 steps in the vectorized solution and doing the same thing 3 times just to get a solution yet we are faster because vectorized code is very very fast you can get away with doing more and still saving time. Compare vectorized to be FLASH GORDEN and it can be faster even when it's doing more than it should.
+
+```{r}
+
+microbenchmark::microbenchmark(
+  minimal = if_norm(x,size),
+  vectorized = if_vector(x, size)
+)
+```
+
+## Understanding non-vectorized code
+
+There are times when you need only scalar values and in those times it is redundant to use vectorized code. I see many people not understanding the difference and using vectorized code inside a loop on a scalar variable when non vectorized would have been more efficient. Let's check it with an example.
+
+```{r}
+
+n_size <- 1e4
+
+binary_df <- data.frame(
+  x = sample(
+    x = c(TRUE, FALSE),
+    size = n_size,
+    replace = TRUE
+  ),
+  y = sample(
+    x = c(TRUE, FALSE),
+    size = n_size,
+    replace = TRUE
+  ),
+  z = sample(
+    x = c(TRUE, FALSE),
+    size = n_size,
+    replace = TRUE
+  )
+)
+```
+
+Let's check if we can find all the rows where all the variable are true. The fastest method would be vectorized solution like this
+
+```{r}
+
+all_true <- binary_df$x & binary_df$y & binary_df$z
+```
+
+But when suppose you are using it in a loop to find the exact same thing.
+
+```{r}
+
+### vectorized code
+vect_all_true <- function(
+  df
+){
+  y <- logical(nrow(df))
+  
+  for(i in seq_along(binary_df$x)){
+    y[i] <-  df$x[i] & df$y[i] & df$z[i]
+  }
+  
+  return(y)
+}
+
+### scalar code
+scalar_all_true <- function(
+  df
+){
+  y <- logical(nrow(df))
+  
+  for(i in seq_along(df$x)){
+    y[[i]] <-  df$x[[i]] && df$y[[i]] && df$z[[i]]
+  }
+  
+  return(y)
+}
+```
+
+Let's compare both the functions for speed.
+
+```{r}
+
+microbenchmark::microbenchmark(
+  vect_all_true(df = binary_df),
+  scalar_all_true(df = binary_df),
+  times = 10
+)
+```
+
+I know this is not an excellent example because it can be vectorized easily but in the cases where you are working on individual scalar values using non-vectorized code gives you speed. In our current example we are getting twice the speed which is enough for such a small data set and the difference will increase with the number of rows.
+
+## Do as little as possible inside a loop
+
+R is an interpreted language every thing you write inside a loop runs multiple times. The best thing you can do is to be parsimonious while writing code inside a loop. There are a number of steps that you can do to speed up a loop a bit more.
+
+1.  Calculate results before the loop
+2.  initialize objects before the loop
+3.  Iterate on as few numbers as possible
+4.  Write as less functions inside a loop as possible
+5.  cache the results
+6.  run garbage collection for heavy calculations
+
+The main tip is to ***Get out of loop as quickly as possible***. There is another very crucial thing you can do to speed up your code.
+
+### Combine Vectorized code inside a loop
+
+The best case is to figure which part of codes can be optimized with a vectorized solution and which would require you to loop through. The key is to use ***as minimum loops as possible and as much as vectorized code as possible***. This is the same thing that helps in parallelizing the code too.
+
+```{r}
+
+n_size <- 1e5
+
+hr_df <- data.table::data.table(
+  department = sample(
+    x = letters[1:5],
+    size = n_size,
+    replace = TRUE
+  ),
+  salary = sample(
+    x = 1e3:1e4,
+    size = n_size,
+    replace = TRUE
+  )
+)
+```
+
+Let's try to find out How much money each department is paying for salary.
+
+```{r}
+
+sum_salary <- function(
+  df
+){
+
+  answer <- list()
+
+  for(dep in unique(df$department)){
+
+    value <- df[
+      department == dep,
+      sum(salary, na.rm = TRUE)
+    ]
+
+    answer[[dep]] <- value
+
+  }
+
+  return(answer)
+
+}
+
+microbenchmark::microbenchmark(
+  sum_salary(df = hr_df)
+)
+```
+
+I am doing as much vectorized calculation as possible in this scenario and this is the reason this code runs pretty fast. If I write a loop that goes through all the `r n_size` rows then I would get around 100x slower speed. This is a neat trick you must use whenever you can. Do as little as possible inside a loop.
+
+## Conclusion
+
+This chapter mainly focused on Loops and how to optimize them.
