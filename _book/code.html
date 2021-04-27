@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Code Structure | Best Coding Practices for R</title>
   <meta name="description" content="This book explains the most important things you need to know while you are writing production level R code." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Code Structure | Best Coding Practices for R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-04-23" />
+<meta name="date" content="2021-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,12 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="libs/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+<link href="libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+<script src="libs/klippy-0.0.0.9500/js/klippy.min.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +123,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -151,7 +158,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#create-sections"><i class="fa fa-check"></i><b>3.1</b> Create Sections</a></li>
 <li class="chapter" data-level="3.2" data-path="code.html"><a href="code.html#order-of-code"><i class="fa fa-check"></i><b>3.2</b> Order of Code</a></li>
 <li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#indentation"><i class="fa fa-check"></i><b>3.3</b> Indentation</a></li>
-<li class="chapter" data-level="3.4" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.4</b> Conclusion’</a></li>
+<li class="chapter" data-level="3.4" data-path="code.html"><a href="code.html#give-your-code-a-breathing-room"><i class="fa fa-check"></i><b>3.4</b> Give your code a breathing room</a></li>
+<li class="chapter" data-level="3.5" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.5</b> Conclusion’</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a>
 <ul>
@@ -284,12 +292,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="13.1" data-path="loops.html"><a href="loops.html#initialize-objects-before-loops"><i class="fa fa-check"></i><b>13.1</b> initialize objects before loops</a></li>
 <li class="chapter" data-level="13.2" data-path="loops.html"><a href="loops.html#use-simple-data-types"><i class="fa fa-check"></i><b>13.2</b> use simple data-types</a></li>
-<li class="chapter" data-level="13.3" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>13.3</b> apply family</a></li>
+<li class="chapter" data-level="13.3" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>13.3</b> apply family</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="loops.html"><a href="loops.html#apply-functions-are-not-much-faster-than-loops"><i class="fa fa-check"></i><b>13.3.1</b> apply functions are not much faster than loops</a></li>
+<li class="chapter" data-level="13.3.2" data-path="loops.html"><a href="loops.html#nested-lapply-have-same-speed-as-a-normal-lapply"><i class="fa fa-check"></i><b>13.3.2</b> Nested lapply have same speed as a normal lapply</a></li>
+</ul></li>
 <li class="chapter" data-level="13.4" data-path="loops.html"><a href="loops.html#vectorize-your-code"><i class="fa fa-check"></i><b>13.4</b> Vectorize your code</a>
 <ul>
 <li class="chapter" data-level="13.4.1" data-path="loops.html"><a href="loops.html#never-repeat-a-calculation"><i class="fa fa-check"></i><b>13.4.1</b> never repeat a calculation</a></li>
+<li class="chapter" data-level="13.4.2" data-path="loops.html"><a href="loops.html#vectorized-code-can-do-2-or-3-steps-more-in-lesser-time"><i class="fa fa-check"></i><b>13.4.2</b> Vectorized code can do 2 or 3 steps more in lesser time</a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="loops.html"><a href="loops.html#do-very-little-inside-loops"><i class="fa fa-check"></i><b>13.5</b> Do very little inside loops</a></li>
+<li class="chapter" data-level="13.5" data-path="loops.html"><a href="loops.html#understanding-non-vectorized-code"><i class="fa fa-check"></i><b>13.5</b> Understanding non-vectorized code</a></li>
+<li class="chapter" data-level="13.6" data-path="loops.html"><a href="loops.html#do-as-little-as-possible-inside-a-loop"><i class="fa fa-check"></i><b>13.6</b> Do as little as possible inside a loop</a>
+<ul>
+<li class="chapter" data-level="13.6.1" data-path="loops.html"><a href="loops.html#combine-vectorized-code-inside-a-loop"><i class="fa fa-check"></i><b>13.6.1</b> Combine Vectorized code inside a loop</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="loops.html"><a href="loops.html#conclusion-10"><i class="fa fa-check"></i><b>13.7</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>14</b> Multithreading</a></li>
 <li class="part"><span><b>V Shiny Tips</b></span></li>
@@ -333,6 +351,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p class="caption">code chunk</p>
 </div>
 <p>It makes your code beautiful to look and makes it maintainable in long run.</p>
+<p>You can also create subsection in R by adding hash symbols in front of a section.</p>
+<pre><code>## some comment ----
+### some comment ----
+#### some comment ----</code></pre>
 </div>
 <div id="order-of-code" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Order of Code</h2>
@@ -362,34 +384,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It goes without saying that indentation makes your code readable. Python is not the only language who has the luxury of indentation. No matter what language you work in your code should be properly indented so that we can understand the nature of code written. There are a few things you can understand about indentation.</p>
 <p>Maintain same number of spaces throughout your code. Your editor will help you out with it for sure but even if you are working on multiple editors. If you choose 2 spaces or 4 spaces as an equivalent of tabs you should stick to it. This is a golden rule you should never break.</p>
 <p>Then maintain the same style in your code. Look at the code below.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="code.html#cb14-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb14-2"><a href="code.html#cb14-2" aria-hidden="true" tabindex="-1"></a>  first_arg, second_arg, third_arg</span>
-<span id="cb14-3"><a href="code.html#cb14-3" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb14-4"><a href="code.html#cb14-4" aria-hidden="true" tabindex="-1"></a>  create_file <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="at">path =</span> first_arg, <span class="at">sheet =</span> second_arg, </span>
-<span id="cb14-5"><a href="code.html#cb14-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">range =</span> third_arg)</span>
-<span id="cb14-6"><a href="code.html#cb14-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-7"><a href="code.html#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="code.html#cb14-8" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb14-9"><a href="code.html#cb14-9" aria-hidden="true" tabindex="-1"></a>  first_arg,</span>
-<span id="cb14-10"><a href="code.html#cb14-10" aria-hidden="true" tabindex="-1"></a>  second_arg,</span>
-<span id="cb14-11"><a href="code.html#cb14-11" aria-hidden="true" tabindex="-1"></a>  third_arg</span>
-<span id="cb14-12"><a href="code.html#cb14-12" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb14-13"><a href="code.html#cb14-13" aria-hidden="true" tabindex="-1"></a>  create_file <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(</span>
-<span id="cb14-14"><a href="code.html#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> first_arg, </span>
-<span id="cb14-15"><a href="code.html#cb14-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> second_arg, </span>
-<span id="cb14-16"><a href="code.html#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">range =</span> third_arg</span>
-<span id="cb14-17"><a href="code.html#cb14-17" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb14-18"><a href="code.html#cb14-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="code.html#cb16-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb16-2"><a href="code.html#cb16-2" aria-hidden="true" tabindex="-1"></a>  first_arg, second_arg, third_arg</span>
+<span id="cb16-3"><a href="code.html#cb16-3" aria-hidden="true" tabindex="-1"></a>){</span>
+<span id="cb16-4"><a href="code.html#cb16-4" aria-hidden="true" tabindex="-1"></a>  create_file <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="at">path =</span> first_arg, <span class="at">sheet =</span> second_arg, </span>
+<span id="cb16-5"><a href="code.html#cb16-5" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">range =</span> third_arg)</span>
+<span id="cb16-6"><a href="code.html#cb16-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb16-7"><a href="code.html#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="code.html#cb16-8" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb16-9"><a href="code.html#cb16-9" aria-hidden="true" tabindex="-1"></a>  first_arg,</span>
+<span id="cb16-10"><a href="code.html#cb16-10" aria-hidden="true" tabindex="-1"></a>  second_arg,</span>
+<span id="cb16-11"><a href="code.html#cb16-11" aria-hidden="true" tabindex="-1"></a>  third_arg</span>
+<span id="cb16-12"><a href="code.html#cb16-12" aria-hidden="true" tabindex="-1"></a>){</span>
+<span id="cb16-13"><a href="code.html#cb16-13" aria-hidden="true" tabindex="-1"></a>  create_file <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(</span>
+<span id="cb16-14"><a href="code.html#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">path =</span> first_arg, </span>
+<span id="cb16-15"><a href="code.html#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">sheet =</span> second_arg, </span>
+<span id="cb16-16"><a href="code.html#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">range =</span> third_arg</span>
+<span id="cb16-17"><a href="code.html#cb16-17" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-18"><a href="code.html#cb16-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>function foo is written horizontal and bar is written vertical. I would prefer styling of function bar but you may choose one and stick to it for entire project. Mixing styles is not considered good and might create problem in code review.</p>
 <p>There is a package by name <code>grkstyle</code> which implements vertical arrangement of code as mentioned above. You can look into it as well.</p>
 </div>
-<div id="conclusion-1" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Conclusion’</h2>
+<div id="give-your-code-a-breathing-room" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Give your code a breathing room</h2>
+<p>Check out this code.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="code.html#cb17-1" aria-hidden="true" tabindex="-1"></a>y<span class="ot">=</span><span class="fu">ts</span>(<span class="at">data=</span><span class="fu">c</span>(<span class="dv">23</span>,<span class="dv">391</span>,<span class="dv">728</span>,<span class="dv">512</span>,<span class="dv">10</span>),<span class="at">start=</span><span class="dv">2010</span>)</span></code></pre></div>
+<p>I see people write code like this all the time. Let me tell you one thing. This code could never pass a coding review specially from the aesthetic side as there is no breathing room in the code which makes it unreadable.</p>
+<p>In Rstudio you can simply press <code>ctrl</code> + <code>shift</code> + <code>a</code> to auto format your code. It’s okay to do it in this case. as it adds spaces between the words where it needs to be.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="code.html#cb18-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">ts</span>(<span class="at">data =</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">391</span>, <span class="dv">728</span>, <span class="dv">512</span>, <span class="dv">10</span>), <span class="at">start =</span> <span class="dv">2010</span>)</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>assignment operator needs space</li>
+<li>elements of vector need spaces</li>
+<li>parameters need space</li>
+</ol>
+<p>and you can extend this definition to your code to make it look more beautiful and help other read your code without putting a strain on their eyes.</p>
+</div>
+<div id="conclusion-1" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> Conclusion’</h2>
 <p>In this chapter we discussed how to structure your code to make it more meaningful to read and easier to debug. The key takeaways from this chapter is:</p>
 <ol style="list-style-type: decimal">
 <li>Create sections to write beautiful and navigable code</li>
 <li>Put those sections in a logical order</li>
-<li>Don’t</li>
+<li>Properly indent your code</li>
+<li>Choose a style and stick with it</li>
+<li>give your code some breathing room</li>
 </ol>
 
 </div>
@@ -423,6 +461,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

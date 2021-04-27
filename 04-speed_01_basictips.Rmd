@@ -2,9 +2,9 @@
 
 # Some Tips to make R code faster {#speedtips}
 
-"Make it work, then make it beautiful, then if you really, really have to, make it fast. 90 percent of the time, if you make it beautiful, it will already be fast. So really, just make it beautiful!"
-
--- Joe Armstrong
+> "Make it work, then make it beautiful, then if you really, really have to, make it fast. 90 percent of the time, if you make it beautiful, it will already be fast. So really, just make it beautiful!"
+>
+> -- Joe Armstrong
 
 In IT sector speed is very important. People rewrite tons of algorithms back again in c, c++, go and java. Just to gain that milliseconds or may be microseconds performance over one another. When you compared to these languages R is a very slow language. If you really need to get nanosecond level of optimization in R that are not possible without going to Rcpp; which by the way is a very easy wrapper for R user around C++. But still R code can be optimized to a level where you can get production level efficiency in R without too much trouble. And R is not slow compared to interpreted languages like python, Javascript, ruby etc...
 
@@ -332,17 +332,7 @@ a()
 
 instead of 10 which we used when we created `a` it actually produced 12 because it didn't started evaluating the values until it actually had to evaluate the function.
 
-This function worked fine even though there is no `eval_foo` and `eval_bar` function created here. R simply ignores the evaluation until needed. If the value lies above 10 or below 0 it will create an error saying there is no such function available for R to evaluate.
-
-```{r error=TRUE}
-
-lazy_func(11)
-
-```
-
-Now we got the error. This can be used effectively for reducing burden on the CPU by running only the code that is necessary. It's a general practice that everyone uses even in different programming languages.
-
-So you can use this advice multiple ways, but try to break your code in multiple chunks and evaluate only that you need at the moment. It helps speed up the code a lot.
+So you can use this advice multiple ways, but try to break your code in multiple chunks and evaluate only that you need at the moment. It helps speed up the code a lot by delaying the calculations and saving memory too.
 
 ## Use Faster packages
 
@@ -498,7 +488,7 @@ R has a package called `compiler` that is used to compile any function in R. In 
 
 However R compilers still need to be optimized and there are people working on it. Hopefully we will get a better and faster R within a few more years. You can watch a video on it if you want to know more.
 
-\<iframe width="560" height="315" src="<https://www.youtube.com/embed/VdD0nHbcyk4%22> title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen\>\</iframe\>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/VdD0nHbcyk4?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### use direct method.object structure
 

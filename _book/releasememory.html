@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 11 Release Memory | Best Coding Practices for R</title>
   <meta name="description" content="This book explains the most important things you need to know while you are writing production level R code." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 11 Release Memory | Best Coding Practices for R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-04-23" />
+<meta name="date" content="2021-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,12 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="libs/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+<link href="libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+<script src="libs/klippy-0.0.0.9500/js/klippy.min.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +123,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -151,7 +158,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#create-sections"><i class="fa fa-check"></i><b>3.1</b> Create Sections</a></li>
 <li class="chapter" data-level="3.2" data-path="code.html"><a href="code.html#order-of-code"><i class="fa fa-check"></i><b>3.2</b> Order of Code</a></li>
 <li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#indentation"><i class="fa fa-check"></i><b>3.3</b> Indentation</a></li>
-<li class="chapter" data-level="3.4" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.4</b> Conclusion’</a></li>
+<li class="chapter" data-level="3.4" data-path="code.html"><a href="code.html#give-your-code-a-breathing-room"><i class="fa fa-check"></i><b>3.4</b> Give your code a breathing room</a></li>
+<li class="chapter" data-level="3.5" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.5</b> Conclusion’</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a>
 <ul>
@@ -284,12 +292,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="13.1" data-path="loops.html"><a href="loops.html#initialize-objects-before-loops"><i class="fa fa-check"></i><b>13.1</b> initialize objects before loops</a></li>
 <li class="chapter" data-level="13.2" data-path="loops.html"><a href="loops.html#use-simple-data-types"><i class="fa fa-check"></i><b>13.2</b> use simple data-types</a></li>
-<li class="chapter" data-level="13.3" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>13.3</b> apply family</a></li>
+<li class="chapter" data-level="13.3" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>13.3</b> apply family</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="loops.html"><a href="loops.html#apply-functions-are-not-much-faster-than-loops"><i class="fa fa-check"></i><b>13.3.1</b> apply functions are not much faster than loops</a></li>
+<li class="chapter" data-level="13.3.2" data-path="loops.html"><a href="loops.html#nested-lapply-have-same-speed-as-a-normal-lapply"><i class="fa fa-check"></i><b>13.3.2</b> Nested lapply have same speed as a normal lapply</a></li>
+</ul></li>
 <li class="chapter" data-level="13.4" data-path="loops.html"><a href="loops.html#vectorize-your-code"><i class="fa fa-check"></i><b>13.4</b> Vectorize your code</a>
 <ul>
 <li class="chapter" data-level="13.4.1" data-path="loops.html"><a href="loops.html#never-repeat-a-calculation"><i class="fa fa-check"></i><b>13.4.1</b> never repeat a calculation</a></li>
+<li class="chapter" data-level="13.4.2" data-path="loops.html"><a href="loops.html#vectorized-code-can-do-2-or-3-steps-more-in-lesser-time"><i class="fa fa-check"></i><b>13.4.2</b> Vectorized code can do 2 or 3 steps more in lesser time</a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="loops.html"><a href="loops.html#do-very-little-inside-loops"><i class="fa fa-check"></i><b>13.5</b> Do very little inside loops</a></li>
+<li class="chapter" data-level="13.5" data-path="loops.html"><a href="loops.html#understanding-non-vectorized-code"><i class="fa fa-check"></i><b>13.5</b> Understanding non-vectorized code</a></li>
+<li class="chapter" data-level="13.6" data-path="loops.html"><a href="loops.html#do-as-little-as-possible-inside-a-loop"><i class="fa fa-check"></i><b>13.6</b> Do as little as possible inside a loop</a>
+<ul>
+<li class="chapter" data-level="13.6.1" data-path="loops.html"><a href="loops.html#combine-vectorized-code-inside-a-loop"><i class="fa fa-check"></i><b>13.6.1</b> Combine Vectorized code inside a loop</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="loops.html"><a href="loops.html#conclusion-10"><i class="fa fa-check"></i><b>13.7</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>14</b> Multithreading</a></li>
 <li class="part"><span><b>V Shiny Tips</b></span></li>
@@ -321,12 +339,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="use-rm" class="section level2" number="11.1">
 <h2><span class="header-section-number">11.1</span> use rm()</h2>
 <p><code>rm</code> function deletes any object from R and releases some memory that could be used for further operations. It’s excellent for cases where you have a lot of intermediate results saved inside an R script that is supposed to run through an ETL. like this</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="releasememory.html#cb177-1" aria-hidden="true" tabindex="-1"></a>value <span class="ot">&lt;-</span> <span class="fu">length</span>(mtcars<span class="sc">$</span>mpg)</span>
-<span id="cb177-2"><a href="releasememory.html#cb177-2" aria-hidden="true" tabindex="-1"></a>sorted_mpg <span class="ot">&lt;-</span> <span class="fu">sort</span>(mtcars<span class="sc">$</span>mpg)</span>
-<span id="cb177-3"><a href="releasememory.html#cb177-3" aria-hidden="true" tabindex="-1"></a>median_values <span class="ot">&lt;-</span> sorted_mpg[value<span class="sc">/</span><span class="dv">2</span>] <span class="sc">+</span> sorted_mpg[(value<span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span> <span class="dv">1</span>]</span>
-<span id="cb177-4"><a href="releasememory.html#cb177-4" aria-hidden="true" tabindex="-1"></a>median_mpg <span class="ot">&lt;-</span> median_values <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb177-5"><a href="releasememory.html#cb177-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-6"><a href="releasememory.html#cb177-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;sorted_mpg&quot;</span>, <span class="st">&quot;median_values&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="releasememory.html#cb181-1" aria-hidden="true" tabindex="-1"></a>value <span class="ot">&lt;-</span> <span class="fu">length</span>(mtcars<span class="sc">$</span>mpg)</span>
+<span id="cb181-2"><a href="releasememory.html#cb181-2" aria-hidden="true" tabindex="-1"></a>sorted_mpg <span class="ot">&lt;-</span> <span class="fu">sort</span>(mtcars<span class="sc">$</span>mpg)</span>
+<span id="cb181-3"><a href="releasememory.html#cb181-3" aria-hidden="true" tabindex="-1"></a>median_values <span class="ot">&lt;-</span> sorted_mpg[value<span class="sc">/</span><span class="dv">2</span>] <span class="sc">+</span> sorted_mpg[(value<span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb181-4"><a href="releasememory.html#cb181-4" aria-hidden="true" tabindex="-1"></a>median_mpg <span class="ot">&lt;-</span> median_values <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb181-5"><a href="releasememory.html#cb181-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb181-6"><a href="releasememory.html#cb181-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;sorted_mpg&quot;</span>, <span class="st">&quot;median_values&quot;</span>))</span></code></pre></div>
 <p>In these scenarios where you are running scripts like these and storing intermediate result for further processing it’s okay to use <code>rm</code> function. However when you wrap it inside a function only the final result stays and everything else is lost anyways so you don’t need to use <code>rm</code> function at all.</p>
 <p>I would not advice anyone to use this function unless you are writing an ETL script on a data that is large enough that you would need space after every iteration. Even in those scenarios you can get away with not using intermediate variables for storing the results. But if you must and only and only in those very rare cases this function should be used. In broader cases R’s garbage collection will have you covered.</p>
 </div>
@@ -346,14 +364,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="inside-a-heavy-loop" class="section level3" number="11.2.3">
 <h3><span class="header-section-number">11.2.3</span> Inside a heavy loop</h3>
 <p>Loops are slow in R and sometime when are you doing heavy manipulation in a loop. R might consume more memory than it’s needed and will slow the further processes. This is the point I use a gc() inside a loop.</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="releasememory.html#cb178-1" aria-hidden="true" tabindex="-1"></a>gc_after_a_number <span class="ot">&lt;-</span> <span class="fl">1e2</span></span>
-<span id="cb178-2"><a href="releasememory.html#cb178-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb178-3"><a href="releasememory.html#cb178-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>){</span>
-<span id="cb178-4"><a href="releasememory.html#cb178-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">### heavy calculations</span></span>
-<span id="cb178-5"><a href="releasememory.html#cb178-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( i <span class="sc">%%</span> gc_after_a_number <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb178-6"><a href="releasememory.html#cb178-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gc</span>()</span>
-<span id="cb178-7"><a href="releasememory.html#cb178-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb178-8"><a href="releasememory.html#cb178-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="releasememory.html#cb182-1" aria-hidden="true" tabindex="-1"></a>gc_after_a_number <span class="ot">&lt;-</span> <span class="fl">1e2</span></span>
+<span id="cb182-2"><a href="releasememory.html#cb182-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-3"><a href="releasememory.html#cb182-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>){</span>
+<span id="cb182-4"><a href="releasememory.html#cb182-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">### heavy calculations</span></span>
+<span id="cb182-5"><a href="releasememory.html#cb182-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( i <span class="sc">%%</span> gc_after_a_number <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb182-6"><a href="releasememory.html#cb182-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gc</span>()</span>
+<span id="cb182-7"><a href="releasememory.html#cb182-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb182-8"><a href="releasememory.html#cb182-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Here in the code above I am running a long loop but after every 100 iterations I am freeing up memory by running a gc() function. After how many iterations do you want to use a loop is totally dependent on what are you doing inside a loop. It could go from anywhere between 10 to 10 thousand depending upon the situation. It surely helps and I would recommend everyone to use it but only for very heavy calculations.</p>
 </div>
 <div id="anything-that-takes-more-than-30-seconds" class="section level3" number="11.2.4">
@@ -365,65 +383,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.3</span> Cache / Store calculations</h2>
 <p>It’s a good practice in general to not repeat the same calculations over and over again. let’s check that with simple function.</p>
 <p>It’s a very famous problem of print <code>foo</code> when a number is divisible by 3 printing <code>bar</code> when it’s divisible by 5 and <code>foobar</code> when it’s divisible by both 3 and 5 or 15.</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="releasememory.html#cb179-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb179-2"><a href="releasememory.html#cb179-2" aria-hidden="true" tabindex="-1"></a>  num</span>
-<span id="cb179-3"><a href="releasememory.html#cb179-3" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb179-4"><a href="releasememory.html#cb179-4" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span>num)</span>
-<span id="cb179-5"><a href="releasememory.html#cb179-5" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">integer</span>(num)</span>
-<span id="cb179-6"><a href="releasememory.html#cb179-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb179-7"><a href="releasememory.html#cb179-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num){</span>
-<span id="cb179-8"><a href="releasememory.html#cb179-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(</span>
-<span id="cb179-9"><a href="releasememory.html#cb179-9" aria-hidden="true" tabindex="-1"></a>        x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span></span>
-<span id="cb179-10"><a href="releasememory.html#cb179-10" aria-hidden="true" tabindex="-1"></a>        x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span></span>
-<span id="cb179-11"><a href="releasememory.html#cb179-11" aria-hidden="true" tabindex="-1"></a>    ){</span>
-<span id="cb179-12"><a href="releasememory.html#cb179-12" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;foobar&quot;</span></span>
-<span id="cb179-13"><a href="releasememory.html#cb179-13" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>( x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb179-14"><a href="releasememory.html#cb179-14" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;foo&quot;</span></span>
-<span id="cb179-15"><a href="releasememory.html#cb179-15" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> ( x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb179-16"><a href="releasememory.html#cb179-16" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;bar&quot;</span></span>
-<span id="cb179-17"><a href="releasememory.html#cb179-17" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb179-18"><a href="releasememory.html#cb179-18" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> i</span>
-<span id="cb179-19"><a href="releasememory.html#cb179-19" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb179-20"><a href="releasememory.html#cb179-20" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb179-21"><a href="releasememory.html#cb179-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb179-22"><a href="releasememory.html#cb179-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
-<span id="cb179-23"><a href="releasememory.html#cb179-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb179-24"><a href="releasememory.html#cb179-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="releasememory.html#cb183-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb183-2"><a href="releasememory.html#cb183-2" aria-hidden="true" tabindex="-1"></a>  num</span>
+<span id="cb183-3"><a href="releasememory.html#cb183-3" aria-hidden="true" tabindex="-1"></a>){</span>
+<span id="cb183-4"><a href="releasememory.html#cb183-4" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span>num)</span>
+<span id="cb183-5"><a href="releasememory.html#cb183-5" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">integer</span>(num)</span>
+<span id="cb183-6"><a href="releasememory.html#cb183-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb183-7"><a href="releasememory.html#cb183-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num){</span>
+<span id="cb183-8"><a href="releasememory.html#cb183-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(</span>
+<span id="cb183-9"><a href="releasememory.html#cb183-9" aria-hidden="true" tabindex="-1"></a>        x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span></span>
+<span id="cb183-10"><a href="releasememory.html#cb183-10" aria-hidden="true" tabindex="-1"></a>        x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb183-11"><a href="releasememory.html#cb183-11" aria-hidden="true" tabindex="-1"></a>    ){</span>
+<span id="cb183-12"><a href="releasememory.html#cb183-12" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;foobar&quot;</span></span>
+<span id="cb183-13"><a href="releasememory.html#cb183-13" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>( x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb183-14"><a href="releasememory.html#cb183-14" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;foo&quot;</span></span>
+<span id="cb183-15"><a href="releasememory.html#cb183-15" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> ( x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb183-16"><a href="releasememory.html#cb183-16" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;bar&quot;</span></span>
+<span id="cb183-17"><a href="releasememory.html#cb183-17" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb183-18"><a href="releasememory.html#cb183-18" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> i</span>
+<span id="cb183-19"><a href="releasememory.html#cb183-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb183-20"><a href="releasememory.html#cb183-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb183-21"><a href="releasememory.html#cb183-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb183-22"><a href="releasememory.html#cb183-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
+<span id="cb183-23"><a href="releasememory.html#cb183-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb183-24"><a href="releasememory.html#cb183-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now look at the code above is it readable? what If I want to change the number of iterations. I will have to change it at 2 different places but that’s okay because I have wrapped in a function. But the key point is that I am also calculating <code>x$y[[i]]</code> multiple times and If I have make changes to it I will have to change it in <code>4</code> places. Let’s make it a little readable by storing the calculation and thus making our code readable and make it good enough that future changes can be done easily.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="releasememory.html#cb180-1" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb180-2"><a href="releasememory.html#cb180-2" aria-hidden="true" tabindex="-1"></a>  num</span>
-<span id="cb180-3"><a href="releasememory.html#cb180-3" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb180-4"><a href="releasememory.html#cb180-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb180-5"><a href="releasememory.html#cb180-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span>num)</span>
-<span id="cb180-6"><a href="releasememory.html#cb180-6" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">integer</span>(num)</span>
-<span id="cb180-7"><a href="releasememory.html#cb180-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb180-8"><a href="releasememory.html#cb180-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num){</span>
-<span id="cb180-9"><a href="releasememory.html#cb180-9" aria-hidden="true" tabindex="-1"></a>    curr_value <span class="ot">&lt;-</span> x<span class="sc">$</span>y[[i]]</span>
-<span id="cb180-10"><a href="releasememory.html#cb180-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb180-11"><a href="releasememory.html#cb180-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(</span>
-<span id="cb180-12"><a href="releasememory.html#cb180-12" aria-hidden="true" tabindex="-1"></a>        curr_value <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span></span>
-<span id="cb180-13"><a href="releasememory.html#cb180-13" aria-hidden="true" tabindex="-1"></a>        curr_value <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span></span>
-<span id="cb180-14"><a href="releasememory.html#cb180-14" aria-hidden="true" tabindex="-1"></a>    ){</span>
-<span id="cb180-15"><a href="releasememory.html#cb180-15" aria-hidden="true" tabindex="-1"></a>       z <span class="ot">&lt;-</span> <span class="st">&quot;foobar&quot;</span></span>
-<span id="cb180-16"><a href="releasememory.html#cb180-16" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>( curr_value <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb180-17"><a href="releasememory.html#cb180-17" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;foo&quot;</span></span>
-<span id="cb180-18"><a href="releasememory.html#cb180-18" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> ( curr_value <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb180-19"><a href="releasememory.html#cb180-19" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;bar&quot;</span></span>
-<span id="cb180-20"><a href="releasememory.html#cb180-20" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb180-21"><a href="releasememory.html#cb180-21" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> i</span>
-<span id="cb180-22"><a href="releasememory.html#cb180-22" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb180-23"><a href="releasememory.html#cb180-23" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb180-24"><a href="releasememory.html#cb180-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
-<span id="cb180-25"><a href="releasememory.html#cb180-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="releasememory.html#cb184-1" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb184-2"><a href="releasememory.html#cb184-2" aria-hidden="true" tabindex="-1"></a>  num</span>
+<span id="cb184-3"><a href="releasememory.html#cb184-3" aria-hidden="true" tabindex="-1"></a>){</span>
+<span id="cb184-4"><a href="releasememory.html#cb184-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb184-5"><a href="releasememory.html#cb184-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span>num)</span>
+<span id="cb184-6"><a href="releasememory.html#cb184-6" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">integer</span>(num)</span>
+<span id="cb184-7"><a href="releasememory.html#cb184-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb184-8"><a href="releasememory.html#cb184-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num){</span>
+<span id="cb184-9"><a href="releasememory.html#cb184-9" aria-hidden="true" tabindex="-1"></a>    curr_value <span class="ot">&lt;-</span> x<span class="sc">$</span>y[[i]]</span>
+<span id="cb184-10"><a href="releasememory.html#cb184-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb184-11"><a href="releasememory.html#cb184-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(</span>
+<span id="cb184-12"><a href="releasememory.html#cb184-12" aria-hidden="true" tabindex="-1"></a>        curr_value <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span></span>
+<span id="cb184-13"><a href="releasememory.html#cb184-13" aria-hidden="true" tabindex="-1"></a>        curr_value <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb184-14"><a href="releasememory.html#cb184-14" aria-hidden="true" tabindex="-1"></a>    ){</span>
+<span id="cb184-15"><a href="releasememory.html#cb184-15" aria-hidden="true" tabindex="-1"></a>       z <span class="ot">&lt;-</span> <span class="st">&quot;foobar&quot;</span></span>
+<span id="cb184-16"><a href="releasememory.html#cb184-16" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>( curr_value <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb184-17"><a href="releasememory.html#cb184-17" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;foo&quot;</span></span>
+<span id="cb184-18"><a href="releasememory.html#cb184-18" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> ( curr_value <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb184-19"><a href="releasememory.html#cb184-19" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;bar&quot;</span></span>
+<span id="cb184-20"><a href="releasememory.html#cb184-20" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb184-21"><a href="releasememory.html#cb184-21" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> i</span>
+<span id="cb184-22"><a href="releasememory.html#cb184-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb184-23"><a href="releasememory.html#cb184-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb184-24"><a href="releasememory.html#cb184-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
+<span id="cb184-25"><a href="releasememory.html#cb184-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Let’s check which is faster of the above implementations.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="releasememory.html#cb181-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb181-2"><a href="releasememory.html#cb181-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">foo</span>(<span class="fl">1e4</span>),</span>
-<span id="cb181-3"><a href="releasememory.html#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bar</span>(<span class="fl">1e4</span>)</span>
-<span id="cb181-4"><a href="releasememory.html#cb181-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="releasememory.html#cb185-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb185-2"><a href="releasememory.html#cb185-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">foo</span>(<span class="fl">1e4</span>),</span>
+<span id="cb185-3"><a href="releasememory.html#cb185-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bar</span>(<span class="fl">1e4</span>)</span>
+<span id="cb185-4"><a href="releasememory.html#cb185-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##        expr     min      lq     mean   median       uq     max neval cld
-##  foo(10000) 21.4537 22.3938 23.95090 23.49205 25.20715 35.3819   100   b
-##  bar(10000) 10.4650 11.0484 11.65059 11.33170 11.70855 18.7556   100  a</code></pre>
+##        expr     min       lq     mean  median      uq     max neval cld
+##  foo(10000) 22.3464 24.53065 26.27622 25.3623 27.1846 47.4518   100   b
+##  bar(10000) 10.7788 12.05795 13.51551 12.5670 13.3212 28.4267   100  a</code></pre>
 <p>We are saving almost half the time just because we are saving some intermediate calculations. You will be amazed to see how often can you do this. And it makes your code</p>
 <ul>
 <li><p>more performant</p></li>
@@ -433,15 +451,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Don’t force the computer to calculate something it has already calculated. This simple thing has brought into life big concepts like mem-cache or reddis. R too has the ability to cache it’s results. There is a package by name <code>memoise</code>. It can store the results of a previous calculation in RAM. It’s a classical case of RAM vs CPU trade off. You are using some RAM so that your CPU doesn’t have to work over and over again.</p>
 <p>Let’s try to calculate factorials to demonstrate how we can use it.</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="releasememory.html#cb183-1" aria-hidden="true" tabindex="-1"></a>fact <span class="ot">&lt;-</span> <span class="cf">function</span>(num){</span>
-<span id="cb183-2"><a href="releasememory.html#cb183-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( num <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb183-3"><a href="releasememory.html#cb183-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span>)</span>
-<span id="cb183-4"><a href="releasememory.html#cb183-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb183-5"><a href="releasememory.html#cb183-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
-<span id="cb183-6"><a href="releasememory.html#cb183-6" aria-hidden="true" tabindex="-1"></a>      num <span class="sc">*</span> <span class="fu">fact</span>(num <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb183-7"><a href="releasememory.html#cb183-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb183-8"><a href="releasememory.html#cb183-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb183-9"><a href="releasememory.html#cb183-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="releasememory.html#cb187-1" aria-hidden="true" tabindex="-1"></a>fact <span class="ot">&lt;-</span> <span class="cf">function</span>(num){</span>
+<span id="cb187-2"><a href="releasememory.html#cb187-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( num <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb187-3"><a href="releasememory.html#cb187-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span>)</span>
+<span id="cb187-4"><a href="releasememory.html#cb187-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb187-5"><a href="releasememory.html#cb187-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
+<span id="cb187-6"><a href="releasememory.html#cb187-6" aria-hidden="true" tabindex="-1"></a>      num <span class="sc">*</span> <span class="fu">fact</span>(num <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb187-7"><a href="releasememory.html#cb187-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb187-8"><a href="releasememory.html#cb187-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb187-9"><a href="releasememory.html#cb187-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now because being a recursive function, which you should avoid writing at all costs, It does the same computation over and over again. It goes something like this</p>
 <ol style="list-style-type: decimal">
 <li><p>fact(0) * fact(1)</p>
@@ -462,26 +480,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol></li>
 </ol>
 <p>now it’s calculating same thing over and over again without caching it. It makes it a valid candidate for memoise.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="releasememory.html#cb184-1" aria-hidden="true" tabindex="-1"></a>mem_fact <span class="ot">&lt;-</span> <span class="cf">function</span>(num){</span>
-<span id="cb184-2"><a href="releasememory.html#cb184-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( num <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb184-3"><a href="releasememory.html#cb184-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span>)</span>
-<span id="cb184-4"><a href="releasememory.html#cb184-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb184-5"><a href="releasememory.html#cb184-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
-<span id="cb184-6"><a href="releasememory.html#cb184-6" aria-hidden="true" tabindex="-1"></a>      num <span class="sc">*</span> <span class="fu">mem_fact</span>(num <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb184-7"><a href="releasememory.html#cb184-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb184-8"><a href="releasememory.html#cb184-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb184-9"><a href="releasememory.html#cb184-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb184-10"><a href="releasememory.html#cb184-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb184-11"><a href="releasememory.html#cb184-11" aria-hidden="true" tabindex="-1"></a>mem_fact <span class="ot">&lt;-</span> memoise<span class="sc">::</span><span class="fu">memoise</span>(mem_fact)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="releasememory.html#cb188-1" aria-hidden="true" tabindex="-1"></a>mem_fact <span class="ot">&lt;-</span> <span class="cf">function</span>(num){</span>
+<span id="cb188-2"><a href="releasememory.html#cb188-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( num <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb188-3"><a href="releasememory.html#cb188-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span>)</span>
+<span id="cb188-4"><a href="releasememory.html#cb188-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb188-5"><a href="releasememory.html#cb188-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
+<span id="cb188-6"><a href="releasememory.html#cb188-6" aria-hidden="true" tabindex="-1"></a>      num <span class="sc">*</span> <span class="fu">mem_fact</span>(num <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb188-7"><a href="releasememory.html#cb188-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb188-8"><a href="releasememory.html#cb188-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb188-9"><a href="releasememory.html#cb188-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb188-10"><a href="releasememory.html#cb188-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb188-11"><a href="releasememory.html#cb188-11" aria-hidden="true" tabindex="-1"></a>mem_fact <span class="ot">&lt;-</span> memoise<span class="sc">::</span><span class="fu">memoise</span>(mem_fact)</span></code></pre></div>
 <p>This is how you write a simple memoise function. Let’s compare the results.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="releasememory.html#cb185-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb185-2"><a href="releasememory.html#cb185-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fact</span>(<span class="dv">100</span>),</span>
-<span id="cb185-3"><a href="releasememory.html#cb185-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mem_fact</span>(<span class="dv">100</span>)</span>
-<span id="cb185-4"><a href="releasememory.html#cb185-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="releasememory.html#cb189-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb189-2"><a href="releasememory.html#cb189-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fact</span>(<span class="dv">100</span>),</span>
+<span id="cb189-3"><a href="releasememory.html#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mem_fact</span>(<span class="dv">100</span>)</span>
+<span id="cb189-4"><a href="releasememory.html#cb189-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##           expr  min    lq    mean median   uq     max neval cld
-##      fact(100) 38.2 38.75  64.348  39.25 39.8  2396.9   100   a
-##  mem_fact(100) 52.6 54.45 313.855  55.95 57.9 25599.4   100   a</code></pre>
+##           expr  min   lq    mean median    uq     max neval cld
+##      fact(100) 39.2 39.7  63.307  39.95 40.45  2272.5   100   a
+##  mem_fact(100) 52.4 55.1 326.264  56.75 59.40 26781.1   100   a</code></pre>
 <p>In this case we haven’t achieved much performance over the base code but if we run this function multiple times it will just fetch the results from RAM and save computations in which case it will be worth the effort. We will go through example in next chapters where memoise will be faster too…</p>
 <p>memoise is not the only package which does this sort of caching. There is a package by name <code>cachem</code> which is used in shiny and you will find some other products like redis which do the same thing but at scale. It’s an important technique to know for saving both time and memory.</p>
 </div>
@@ -531,6 +549,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

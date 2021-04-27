@@ -471,8 +471,6 @@ R is an interpreted language every thing you write inside a loop runs multiple t
 2.  initialize objects before the loop
 3.  Iterate on as few numbers as possible
 4.  Write as less functions inside a loop as possible
-5.  cache the results
-6.  run garbage collection for heavy calculations
 
 The main tip is to ***Get out of loop as quickly as possible***. There is another very crucial thing you can do to speed up your code.
 
@@ -532,4 +530,16 @@ I am doing as much vectorized calculation as possible in this scenario and this 
 
 ## Conclusion
 
-This chapter mainly focused on Loops and how to optimize them.
+This chapter mainly focused on Loops and how to optimize them. Loops are necessary and these tips will help run them better
+
+1.  vectorize your code
+2.  You can do more with vectorization and still be faster than a loop
+3.  Use vectorized and scalar code with care
+4.  combine vectorized code with loops to gain maximum power
+5.  Initialize Your object before the loop
+6.  use simpler data-types inside loop
+7.  apply functions are not faster than loops
+8.  nested apply functions don't necessary mean slower code but you should avoid them
+9.  Don't repeat same calculation
+10. cache or save the results
+11. run garbage collection for heavy calculations

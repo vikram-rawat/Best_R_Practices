@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Type System | Best Coding Practices for R</title>
   <meta name="description" content="This book explains the most important things you need to know while you are writing production level R code." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Type System | Best Coding Practices for R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-04-23" />
+<meta name="date" content="2021-04-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,12 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/clipboard-1.7.1/clipboard.min.js"></script>
+<link href="libs/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
+<link href="libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
+<script src="libs/klippy-0.0.0.9500/js/klippy.min.js"></script>
 
 
 <style type="text/css">
@@ -117,6 +123,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -151,7 +158,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#create-sections"><i class="fa fa-check"></i><b>3.1</b> Create Sections</a></li>
 <li class="chapter" data-level="3.2" data-path="code.html"><a href="code.html#order-of-code"><i class="fa fa-check"></i><b>3.2</b> Order of Code</a></li>
 <li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#indentation"><i class="fa fa-check"></i><b>3.3</b> Indentation</a></li>
-<li class="chapter" data-level="3.4" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.4</b> Conclusion’</a></li>
+<li class="chapter" data-level="3.4" data-path="code.html"><a href="code.html#give-your-code-a-breathing-room"><i class="fa fa-check"></i><b>3.4</b> Give your code a breathing room</a></li>
+<li class="chapter" data-level="3.5" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.5</b> Conclusion’</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a>
 <ul>
@@ -284,12 +292,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="13.1" data-path="loops.html"><a href="loops.html#initialize-objects-before-loops"><i class="fa fa-check"></i><b>13.1</b> initialize objects before loops</a></li>
 <li class="chapter" data-level="13.2" data-path="loops.html"><a href="loops.html#use-simple-data-types"><i class="fa fa-check"></i><b>13.2</b> use simple data-types</a></li>
-<li class="chapter" data-level="13.3" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>13.3</b> apply family</a></li>
+<li class="chapter" data-level="13.3" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>13.3</b> apply family</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="loops.html"><a href="loops.html#apply-functions-are-not-much-faster-than-loops"><i class="fa fa-check"></i><b>13.3.1</b> apply functions are not much faster than loops</a></li>
+<li class="chapter" data-level="13.3.2" data-path="loops.html"><a href="loops.html#nested-lapply-have-same-speed-as-a-normal-lapply"><i class="fa fa-check"></i><b>13.3.2</b> Nested lapply have same speed as a normal lapply</a></li>
+</ul></li>
 <li class="chapter" data-level="13.4" data-path="loops.html"><a href="loops.html#vectorize-your-code"><i class="fa fa-check"></i><b>13.4</b> Vectorize your code</a>
 <ul>
 <li class="chapter" data-level="13.4.1" data-path="loops.html"><a href="loops.html#never-repeat-a-calculation"><i class="fa fa-check"></i><b>13.4.1</b> never repeat a calculation</a></li>
+<li class="chapter" data-level="13.4.2" data-path="loops.html"><a href="loops.html#vectorized-code-can-do-2-or-3-steps-more-in-lesser-time"><i class="fa fa-check"></i><b>13.4.2</b> Vectorized code can do 2 or 3 steps more in lesser time</a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="loops.html"><a href="loops.html#do-very-little-inside-loops"><i class="fa fa-check"></i><b>13.5</b> Do very little inside loops</a></li>
+<li class="chapter" data-level="13.5" data-path="loops.html"><a href="loops.html#understanding-non-vectorized-code"><i class="fa fa-check"></i><b>13.5</b> Understanding non-vectorized code</a></li>
+<li class="chapter" data-level="13.6" data-path="loops.html"><a href="loops.html#do-as-little-as-possible-inside-a-loop"><i class="fa fa-check"></i><b>13.6</b> Do as little as possible inside a loop</a>
+<ul>
+<li class="chapter" data-level="13.6.1" data-path="loops.html"><a href="loops.html#combine-vectorized-code-inside-a-loop"><i class="fa fa-check"></i><b>13.6.1</b> Combine Vectorized code inside a loop</a></li>
+</ul></li>
+<li class="chapter" data-level="13.7" data-path="loops.html"><a href="loops.html#conclusion-10"><i class="fa fa-check"></i><b>13.7</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>14</b> Multithreading</a></li>
 <li class="part"><span><b>V Shiny Tips</b></span></li>
@@ -337,61 +355,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There are a certain things you should know about data types in R.</p>
 <div id="r-dont-have-scalar-data-types" class="section level3" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> R don’t have scalar data types</h3>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="types.html#cb73-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> 10L</span>
-<span id="cb73-2"><a href="types.html#cb73-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="types.html#cb77-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> 10L</span>
+<span id="cb77-2"><a href="types.html#cb77-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 <p>There is a reason <code>[1]</code> is written before the number 10. It’s because unlike other languages R don’t have scalar values. Everything in R is a vector. It may be a vector of length 1 or 1 billion but it’s all still a vector. This is one of the primary reason R works more like <strong>SQL</strong> ( <em>as most data guy love</em> ) and less like <strong>JAVA</strong> ( <em>as most programmers love</em> ).</p>
 <p>It gives huge speed to data manipulation as all the operations are more like <strong><em>In Memory Columnar Table</em></strong>. But in return when you are creating a webpage or an API or something where you need a scalar value to be updated again and again. R consumes more resources to do that kind of thing.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="types.html#cb75-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb75-2"><a href="types.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="at">vectorized =</span> {</span>
-<span id="cb75-3"><a href="types.html#cb75-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e3</span>)</span>
-<span id="cb75-4"><a href="types.html#cb75-4" aria-hidden="true" tabindex="-1"></a>},</span>
-<span id="cb75-5"><a href="types.html#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="at">scalar =</span> {</span>
-<span id="cb75-6"><a href="types.html#cb75-6" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">numeric</span>(1L)</span>
-<span id="cb75-7"><a href="types.html#cb75-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>){</span>
-<span id="cb75-8"><a href="types.html#cb75-8" aria-hidden="true" tabindex="-1"></a>  y[[i]] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
-<span id="cb75-9"><a href="types.html#cb75-9" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb75-10"><a href="types.html#cb75-10" aria-hidden="true" tabindex="-1"></a>},</span>
-<span id="cb75-11"><a href="types.html#cb75-11" aria-hidden="true" tabindex="-1"></a><span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb75-12"><a href="types.html#cb75-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="types.html#cb79-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb79-2"><a href="types.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="at">vectorized =</span> {</span>
+<span id="cb79-3"><a href="types.html#cb79-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="fl">1e3</span>)</span>
+<span id="cb79-4"><a href="types.html#cb79-4" aria-hidden="true" tabindex="-1"></a>},</span>
+<span id="cb79-5"><a href="types.html#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="at">scalar =</span> {</span>
+<span id="cb79-6"><a href="types.html#cb79-6" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">numeric</span>(1L)</span>
+<span id="cb79-7"><a href="types.html#cb79-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>){</span>
+<span id="cb79-8"><a href="types.html#cb79-8" aria-hidden="true" tabindex="-1"></a>  y[[i]] <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb79-9"><a href="types.html#cb79-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb79-10"><a href="types.html#cb79-10" aria-hidden="true" tabindex="-1"></a>},</span>
+<span id="cb79-11"><a href="types.html#cb79-11" aria-hidden="true" tabindex="-1"></a><span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb79-12"><a href="types.html#cb79-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##        expr  min     lq    mean  median     uq    max neval cld
-##  vectorized   55   55.8   58.62   58.25   59.9   64.9    10  a 
-##      scalar 3104 3401.7 3497.91 3513.45 3605.4 3838.6    10   b</code></pre>
+##        expr    min     lq    mean median     uq    max neval cld
+##  vectorized   53.8   55.4   57.17   56.2   57.2   68.2    10  a 
+##      scalar 3262.1 3461.7 3578.88 3533.5 3647.6 3988.8    10   b</code></pre>
 <p>Even then I would ask you to go ahead with R because the difference will most probably in 1-2 milliseconds which will never impact your performance any serious way. But this is something you should remember that vectorized R is way faster than even python but scalar manipulations in R are a bit slower. Choose vectorized version of the code whenever possible even if you do a bit more steps in it, it will still be faster than the scalar versions.</p>
 </div>
 <div id="dates-are-basically-integers-under-the-hood." class="section level3" number="9.1.2">
 <h3><span class="header-section-number">9.1.2</span> Dates are basically integers under the hood.</h3>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="types.html#cb77-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>()</span>
-<span id="cb77-2"><a href="types.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="types.html#cb81-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>()</span>
+<span id="cb81-2"><a href="types.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="types.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;Date&quot;</span></span>
-<span id="cb79-2"><a href="types.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(x)</span></code></pre></div>
-<pre><code>## [1] 18740</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="types.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;Date&quot;</span></span>
+<span id="cb83-2"><a href="types.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(x)</span></code></pre></div>
+<pre><code>## [1] 18744</code></pre>
 <p>This number means it has been 18 thousand 7 hundred days since 1970 which is roughly (365 * 50)</p>
 </div>
 <div id="posixlt-are-basically-lists-under-the-hood" class="section level3" number="9.1.3">
 <h3><span class="header-section-number">9.1.3</span> POSIXlt are basically lists under the hood</h3>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="types.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(x)</span></code></pre></div>
-<pre><code>## [1] 18740</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="types.html#cb83-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
-<span id="cb83-2"><a href="types.html#cb83-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(y)</span>
-<span id="cb83-3"><a href="types.html#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="types.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(x)</span></code></pre></div>
+<pre><code>## [1] 18744</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="types.html#cb87-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
+<span id="cb87-2"><a href="types.html#cb87-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(y)</span>
+<span id="cb87-3"><a href="types.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
 <pre><code>## [1] &quot;POSIXlt&quot; &quot;POSIXt&quot;</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="types.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;POSIXlt&quot;</span></span>
-<span id="cb85-2"><a href="types.html#cb85-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb85-3"><a href="types.html#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="types.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;POSIXlt&quot;</span></span>
+<span id="cb89-2"><a href="types.html#cb89-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-3"><a href="types.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(y)</span></code></pre></div>
 <pre><code>## $sec
-## [1] 59.88577
+## [1] 3.663504
 ## 
 ## $min
-## [1] 43
+## [1] 26
 ## 
 ## $hour
-## [1] 11
+## [1] 16
 ## 
 ## $mday
-## [1] 23
+## [1] 27
 ## 
 ## $mon
 ## [1] 3
@@ -400,10 +418,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] 121
 ## 
 ## $wday
-## [1] 5
+## [1] 2
 ## 
 ## $yday
-## [1] 112
+## [1] 116
 ## 
 ## $isdst
 ## [1] 0
@@ -420,75 +438,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="integers-are-smaller-than-numeric" class="section level3" number="9.1.4">
 <h3><span class="header-section-number">9.1.4</span> Integers are smaller than numeric</h3>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="types.html#cb87-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, <span class="fl">1e8</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb87-2"><a href="types.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="types.html#cb91-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, <span class="fl">1e8</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb91-2"><a href="types.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="types.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] &quot;integer&quot;</span></span>
-<span id="cb89-2"><a href="types.html#cb89-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(x)</span>
-<span id="cb89-3"><a href="types.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="types.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] &quot;integer&quot;</span></span>
+<span id="cb93-2"><a href="types.html#cb93-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(x)</span>
+<span id="cb93-3"><a href="types.html#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="types.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] &quot;numeric&quot;</span></span>
-<span id="cb91-2"><a href="types.html#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-3"><a href="types.html#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="types.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] &quot;numeric&quot;</span></span>
+<span id="cb95-2"><a href="types.html#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-3"><a href="types.html#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(x)</span></code></pre></div>
 <pre><code>## 400000048 bytes</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="types.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 400000048 bytes</span></span>
-<span id="cb93-2"><a href="types.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="types.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 400000048 bytes</span></span>
+<span id="cb97-2"><a href="types.html#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(y)</span></code></pre></div>
 <pre><code>## 800000048 bytes</code></pre>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="types.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 800000048 bytes</span></span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="types.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 800000048 bytes</span></span></code></pre></div>
 <p>See the difference yourself. It’s about twice the size of the original integer vector. It’s all because of datatypes. You should use integer only when you need one. There is a cool trick to let R know that you are creating an integer. Just add L at the end.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="types.html#cb96-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb96-2"><a href="types.html#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="types.html#cb100-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb100-2"><a href="types.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="types.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co">#[1] &quot;numeric&quot;</span></span>
-<span id="cb98-2"><a href="types.html#cb98-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb98-3"><a href="types.html#cb98-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> 1L</span>
-<span id="cb98-4"><a href="types.html#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="types.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co">#[1] &quot;numeric&quot;</span></span>
+<span id="cb102-2"><a href="types.html#cb102-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-3"><a href="types.html#cb102-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> 1L</span>
+<span id="cb102-4"><a href="types.html#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="types.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] &quot;integer&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="types.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] &quot;integer&quot;</span></span></code></pre></div>
 <p><strong>Letter L</strong> at the end after a number will tell R that you want an integer. Please use integers when you need one.</p>
 </div>
 <div id="define-your-datatypes-before-the-variable" class="section level3" number="9.1.5">
 <h3><span class="header-section-number">9.1.5</span> define your datatypes before the variable</h3>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="types.html#cb101-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">integer</span>(<span class="fl">1e3</span>)</span>
-<span id="cb101-2"><a href="types.html#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(i)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="types.html#cb105-1" aria-hidden="true" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="fu">integer</span>(<span class="fl">1e3</span>)</span>
+<span id="cb105-2"><a href="types.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(i)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="types.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(i)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="types.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(i)</span></code></pre></div>
 <pre><code>## [1] 1000</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="types.html#cb105-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">logical</span>(<span class="fl">1e3</span>)</span>
-<span id="cb105-2"><a href="types.html#cb105-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(l)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="types.html#cb109-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">logical</span>(<span class="fl">1e3</span>)</span>
+<span id="cb109-2"><a href="types.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(l)</span></code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="types.html#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(l)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="types.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(l)</span></code></pre></div>
 <pre><code>## [1] 1000</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="types.html#cb109-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fl">1e3</span>)</span>
-<span id="cb109-2"><a href="types.html#cb109-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(n)</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="types.html#cb113-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="fl">1e3</span>)</span>
+<span id="cb113-2"><a href="types.html#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(n)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="types.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(n)</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="types.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(n)</span></code></pre></div>
 <pre><code>## [1] 1000</code></pre>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="types.html#cb113-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">character</span>(<span class="fl">1e3</span>)</span>
-<span id="cb113-2"><a href="types.html#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(c)</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="types.html#cb117-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">character</span>(<span class="fl">1e3</span>)</span>
+<span id="cb117-2"><a href="types.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(c)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="types.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(c)</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="types.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(c)</span></code></pre></div>
 <pre><code>## [1] 1000</code></pre>
 <p>Just like any other language even in R you can create an empty vector of a predefined length which are initialized at 0 or "" or FALSE based on the data types. Use this functionality when you want to create a column or vector you know nothing about except data type.</p>
 <p>Defining data-types beforehand is an excellent programming practice and we as R user should use it more often. It also removes burden on the compiler to try to guess the data-type.</p>
 </div>
 <div id="lists-are-better-than-dataframe-under-a-loop" class="section level3" number="9.1.6">
 <h3><span class="header-section-number">9.1.6</span> lists are better than dataframe under a loop</h3>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="types.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x_dataframe &lt;- data.frame(x = 1:1e3L)</span></span>
-<span id="cb117-2"><a href="types.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
-<span id="cb117-3"><a href="types.html#cb117-3" aria-hidden="true" tabindex="-1"></a><span class="co"># for(i in 1:1e4L){</span></span>
-<span id="cb117-4"><a href="types.html#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   x_dataframe$x[[i]] &lt;- i</span></span>
-<span id="cb117-5"><a href="types.html#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span>
-<span id="cb117-6"><a href="types.html#cb117-6" aria-hidden="true" tabindex="-1"></a><span class="co"># This code will produce an error because you can&#39;t increase the row count of a dataframe like that.</span></span>
-<span id="cb117-7"><a href="types.html#cb117-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-8"><a href="types.html#cb117-8" aria-hidden="true" tabindex="-1"></a>x_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>L)</span>
-<span id="cb117-9"><a href="types.html#cb117-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-10"><a href="types.html#cb117-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>L){</span>
-<span id="cb117-11"><a href="types.html#cb117-11" aria-hidden="true" tabindex="-1"></a>  x_list<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i</span>
-<span id="cb117-12"><a href="types.html#cb117-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb117-13"><a href="types.html#cb117-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb117-14"><a href="types.html#cb117-14" aria-hidden="true" tabindex="-1"></a>x_dataframe <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(x_list)</span>
-<span id="cb117-15"><a href="types.html#cb117-15" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x_dataframe)</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="types.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x_dataframe &lt;- data.frame(x = 1:1e3L)</span></span>
+<span id="cb121-2"><a href="types.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb121-3"><a href="types.html#cb121-3" aria-hidden="true" tabindex="-1"></a><span class="co"># for(i in 1:1e4L){</span></span>
+<span id="cb121-4"><a href="types.html#cb121-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   x_dataframe$x[[i]] &lt;- i</span></span>
+<span id="cb121-5"><a href="types.html#cb121-5" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span>
+<span id="cb121-6"><a href="types.html#cb121-6" aria-hidden="true" tabindex="-1"></a><span class="co"># This code will produce an error because you can&#39;t increase the row count of a dataframe like that.</span></span>
+<span id="cb121-7"><a href="types.html#cb121-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-8"><a href="types.html#cb121-8" aria-hidden="true" tabindex="-1"></a>x_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>L)</span>
+<span id="cb121-9"><a href="types.html#cb121-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-10"><a href="types.html#cb121-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>L){</span>
+<span id="cb121-11"><a href="types.html#cb121-11" aria-hidden="true" tabindex="-1"></a>  x_list<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i</span>
+<span id="cb121-12"><a href="types.html#cb121-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb121-13"><a href="types.html#cb121-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb121-14"><a href="types.html#cb121-14" aria-hidden="true" tabindex="-1"></a>x_dataframe <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(x_list)</span>
+<span id="cb121-15"><a href="types.html#cb121-15" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x_dataframe)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <p>you can not create additional rows easily in data.frame. but all dataframes are lists under the hood with some additional rules. you can convert them to list run a loop and convert back to data.frame. It’s not only efficient but it’s faster too…</p>
 </div>
@@ -501,20 +519,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="choose-data-types-carefully" class="section level2" number="9.2">
 <h2><span class="header-section-number">9.2</span> Choose data types carefully</h2>
 <p>As we saw in examples above choosing the right data-type can mean a lot in</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="types.html#cb119-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq.Date</span>(</span>
-<span id="cb119-2"><a href="types.html#cb119-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>),</span>
-<span id="cb119-3"><a href="types.html#cb119-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="fu">Sys.Date</span>(),</span>
-<span id="cb119-4"><a href="types.html#cb119-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">length.out =</span> <span class="fl">1e4</span>)</span>
-<span id="cb119-5"><a href="types.html#cb119-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-6"><a href="types.html#cb119-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(x, <span class="fl">1e8</span>, <span class="cn">TRUE</span>)</span>
-<span id="cb119-7"><a href="types.html#cb119-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-8"><a href="types.html#cb119-8" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">as.IDate</span>(x)</span>
-<span id="cb119-9"><a href="types.html#cb119-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-10"><a href="types.html#cb119-10" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x) <span class="sc">==</span> <span class="fu">length</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="types.html#cb123-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq.Date</span>(</span>
+<span id="cb123-2"><a href="types.html#cb123-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">from =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2000-01-01&quot;</span>),</span>
+<span id="cb123-3"><a href="types.html#cb123-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">to =</span> <span class="fu">Sys.Date</span>(),</span>
+<span id="cb123-4"><a href="types.html#cb123-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">length.out =</span> <span class="fl">1e4</span>)</span>
+<span id="cb123-5"><a href="types.html#cb123-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-6"><a href="types.html#cb123-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(x, <span class="fl">1e8</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb123-7"><a href="types.html#cb123-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-8"><a href="types.html#cb123-8" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">as.IDate</span>(x)</span>
+<span id="cb123-9"><a href="types.html#cb123-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-10"><a href="types.html#cb123-10" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x) <span class="sc">==</span> <span class="fu">length</span>(y)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="types.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="types.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(x)</span></code></pre></div>
 <pre><code>## 800000272 bytes</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="types.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="types.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(y)</span></code></pre></div>
 <pre><code>## 400000336 bytes</code></pre>
 <p>as you can see the base date type consumes around twice the memory compared to <strong>IDate</strong> data type from data.table. It may be because one is using numeric data types under the hood and other is using integers under the hood and it makes a huge difference when you are working on big data, to understand the data types in R and properly map them to save more space on your RAM.</p>
 <p>Despite what most people say RAM and CPU are not cheap, throwing more processor on something should only be done when the code is properly optimized. I don’t want you to be hyper optimize your code on every sentence you write but being aware of some best practices will surely help you along the way. Go to next section for speed optimization as well.</p>
@@ -523,26 +541,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="dont-change-datatypes" class="section level2" number="9.3">
 <h2><span class="header-section-number">9.3</span> don’t change datatypes</h2>
 <p>R gives you an option to do this.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="types.html#cb125-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;Hello world&quot;</span></span>
-<span id="cb125-2"><a href="types.html#cb125-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-3"><a href="types.html#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="types.html#cb129-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;Hello world&quot;</span></span>
+<span id="cb129-2"><a href="types.html#cb129-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-3"><a href="types.html#cb129-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;Hello world&quot;</code></pre>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="types.html#cb127-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> 1L</span>
-<span id="cb127-2"><a href="types.html#cb127-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb127-3"><a href="types.html#cb127-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="types.html#cb131-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> 1L</span>
+<span id="cb131-2"><a href="types.html#cb131-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb131-3"><a href="types.html#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>Now you just assigned x as a character vector and then replaced x as an integer vector. This is something you can do but it’s something you should never do. changing the datatype of a vector is not recommended in any programming language unless you are trying to convert from one data-type to another. like :</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="types.html#cb129-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;2020-01-01&quot;</span></span>
-<span id="cb129-2"><a href="types.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="types.html#cb133-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;2020-01-01&quot;</span></span>
+<span id="cb133-2"><a href="types.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="types.html#cb131-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(x)</span>
-<span id="cb131-2"><a href="types.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="types.html#cb135-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(x)</span>
+<span id="cb135-2"><a href="types.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="types.html#cb133-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>)</span>
-<span id="cb133-2"><a href="types.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="types.html#cb137-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;1&quot;</span>, <span class="st">&quot;2&quot;</span>, <span class="st">&quot;3&quot;</span>)</span>
+<span id="cb137-2"><a href="types.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="types.html#cb135-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(y)</span>
-<span id="cb135-2"><a href="types.html#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="types.html#cb139-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(y)</span>
+<span id="cb139-2"><a href="types.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <p>This and many operations like this where you know beforehand that you need to change the data-type is a good example of cases where you must change the data-types. So apart from cases where data-conversion is needed you should never change the data-types ever. It’s a bad practice to do so.</p>
 <p>This is one of the scenario when you have the power but you mustn’t use it.</p>
@@ -605,6 +623,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

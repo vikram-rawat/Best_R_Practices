@@ -10,6 +10,7 @@ code
 create-sections
 order-of-code
 indentation
+give-your-code-a-breathing-room
 conclusion-1
 func
 metadata-or-information-header
@@ -108,9 +109,15 @@ loops
 initialize-objects-before-loops
 use-simple-data-types
 apply-family
+apply-functions-are-not-much-faster-than-loops
+nested-lapply-have-same-speed-as-a-normal-lapply
 vectorize-your-code
 never-repeat-a-calculation
-do-very-little-inside-loops
+vectorized-code-can-do-2-or-3-steps-more-in-lesser-time
+understanding-non-vectorized-code
+do-as-little-as-possible-inside-a-loop
+combine-vectorized-code-inside-a-loop
+conclusion-10
 multithreading
 shinyspeed
 shinymemory
