@@ -74,6 +74,8 @@ Any list of efficient packages can't be started without this name. It's a packag
 
 Despite what people say its easy to learn and easy to use in day to day analysis. It doesn't create a copy of the object and every function of this package is optimized for speed. It's faster than even **spark** for in memory datasets. Read that statement again if you didn't get how huge it is.
 
+Tidyverse people have been working on joining the two worlds: data.table and dplyr, so anyone can enoy the best of both worlds. Tha package is called `dtplyr`. No need to learn data.table sybtax, just dplyr verbs.
+
 I have a book in progress for people trying to learn data.table. This is the link you can read it:
 
 <https://bookdown.org/content/2746/>
