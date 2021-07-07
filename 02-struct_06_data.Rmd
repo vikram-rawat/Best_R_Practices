@@ -41,6 +41,13 @@ Most of the data we read is from either an excel file or a poorly designed datab
 
 There are functions in R like `make.names` but that too wouldn't help you naming your objects properly. When you have very less time go ahead with make.names but other than that please spend at least 1 to 2 hour naming the data. This small exercise will help you for the entire project.
 
+It works in a %>% pipeline, and handles problematic variable names, especially those that are so well preserved by readxl::read_excel() and readr::read_csv().
+
+Returns names with only lowercase letters, with _ as a separator
+Handles special characters and spaces
+Appends numbers to duplicated names
+Converts “%” to “percent” to retain meaning
+
 ## Use Databases
 
 R has a limitation of RAM while handling data. Even though R has a way of dealing with larger than RAM data I will advice you to use a database instead. I would highly recommend `disk.frame` package if you are working on larger than RAM data. It's based on `data.table` and is pretty fast. But that too has limitation and it's absolutely not a replacement for a database.
