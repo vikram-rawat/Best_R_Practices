@@ -1,4 +1,7 @@
 # Deployment {functional}
 
+## Method
+  ### API
+  ### Web App
 ## Docker
 ## Reverse Proxy
