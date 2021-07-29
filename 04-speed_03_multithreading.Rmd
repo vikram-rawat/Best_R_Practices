@@ -1,1 +1,64 @@
 # Multithreading {#multithreading}
+
+Multithreading is the last resort when you have already optimized all the nitty-gritty details available to you. Most of the time you are okay using single threaded calculation. Only at times when your calculation exceeds a certain time limit; say more than 60 seconds or 6 seconds depending on the situation, then you can use it for your advantage for normal calculations it's just not worth the complexity. Because there are cases where multithreading will slow your computation because of the overhead it brings along with it.
+
+```{r include=FALSE}
+
+library(future)
+library(data.table)
+library(nycflights13)
+
+plan(strategy = multisession)
+```
+
+## Multi Threading has an overhead
+
+There is an overhead of managing multiple processes which doesn't allow it to achieve the theoritical maximum that we mostly read. With each subsequent thread you throw at the problem the marginal speed reduces and it could be possible that you make it more slower. Let's check it with the code of data.table package which is written in optimized C and thus we can be rest assured of the results. Let take the flights dataset.
+
+```{r}
+
+nyc <- data.table(
+  flights
+  )
+
+replicate(
+  n = 10,
+  expr = nyc,
+  ) |>
+  rbindlist()
+```
+
+Let's take a fairly okay computation and see how much speed we gain with the single thread.
+
+```{r}
+setDTthreads(1L)
+
+microbenchmark::microbenchmark(
+  single = nyc[,.(count = .N, total_dist =  sum(distance)),.(year,month, day)]
+)
+
+```
+
+```{r}
+
+setDTthreads(2L)
+
+microbenchmark::microbenchmark(
+  double = nyc[,.(count = .N, total_dist =  sum(distance)),.(year,month, day)]
+)
+```
+
+```{r}
+
+setDTthreads(4L)
+
+microbenchmark::microbenchmark(
+  double = nyc[,.(count = .N, total_dist =  sum(distance)),.(year,month, day)]
+)
+```
+
+## Be Cautious with Database
+
+## Use Future Package
+
+## Send Only Bigger calculation

@@ -1,0 +1,9 @@
+# (PART) Architecture {-}
+
+# Functional Architecture {functional}
+
+## Pure and Impure functions
+## Data and Method as seperate entity
+## functors
+## monoids
+## write packages
