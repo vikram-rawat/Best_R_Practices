@@ -21,11 +21,11 @@ nyc <- data.table(
   flights
   )
 
-replicate(
-  n = 10,
-  expr = nyc,
-  ) |>
-  rbindlist()
+# replicate(
+#   n = 10,
+#   expr = nyc,
+#   ) |>
+#   rbindlist()
 ```
 
 Let's take a fairly okay computation and see how much speed we gain with the single thread.

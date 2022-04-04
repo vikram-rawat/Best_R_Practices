@@ -1,0 +1,119 @@
+# Environment Management {#envManagement}
+
+If you create a product today be it an API or Shiny App or Even a normal R-script. One thing you can't be sure of is to update the packages or the version of R. There are companies where you can not access different version of a package because multiple projects are relying on the same copy of the package. It's hard to update your package in these companies and you will need to get permissions from top admins to do so. Thus it's better to rely on as less packages as possible and that too on the popular ones.
+
+But even after you have created a code you would want to keep a record of all the packages and their version as it is for that particular project. This is where environments come in handy.
+
+## Avoid package dependencies when possible
+
+Adding one tiny package to your work flow adds recursive dependency not only on the package that you imported but all the other package that your package is relying on and on packages that those packages rely on and so on and on...
+
+I have also worked on organizations where you have to write an email to explain why you need a certain package to be installed on Rstudio cloud and why you can't get away with already installed packages. I hope you never have to work in such environment ever. But it's a better software practice to keep dependencies as minimum as possible. Because each new thing brings a whole set of debugging issues and problems.
+
+Mostly this applies to the fact that you can get away with an `lapply` instead of relying on `purrr::map` . If your data is very small and you don't do much fancy stuff with it, May be you can get away with `base R dataframes` instead of `tibble` or `data.table`. With new R 4.1.0 you might as well can get away with base pipe `|>` without magrittr pipe `%>%`. These are certain examples I can think out of my head. But the implications are huge.
+
+**If you can achieve something without relying on external dependencies be it a package or anything else you should always choose the one with less dependencies.**
+
+## renv for package management
+
+There was a package called Packrat a few years ago I would have suggested you to use that always. But currently there is a package I have been using for over a year now by name renv. It does everything that you need to recreate your environment anywhere else.
+
+Basically you need to activate the package in your project. By using this command.
+
+```{r , eval=FALSE}
+
+renv::activate()
+```
+
+Then take a snapshot of current project where it will record a list of all the packages used in your project by this command.
+
+```{r , eval=FALSE}
+
+renv::snapshot()
+```
+
+and When you want to reproduce it on a docker container or a remote machine or any place else. You would simple need to run.
+
+```{r , eval=FALSE}
+
+renv::restore()
+```
+
+and it generates a lock file with all the information about a project including the version or R and the versions of the packages used so at any time you can recreate the entire environment again.
+
+---
+{
+  "R": {
+    "Version": "4.0.2",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "https://cran.rstudio.com"
+      }
+    ]
+  },
+  "Packages": {
+    "renv": {
+      "Package": "renv",
+      "Version": "0.13.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "be02499761baab60d58b808efd08c3fc"
+    }
+  }
+}
+---
+
+I could give you multiple ways of tackling the same problem. But this book is about the best possible one so this is it. You just need to use this package to solve almost all of your problems.
+
+## config for external dependencies
+
+There is a package called config that allows you to read yaml format in R. That is a standard practice to keep all the standard configuration items like **filename, dateformat, database keys etc..** in a config file. There are many other ways you can secure credentials and everything but config is easiest amongst them all and you can use it for storing all the parameters and external path variables that your code requires. It could be an address to external file storage or anything else.
+
+It's good to keep all the variable your code requires outside the main code so that when you need to update them you don't need to change the entire code itself. Below is a snippet of config file from one of my project.
+
+    default:
+      datawarehouse:
+        driver: Postgres
+        server: localhost
+        uid: !expr Sys.getenv("pg_uid")
+        pwd: !expr Sys.getenv("pg_pwd")
+        port: !expr Sys.getenv("pg_port")
+        database: !expr Sys.getenv("pg_db")
+      dockerdatabase:
+        driver: Postgres
+        server: postgres_plum
+        uid: !expr Sys.getenv("doc_uid")
+        pwd: !expr Sys.getenv("doc_pwd")
+        port: !expr Sys.getenv("doc_port")
+        database: !expr Sys.getenv("doc_db")
+
+      filestructure:
+        logfile: "logs/logs.csv"
+
+as you can see I haven't only kept the passwords and user names but external files as well. Tomorrow if I have to change the logging file I will just have to update it here without opening any R code. It removes so much burden on reading the code again and again. Most basic things you can set with config files are.
+
+1.  Database Keys
+2.  API Keys
+3.  Date formats
+4.  Number of threads used
+5.  Tokens
+
+I found this the hard way that external files change a lot more than you think and folder structure should not be a hurdle ever. Even when you have to send your code to some VM or another machine. Your date_formats_strings like `%Y-%m-%d` tend to change a lot and thus they should also be a part of config file. You will slowly come up with your own way of maintaining a config file. There are no wrong ways just make sure everything your code depends upon externally should be in this config file.
+
+Use it whenever possible it's a weapon.
+
+## use .Renviron file
+
+Every project should have at least one .Renviron file to keep all the environment variable into it. This is needed to avoid storing any sensitive information into your code. And there is a Rule number one ***`Never Ever Commit .Renviron file into version control`***. This file will set up environment variable that you will need during runtime of your code... This is necessary for some projects where your package wants you to modify an environment variable for some changes. Like in one of my projects I was asked to make sure all the packages are in D:// ( d drive - windows) So I had to set an environment variable in this file to let renv know that default folder path is different.
+
+This is also necessary when multiple people are working on same project but are working on their local instalations of database etc... Also when you are working for an organization where there are multiple environment setups for different stages of deployment. like dev, test, acceptance and production etc... This setup will also help you to change the database or API keys without changing your config file but only uploading different .Renviron file in different environments.
+
+## Conclusion
+
+This chapter doesn't discuss much on concepts but the takeaways from the chapter are:
+
+1.  Use as less packages as possible, it helps in code maintenance and debugging.
+2.  Use **renv** for all the project you plan to maintain or keep for long term
+3.  Use **config** to manage all the external dependencies your project have or might have
+4.  Always create an .Renviron file and store sensitive information on that and never commit it

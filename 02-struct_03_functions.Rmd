@@ -22,7 +22,7 @@ Examples of some important tags can be :
 6.  purpose
 7.  descriptions
 
-You can create your own tags based on usecases and information needed for further scenarios.
+You can create your own tags based on usecases and information needed for further scenarios. You can also use roxygen tags for these.
 
 ## Pass everything through parameters
 
@@ -212,7 +212,7 @@ best_func <- function( mult_params ){
 }
 ```
 
-Here in this code every function has a clear responsibility and the main function is just a composite of multiple unique functions and it will be very easy to debug this code or change the functionality entirely.
+Here in this code every function has a clear responsibility and the main function is just a composite of multiple unique functions and it will be very easy to debug this code or change the functionality entirely. This idea is called **`function composition`**. Which actually means you can always create a bigger and better function by combining multiple smaller ones. This is a neat trick in functional programming and R is no exception.
 
 ## Don't load libraries or source code inside a function
 
@@ -311,5 +311,6 @@ In this chapter we discussed the best practices for writing functions in R. Here
 5.  use logical names for parameter
 6.  use tryCatch in every function
 7.  functions are supposed to do one thing and one thing only
-8.  don't try to change global environment without letting the user know
-9.  Use qualified imports with syntax package::functions every time possible
+8.  create bigger function through function composition only not through huge scripts.
+9.  don't try to change global environment without letting the user know
+10. Use qualified imports with syntax package::functions every time possible

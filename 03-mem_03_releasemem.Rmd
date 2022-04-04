@@ -1,6 +1,6 @@
 # Release Memory {#releasememory}
 
-Sometimes even after applying all the best techniques to save memory you still need more space. In those cases you need to understand that R has 2 techniques available to you. These techniques are mostly useful in different context. I mostly recommend using `gc()` inside a loop and `rm()` inside an ETL or R script.
+Sometimes even after applying all the best techniques to save memory you still need more space. In those cases you need to understand that R has 2 techniques available to you. These techniques are mostly useful in different context. I mostly recommend using `gc()` inside a loop and `rm()` inside an ETL or big function.
 
 ## use rm()
 
@@ -16,7 +16,57 @@ median_mpg <- median_values / 2
 rm(list = c("value", "sorted_mpg", "median_values"))
 ```
 
-In these scenarios where you are running scripts like these and storing intermediate result for further processing it's okay to use `rm` function. However when you wrap it inside a function only the final result stays and everything else is lost anyways so you don't need to use `rm` function at all.
+In these scenarios where you are running scripts like these and storing intermediate result for further processing it's okay to use `rm` function. However when you wrap it inside a function only the final result stays and everything else is lost anyways so you don't need to use `rm` function at all. The only difference is when your function is huge. I once wrote an ETL script where I compose multiple functions to create a bigger one which was supposed to run like an ETL job. The data created there was huge and it was crashing my RAM everytime. So I had to modify it to make sure I delete the objects created after I am done with it.
+
+```{r}
+
+# ## this is a bad style it will exhaust your RAM way more quickly and you would always need more RAM than necessary to perform this action.
+# 
+# bad_func <- function(){
+#   
+#   a <- load_huge_datasets("some file")
+#   b <- load_huge_datasets("some other file or db")
+#   c <- load_huge_datasets("some other file or db")
+#   
+#   results_a <- long_computaions(a)
+#   results_b <- other_long_computaions(b)
+#   results_c <- other_long_computaions(c)
+#   
+#   final_results <- results_a + results_b + results_c
+#   
+#   return(
+#     final_results
+#   )
+# }
+# 
+# 
+# ## This style is only using the RAM that's necessary at a time and then deleting objects to make room for other RAM
+# 
+# good_func <- function(){
+#   
+#   a <- load_huge_datasets("some file")
+#   results_a <- long_computaions(a)
+#   rm(a)
+# 
+#   b <- load_huge_datasets("some other file or db")
+#   results_b <- other_long_computaions(b)
+#   rm(b)
+#   
+#   c <- load_huge_datasets("some other file or db")
+#   results_c <- other_long_computaions(c)
+#   rm(c)
+#   
+#   final_results <- results_a + results_b + results_c
+#   
+#   return(
+#     final_results
+#   )
+#   
+# }
+
+```
+
+Read both the functions mentioned above if you ever faced with a situation where RAM is crucial always make a habit of writing code like good_func where you can use `rm()` inside a function to make room for more objects.
 
 I would not advice anyone to use this function unless you are writing an ETL script on a data that is large enough that you would need space after every iteration. Even in those scenarios you can get away with not using intermediate variables for storing the results. But if you must and only and only in those very rare cases this function should be used. In broader cases R's garbage collection will have you covered.
 
@@ -210,8 +260,9 @@ memoise is not the only package which does this sort of caching. There is a pack
 In this chapter we learned how to free up memory for more usage in R. This should help you manage your R environment better. Let's see what we have studied so far.
 
 1.  Don't use rm unless necessary
-2.  rm should only be used in an ETL or a manual script
-3.  Most of the time you can avoid rm
-4.  use gc() inside heavy loops after every few iteration
-5.  use gc() after every heavy transaction which takes more than a couple of seconds.
-6.  Don't repeat calculations
+2.  rm should only be used in an ETL or a function
+3.  remove objects after you are done with it.
+4.  Most of the time you can avoid rm
+5.  use gc() inside heavy loops after every few iteration
+6.  use gc() after every heavy transaction which takes more than a couple of seconds.
+7.  Don't repeat calculations

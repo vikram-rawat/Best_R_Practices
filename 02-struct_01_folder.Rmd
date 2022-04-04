@@ -1,4 +1,4 @@
-# (PART) Structure {-}
+# (PART) Structure {.unnumbered}
 
 # Folder Structure {#folder}
 
@@ -33,7 +33,9 @@ There is a trick about naming conventions:
 
 ## Folders Based on File-Type
 
-A Very common practice is to keep different file types in different folder. One of the main mistake I see people writing code like this.
+A Very common practice is to keep different file types in different folder. It's based on a principle called **Seperation of concern** so that different individual can take care of different parts of a project without worrying about other parts of the project.
+
+One of the main mistake I see people writing code like this.
 
     DBI::dbGetQuery(conn,
     "
