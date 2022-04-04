@@ -1,12 +1,11 @@
 name: best_r_practices
-title:
+title: Best_R_Practices
 username: vickey.coool
 account: vickey.coool
 server: bookdown.org
 hostUrl: https://bookdown.org/__api__
 appId: 6393
-bundleId: 38897
+bundleId: 69535
 url: https://bookdown.org/content/d1e53ac9-28ce-472f-bc2c-f499f18264a3/
-when: 1617859130.65326
-asMultiple: FALSE
-asStatic: FALSE
+when: 1649089668.14846
+lastSyncTime: 1649089668.14846

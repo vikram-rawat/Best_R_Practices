@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Environment Management | Best Coding Practices for R</title>
+  <title>Chapter 18 Deployment {functional} | Best Coding Practices for R</title>
   <meta name="description" content="This book explains the most important things you need to know while you are writing production level R code." />
   <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Environment Management | Best Coding Practices for R" />
+  <meta property="og:title" content="Chapter 18 Deployment {functional} | Best Coding Practices for R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This book explains the most important things you need to know while you are writing production level R code." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Environment Management | Best Coding Practices for R" />
+  <meta name="twitter:title" content="Chapter 18 Deployment {functional} | Best Coding Practices for R" />
   
   <meta name="twitter:description" content="This book explains the most important things you need to know while you are writing production level R code." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="oops.html"/>
-<link rel="next" href="dataManagement.html"/>
+<link rel="prev" href="testing-functional.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -361,76 +361,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="envManagement" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Environment Management<a href="envManagement.html#envManagement" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>If you create a product today be it an API or Shiny App or Even a normal R-script. One thing you can’t be sure of is to update the packages or the version of R. There are companies where you can not access different version of a package because multiple projects are relying on the same copy of the package. It’s hard to update your package in these companies and you will need to get permissions from top admins to do so. Thus it’s better to rely on as less packages as possible and that too on the popular ones.</p>
-<p>But even after you have created a code you would want to keep a record of all the packages and their version as it is for that particular project. This is where environments come in handy.</p>
-<div id="avoid-package-dependencies-when-possible" class="section level2 hasAnchor" number="7.1">
-<h2><span class="header-section-number">7.1</span> Avoid package dependencies when possible<a href="envManagement.html#avoid-package-dependencies-when-possible" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Adding one tiny package to your work flow adds recursive dependency not only on the package that you imported but all the other package that your package is relying on and on packages that those packages rely on and so on and on…</p>
-<p>I have also worked on organizations where you have to write an email to explain why you need a certain package to be installed on Rstudio cloud and why you can’t get away with already installed packages. I hope you never have to work in such environment ever. But it’s a better software practice to keep dependencies as minimum as possible. Because each new thing brings a whole set of debugging issues and problems.</p>
-<p>Mostly this applies to the fact that you can get away with an <code>lapply</code> instead of relying on <code>purrr::map</code> . If your data is very small and you don’t do much fancy stuff with it, May be you can get away with <code>base R dataframes</code> instead of <code>tibble</code> or <code>data.table</code>. With new R 4.1.0 you might as well can get away with base pipe <code>|&gt;</code> without magrittr pipe <code>%&gt;%</code>. These are certain examples I can think out of my head. But the implications are huge.</p>
-<p><strong>If you can achieve something without relying on external dependencies be it a package or anything else you should always choose the one with less dependencies.</strong></p>
-</div>
-<div id="renv-for-package-management" class="section level2 hasAnchor" number="7.2">
-<h2><span class="header-section-number">7.2</span> renv for package management<a href="envManagement.html#renv-for-package-management" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There was a package called Packrat a few years ago I would have suggested you to use that always. But currently there is a package I have been using for over a year now by name renv. It does everything that you need to recreate your environment anywhere else.</p>
-<p>Basically you need to activate the package in your project. By using this command.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="envManagement.html#cb41-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">activate</span>()</span></code></pre></div>
-<p>Then take a snapshot of current project where it will record a list of all the packages used in your project by this command.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="envManagement.html#cb42-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">snapshot</span>()</span></code></pre></div>
-<p>and When you want to reproduce it on a docker container or a remote machine or any place else. You would simple need to run.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="envManagement.html#cb43-1" aria-hidden="true" tabindex="-1"></a>renv<span class="sc">::</span><span class="fu">restore</span>()</span></code></pre></div>
-<p>and it generates a lock file with all the information about a project including the version or R and the versions of the packages used so at any time you can recreate the entire environment again.</p>
-<p>I could give you multiple ways of tackling the same problem. But this book is about the best possible one so this is it. You just need to use this package to solve almost all of your problems.</p>
-</div>
-<div id="config-for-external-dependencies" class="section level2 hasAnchor" number="7.3">
-<h2><span class="header-section-number">7.3</span> config for external dependencies<a href="envManagement.html#config-for-external-dependencies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There is a package called config that allows you to read yaml format in R. That is a standard practice to keep all the standard configuration items like <strong>filename, dateformat, database keys etc..</strong> in a config file. There are many other ways you can secure credentials and everything but config is easiest amongst them all and you can use it for storing all the parameters and external path variables that your code requires. It could be an address to external file storage or anything else.</p>
-<p>It’s good to keep all the variable your code requires outside the main code so that when you need to update them you don’t need to change the entire code itself. Below is a snippet of config file from one of my project.</p>
-<pre><code>default:
-  datawarehouse:
-    driver: Postgres
-    server: localhost
-    uid: !expr Sys.getenv(&quot;pg_uid&quot;)
-    pwd: !expr Sys.getenv(&quot;pg_pwd&quot;)
-    port: !expr Sys.getenv(&quot;pg_port&quot;)
-    database: !expr Sys.getenv(&quot;pg_db&quot;)
-  dockerdatabase:
-    driver: Postgres
-    server: postgres_plum
-    uid: !expr Sys.getenv(&quot;doc_uid&quot;)
-    pwd: !expr Sys.getenv(&quot;doc_pwd&quot;)
-    port: !expr Sys.getenv(&quot;doc_port&quot;)
-    database: !expr Sys.getenv(&quot;doc_db&quot;)
-
-  filestructure:
-    logfile: &quot;logs/logs.csv&quot;</code></pre>
-<p>as you can see I haven’t only kept the passwords and user names but external files as well. Tomorrow if I have to change the logging file I will just have to update it here without opening any R code. It removes so much burden on reading the code again and again. Most basic things you can set with config files are.</p>
-<ol style="list-style-type: decimal">
-<li>Database Keys</li>
-<li>API Keys</li>
-<li>Date formats</li>
-<li>Number of threads used</li>
-<li>Tokens</li>
-</ol>
-<p>I found this the hard way that external files change a lot more than you think and folder structure should not be a hurdle ever. Even when you have to send your code to some VM or another machine. Your date_formats_strings like <code>%Y-%m-%d</code> tend to change a lot and thus they should also be a part of config file. You will slowly come up with your own way of maintaining a config file. There are no wrong ways just make sure everything your code depends upon externally should be in this config file.</p>
-<p>Use it whenever possible it’s a weapon.</p>
-</div>
-<div id="use-.renviron-file" class="section level2 hasAnchor" number="7.4">
-<h2><span class="header-section-number">7.4</span> use .Renviron file<a href="envManagement.html#use-.renviron-file" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Every project should have at least one .Renviron file to keep all the environment variable into it. This is needed to avoid storing any sensitive information into your code. And there is a Rule number one <strong><em><code>Never Ever Commit .Renviron file into version control</code></em></strong>. This file will set up environment variable that you will need during runtime of your code… This is necessary for some projects where your package wants you to modify an environment variable for some changes. Like in one of my projects I was asked to make sure all the packages are in D:// ( d drive - windows) So I had to set an environment variable in this file to let renv know that default folder path is different.</p>
-<p>This is also necessary when multiple people are working on same project but are working on their local instalations of database etc… Also when you are working for an organization where there are multiple environment setups for different stages of deployment. like dev, test, acceptance and production etc… This setup will also help you to change the database or API keys without changing your config file but only uploading different .Renviron file in different environments.</p>
-</div>
-<div id="conclusion-3" class="section level2 hasAnchor" number="7.5">
-<h2><span class="header-section-number">7.5</span> Conclusion<a href="envManagement.html#conclusion-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This chapter doesn’t discuss much on concepts but the takeaways from the chapter are:</p>
-<ol style="list-style-type: decimal">
-<li>Use as less packages as possible, it helps in code maintenance and debugging.</li>
-<li>Use <strong>renv</strong> for all the project you plan to maintain or keep for long term</li>
-<li>Use <strong>config</strong> to manage all the external dependencies your project have or might have</li>
-<li>Always create an .Renviron file and store sensitive information on that and never commit it</li>
-</ol>
+<div id="deployment-functional" class="section level1 hasAnchor" number="18">
+<h1><span class="header-section-number">Chapter 18</span> Deployment {functional}<a href="deployment-functional.html#deployment-functional" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="method" class="section level2 hasAnchor" number="18.1">
+<h2><span class="header-section-number">18.1</span> Method<a href="deployment-functional.html#method" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>### API
+### Web App
+## Docker
+## Reverse Proxy</p>
 
 </div>
 </div>
@@ -439,8 +377,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="oops.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dataManagement.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="testing-functional.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -471,7 +409,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/02-struct_06_envmanagement.Rmd",
+"link": "https://github.com/vikram-rawat/Best_R_Practices/blob/master/05-arch_03_deploy.Rmd",
 "text": "Edit"
 },
 "history": {

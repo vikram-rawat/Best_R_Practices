@@ -4,19 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 For Loops | Best Coding Practices for R</title>
+  <title>Chapter 14 For Loops | Best Coding Practices for R</title>
   <meta name="description" content="This book explains the most important things you need to know while you are writing production level R code." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 For Loops | Best Coding Practices for R" />
+  <meta property="og:title" content="Chapter 14 For Loops | Best Coding Practices for R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This book explains the most important things you need to know while you are writing production level R code." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 For Loops | Best Coding Practices for R" />
+  <meta name="twitter:title" content="Chapter 14 For Loops | Best Coding Practices for R" />
   
   <meta name="twitter:description" content="This book explains the most important things you need to know while you are writing production level R code." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-06-08" />
+<meta name="date" content="2022-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="speedtips.html"/>
 <link rel="next" href="multithreading.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/clipboard-1.7.1/clipboard.min.js"></script>
 <link href="libs/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
 <link href="libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
@@ -141,179 +140,207 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Best Coding Practices for R </a></li>
 
 <li class="divider"></li>
-<li class="part"><span><b>I Introduction</b></span></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>CoverPage</a></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="part"><span><b>II Structure</b></span></li>
-<li class="chapter" data-level="2" data-path="folder.html"><a href="folder.html"><i class="fa fa-check"></i><b>2</b> Folder Structure</a>
+<li class="part"><span><b>I Introduction<span></span></b></span></li>
+<li><a href="index.html#coverpage">CoverPage<span></span></a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction<span></span></a></li>
+<li class="part"><span><b>II Structure<span></span></b></span></li>
+<li class="chapter" data-level="2" data-path="folder.html"><a href="folder.html"><i class="fa fa-check"></i><b>2</b> Folder Structure<span></span></a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="folder.html"><a href="folder.html#organizing-files"><i class="fa fa-check"></i><b>2.1</b> Organizing files</a></li>
-<li class="chapter" data-level="2.2" data-path="folder.html"><a href="folder.html#create-projects"><i class="fa fa-check"></i><b>2.2</b> Create Projects</a></li>
-<li class="chapter" data-level="2.3" data-path="folder.html"><a href="folder.html#naming-files"><i class="fa fa-check"></i><b>2.3</b> Naming files</a></li>
-<li class="chapter" data-level="2.4" data-path="folder.html"><a href="folder.html#folders-based-on-file-type"><i class="fa fa-check"></i><b>2.4</b> Folders Based on File-Type</a></li>
-<li class="chapter" data-level="2.5" data-path="folder.html"><a href="folder.html#creating-sub-folders"><i class="fa fa-check"></i><b>2.5</b> Creating Sub-folders</a></li>
-<li class="chapter" data-level="2.6" data-path="folder.html"><a href="folder.html#conclusion"><i class="fa fa-check"></i><b>2.6</b> Conclusion</a></li>
+<li class="chapter" data-level="2.1" data-path="folder.html"><a href="folder.html#organizing-files"><i class="fa fa-check"></i><b>2.1</b> Organizing files<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="folder.html"><a href="folder.html#create-projects"><i class="fa fa-check"></i><b>2.2</b> Create Projects<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="folder.html"><a href="folder.html#naming-files"><i class="fa fa-check"></i><b>2.3</b> Naming files<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="folder.html"><a href="folder.html#folders-based-on-file-type"><i class="fa fa-check"></i><b>2.4</b> Folders Based on File-Type<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="folder.html"><a href="folder.html#creating-sub-folders"><i class="fa fa-check"></i><b>2.5</b> Creating Sub-folders<span></span></a></li>
+<li class="chapter" data-level="2.6" data-path="folder.html"><a href="folder.html#conclusion"><i class="fa fa-check"></i><b>2.6</b> Conclusion<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code Structure</a>
+<li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code Structure<span></span></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#create-sections"><i class="fa fa-check"></i><b>3.1</b> Create Sections</a></li>
-<li class="chapter" data-level="3.2" data-path="code.html"><a href="code.html#order-of-code"><i class="fa fa-check"></i><b>3.2</b> Order of Code</a></li>
-<li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#indentation"><i class="fa fa-check"></i><b>3.3</b> Indentation</a></li>
-<li class="chapter" data-level="3.4" data-path="code.html"><a href="code.html#give-your-code-a-breathing-room"><i class="fa fa-check"></i><b>3.4</b> Give your code a breathing room</a></li>
-<li class="chapter" data-level="3.5" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.5</b> Conclusion’</a></li>
+<li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#create-sections"><i class="fa fa-check"></i><b>3.1</b> Create Sections<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="code.html"><a href="code.html#order-of-code"><i class="fa fa-check"></i><b>3.2</b> Order of Code<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#indentation"><i class="fa fa-check"></i><b>3.3</b> Indentation<span></span></a></li>
+<li class="chapter" data-level="3.4" data-path="code.html"><a href="code.html#give-your-code-a-breathing-room"><i class="fa fa-check"></i><b>3.4</b> Give your code a breathing room<span></span></a></li>
+<li class="chapter" data-level="3.5" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.5</b> Conclusion’<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a>
+<li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions<span></span></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="func.html"><a href="func.html#metadata-or-information-header"><i class="fa fa-check"></i><b>4.1</b> Metadata or Information header</a></li>
-<li class="chapter" data-level="4.2" data-path="func.html"><a href="func.html#pass-everything-through-parameters"><i class="fa fa-check"></i><b>4.2</b> Pass everything through parameters</a></li>
-<li class="chapter" data-level="4.3" data-path="func.html"><a href="func.html#use-return-statement"><i class="fa fa-check"></i><b>4.3</b> Use Return Statement</a></li>
-<li class="chapter" data-level="4.4" data-path="func.html"><a href="func.html#keep-a-consistency-in-return-type"><i class="fa fa-check"></i><b>4.4</b> Keep a consistency in Return Type</a></li>
-<li class="chapter" data-level="4.5" data-path="func.html"><a href="func.html#use-sensible-names-for-parameters-too"><i class="fa fa-check"></i><b>4.5</b> Use Sensible Names for parameters too…</a></li>
-<li class="chapter" data-level="4.6" data-path="func.html"><a href="func.html#use-trycatch"><i class="fa fa-check"></i><b>4.6</b> use tryCatch</a></li>
-<li class="chapter" data-level="4.7" data-path="func.html"><a href="func.html#write-simple-and-unique-functions"><i class="fa fa-check"></i><b>4.7</b> Write simple and unique functions</a></li>
-<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#dont-load-libraries-or-source-code-inside-a-function"><i class="fa fa-check"></i><b>4.8</b> Don’t load libraries or source code inside a function</a></li>
-<li class="chapter" data-level="4.9" data-path="func.html"><a href="func.html#use-packagefunction-approach"><i class="fa fa-check"></i><b>4.9</b> Use Package::Function() approach</a>
+<li class="chapter" data-level="4.1" data-path="func.html"><a href="func.html#metadata-or-information-header"><i class="fa fa-check"></i><b>4.1</b> Metadata or Information header<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="func.html"><a href="func.html#pass-everything-through-parameters"><i class="fa fa-check"></i><b>4.2</b> Pass everything through parameters<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="func.html"><a href="func.html#use-return-statement"><i class="fa fa-check"></i><b>4.3</b> Use Return Statement<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="func.html"><a href="func.html#keep-a-consistency-in-return-type"><i class="fa fa-check"></i><b>4.4</b> Keep a consistency in Return Type<span></span></a></li>
+<li class="chapter" data-level="4.5" data-path="func.html"><a href="func.html#use-sensible-names-for-parameters-too"><i class="fa fa-check"></i><b>4.5</b> Use Sensible Names for parameters too…<span></span></a></li>
+<li class="chapter" data-level="4.6" data-path="func.html"><a href="func.html#use-trycatch"><i class="fa fa-check"></i><b>4.6</b> use tryCatch<span></span></a></li>
+<li class="chapter" data-level="4.7" data-path="func.html"><a href="func.html#write-simple-and-unique-functions"><i class="fa fa-check"></i><b>4.7</b> Write simple and unique functions<span></span></a></li>
+<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#dont-load-libraries-or-source-code-inside-a-function"><i class="fa fa-check"></i><b>4.8</b> Don’t load libraries or source code inside a function<span></span></a></li>
+<li class="chapter" data-level="4.9" data-path="func.html"><a href="func.html#use-packagefunction-approach"><i class="fa fa-check"></i><b>4.9</b> Use Package::Function() approach<span></span></a>
 <ul>
-<li class="chapter" data-level="4.9.1" data-path="func.html"><a href="func.html#you-should-load-libraries-in-the-order-of-their-usage"><i class="fa fa-check"></i><b>4.9.1</b> You should load libraries in the order of their usage</a></li>
+<li class="chapter" data-level="4.9.1" data-path="func.html"><a href="func.html#you-should-load-libraries-in-the-order-of-their-usage"><i class="fa fa-check"></i><b>4.9.1</b> You should load libraries in the order of their usage<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.10" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.10</b> Conclusion</a></li>
+<li class="chapter" data-level="4.10" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.10</b> Conclusion<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions</a>
+<li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions<span></span></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="names.html"><a href="names.html#popular-naming-conventions"><i class="fa fa-check"></i><b>5.1</b> Popular naming conventions</a>
+<li class="chapter" data-level="5.1" data-path="names.html"><a href="names.html#popular-naming-conventions"><i class="fa fa-check"></i><b>5.1</b> Popular naming conventions<span></span></a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="names.html"><a href="names.html#camelcase"><i class="fa fa-check"></i><b>5.1.1</b> camelCase</a></li>
-<li class="chapter" data-level="5.1.2" data-path="names.html"><a href="names.html#pascalcase"><i class="fa fa-check"></i><b>5.1.2</b> PascalCase</a></li>
-<li class="chapter" data-level="5.1.3" data-path="names.html"><a href="names.html#snake_case"><i class="fa fa-check"></i><b>5.1.3</b> snake_case</a></li>
+<li class="chapter" data-level="5.1.1" data-path="names.html"><a href="names.html#camelcase"><i class="fa fa-check"></i><b>5.1.1</b> camelCase<span></span></a></li>
+<li class="chapter" data-level="5.1.2" data-path="names.html"><a href="names.html#pascalcase"><i class="fa fa-check"></i><b>5.1.2</b> PascalCase<span></span></a></li>
+<li class="chapter" data-level="5.1.3" data-path="names.html"><a href="names.html#snake_case"><i class="fa fa-check"></i><b>5.1.3</b> snake_case<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="names.html"><a href="names.html#informative-names"><i class="fa fa-check"></i><b>5.2</b> Informative Names</a></li>
-<li class="chapter" data-level="5.3" data-path="names.html"><a href="names.html#conclusions"><i class="fa fa-check"></i><b>5.3</b> Conclusions</a></li>
+<li class="chapter" data-level="5.2" data-path="names.html"><a href="names.html#informative-names"><i class="fa fa-check"></i><b>5.2</b> Informative Names<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="names.html"><a href="names.html#conclusions"><i class="fa fa-check"></i><b>5.3</b> Conclusions<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="envManagement.html"><a href="envManagement.html"><i class="fa fa-check"></i><b>6</b> Environment Management</a>
+<li class="chapter" data-level="6" data-path="oops.html"><a href="oops.html"><i class="fa fa-check"></i><b>6</b> OOPS<span></span></a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="envManagement.html"><a href="envManagement.html#avoid-package-dependencies-when-possible"><i class="fa fa-check"></i><b>6.1</b> Avoid package dependencies when possible</a></li>
-<li class="chapter" data-level="6.2" data-path="envManagement.html"><a href="envManagement.html#renv-for-package-management"><i class="fa fa-check"></i><b>6.2</b> renv for package management</a></li>
-<li class="chapter" data-level="6.3" data-path="envManagement.html"><a href="envManagement.html#config-for-external-dependencies"><i class="fa fa-check"></i><b>6.3</b> config for external dependencies</a></li>
-<li class="chapter" data-level="6.4" data-path="envManagement.html"><a href="envManagement.html#conclusion-3"><i class="fa fa-check"></i><b>6.4</b> Conclusion</a></li>
+<li class="chapter" data-level="6.1" data-path="oops.html"><a href="oops.html#what-is-oops"><i class="fa fa-check"></i><b>6.1</b> What is oops<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="oops.html"><a href="oops.html#when-to-use-it"><i class="fa fa-check"></i><b>6.2</b> When to use it<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="dataManagement.html"><a href="dataManagement.html"><i class="fa fa-check"></i><b>7</b> data Management</a>
+<li class="chapter" data-level="7" data-path="envManagement.html"><a href="envManagement.html"><i class="fa fa-check"></i><b>7</b> Environment Management<span></span></a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="dataManagement.html"><a href="dataManagement.html#keep-a-copy-or-your-data"><i class="fa fa-check"></i><b>7.1</b> Keep a Copy or your Data</a></li>
-<li class="chapter" data-level="7.2" data-path="dataManagement.html"><a href="dataManagement.html#dont-use-numbers-for-columns"><i class="fa fa-check"></i><b>7.2</b> Don’t use numbers for columns</a></li>
-<li class="chapter" data-level="7.3" data-path="dataManagement.html"><a href="dataManagement.html#keep-meaningful-and-proper-column-names"><i class="fa fa-check"></i><b>7.3</b> Keep Meaningful and proper column names</a></li>
-<li class="chapter" data-level="7.4" data-path="dataManagement.html"><a href="dataManagement.html#use-databases"><i class="fa fa-check"></i><b>7.4</b> Use Databases</a></li>
-<li class="chapter" data-level="7.5" data-path="dataManagement.html"><a href="dataManagement.html#use-efficient-packages"><i class="fa fa-check"></i><b>7.5</b> Use Efficient Packages</a>
+<li class="chapter" data-level="7.1" data-path="envManagement.html"><a href="envManagement.html#avoid-package-dependencies-when-possible"><i class="fa fa-check"></i><b>7.1</b> Avoid package dependencies when possible<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="envManagement.html"><a href="envManagement.html#renv-for-package-management"><i class="fa fa-check"></i><b>7.2</b> renv for package management<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="envManagement.html"><a href="envManagement.html#config-for-external-dependencies"><i class="fa fa-check"></i><b>7.3</b> config for external dependencies<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="envManagement.html"><a href="envManagement.html#use-.renviron-file"><i class="fa fa-check"></i><b>7.4</b> use .Renviron file<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="envManagement.html"><a href="envManagement.html#conclusion-3"><i class="fa fa-check"></i><b>7.5</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="dataManagement.html"><a href="dataManagement.html"><i class="fa fa-check"></i><b>8</b> data Management<span></span></a>
 <ul>
-<li class="chapter" data-level="7.5.1" data-path="dataManagement.html"><a href="dataManagement.html#data.table"><i class="fa fa-check"></i><b>7.5.1</b> data.table</a></li>
-<li class="chapter" data-level="7.5.2" data-path="dataManagement.html"><a href="dataManagement.html#matrix"><i class="fa fa-check"></i><b>7.5.2</b> Matrix</a></li>
-<li class="chapter" data-level="7.5.3" data-path="dataManagement.html"><a href="dataManagement.html#disk.frame"><i class="fa fa-check"></i><b>7.5.3</b> disk.frame</a></li>
-<li class="chapter" data-level="7.5.4" data-path="dataManagement.html"><a href="dataManagement.html#modeldb"><i class="fa fa-check"></i><b>7.5.4</b> modeldb</a></li>
-<li class="chapter" data-level="7.5.5" data-path="dataManagement.html"><a href="dataManagement.html#dbplot"><i class="fa fa-check"></i><b>7.5.5</b> dbplot</a></li>
-<li class="chapter" data-level="7.5.6" data-path="dataManagement.html"><a href="dataManagement.html#sparklyr"><i class="fa fa-check"></i><b>7.5.6</b> sparklyr</a></li>
-</ul></li>
-<li class="chapter" data-level="7.6" data-path="dataManagement.html"><a href="dataManagement.html#conclusion-4"><i class="fa fa-check"></i><b>7.6</b> Conclusion</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="debug.html"><a href="debug.html"><i class="fa fa-check"></i><b>8</b> Debugging</a>
+<li class="chapter" data-level="8.1" data-path="dataManagement.html"><a href="dataManagement.html#keep-a-copy-or-your-data"><i class="fa fa-check"></i><b>8.1</b> Keep a Copy or your Data<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="dataManagement.html"><a href="dataManagement.html#dont-use-numbers-for-columns"><i class="fa fa-check"></i><b>8.2</b> Don’t use numbers for columns<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="dataManagement.html"><a href="dataManagement.html#keep-meaningful-and-proper-column-names"><i class="fa fa-check"></i><b>8.3</b> Keep Meaningful and proper column names<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="dataManagement.html"><a href="dataManagement.html#use-databases"><i class="fa fa-check"></i><b>8.4</b> Use Databases<span></span></a></li>
+<li class="chapter" data-level="8.5" data-path="dataManagement.html"><a href="dataManagement.html#use-efficient-packages"><i class="fa fa-check"></i><b>8.5</b> Use Efficient Packages<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="debug.html"><a href="debug.html#write-unit-tests"><i class="fa fa-check"></i><b>8.1</b> Write Unit Tests</a></li>
-<li class="chapter" data-level="8.2" data-path="debug.html"><a href="debug.html#browser-and-print-are-your-friend"><i class="fa fa-check"></i><b>8.2</b> Browser() and print() are your friend</a></li>
-<li class="chapter" data-level="8.3" data-path="debug.html"><a href="debug.html#read-the-functions"><i class="fa fa-check"></i><b>8.3</b> <strong>Read the functions</strong></a></li>
-<li class="chapter" data-level="8.4" data-path="debug.html"><a href="debug.html#version-control-system"><i class="fa fa-check"></i><b>8.4</b> Version Control System</a></li>
-<li class="chapter" data-level="8.5" data-path="debug.html"><a href="debug.html#make-small-commits"><i class="fa fa-check"></i><b>8.5</b> Make small commits</a></li>
-<li class="chapter" data-level="8.6" data-path="debug.html"><a href="debug.html#use-curly-brackets"><i class="fa fa-check"></i><b>8.6</b> Use curly brackets</a></li>
-<li class="chapter" data-level="8.7" data-path="debug.html"><a href="debug.html#always-use-named-parameters"><i class="fa fa-check"></i><b>8.7</b> Always use named parameters</a></li>
-<li class="chapter" data-level="8.8" data-path="debug.html"><a href="debug.html#log-the-errors"><i class="fa fa-check"></i><b>8.8</b> Log the errors</a></li>
-<li class="chapter" data-level="8.9" data-path="debug.html"><a href="debug.html#dont-use-already-used-names"><i class="fa fa-check"></i><b>8.9</b> Don’t Use already used names</a></li>
-<li class="chapter" data-level="8.10" data-path="debug.html"><a href="debug.html#use-simple-code"><i class="fa fa-check"></i><b>8.10</b> Use Simple code</a></li>
-<li class="chapter" data-level="8.11" data-path="debug.html"><a href="debug.html#conclusion-5"><i class="fa fa-check"></i><b>8.11</b> Conclusion</a></li>
+<li class="chapter" data-level="8.5.1" data-path="dataManagement.html"><a href="dataManagement.html#data.table"><i class="fa fa-check"></i><b>8.5.1</b> data.table<span></span></a></li>
+<li class="chapter" data-level="8.5.2" data-path="dataManagement.html"><a href="dataManagement.html#matrix"><i class="fa fa-check"></i><b>8.5.2</b> Matrix<span></span></a></li>
+<li class="chapter" data-level="8.5.3" data-path="dataManagement.html"><a href="dataManagement.html#disk.frame"><i class="fa fa-check"></i><b>8.5.3</b> disk.frame<span></span></a></li>
+<li class="chapter" data-level="8.5.4" data-path="dataManagement.html"><a href="dataManagement.html#modeldb"><i class="fa fa-check"></i><b>8.5.4</b> modeldb<span></span></a></li>
+<li class="chapter" data-level="8.5.5" data-path="dataManagement.html"><a href="dataManagement.html#dbplot"><i class="fa fa-check"></i><b>8.5.5</b> dbplot<span></span></a></li>
+<li class="chapter" data-level="8.5.6" data-path="dataManagement.html"><a href="dataManagement.html#sparklyr"><i class="fa fa-check"></i><b>8.5.6</b> sparklyr<span></span></a></li>
 </ul></li>
-<li class="part"><span><b>III Memory</b></span></li>
-<li class="chapter" data-level="9" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>9</b> Type System</a>
+<li class="chapter" data-level="8.6" data-path="dataManagement.html"><a href="dataManagement.html#conclusion-4"><i class="fa fa-check"></i><b>8.6</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="debug.html"><a href="debug.html"><i class="fa fa-check"></i><b>9</b> Debugging<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="types.html"><a href="types.html#things-you-should-know"><i class="fa fa-check"></i><b>9.1</b> Things you should know</a>
+<li class="chapter" data-level="9.1" data-path="debug.html"><a href="debug.html#write-unit-tests"><i class="fa fa-check"></i><b>9.1</b> Write Unit Tests<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="debug.html"><a href="debug.html#browser-and-print-are-your-friend"><i class="fa fa-check"></i><b>9.2</b> Browser() and print() are your friend<span></span></a></li>
+<li class="chapter" data-level="9.3" data-path="debug.html"><a href="debug.html#read-the-functions"><i class="fa fa-check"></i><b>9.3</b> <strong>Read the functions</strong><span></span></a></li>
+<li class="chapter" data-level="9.4" data-path="debug.html"><a href="debug.html#version-control-system"><i class="fa fa-check"></i><b>9.4</b> Version Control System<span></span></a></li>
+<li class="chapter" data-level="9.5" data-path="debug.html"><a href="debug.html#make-small-commits"><i class="fa fa-check"></i><b>9.5</b> Make small commits<span></span></a></li>
+<li class="chapter" data-level="9.6" data-path="debug.html"><a href="debug.html#use-curly-brackets"><i class="fa fa-check"></i><b>9.6</b> Use curly brackets<span></span></a></li>
+<li class="chapter" data-level="9.7" data-path="debug.html"><a href="debug.html#always-use-named-parameters"><i class="fa fa-check"></i><b>9.7</b> Always use named parameters<span></span></a></li>
+<li class="chapter" data-level="9.8" data-path="debug.html"><a href="debug.html#log-the-errors"><i class="fa fa-check"></i><b>9.8</b> Log the errors<span></span></a></li>
+<li class="chapter" data-level="9.9" data-path="debug.html"><a href="debug.html#dont-use-already-used-names"><i class="fa fa-check"></i><b>9.9</b> Don’t Use already used names<span></span></a></li>
+<li class="chapter" data-level="9.10" data-path="debug.html"><a href="debug.html#use-simple-code"><i class="fa fa-check"></i><b>9.10</b> Use Simple code<span></span></a></li>
+<li class="chapter" data-level="9.11" data-path="debug.html"><a href="debug.html#conclusion-5"><i class="fa fa-check"></i><b>9.11</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>III Memory<span></span></b></span></li>
+<li class="chapter" data-level="10" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>10</b> Type System<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="types.html"><a href="types.html#r-dont-have-scalar-data-types"><i class="fa fa-check"></i><b>9.1.1</b> R don’t have scalar data types</a></li>
-<li class="chapter" data-level="9.1.2" data-path="types.html"><a href="types.html#dates-are-basically-integers-under-the-hood."><i class="fa fa-check"></i><b>9.1.2</b> Dates are basically integers under the hood.</a></li>
-<li class="chapter" data-level="9.1.3" data-path="types.html"><a href="types.html#posixlt-are-basically-lists-under-the-hood"><i class="fa fa-check"></i><b>9.1.3</b> POSIXlt are basically lists under the hood</a></li>
-<li class="chapter" data-level="9.1.4" data-path="types.html"><a href="types.html#integers-are-smaller-than-numeric"><i class="fa fa-check"></i><b>9.1.4</b> Integers are smaller than numeric</a></li>
-<li class="chapter" data-level="9.1.5" data-path="types.html"><a href="types.html#define-your-datatypes-before-the-variable"><i class="fa fa-check"></i><b>9.1.5</b> define your datatypes before the variable</a></li>
-<li class="chapter" data-level="9.1.6" data-path="types.html"><a href="types.html#lists-are-better-than-dataframe-under-a-loop"><i class="fa fa-check"></i><b>9.1.6</b> lists are better than dataframe under a loop</a></li>
-<li class="chapter" data-level="9.1.7" data-path="types.html"><a href="types.html#use-lists-whenever-possible"><i class="fa fa-check"></i><b>9.1.7</b> use lists whenever possible</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="types.html"><a href="types.html#choose-data-types-carefully"><i class="fa fa-check"></i><b>9.2</b> Choose data types carefully</a></li>
-<li class="chapter" data-level="9.3" data-path="types.html"><a href="types.html#dont-change-datatypes"><i class="fa fa-check"></i><b>9.3</b> don’t change datatypes</a></li>
-<li class="chapter" data-level="9.4" data-path="types.html"><a href="types.html#future-of-type-system-in-r"><i class="fa fa-check"></i><b>9.4</b> Future of type-system in R</a></li>
-<li class="chapter" data-level="9.5" data-path="types.html"><a href="types.html#conclusion-6"><i class="fa fa-check"></i><b>9.5</b> Conclusion</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>10</b> Pass By Value-Reference</a>
+<li class="chapter" data-level="10.1" data-path="types.html"><a href="types.html#things-you-should-know"><i class="fa fa-check"></i><b>10.1</b> Things you should know<span></span></a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="reference.html"><a href="reference.html#understanding-the-system"><i class="fa fa-check"></i><b>10.1</b> Understanding the system</a>
+<li class="chapter" data-level="10.1.1" data-path="types.html"><a href="types.html#r-dont-have-scalar-data-types"><i class="fa fa-check"></i><b>10.1.1</b> R don’t have scalar data types<span></span></a></li>
+<li class="chapter" data-level="10.1.2" data-path="types.html"><a href="types.html#dates-are-basically-integers-under-the-hood."><i class="fa fa-check"></i><b>10.1.2</b> Dates are basically integers under the hood.<span></span></a></li>
+<li class="chapter" data-level="10.1.3" data-path="types.html"><a href="types.html#posixlt-are-basically-lists-under-the-hood"><i class="fa fa-check"></i><b>10.1.3</b> POSIXlt are basically lists under the hood<span></span></a></li>
+<li class="chapter" data-level="10.1.4" data-path="types.html"><a href="types.html#integers-are-smaller-than-numeric"><i class="fa fa-check"></i><b>10.1.4</b> Integers are smaller than numeric<span></span></a></li>
+<li class="chapter" data-level="10.1.5" data-path="types.html"><a href="types.html#define-your-datatypes-before-the-variable"><i class="fa fa-check"></i><b>10.1.5</b> define your datatypes before the variable<span></span></a></li>
+<li class="chapter" data-level="10.1.6" data-path="types.html"><a href="types.html#lists-are-better-than-dataframe-under-a-loop"><i class="fa fa-check"></i><b>10.1.6</b> lists are better than dataframe under a loop<span></span></a></li>
+<li class="chapter" data-level="10.1.7" data-path="types.html"><a href="types.html#use-lists-whenever-possible"><i class="fa fa-check"></i><b>10.1.7</b> use lists whenever possible<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="types.html"><a href="types.html#choose-data-types-carefully"><i class="fa fa-check"></i><b>10.2</b> Choose data types carefully<span></span></a></li>
+<li class="chapter" data-level="10.3" data-path="types.html"><a href="types.html#dont-change-datatypes"><i class="fa fa-check"></i><b>10.3</b> don’t change datatypes<span></span></a></li>
+<li class="chapter" data-level="10.4" data-path="types.html"><a href="types.html#future-of-type-system-in-r"><i class="fa fa-check"></i><b>10.4</b> Future of type-system in R<span></span></a></li>
+<li class="chapter" data-level="10.5" data-path="types.html"><a href="types.html#conclusion-6"><i class="fa fa-check"></i><b>10.5</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>11</b> Pass By Value-Reference<span></span></a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="reference.html"><a href="reference.html#pass-by-value"><i class="fa fa-check"></i><b>10.1.1</b> Pass by Value</a></li>
-<li class="chapter" data-level="10.1.2" data-path="reference.html"><a href="reference.html#pass-by-reference"><i class="fa fa-check"></i><b>10.1.2</b> Pass by reference</a></li>
-</ul></li>
-<li class="chapter" data-level="10.2" data-path="reference.html"><a href="reference.html#copy-on-modify"><i class="fa fa-check"></i><b>10.2</b> Copy on modify</a></li>
-<li class="chapter" data-level="10.3" data-path="reference.html"><a href="reference.html#for-pass-by-reference"><i class="fa fa-check"></i><b>10.3</b> for pass by reference</a></li>
-<li class="chapter" data-level="10.4" data-path="reference.html"><a href="reference.html#conclusion-7"><i class="fa fa-check"></i><b>10.4</b> Conclusion</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="releasememory.html"><a href="releasememory.html"><i class="fa fa-check"></i><b>11</b> Release Memory</a>
+<li class="chapter" data-level="11.1" data-path="reference.html"><a href="reference.html#understanding-the-system"><i class="fa fa-check"></i><b>11.1</b> Understanding the system<span></span></a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="releasememory.html"><a href="releasememory.html#use-rm"><i class="fa fa-check"></i><b>11.1</b> use rm()</a></li>
-<li class="chapter" data-level="11.2" data-path="releasememory.html"><a href="releasememory.html#use-gc"><i class="fa fa-check"></i><b>11.2</b> use gc()</a>
+<li class="chapter" data-level="11.1.1" data-path="reference.html"><a href="reference.html#pass-by-value"><i class="fa fa-check"></i><b>11.1.1</b> Pass by Value<span></span></a></li>
+<li class="chapter" data-level="11.1.2" data-path="reference.html"><a href="reference.html#pass-by-reference"><i class="fa fa-check"></i><b>11.1.2</b> Pass by reference<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="reference.html"><a href="reference.html#copy-on-modify"><i class="fa fa-check"></i><b>11.2</b> Copy on modify<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="reference.html"><a href="reference.html#for-pass-by-reference"><i class="fa fa-check"></i><b>11.3</b> for pass by reference<span></span></a></li>
+<li class="chapter" data-level="11.4" data-path="reference.html"><a href="reference.html#conclusion-7"><i class="fa fa-check"></i><b>11.4</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="releasememory.html"><a href="releasememory.html"><i class="fa fa-check"></i><b>12</b> Release Memory<span></span></a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="releasememory.html"><a href="releasememory.html#r-version-3.5"><i class="fa fa-check"></i><b>11.2.1</b> R version 3.5</a></li>
-<li class="chapter" data-level="11.2.2" data-path="releasememory.html"><a href="releasememory.html#r-version-4.0"><i class="fa fa-check"></i><b>11.2.2</b> R version 4.0</a></li>
-<li class="chapter" data-level="11.2.3" data-path="releasememory.html"><a href="releasememory.html#inside-a-heavy-loop"><i class="fa fa-check"></i><b>11.2.3</b> Inside a heavy loop</a></li>
-<li class="chapter" data-level="11.2.4" data-path="releasememory.html"><a href="releasememory.html#anything-that-takes-more-than-30-seconds"><i class="fa fa-check"></i><b>11.2.4</b> anything that takes more than 30 seconds</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="releasememory.html"><a href="releasememory.html#cache-store-calculations"><i class="fa fa-check"></i><b>11.3</b> Cache / Store calculations</a></li>
-<li class="chapter" data-level="11.4" data-path="releasememory.html"><a href="releasememory.html#conclusion-8"><i class="fa fa-check"></i><b>11.4</b> Conclusion</a></li>
-</ul></li>
-<li class="part"><span><b>IV Speed</b></span></li>
-<li class="chapter" data-level="12" data-path="speedtips.html"><a href="speedtips.html"><i class="fa fa-check"></i><b>12</b> Some Tips to make R code faster</a>
+<li class="chapter" data-level="12.1" data-path="releasememory.html"><a href="releasememory.html#use-rm"><i class="fa fa-check"></i><b>12.1</b> use rm()<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="releasememory.html"><a href="releasememory.html#use-gc"><i class="fa fa-check"></i><b>12.2</b> use gc()<span></span></a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="speedtips.html"><a href="speedtips.html#use-latest-version-of-r"><i class="fa fa-check"></i><b>12.1</b> Use Latest version of R</a></li>
-<li class="chapter" data-level="12.2" data-path="speedtips.html"><a href="speedtips.html#benchmark-and-profiling-the-code"><i class="fa fa-check"></i><b>12.2</b> Benchmark and profiling the code</a></li>
-<li class="chapter" data-level="12.3" data-path="speedtips.html"><a href="speedtips.html#algorithm-matters-more-than-language"><i class="fa fa-check"></i><b>12.3</b> Algorithm matters more than language</a></li>
-<li class="chapter" data-level="12.4" data-path="speedtips.html"><a href="speedtips.html#read-the-function"><i class="fa fa-check"></i><b>12.4</b> Read the function</a></li>
-<li class="chapter" data-level="12.5" data-path="speedtips.html"><a href="speedtips.html#use-conditionals-to-break-computations"><i class="fa fa-check"></i><b>12.5</b> Use Conditionals to break computations</a></li>
-<li class="chapter" data-level="12.6" data-path="speedtips.html"><a href="speedtips.html#use-faster-packages"><i class="fa fa-check"></i><b>12.6</b> Use Faster packages</a></li>
-<li class="chapter" data-level="12.7" data-path="speedtips.html"><a href="speedtips.html#some-pointers"><i class="fa fa-check"></i><b>12.7</b> Some pointers</a>
+<li class="chapter" data-level="12.2.1" data-path="releasememory.html"><a href="releasememory.html#r-version-3.5"><i class="fa fa-check"></i><b>12.2.1</b> R version 3.5<span></span></a></li>
+<li class="chapter" data-level="12.2.2" data-path="releasememory.html"><a href="releasememory.html#r-version-4.0"><i class="fa fa-check"></i><b>12.2.2</b> R version 4.0<span></span></a></li>
+<li class="chapter" data-level="12.2.3" data-path="releasememory.html"><a href="releasememory.html#inside-a-heavy-loop"><i class="fa fa-check"></i><b>12.2.3</b> Inside a heavy loop<span></span></a></li>
+<li class="chapter" data-level="12.2.4" data-path="releasememory.html"><a href="releasememory.html#anything-that-takes-more-than-30-seconds"><i class="fa fa-check"></i><b>12.2.4</b> anything that takes more than 30 seconds<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="releasememory.html"><a href="releasememory.html#cache-store-calculations"><i class="fa fa-check"></i><b>12.3</b> Cache / Store calculations<span></span></a></li>
+<li class="chapter" data-level="12.4" data-path="releasememory.html"><a href="releasememory.html#conclusion-8"><i class="fa fa-check"></i><b>12.4</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>IV Speed<span></span></b></span></li>
+<li class="chapter" data-level="13" data-path="speedtips.html"><a href="speedtips.html"><i class="fa fa-check"></i><b>13</b> Some Tips to make R code faster<span></span></a>
 <ul>
-<li class="chapter" data-level="12.7.1" data-path="speedtips.html"><a href="speedtips.html#use-instead-of-when-you-can"><i class="fa fa-check"></i><b>12.7.1</b> use [[ instead of [ when you can</a></li>
-<li class="chapter" data-level="12.7.2" data-path="speedtips.html"><a href="speedtips.html#r-calculates-everything"><i class="fa fa-check"></i><b>12.7.2</b> R calculates everything</a></li>
-<li class="chapter" data-level="12.7.3" data-path="speedtips.html"><a href="speedtips.html#internal-functions"><i class="fa fa-check"></i><b>12.7.3</b> .Internal functions</a></li>
-<li class="chapter" data-level="12.7.4" data-path="speedtips.html"><a href="speedtips.html#dont-compile"><i class="fa fa-check"></i><b>12.7.4</b> Don’t Compile</a></li>
-<li class="chapter" data-level="12.7.5" data-path="speedtips.html"><a href="speedtips.html#use-direct-method.object-structure"><i class="fa fa-check"></i><b>12.7.5</b> use direct method.object structure</a></li>
-</ul></li>
-<li class="chapter" data-level="12.8" data-path="speedtips.html"><a href="speedtips.html#export-other-languages"><i class="fa fa-check"></i><b>12.8</b> Export Other languages</a></li>
-<li class="chapter" data-level="12.9" data-path="speedtips.html"><a href="speedtips.html#conclusion-9"><i class="fa fa-check"></i><b>12.9</b> Conclusion</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>13</b> For Loops</a>
+<li class="chapter" data-level="13.1" data-path="speedtips.html"><a href="speedtips.html#use-latest-version-of-r"><i class="fa fa-check"></i><b>13.1</b> Use Latest version of R<span></span></a></li>
+<li class="chapter" data-level="13.2" data-path="speedtips.html"><a href="speedtips.html#benchmark-and-profiling-the-code"><i class="fa fa-check"></i><b>13.2</b> Benchmark and profiling the code<span></span></a></li>
+<li class="chapter" data-level="13.3" data-path="speedtips.html"><a href="speedtips.html#algorithm-matters-more-than-language"><i class="fa fa-check"></i><b>13.3</b> Algorithm matters more than language<span></span></a></li>
+<li class="chapter" data-level="13.4" data-path="speedtips.html"><a href="speedtips.html#read-the-function"><i class="fa fa-check"></i><b>13.4</b> Read the function<span></span></a></li>
+<li class="chapter" data-level="13.5" data-path="speedtips.html"><a href="speedtips.html#use-conditionals-to-break-computations"><i class="fa fa-check"></i><b>13.5</b> Use Conditionals to break computations<span></span></a></li>
+<li class="chapter" data-level="13.6" data-path="speedtips.html"><a href="speedtips.html#use-faster-packages"><i class="fa fa-check"></i><b>13.6</b> Use Faster packages<span></span></a></li>
+<li class="chapter" data-level="13.7" data-path="speedtips.html"><a href="speedtips.html#some-pointers"><i class="fa fa-check"></i><b>13.7</b> Some pointers<span></span></a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="loops.html"><a href="loops.html#initialize-objects-before-loops"><i class="fa fa-check"></i><b>13.1</b> initialize objects before loops</a></li>
-<li class="chapter" data-level="13.2" data-path="loops.html"><a href="loops.html#use-simple-data-types"><i class="fa fa-check"></i><b>13.2</b> use simple data-types</a></li>
-<li class="chapter" data-level="13.3" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>13.3</b> apply family</a>
+<li class="chapter" data-level="13.7.1" data-path="speedtips.html"><a href="speedtips.html#use-instead-of-when-you-can"><i class="fa fa-check"></i><b>13.7.1</b> use [[ instead of [ when you can<span></span></a></li>
+<li class="chapter" data-level="13.7.2" data-path="speedtips.html"><a href="speedtips.html#r-calculates-everything"><i class="fa fa-check"></i><b>13.7.2</b> R calculates everything<span></span></a></li>
+<li class="chapter" data-level="13.7.3" data-path="speedtips.html"><a href="speedtips.html#internal-functions"><i class="fa fa-check"></i><b>13.7.3</b> .Internal functions<span></span></a></li>
+<li class="chapter" data-level="13.7.4" data-path="speedtips.html"><a href="speedtips.html#dont-compile"><i class="fa fa-check"></i><b>13.7.4</b> Don’t Compile<span></span></a></li>
+<li class="chapter" data-level="13.7.5" data-path="speedtips.html"><a href="speedtips.html#use-direct-method.object-structure"><i class="fa fa-check"></i><b>13.7.5</b> use direct method.object structure<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="speedtips.html"><a href="speedtips.html#export-other-languages"><i class="fa fa-check"></i><b>13.8</b> Export Other languages<span></span></a></li>
+<li class="chapter" data-level="13.9" data-path="speedtips.html"><a href="speedtips.html#conclusion-9"><i class="fa fa-check"></i><b>13.9</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>14</b> For Loops<span></span></a>
 <ul>
-<li class="chapter" data-level="13.3.1" data-path="loops.html"><a href="loops.html#apply-functions-are-not-much-faster-than-loops"><i class="fa fa-check"></i><b>13.3.1</b> apply functions are not much faster than loops</a></li>
-<li class="chapter" data-level="13.3.2" data-path="loops.html"><a href="loops.html#nested-lapply-have-same-speed-as-a-normal-lapply"><i class="fa fa-check"></i><b>13.3.2</b> Nested lapply have same speed as a normal lapply</a></li>
-</ul></li>
-<li class="chapter" data-level="13.4" data-path="loops.html"><a href="loops.html#vectorize-your-code"><i class="fa fa-check"></i><b>13.4</b> Vectorize your code</a>
+<li class="chapter" data-level="14.1" data-path="loops.html"><a href="loops.html#initialize-objects-before-loops"><i class="fa fa-check"></i><b>14.1</b> initialize objects before loops<span></span></a></li>
+<li class="chapter" data-level="14.2" data-path="loops.html"><a href="loops.html#use-simple-data-types"><i class="fa fa-check"></i><b>14.2</b> use simple data-types<span></span></a></li>
+<li class="chapter" data-level="14.3" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>14.3</b> apply family<span></span></a>
 <ul>
-<li class="chapter" data-level="13.4.1" data-path="loops.html"><a href="loops.html#never-repeat-a-calculation"><i class="fa fa-check"></i><b>13.4.1</b> never repeat a calculation</a></li>
-<li class="chapter" data-level="13.4.2" data-path="loops.html"><a href="loops.html#vectorized-code-can-do-2-or-3-steps-more-in-lesser-time"><i class="fa fa-check"></i><b>13.4.2</b> Vectorized code can do 2 or 3 steps more in lesser time</a></li>
+<li class="chapter" data-level="14.3.1" data-path="loops.html"><a href="loops.html#apply-functions-are-not-much-faster-than-loops"><i class="fa fa-check"></i><b>14.3.1</b> apply functions are not much faster than loops<span></span></a></li>
+<li class="chapter" data-level="14.3.2" data-path="loops.html"><a href="loops.html#nested-lapply-have-same-speed-as-a-normal-lapply"><i class="fa fa-check"></i><b>14.3.2</b> Nested lapply have same speed as a normal lapply<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="loops.html"><a href="loops.html#understanding-non-vectorized-code"><i class="fa fa-check"></i><b>13.5</b> Understanding non-vectorized code</a></li>
-<li class="chapter" data-level="13.6" data-path="loops.html"><a href="loops.html#do-as-little-as-possible-inside-a-loop"><i class="fa fa-check"></i><b>13.6</b> Do as little as possible inside a loop</a>
+<li class="chapter" data-level="14.4" data-path="loops.html"><a href="loops.html#vectorize-your-code"><i class="fa fa-check"></i><b>14.4</b> Vectorize your code<span></span></a>
 <ul>
-<li class="chapter" data-level="13.6.1" data-path="loops.html"><a href="loops.html#combine-vectorized-code-inside-a-loop"><i class="fa fa-check"></i><b>13.6.1</b> Combine Vectorized code inside a loop</a></li>
+<li class="chapter" data-level="14.4.1" data-path="loops.html"><a href="loops.html#never-repeat-a-calculation"><i class="fa fa-check"></i><b>14.4.1</b> never repeat a calculation<span></span></a></li>
+<li class="chapter" data-level="14.4.2" data-path="loops.html"><a href="loops.html#vectorized-code-can-do-2-or-3-steps-more-in-lesser-time"><i class="fa fa-check"></i><b>14.4.2</b> Vectorized code can do 2 or 3 steps more in lesser time<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13.7" data-path="loops.html"><a href="loops.html#conclusion-10"><i class="fa fa-check"></i><b>13.7</b> Conclusion</a></li>
+<li class="chapter" data-level="14.5" data-path="loops.html"><a href="loops.html#understanding-non-vectorized-code"><i class="fa fa-check"></i><b>14.5</b> Understanding non-vectorized code<span></span></a></li>
+<li class="chapter" data-level="14.6" data-path="loops.html"><a href="loops.html#do-as-little-as-possible-inside-a-loop"><i class="fa fa-check"></i><b>14.6</b> Do as little as possible inside a loop<span></span></a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="loops.html"><a href="loops.html#combine-vectorized-code-inside-a-loop"><i class="fa fa-check"></i><b>14.6.1</b> Combine Vectorized code inside a loop<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>14</b> Multithreading</a></li>
-<li class="part"><span><b>V Shiny Tips</b></span></li>
-<li class="chapter" data-level="15" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>15</b> Speed</a></li>
-<li class="chapter" data-level="16" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>16</b> Memory</a></li>
+<li class="chapter" data-level="14.7" data-path="loops.html"><a href="loops.html#conclusion-10"><i class="fa fa-check"></i><b>14.7</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>15</b> Multithreading<span></span></a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="multithreading.html"><a href="multithreading.html#multi-threading-has-an-overhead"><i class="fa fa-check"></i><b>15.1</b> Multi Threading has an overhead<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="multithreading.html"><a href="multithreading.html#be-cautious-with-database"><i class="fa fa-check"></i><b>15.2</b> Be Cautious with Database<span></span></a></li>
+<li class="chapter" data-level="15.3" data-path="multithreading.html"><a href="multithreading.html#use-future-package"><i class="fa fa-check"></i><b>15.3</b> Use Future Package<span></span></a></li>
+<li class="chapter" data-level="15.4" data-path="multithreading.html"><a href="multithreading.html#send-only-bigger-calculation"><i class="fa fa-check"></i><b>15.4</b> Send Only Bigger calculation<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>V Architecture<span></span></b></span></li>
+<li class="chapter" data-level="16" data-path="functional-architecture-functional.html"><a href="functional-architecture-functional.html"><i class="fa fa-check"></i><b>16</b> Functional Architecture {functional}<span></span></a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="functional-architecture-functional.html"><a href="functional-architecture-functional.html#pure-and-impure-functions"><i class="fa fa-check"></i><b>16.1</b> Pure and Impure functions<span></span></a></li>
+<li class="chapter" data-level="16.2" data-path="functional-architecture-functional.html"><a href="functional-architecture-functional.html#data-and-method-as-seperate-entity"><i class="fa fa-check"></i><b>16.2</b> Data and Method as seperate entity<span></span></a></li>
+<li class="chapter" data-level="16.3" data-path="functional-architecture-functional.html"><a href="functional-architecture-functional.html#functors"><i class="fa fa-check"></i><b>16.3</b> functors<span></span></a></li>
+<li class="chapter" data-level="16.4" data-path="functional-architecture-functional.html"><a href="functional-architecture-functional.html#monoids"><i class="fa fa-check"></i><b>16.4</b> monoids<span></span></a></li>
+<li class="chapter" data-level="16.5" data-path="functional-architecture-functional.html"><a href="functional-architecture-functional.html#write-packages"><i class="fa fa-check"></i><b>16.5</b> write packages<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="testing-functional.html"><a href="testing-functional.html"><i class="fa fa-check"></i><b>17</b> Testing {functional}<span></span></a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="testing-functional.html"><a href="testing-functional.html#unit-testing"><i class="fa fa-check"></i><b>17.1</b> Unit Testing<span></span></a></li>
+<li class="chapter" data-level="17.2" data-path="testing-functional.html"><a href="testing-functional.html#systems-testing"><i class="fa fa-check"></i><b>17.2</b> Systems Testing<span></span></a></li>
+<li class="chapter" data-level="17.3" data-path="testing-functional.html"><a href="testing-functional.html#load-testing"><i class="fa fa-check"></i><b>17.3</b> Load Testing<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="deployment-functional.html"><a href="deployment-functional.html"><i class="fa fa-check"></i><b>18</b> Deployment {functional}<span></span></a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="deployment-functional.html"><a href="deployment-functional.html#method"><i class="fa fa-check"></i><b>18.1</b> Method<span></span></a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -334,101 +361,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="loops" class="section level1" number="13">
-<h1><span class="header-section-number">Chapter 13</span> For Loops</h1>
+<div id="loops" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> For Loops<a href="loops.html#loops" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This is a topic that I wanted to discuss for a long time. People read blogs from 2014-2016 and assume that for loops in R are bad. You should not use them and Loops in R are slow etc. etc… This chapter will help you understand how to use them more effectively.</p>
 <p>R loops are not too slow compared to other programming languages like python, ruby etc… But Yes they are slower than the vectorized code. You can get a faster code by doing more with vectorization than a simple loop.</p>
-<div id="initialize-objects-before-loops" class="section level2" number="13.1">
-<h2><span class="header-section-number">13.1</span> initialize objects before loops</h2>
+<div id="initialize-objects-before-loops" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> initialize objects before loops<a href="loops.html#initialize-objects-before-loops" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>create vectors for storing object even before the loop starts. Because it allocates memory before the loop it makes R loop a lot faster. And creating a vector is a vectorized C function call thus it’s always a lot faster.</p>
 <p>R has a few functions to create the type of vector of vector you need.<code>integer, numeric, character, logical</code> are most common function for these cases. numeric can be used to store <code>Date types</code> as well. It’s always beneficial to start with a vector to store the values.</p>
 </div>
-<div id="use-simple-data-types" class="section level2" number="13.2">
-<h2><span class="header-section-number">13.2</span> use simple data-types</h2>
+<div id="use-simple-data-types" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> use simple data-types<a href="loops.html#use-simple-data-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Data-types are the most common reason people don’t get speed in R. If you run a loop on a Data.frame it always have to check the constraints of a data.frame like same length vectors to make sure you are not messing up the data type and it also creates a copy on each modification. But same code could be like a 1000 times faster if we just use a simple list.</p>
 <p>R data.table packages provides an interface to set values inside a data-table without creating a copy which makes it faster for most of the use cases. Let’s compare how fast will it be.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="loops.html#cb249-1" aria-hidden="true" tabindex="-1"></a>set_dt_num <span class="ot">=</span>  <span class="cf">function</span>(</span>
-<span id="cb249-2"><a href="loops.html#cb249-2" aria-hidden="true" tabindex="-1"></a>  data_table, </span>
-<span id="cb249-3"><a href="loops.html#cb249-3" aria-hidden="true" tabindex="-1"></a>  n_row</span>
-<span id="cb249-4"><a href="loops.html#cb249-4" aria-hidden="true" tabindex="-1"></a>  ) {</span>
-<span id="cb249-5"><a href="loops.html#cb249-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_row){</span>
-<span id="cb249-6"><a href="loops.html#cb249-6" aria-hidden="true" tabindex="-1"></a>    data.table<span class="sc">::</span><span class="fu">set</span>(</span>
-<span id="cb249-7"><a href="loops.html#cb249-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> data_table,</span>
-<span id="cb249-8"><a href="loops.html#cb249-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">i =</span> i,</span>
-<span id="cb249-9"><a href="loops.html#cb249-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">j =</span> 1L,</span>
-<span id="cb249-10"><a href="loops.html#cb249-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> i <span class="sc">*</span> 2L</span>
-<span id="cb249-11"><a href="loops.html#cb249-11" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb249-12"><a href="loops.html#cb249-12" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb249-13"><a href="loops.html#cb249-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb249-14"><a href="loops.html#cb249-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb249-15"><a href="loops.html#cb249-15" aria-hidden="true" tabindex="-1"></a>set_dt_col <span class="ot">=</span> <span class="cf">function</span>(</span>
-<span id="cb249-16"><a href="loops.html#cb249-16" aria-hidden="true" tabindex="-1"></a>  data_table, </span>
-<span id="cb249-17"><a href="loops.html#cb249-17" aria-hidden="true" tabindex="-1"></a>  n_row</span>
-<span id="cb249-18"><a href="loops.html#cb249-18" aria-hidden="true" tabindex="-1"></a>  ) {</span>
-<span id="cb249-19"><a href="loops.html#cb249-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_row){</span>
-<span id="cb249-20"><a href="loops.html#cb249-20" aria-hidden="true" tabindex="-1"></a>    data.table<span class="sc">::</span><span class="fu">set</span>(</span>
-<span id="cb249-21"><a href="loops.html#cb249-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> data_table,</span>
-<span id="cb249-22"><a href="loops.html#cb249-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">i =</span> i,</span>
-<span id="cb249-23"><a href="loops.html#cb249-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">j =</span> <span class="st">&quot;x&quot;</span>,</span>
-<span id="cb249-24"><a href="loops.html#cb249-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> i <span class="sc">*</span> 2L</span>
-<span id="cb249-25"><a href="loops.html#cb249-25" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb249-26"><a href="loops.html#cb249-26" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb249-27"><a href="loops.html#cb249-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="loops.html#cb250-1" aria-hidden="true" tabindex="-1"></a>n_row <span class="ot">&lt;-</span> <span class="fl">1e3</span></span>
-<span id="cb250-2"><a href="loops.html#cb250-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb250-3"><a href="loops.html#cb250-3" aria-hidden="true" tabindex="-1"></a>data_table <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
-<span id="cb250-4"><a href="loops.html#cb250-4" aria-hidden="true" tabindex="-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
-<span id="cb250-5"><a href="loops.html#cb250-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb250-6"><a href="loops.html#cb250-6" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb250-7"><a href="loops.html#cb250-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_df_col =</span> {</span>
-<span id="cb250-8"><a href="loops.html#cb250-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_row){</span>
-<span id="cb250-9"><a href="loops.html#cb250-9" aria-hidden="true" tabindex="-1"></a>      data_frame<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i <span class="sc">*</span> 2L</span>
-<span id="cb250-10"><a href="loops.html#cb250-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb250-11"><a href="loops.html#cb250-11" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb250-12"><a href="loops.html#cb250-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_dt_num =</span> <span class="fu">set_dt_num</span>(data_table , n_row ),</span>
-<span id="cb250-13"><a href="loops.html#cb250-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_dt_col =</span> <span class="fu">set_dt_col</span>(data_table , n_row ),</span>
-<span id="cb250-14"><a href="loops.html#cb250-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb250-15"><a href="loops.html#cb250-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## Unit: milliseconds
-##        expr     min      lq     mean   median      uq     max neval
-##  set_df_col 14.0228 17.5606 19.37812 19.17470 20.7168 25.8394    10
-##  set_dt_num  3.3551  3.8206  6.15869  5.45235  6.7890 15.3590    10
-##  set_dt_col  3.9755  4.7033  6.77583  6.28155  7.6110 14.0425    10</code></pre>
-<p>This Code used to give me around 200x increment over base R in previous versions. From R 4.0 onward R is managing memory pretty efficiently and the base is performing better in this test. Let me try it on a larger data set.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="loops.html#cb252-1" aria-hidden="true" tabindex="-1"></a>n_row <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
-<span id="cb252-2"><a href="loops.html#cb252-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb252-3"><a href="loops.html#cb252-3" aria-hidden="true" tabindex="-1"></a>data_table <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
-<span id="cb252-4"><a href="loops.html#cb252-4" aria-hidden="true" tabindex="-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
-<span id="cb252-5"><a href="loops.html#cb252-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb252-6"><a href="loops.html#cb252-6" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb252-7"><a href="loops.html#cb252-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_df_col =</span> {</span>
-<span id="cb252-8"><a href="loops.html#cb252-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_row){</span>
-<span id="cb252-9"><a href="loops.html#cb252-9" aria-hidden="true" tabindex="-1"></a>      data_frame<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i <span class="sc">*</span> 2L</span>
-<span id="cb252-10"><a href="loops.html#cb252-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb252-11"><a href="loops.html#cb252-11" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb252-12"><a href="loops.html#cb252-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_dt_num =</span> <span class="fu">set_dt_num</span>(data_table , n_row ),</span>
-<span id="cb252-13"><a href="loops.html#cb252-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_dt_col =</span> <span class="fu">set_dt_col</span>(data_table , n_row ),</span>
-<span id="cb252-14"><a href="loops.html#cb252-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb252-15"><a href="loops.html#cb252-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## Unit: milliseconds
-##        expr       min        lq       mean     median         uq        max
-##  set_df_col 6695.4986 9469.5506 10955.9153 11171.2440 13186.8347 13992.6158
-##  set_dt_num  348.1983  363.4529   449.8162   441.4390   505.5662   632.4717
-##  set_dt_col  375.3885  419.8011   550.1447   566.0248   614.0819   895.6529
-##  neval
-##     10
-##     10
-##     10</code></pre>
-<p>Now we can see some improvement over the base. On bigger data set we are getting around 10x+ speed with data.table. It was just to establish the fact that data.table performs well over bigger data sets. Yet we can still get a better performance by moving to a lower level data structure.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="loops.html#cb254-1" aria-hidden="true" tabindex="-1"></a>n_row <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="loops.html#cb253-1" aria-hidden="true" tabindex="-1"></a>set_dt_num <span class="ot">=</span>  <span class="cf">function</span>(</span>
+<span id="cb253-2"><a href="loops.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  data_table, </span>
+<span id="cb253-3"><a href="loops.html#cb253-3" aria-hidden="true" tabindex="-1"></a>  n_row</span>
+<span id="cb253-4"><a href="loops.html#cb253-4" aria-hidden="true" tabindex="-1"></a>  ) {</span>
+<span id="cb253-5"><a href="loops.html#cb253-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_row){</span>
+<span id="cb253-6"><a href="loops.html#cb253-6" aria-hidden="true" tabindex="-1"></a>    data.table<span class="sc">::</span><span class="fu">set</span>(</span>
+<span id="cb253-7"><a href="loops.html#cb253-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> data_table,</span>
+<span id="cb253-8"><a href="loops.html#cb253-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">i =</span> i,</span>
+<span id="cb253-9"><a href="loops.html#cb253-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">j =</span> 1L,</span>
+<span id="cb253-10"><a href="loops.html#cb253-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> i <span class="sc">*</span> 2L</span>
+<span id="cb253-11"><a href="loops.html#cb253-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb253-12"><a href="loops.html#cb253-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb253-13"><a href="loops.html#cb253-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb253-14"><a href="loops.html#cb253-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb253-15"><a href="loops.html#cb253-15" aria-hidden="true" tabindex="-1"></a>set_dt_col <span class="ot">=</span> <span class="cf">function</span>(</span>
+<span id="cb253-16"><a href="loops.html#cb253-16" aria-hidden="true" tabindex="-1"></a>  data_table, </span>
+<span id="cb253-17"><a href="loops.html#cb253-17" aria-hidden="true" tabindex="-1"></a>  n_row</span>
+<span id="cb253-18"><a href="loops.html#cb253-18" aria-hidden="true" tabindex="-1"></a>  ) {</span>
+<span id="cb253-19"><a href="loops.html#cb253-19" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_row){</span>
+<span id="cb253-20"><a href="loops.html#cb253-20" aria-hidden="true" tabindex="-1"></a>    data.table<span class="sc">::</span><span class="fu">set</span>(</span>
+<span id="cb253-21"><a href="loops.html#cb253-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> data_table,</span>
+<span id="cb253-22"><a href="loops.html#cb253-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">i =</span> i,</span>
+<span id="cb253-23"><a href="loops.html#cb253-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">j =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb253-24"><a href="loops.html#cb253-24" aria-hidden="true" tabindex="-1"></a>      <span class="at">value =</span> i <span class="sc">*</span> 2L</span>
+<span id="cb253-25"><a href="loops.html#cb253-25" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb253-26"><a href="loops.html#cb253-26" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb253-27"><a href="loops.html#cb253-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="loops.html#cb254-1" aria-hidden="true" tabindex="-1"></a>n_row <span class="ot">&lt;-</span> <span class="fl">1e3</span></span>
 <span id="cb254-2"><a href="loops.html#cb254-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb254-3"><a href="loops.html#cb254-3" aria-hidden="true" tabindex="-1"></a>data_table <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
-<span id="cb254-4"><a href="loops.html#cb254-4" aria-hidden="true" tabindex="-1"></a>data_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
+<span id="cb254-4"><a href="loops.html#cb254-4" aria-hidden="true" tabindex="-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
 <span id="cb254-5"><a href="loops.html#cb254-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb254-6"><a href="loops.html#cb254-6" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb254-7"><a href="loops.html#cb254-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_list_col =</span> {</span>
+<span id="cb254-7"><a href="loops.html#cb254-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_df_col =</span> {</span>
 <span id="cb254-8"><a href="loops.html#cb254-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_row){</span>
-<span id="cb254-9"><a href="loops.html#cb254-9" aria-hidden="true" tabindex="-1"></a>      data_list<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i<span class="sc">*</span>2L</span>
+<span id="cb254-9"><a href="loops.html#cb254-9" aria-hidden="true" tabindex="-1"></a>      data_frame<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i <span class="sc">*</span> 2L</span>
 <span id="cb254-10"><a href="loops.html#cb254-10" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb254-11"><a href="loops.html#cb254-11" aria-hidden="true" tabindex="-1"></a>  },</span>
 <span id="cb254-12"><a href="loops.html#cb254-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_dt_num =</span> <span class="fu">set_dt_num</span>(data_table , n_row ),</span>
@@ -436,37 +417,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb254-14"><a href="loops.html#cb254-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb254-15"><a href="loops.html#cb254-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##          expr      min       lq      mean   median       uq      max neval
-##  set_list_col  23.8862  26.1112  28.15311  27.5676  31.5535  31.8873    10
-##    set_dt_num 321.7166 330.6485 338.43033 334.4056 346.7474 364.5010    10
-##    set_dt_col 346.8476 350.0720 355.15695 352.0516 356.9447 379.4042    10</code></pre>
-<p>Just by moving from data.frame to list we can get a substantial increment over the base. Now we are close to 400x over R data.table. Which is huge. But wait we can do it better. We haven’t tried the most atomic level structure in R the VECTORS. Let’s benchmark it again with vectors.</p>
+##        expr       min      lq      mean    median        uq       max neval
+##  set_df_col 10.267001 10.5887 11.218911 11.138451 11.767000 12.431101    10
+##  set_dt_num  3.045801  3.0838  3.822981  3.623002  3.837501  6.831201    10
+##  set_dt_col  3.152602  3.4841  3.922271  3.580301  3.903402  7.084401    10</code></pre>
+<p>This Code used to give me around 200x increment over base R in previous versions. From R 4.0 onward R is managing memory pretty efficiently and the base is performing better in this test. Let me try it on a larger data set.</p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="loops.html#cb256-1" aria-hidden="true" tabindex="-1"></a>n_row <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
 <span id="cb256-2"><a href="loops.html#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb256-3"><a href="loops.html#cb256-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">integer</span>(n_row)</span>
-<span id="cb256-4"><a href="loops.html#cb256-4" aria-hidden="true" tabindex="-1"></a>data_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
+<span id="cb256-3"><a href="loops.html#cb256-3" aria-hidden="true" tabindex="-1"></a>data_table <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
+<span id="cb256-4"><a href="loops.html#cb256-4" aria-hidden="true" tabindex="-1"></a>data_frame <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
 <span id="cb256-5"><a href="loops.html#cb256-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb256-6"><a href="loops.html#cb256-6" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb256-7"><a href="loops.html#cb256-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_list_col =</span> {</span>
+<span id="cb256-7"><a href="loops.html#cb256-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_df_col =</span> {</span>
 <span id="cb256-8"><a href="loops.html#cb256-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_row){</span>
-<span id="cb256-9"><a href="loops.html#cb256-9" aria-hidden="true" tabindex="-1"></a>      data_list<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i<span class="sc">*</span>2L</span>
+<span id="cb256-9"><a href="loops.html#cb256-9" aria-hidden="true" tabindex="-1"></a>      data_frame<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i <span class="sc">*</span> 2L</span>
 <span id="cb256-10"><a href="loops.html#cb256-10" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb256-11"><a href="loops.html#cb256-11" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb256-12"><a href="loops.html#cb256-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_vector =</span> {</span>
-<span id="cb256-13"><a href="loops.html#cb256-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_row){</span>
-<span id="cb256-14"><a href="loops.html#cb256-14" aria-hidden="true" tabindex="-1"></a>      x[[i]] <span class="ot">&lt;-</span> i<span class="sc">*</span>2L</span>
-<span id="cb256-15"><a href="loops.html#cb256-15" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb256-16"><a href="loops.html#cb256-16" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb256-17"><a href="loops.html#cb256-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<span id="cb256-12"><a href="loops.html#cb256-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_dt_num =</span> <span class="fu">set_dt_num</span>(data_table , n_row ),</span>
+<span id="cb256-13"><a href="loops.html#cb256-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_dt_col =</span> <span class="fu">set_dt_col</span>(data_table , n_row ),</span>
+<span id="cb256-14"><a href="loops.html#cb256-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb256-15"><a href="loops.html#cb256-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##          expr     min       lq     mean   median       uq     max neval
-##  set_list_col 23.0601 24.84405 28.71507 28.03155 31.74240 39.0440   100
-##    set_vector  9.5008  9.78170 11.31658 10.72255 12.30845 19.0429   100</code></pre>
+##        expr       min        lq      mean    median        uq       max neval
+##  set_df_col 5348.5332 5490.4668 5675.8209 5587.4427 5923.5778 6119.5538    10
+##  set_dt_num  313.2469  325.0008  358.3290  353.7714  385.9434  414.7643    10
+##  set_dt_col  326.3563  337.5951  385.5643  351.7514  436.3054  493.8522    10</code></pre>
+<p>Now we can see some improvement over the base. On bigger data set we are getting around 10x+ speed with data.table. It was just to establish the fact that data.table performs well over bigger data sets. Yet we can still get a better performance by moving to a lower level data structure.</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="loops.html#cb258-1" aria-hidden="true" tabindex="-1"></a>n_row <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
+<span id="cb258-2"><a href="loops.html#cb258-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb258-3"><a href="loops.html#cb258-3" aria-hidden="true" tabindex="-1"></a>data_table <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
+<span id="cb258-4"><a href="loops.html#cb258-4" aria-hidden="true" tabindex="-1"></a>data_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
+<span id="cb258-5"><a href="loops.html#cb258-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb258-6"><a href="loops.html#cb258-6" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb258-7"><a href="loops.html#cb258-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_list_col =</span> {</span>
+<span id="cb258-8"><a href="loops.html#cb258-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_row){</span>
+<span id="cb258-9"><a href="loops.html#cb258-9" aria-hidden="true" tabindex="-1"></a>      data_list<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i<span class="sc">*</span>2L</span>
+<span id="cb258-10"><a href="loops.html#cb258-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb258-11"><a href="loops.html#cb258-11" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb258-12"><a href="loops.html#cb258-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_dt_num =</span> <span class="fu">set_dt_num</span>(data_table , n_row ),</span>
+<span id="cb258-13"><a href="loops.html#cb258-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_dt_col =</span> <span class="fu">set_dt_col</span>(data_table , n_row ),</span>
+<span id="cb258-14"><a href="loops.html#cb258-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb258-15"><a href="loops.html#cb258-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Unit: milliseconds
+##          expr      min       lq      mean    median       uq      max neval
+##  set_list_col  23.9616  24.4937  28.42005  26.80065  28.8722  38.2675    10
+##    set_dt_num 311.7625 314.1495 322.61970 323.88640 327.3298 337.5023    10
+##    set_dt_col 329.6029 337.0087 364.85992 347.76210 363.7729 523.5365    10</code></pre>
+<p>Just by moving from data.frame to list we can get a substantial increment over the base. Now we are close to 400x over R data.table. Which is huge. But wait we can do it better. We haven’t tried the most atomic level structure in R the VECTORS. Let’s benchmark it again with vectors.</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="loops.html#cb260-1" aria-hidden="true" tabindex="-1"></a>n_row <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
+<span id="cb260-2"><a href="loops.html#cb260-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-3"><a href="loops.html#cb260-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">integer</span>(n_row)</span>
+<span id="cb260-4"><a href="loops.html#cb260-4" aria-hidden="true" tabindex="-1"></a>data_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">x =</span> <span class="fu">integer</span>(n_row))</span>
+<span id="cb260-5"><a href="loops.html#cb260-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-6"><a href="loops.html#cb260-6" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb260-7"><a href="loops.html#cb260-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_list_col =</span> {</span>
+<span id="cb260-8"><a href="loops.html#cb260-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_row){</span>
+<span id="cb260-9"><a href="loops.html#cb260-9" aria-hidden="true" tabindex="-1"></a>      data_list<span class="sc">$</span>x[[i]] <span class="ot">&lt;-</span> i<span class="sc">*</span>2L</span>
+<span id="cb260-10"><a href="loops.html#cb260-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb260-11"><a href="loops.html#cb260-11" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb260-12"><a href="loops.html#cb260-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">set_vector =</span> {</span>
+<span id="cb260-13"><a href="loops.html#cb260-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_row){</span>
+<span id="cb260-14"><a href="loops.html#cb260-14" aria-hidden="true" tabindex="-1"></a>      x[[i]] <span class="ot">&lt;-</span> i<span class="sc">*</span>2L</span>
+<span id="cb260-15"><a href="loops.html#cb260-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb260-16"><a href="loops.html#cb260-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb260-17"><a href="loops.html#cb260-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Unit: milliseconds
+##          expr       min       lq     mean   median       uq     max neval
+##  set_list_col 23.843401 24.54130 26.79498 25.82325 27.28535 38.4216   100
+##    set_vector  9.725901 10.12715 11.29298 10.69910 11.14740 25.6903   100</code></pre>
 <p>We were able to squeeze 2x + speed with base R vector. So finally we have vector that can do the entire computation at 6ms while the worst dataframe would do it at 7700ms. Which makes our code around 1200x faster. All you need to do is to remember can we do it with a simpler data-type.</p>
 <p>This is the best change you can make in your code to make it run faster. I always prefer looping over a vector like 90% of the time. In some cases where it’s not possible I like to convert the dataframe to list and run a loop and then convert it back to a dataframe. Because dataframe itself is a list with some constraints. Remembering this will help you a lot in speeding up your code.</p>
 </div>
-<div id="apply-family" class="section level2" number="13.3">
-<h2><span class="header-section-number">13.3</span> apply family</h2>
+<div id="apply-family" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> apply family<a href="loops.html#apply-family" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Use apply family for concise and efficient code. apply functions make your code smaller and more readable and you don’t have to write loops so you can focus on your tasks. Whenever possible you should use apply function because there are times when it could be more efficient than a loop. There are only 3 functions that you should really know. You can get away with just these 3 function to solve almost 90% of your tasks.</p>
 <ol style="list-style-type: decimal">
 <li><code>lapply</code> for almost <code>everything</code></li>
@@ -475,141 +498,141 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>There is <code>vapply</code> too for strictly getting <code>vector</code> in return. I have used it very rarely because you can unlist the lapply for same results as well. <code>Map</code> is nothing more than mapply with parameter SIMPLIFY as true. <code>Reduce</code> can also be used but in very rare circumstances.</p>
 <p>There are a certain things you need to know about apply function.</p>
-<div id="apply-functions-are-not-much-faster-than-loops" class="section level3" number="13.3.1">
-<h3><span class="header-section-number">13.3.1</span> apply functions are not much faster than loops</h3>
+<div id="apply-functions-are-not-much-faster-than-loops" class="section level3 hasAnchor" number="14.3.1">
+<h3><span class="header-section-number">14.3.1</span> apply functions are not much faster than loops<a href="loops.html#apply-functions-are-not-much-faster-than-loops" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Many people wrongly assume that just because you are using apply functions that means your code is vectorized, which is not true at all. Apply functions are loops under the hood and they are meant for convenience not for speed.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="loops.html#cb258-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb258-2"><a href="loops.html#cb258-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">lapply =</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, rnorm),</span>
-<span id="cb258-3"><a href="loops.html#cb258-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">forloop =</span> <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>){</span>
-<span id="cb258-4"><a href="loops.html#cb258-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rnorm</span>(i)</span>
-<span id="cb258-5"><a href="loops.html#cb258-5" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb258-6"><a href="loops.html#cb258-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb258-7"><a href="loops.html#cb258-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="loops.html#cb262-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb262-2"><a href="loops.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">lapply =</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, rnorm),</span>
+<span id="cb262-3"><a href="loops.html#cb262-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">forloop =</span> <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>){</span>
+<span id="cb262-4"><a href="loops.html#cb262-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rnorm</span>(i)</span>
+<span id="cb262-5"><a href="loops.html#cb262-5" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb262-6"><a href="loops.html#cb262-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb262-7"><a href="loops.html#cb262-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##     expr     min      lq     mean  median      uq     max neval
-##   lapply 47.0158 47.9029 50.36130 49.1434 52.8764 56.6712    10
-##  forloop 51.5395 51.9855 53.18597 52.7683 54.7837 55.8420    10</code></pre>
+##   lapply 48.1757 50.2958 52.84344 51.1705 52.7505 70.8977    10
+##  forloop 49.9527 50.4819 52.87576 52.3894 55.2797 58.3301    10</code></pre>
 <p>I have tested this on bigger vector and the results are almost identical. There difference is not too much. but lapply gives you optimized loop to begin and thus you should always prefer a lapply where ever it’s possible but you should not be scared to use a loop either as the speed is mostly the same.</p>
 </div>
-<div id="nested-lapply-have-same-speed-as-a-normal-lapply" class="section level3" number="13.3.2">
-<h3><span class="header-section-number">13.3.2</span> Nested lapply have same speed as a normal lapply</h3>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="loops.html#cb260-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb260-2"><a href="loops.html#cb260-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">nested =</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, <span class="cf">function</span>(x){</span>
-<span id="cb260-3"><a href="loops.html#cb260-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(x)</span>
-<span id="cb260-4"><a href="loops.html#cb260-4" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">%&gt;%</span> </span>
-<span id="cb260-5"><a href="loops.html#cb260-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(<span class="cf">function</span>(x){</span>
-<span id="cb260-6"><a href="loops.html#cb260-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sum</span>(x)</span>
-<span id="cb260-7"><a href="loops.html#cb260-7" aria-hidden="true" tabindex="-1"></a>  }),</span>
-<span id="cb260-8"><a href="loops.html#cb260-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal =</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, <span class="cf">function</span>(x){</span>
-<span id="cb260-9"><a href="loops.html#cb260-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(x) <span class="sc">%&gt;%</span> </span>
-<span id="cb260-10"><a href="loops.html#cb260-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sum</span>()</span>
-<span id="cb260-11"><a href="loops.html#cb260-11" aria-hidden="true" tabindex="-1"></a>  }),</span>
-<span id="cb260-12"><a href="loops.html#cb260-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb260-13"><a href="loops.html#cb260-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div id="nested-lapply-have-same-speed-as-a-normal-lapply" class="section level3 hasAnchor" number="14.3.2">
+<h3><span class="header-section-number">14.3.2</span> Nested lapply have same speed as a normal lapply<a href="loops.html#nested-lapply-have-same-speed-as-a-normal-lapply" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="loops.html#cb264-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb264-2"><a href="loops.html#cb264-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">nested =</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, <span class="cf">function</span>(x){</span>
+<span id="cb264-3"><a href="loops.html#cb264-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(x)</span>
+<span id="cb264-4"><a href="loops.html#cb264-4" aria-hidden="true" tabindex="-1"></a>  }) <span class="sc">%&gt;%</span> </span>
+<span id="cb264-5"><a href="loops.html#cb264-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(<span class="cf">function</span>(x){</span>
+<span id="cb264-6"><a href="loops.html#cb264-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sum</span>(x)</span>
+<span id="cb264-7"><a href="loops.html#cb264-7" aria-hidden="true" tabindex="-1"></a>  }),</span>
+<span id="cb264-8"><a href="loops.html#cb264-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">normal =</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>, <span class="cf">function</span>(x){</span>
+<span id="cb264-9"><a href="loops.html#cb264-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rnorm</span>(x) <span class="sc">%&gt;%</span> </span>
+<span id="cb264-10"><a href="loops.html#cb264-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sum</span>()</span>
+<span id="cb264-11"><a href="loops.html#cb264-11" aria-hidden="true" tabindex="-1"></a>  }),</span>
+<span id="cb264-12"><a href="loops.html#cb264-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb264-13"><a href="loops.html#cb264-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##    expr     min      lq     mean   median      uq     max neval
-##  nested 49.3179 49.4411 51.99423 51.31075 53.9065 59.0963    10
-##  normal 51.6646 52.3871 53.87883 53.61215 55.1273 58.0107    10</code></pre>
+##  nested 51.1481 54.0475 55.71928 54.53290 56.1110 66.4323    10
+##  normal 54.4771 56.5014 57.85445 57.09725 58.1304 63.5937    10</code></pre>
 <p>as you can see that nesting multiple lapply function doesn’t slow the code. However it’s not a standard practice to do it and I would not recommend anybody to make your code harder to read by nesting multiple lapply functions.</p>
 <p>So let me summarize it lapply is better than loops but it’s no where near the speed of a vectorized code. Let’s talk about the fastest way to speed up your code.</p>
 </div>
 </div>
-<div id="vectorize-your-code" class="section level2" number="13.4">
-<h2><span class="header-section-number">13.4</span> Vectorize your code</h2>
+<div id="vectorize-your-code" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">14.4</span> Vectorize your code<a href="loops.html#vectorize-your-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R is vectorized to the core. Every function in R is vectorized. Even the comparison operators are vectorized. This is a core strength of R. If you can break your task down to vectorized operation you can make it faster even after adding more steps to it. Let’s take an example.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="loops.html#cb262-1" aria-hidden="true" tabindex="-1"></a>dummy_text <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
-<span id="cb262-2"><a href="loops.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> letters,</span>
-<span id="cb262-3"><a href="loops.html#cb262-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fl">1e3</span>,</span>
-<span id="cb262-4"><a href="loops.html#cb262-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb262-5"><a href="loops.html#cb262-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb262-6"><a href="loops.html#cb262-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb262-7"><a href="loops.html#cb262-7" aria-hidden="true" tabindex="-1"></a>dummy_category <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
-<span id="cb262-8"><a href="loops.html#cb262-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
-<span id="cb262-9"><a href="loops.html#cb262-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fl">1e3</span>,</span>
-<span id="cb262-10"><a href="loops.html#cb262-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb262-11"><a href="loops.html#cb262-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb262-12"><a href="loops.html#cb262-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb262-13"><a href="loops.html#cb262-13" aria-hidden="true" tabindex="-1"></a>main_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dummy_text, dummy_category)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="loops.html#cb266-1" aria-hidden="true" tabindex="-1"></a>dummy_text <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb266-2"><a href="loops.html#cb266-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> letters,</span>
+<span id="cb266-3"><a href="loops.html#cb266-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fl">1e3</span>,</span>
+<span id="cb266-4"><a href="loops.html#cb266-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb266-5"><a href="loops.html#cb266-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb266-6"><a href="loops.html#cb266-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-7"><a href="loops.html#cb266-7" aria-hidden="true" tabindex="-1"></a>dummy_category <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb266-8"><a href="loops.html#cb266-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb266-9"><a href="loops.html#cb266-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> <span class="fl">1e3</span>,</span>
+<span id="cb266-10"><a href="loops.html#cb266-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb266-11"><a href="loops.html#cb266-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb266-12"><a href="loops.html#cb266-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-13"><a href="loops.html#cb266-13" aria-hidden="true" tabindex="-1"></a>main_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dummy_text, dummy_category)</span></code></pre></div>
 <p>Now this table has a 1000 text that I want to join into a a huge corpus based on their category. Anybody familiar with other programming languages like python or java or c++ will look for a loop that can solve it. If you try that approach it might go like this.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="loops.html#cb263-1" aria-hidden="true" tabindex="-1"></a>join_text_norm <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">df =</span> main_table){</span>
-<span id="cb263-2"><a href="loops.html#cb263-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb263-3"><a href="loops.html#cb263-3" aria-hidden="true" tabindex="-1"></a>  text <span class="ot">&lt;-</span> <span class="fu">character</span>(<span class="fu">length</span>(<span class="fu">unique</span>(df<span class="sc">$</span>dummy_category)))</span>
-<span id="cb263-4"><a href="loops.html#cb263-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb263-5"><a href="loops.html#cb263-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(df<span class="sc">$</span>dummy_category)){</span>
-<span id="cb263-6"><a href="loops.html#cb263-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ( df<span class="sc">$</span>dummy_category[[i]] <span class="sc">==</span> <span class="dv">1</span> ) {</span>
-<span id="cb263-7"><a href="loops.html#cb263-7" aria-hidden="true" tabindex="-1"></a>        text[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(text[[<span class="dv">1</span>]], df<span class="sc">$</span>dummy_text[[i]])</span>
-<span id="cb263-8"><a href="loops.html#cb263-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>   <span class="cf">if</span> ( df<span class="sc">$</span>dummy_category[[i]] <span class="sc">==</span> <span class="dv">2</span> ) {</span>
-<span id="cb263-9"><a href="loops.html#cb263-9" aria-hidden="true" tabindex="-1"></a>        text[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(text[[<span class="dv">2</span>]], df<span class="sc">$</span>dummy_text[[i]])</span>
-<span id="cb263-10"><a href="loops.html#cb263-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb263-11"><a href="loops.html#cb263-11" aria-hidden="true" tabindex="-1"></a>      text[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(text[[<span class="dv">3</span>]], df<span class="sc">$</span>dummy_text[[i]])</span>
-<span id="cb263-12"><a href="loops.html#cb263-12" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb263-13"><a href="loops.html#cb263-13" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb263-14"><a href="loops.html#cb263-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb263-15"><a href="loops.html#cb263-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(text)</span>
-<span id="cb263-16"><a href="loops.html#cb263-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb263-17"><a href="loops.html#cb263-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb263-18"><a href="loops.html#cb263-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-19"><a href="loops.html#cb263-19" aria-hidden="true" tabindex="-1"></a><span class="fu">join_text_norm</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="loops.html#cb267-1" aria-hidden="true" tabindex="-1"></a>join_text_norm <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">df =</span> main_table){</span>
+<span id="cb267-2"><a href="loops.html#cb267-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb267-3"><a href="loops.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  text <span class="ot">&lt;-</span> <span class="fu">character</span>(<span class="fu">length</span>(<span class="fu">unique</span>(df<span class="sc">$</span>dummy_category)))</span>
+<span id="cb267-4"><a href="loops.html#cb267-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb267-5"><a href="loops.html#cb267-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(df<span class="sc">$</span>dummy_category)){</span>
+<span id="cb267-6"><a href="loops.html#cb267-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> ( df<span class="sc">$</span>dummy_category[[i]] <span class="sc">==</span> <span class="dv">1</span> ) {</span>
+<span id="cb267-7"><a href="loops.html#cb267-7" aria-hidden="true" tabindex="-1"></a>        text[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(text[[<span class="dv">1</span>]], df<span class="sc">$</span>dummy_text[[i]])</span>
+<span id="cb267-8"><a href="loops.html#cb267-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>   <span class="cf">if</span> ( df<span class="sc">$</span>dummy_category[[i]] <span class="sc">==</span> <span class="dv">2</span> ) {</span>
+<span id="cb267-9"><a href="loops.html#cb267-9" aria-hidden="true" tabindex="-1"></a>        text[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(text[[<span class="dv">2</span>]], df<span class="sc">$</span>dummy_text[[i]])</span>
+<span id="cb267-10"><a href="loops.html#cb267-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb267-11"><a href="loops.html#cb267-11" aria-hidden="true" tabindex="-1"></a>      text[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(text[[<span class="dv">3</span>]], df<span class="sc">$</span>dummy_text[[i]])</span>
+<span id="cb267-12"><a href="loops.html#cb267-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb267-13"><a href="loops.html#cb267-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb267-14"><a href="loops.html#cb267-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb267-15"><a href="loops.html#cb267-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(text)</span>
+<span id="cb267-16"><a href="loops.html#cb267-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb267-17"><a href="loops.html#cb267-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb267-18"><a href="loops.html#cb267-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb267-19"><a href="loops.html#cb267-19" aria-hidden="true" tabindex="-1"></a><span class="fu">join_text_norm</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;akwnggdwpcjfrtqnmnxqmpdlmnqasxgmpdszivvsynzgzuxbjltfremtmxvwayattlwsubqiegrsmmewjjiflewkcevhuxkkabbjyreobilalktotxdodkwvquqkrgovirrjyaqfbytztkrtdsfbzsfnmtjzsjaysgxumvxmnaraqscolrlxoxvuullhtrwfkvszodwqlgnnfsstyjszgevyoqgppfnaispqyfbbcxzdsciigpqmwcrpjcpsrjxcttokcaodsmuhjhedtkprgqrvnjgoqybwjdcowadsumdgmeabzqfilrcmrvhnylbmkqjoygskcjtjpqubjq&quot;         
 ## [2] &quot;chiuvtpjyjqnkjzpluaouwqbzexassqintwbpwxjzrktfzmfdzfnfhwgyhyrsrcvgtawlzeaumuugsmcovtpnyekgkkqoyrxiiczmdqjbwpbugacpbvbtckkuytbotjzdifofdflskutqxzfavkkpdncqllhdfexgtcbxemtnelxzjjaojndamxbaljrmhwydpevxisbxmpgsblxmdmbtmckpvfcidscqfncdpxedramaoqgixzwdsftzojdueqyxozevgzudwsiujcuslpgwhqctgwsbbptycvpbsizjifrmmdpdbjnlnjopdb&quot;                                
 ## [3] &quot;pxplgtnqrikgjvkxaetnukykzvqyzaxgjznmmmespebewlkqueelsteovungkttlflahuibzxftgqylkoslbpjejhytzxafsfuocrxlrtacsfaioplfdlxirmswlbxikvlkjtugjhlczomfztbmjrkheshxaopnhyuydlppweblcjqoejpjhbjryhkkkhuvecvhbsnrtsbprbuuzpuzjcnvmazwvoldzfaidfvylzpwpzyelbgugcrsfwrqajcwtxxrqmsxiacpswfahprkelqmhoupdfibrftdhjphrxbyrnyezblmjadwngxhqhwqfezetjidbzxwkrapbvzhsmlfpmzp&quot;</code></pre>
 <p>This is not the most optimized function but this can get the job done. And I am breaking a golden rule here.</p>
-<div id="never-repeat-a-calculation" class="section level3" number="13.4.1">
-<h3><span class="header-section-number">13.4.1</span> never repeat a calculation</h3>
+<div id="never-repeat-a-calculation" class="section level3 hasAnchor" number="14.4.1">
+<h3><span class="header-section-number">14.4.1</span> never repeat a calculation<a href="loops.html#never-repeat-a-calculation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>in the above code I could save the some time by storing the value of text into a variable and stop R from calculating it again and again.</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="loops.html#cb265-1" aria-hidden="true" tabindex="-1"></a>join_text_saved <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb265-2"><a href="loops.html#cb265-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">df =</span> main_table</span>
-<span id="cb265-3"><a href="loops.html#cb265-3" aria-hidden="true" tabindex="-1"></a>  ){</span>
-<span id="cb265-4"><a href="loops.html#cb265-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb265-5"><a href="loops.html#cb265-5" aria-hidden="true" tabindex="-1"></a>  text <span class="ot">&lt;-</span> <span class="fu">character</span>(<span class="fu">length</span>(<span class="fu">unique</span>(df<span class="sc">$</span>dummy_category)))</span>
-<span id="cb265-6"><a href="loops.html#cb265-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb265-7"><a href="loops.html#cb265-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(df<span class="sc">$</span>dummy_category)){</span>
-<span id="cb265-8"><a href="loops.html#cb265-8" aria-hidden="true" tabindex="-1"></a>    curr_text <span class="ot">&lt;-</span> df<span class="sc">$</span>dummy_text[[i]]</span>
-<span id="cb265-9"><a href="loops.html#cb265-9" aria-hidden="true" tabindex="-1"></a>    curr_cat <span class="ot">&lt;-</span> df<span class="sc">$</span>dummy_category[[i]]</span>
-<span id="cb265-10"><a href="loops.html#cb265-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb265-11"><a href="loops.html#cb265-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (curr_cat  <span class="sc">==</span> <span class="dv">1</span> ) {</span>
-<span id="cb265-12"><a href="loops.html#cb265-12" aria-hidden="true" tabindex="-1"></a>        text[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(text[[<span class="dv">1</span>]], curr_text)</span>
-<span id="cb265-13"><a href="loops.html#cb265-13" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>   <span class="cf">if</span> ( curr_cat <span class="sc">==</span> <span class="dv">2</span> ) {</span>
-<span id="cb265-14"><a href="loops.html#cb265-14" aria-hidden="true" tabindex="-1"></a>        text[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(text[[<span class="dv">2</span>]], curr_text)</span>
-<span id="cb265-15"><a href="loops.html#cb265-15" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb265-16"><a href="loops.html#cb265-16" aria-hidden="true" tabindex="-1"></a>      text[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(text[[<span class="dv">3</span>]], curr_text)</span>
-<span id="cb265-17"><a href="loops.html#cb265-17" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb265-18"><a href="loops.html#cb265-18" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb265-19"><a href="loops.html#cb265-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb265-20"><a href="loops.html#cb265-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(text)</span>
-<span id="cb265-21"><a href="loops.html#cb265-21" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb265-22"><a href="loops.html#cb265-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb265-23"><a href="loops.html#cb265-23" aria-hidden="true" tabindex="-1"></a><span class="fu">join_text_saved</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="loops.html#cb269-1" aria-hidden="true" tabindex="-1"></a>join_text_saved <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb269-2"><a href="loops.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">df =</span> main_table</span>
+<span id="cb269-3"><a href="loops.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  ){</span>
+<span id="cb269-4"><a href="loops.html#cb269-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb269-5"><a href="loops.html#cb269-5" aria-hidden="true" tabindex="-1"></a>  text <span class="ot">&lt;-</span> <span class="fu">character</span>(<span class="fu">length</span>(<span class="fu">unique</span>(df<span class="sc">$</span>dummy_category)))</span>
+<span id="cb269-6"><a href="loops.html#cb269-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb269-7"><a href="loops.html#cb269-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(df<span class="sc">$</span>dummy_category)){</span>
+<span id="cb269-8"><a href="loops.html#cb269-8" aria-hidden="true" tabindex="-1"></a>    curr_text <span class="ot">&lt;-</span> df<span class="sc">$</span>dummy_text[[i]]</span>
+<span id="cb269-9"><a href="loops.html#cb269-9" aria-hidden="true" tabindex="-1"></a>    curr_cat <span class="ot">&lt;-</span> df<span class="sc">$</span>dummy_category[[i]]</span>
+<span id="cb269-10"><a href="loops.html#cb269-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb269-11"><a href="loops.html#cb269-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (curr_cat  <span class="sc">==</span> <span class="dv">1</span> ) {</span>
+<span id="cb269-12"><a href="loops.html#cb269-12" aria-hidden="true" tabindex="-1"></a>        text[[<span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(text[[<span class="dv">1</span>]], curr_text)</span>
+<span id="cb269-13"><a href="loops.html#cb269-13" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span>   <span class="cf">if</span> ( curr_cat <span class="sc">==</span> <span class="dv">2</span> ) {</span>
+<span id="cb269-14"><a href="loops.html#cb269-14" aria-hidden="true" tabindex="-1"></a>        text[[<span class="dv">2</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(text[[<span class="dv">2</span>]], curr_text)</span>
+<span id="cb269-15"><a href="loops.html#cb269-15" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb269-16"><a href="loops.html#cb269-16" aria-hidden="true" tabindex="-1"></a>      text[[<span class="dv">3</span>]] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(text[[<span class="dv">3</span>]], curr_text)</span>
+<span id="cb269-17"><a href="loops.html#cb269-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb269-18"><a href="loops.html#cb269-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb269-19"><a href="loops.html#cb269-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb269-20"><a href="loops.html#cb269-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(text)</span>
+<span id="cb269-21"><a href="loops.html#cb269-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb269-22"><a href="loops.html#cb269-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb269-23"><a href="loops.html#cb269-23" aria-hidden="true" tabindex="-1"></a><span class="fu">join_text_saved</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;akwnggdwpcjfrtqnmnxqmpdlmnqasxgmpdszivvsynzgzuxbjltfremtmxvwayattlwsubqiegrsmmewjjiflewkcevhuxkkabbjyreobilalktotxdodkwvquqkrgovirrjyaqfbytztkrtdsfbzsfnmtjzsjaysgxumvxmnaraqscolrlxoxvuullhtrwfkvszodwqlgnnfsstyjszgevyoqgppfnaispqyfbbcxzdsciigpqmwcrpjcpsrjxcttokcaodsmuhjhedtkprgqrvnjgoqybwjdcowadsumdgmeabzqfilrcmrvhnylbmkqjoygskcjtjpqubjq&quot;         
 ## [2] &quot;chiuvtpjyjqnkjzpluaouwqbzexassqintwbpwxjzrktfzmfdzfnfhwgyhyrsrcvgtawlzeaumuugsmcovtpnyekgkkqoyrxiiczmdqjbwpbugacpbvbtckkuytbotjzdifofdflskutqxzfavkkpdncqllhdfexgtcbxemtnelxzjjaojndamxbaljrmhwydpevxisbxmpgsblxmdmbtmckpvfcidscqfncdpxedramaoqgixzwdsftzojdueqyxozevgzudwsiujcuslpgwhqctgwsbbptycvpbsizjifrmmdpdbjnlnjopdb&quot;                                
 ## [3] &quot;pxplgtnqrikgjvkxaetnukykzvqyzaxgjznmmmespebewlkqueelsteovungkttlflahuibzxftgqylkoslbpjejhytzxafsfuocrxlrtacsfaioplfdlxirmswlbxikvlkjtugjhlczomfztbmjrkheshxaopnhyuydlppweblcjqoejpjhbjryhkkkhuvecvhbsnrtsbprbuuzpuzjcnvmazwvoldzfaidfvylzpwpzyelbgugcrsfwrqajcwtxxrqmsxiacpswfahprkelqmhoupdfibrftdhjphrxbyrnyezblmjadwngxhqhwqfezetjidbzxwkrapbvzhsmlfpmzp&quot;</code></pre>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="loops.html#cb267-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb267-2"><a href="loops.html#cb267-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_text_norm</span>(<span class="at">df =</span> main_table),</span>
-<span id="cb267-3"><a href="loops.html#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_text_saved</span>(<span class="at">df =</span> main_table)</span>
-<span id="cb267-4"><a href="loops.html#cb267-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="loops.html#cb271-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb271-2"><a href="loops.html#cb271-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_text_norm</span>(<span class="at">df =</span> main_table),</span>
+<span id="cb271-3"><a href="loops.html#cb271-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_text_saved</span>(<span class="at">df =</span> main_table)</span>
+<span id="cb271-4"><a href="loops.html#cb271-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##                              expr    min      lq     mean median      uq
-##   join_text_norm(df = main_table) 6.1627 6.48405 7.211115 7.1209 7.74185
-##  join_text_saved(df = main_table) 5.5287 5.80360 6.630727 6.3515 7.04215
+##                              expr      min       lq     mean   median       uq
+##   join_text_norm(df = main_table) 6.290101 6.889651 7.455970 7.189351 7.535502
+##  join_text_saved(df = main_table) 5.745501 6.085952 6.685338 6.473151 7.051451
 ##      max neval
-##  11.1133   100
-##  11.8826   100</code></pre>
+##  15.2699   100
+##  11.5883   100</code></pre>
 <p>We did not save much on it but we still saved one millisecond on just a 1000 loop. It’s an excellent practice of not to repeat calculation. Especially when you are calculating multiple things again and again.</p>
 <p>Now coming back to the point. You could try this approach just like every other programming language does. Or you can try a vectorized approach with the built in paste function with collapse argument.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="loops.html#cb269-1" aria-hidden="true" tabindex="-1"></a>collapsed_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb269-2"><a href="loops.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">df =</span>  main_table</span>
-<span id="cb269-3"><a href="loops.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  ){</span>
-<span id="cb269-4"><a href="loops.html#cb269-4" aria-hidden="true" tabindex="-1"></a>  text <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
-<span id="cb269-5"><a href="loops.html#cb269-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(<span class="at">f =</span> dummy_category) <span class="sc">%&gt;%</span> </span>
-<span id="cb269-6"><a href="loops.html#cb269-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(<span class="cf">function</span>(x)</span>
-<span id="cb269-7"><a href="loops.html#cb269-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(x<span class="sc">$</span>dummy_text,<span class="at">collapse =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb269-8"><a href="loops.html#cb269-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> </span>
-<span id="cb269-9"><a href="loops.html#cb269-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>()</span>
-<span id="cb269-10"><a href="loops.html#cb269-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb269-11"><a href="loops.html#cb269-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(text)</span>
-<span id="cb269-12"><a href="loops.html#cb269-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb269-13"><a href="loops.html#cb269-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb269-14"><a href="loops.html#cb269-14" aria-hidden="true" tabindex="-1"></a><span class="fu">collapsed_fun</span>(main_table)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="loops.html#cb273-1" aria-hidden="true" tabindex="-1"></a>collapsed_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb273-2"><a href="loops.html#cb273-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">df =</span>  main_table</span>
+<span id="cb273-3"><a href="loops.html#cb273-3" aria-hidden="true" tabindex="-1"></a>  ){</span>
+<span id="cb273-4"><a href="loops.html#cb273-4" aria-hidden="true" tabindex="-1"></a>  text <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> </span>
+<span id="cb273-5"><a href="loops.html#cb273-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(<span class="at">f =</span> dummy_category) <span class="sc">%&gt;%</span> </span>
+<span id="cb273-6"><a href="loops.html#cb273-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(<span class="cf">function</span>(x)</span>
+<span id="cb273-7"><a href="loops.html#cb273-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(x<span class="sc">$</span>dummy_text,<span class="at">collapse =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb273-8"><a href="loops.html#cb273-8" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">%&gt;%</span> </span>
+<span id="cb273-9"><a href="loops.html#cb273-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb273-10"><a href="loops.html#cb273-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb273-11"><a href="loops.html#cb273-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(text)</span>
+<span id="cb273-12"><a href="loops.html#cb273-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb273-13"><a href="loops.html#cb273-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb273-14"><a href="loops.html#cb273-14" aria-hidden="true" tabindex="-1"></a><span class="fu">collapsed_fun</span>(main_table)</span></code></pre></div>
 <pre><code>##                                                                                                                                                                                                                                                                                                                                                             1 
 ##          &quot;akwnggdwpcjfrtqnmnxqmpdlmnqasxgmpdszivvsynzgzuxbjltfremtmxvwayattlwsubqiegrsmmewjjiflewkcevhuxkkabbjyreobilalktotxdodkwvquqkrgovirrjyaqfbytztkrtdsfbzsfnmtjzsjaysgxumvxmnaraqscolrlxoxvuullhtrwfkvszodwqlgnnfsstyjszgevyoqgppfnaispqyfbbcxzdsciigpqmwcrpjcpsrjxcttokcaodsmuhjhedtkprgqrvnjgoqybwjdcowadsumdgmeabzqfilrcmrvhnylbmkqjoygskcjtjpqubjq&quot; 
 ##                                                                                                                                                                                                                                                                                                                                                             2 
@@ -617,146 +640,146 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                                                                                                                                                                                                                                                                                                                                                             3 
 ## &quot;pxplgtnqrikgjvkxaetnukykzvqyzaxgjznmmmespebewlkqueelsteovungkttlflahuibzxftgqylkoslbpjejhytzxafsfuocrxlrtacsfaioplfdlxirmswlbxikvlkjtugjhlczomfztbmjrkheshxaopnhyuydlppweblcjqoejpjhbjryhkkkhuvecvhbsnrtsbprbuuzpuzjcnvmazwvoldzfaidfvylzpwpzyelbgugcrsfwrqajcwtxxrqmsxiacpswfahprkelqmhoupdfibrftdhjphrxbyrnyezblmjadwngxhqhwqfezetjidbzxwkrapbvzhsmlfpmzp&quot;</code></pre>
 <p>Let’s compare it with the loop approach.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="loops.html#cb271-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb271-2"><a href="loops.html#cb271-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_text_norm</span>(),</span>
-<span id="cb271-3"><a href="loops.html#cb271-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_text_saved</span>(),</span>
-<span id="cb271-4"><a href="loops.html#cb271-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collapsed_fun</span>()</span>
-<span id="cb271-5"><a href="loops.html#cb271-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="loops.html#cb275-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb275-2"><a href="loops.html#cb275-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_text_norm</span>(),</span>
+<span id="cb275-3"><a href="loops.html#cb275-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_text_saved</span>(),</span>
+<span id="cb275-4"><a href="loops.html#cb275-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collapsed_fun</span>()</span>
+<span id="cb275-5"><a href="loops.html#cb275-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##               expr    min      lq     mean  median     uq     max neval
-##   join_text_norm() 6.1571 6.42060 7.457495 6.97980 7.6847 14.2623   100
-##  join_text_saved() 5.5503 5.78055 6.642105 6.25275 6.9169 12.9385   100
-##    collapsed_fun() 1.5238 1.65590 2.001593 1.77610 2.0895  9.7725   100</code></pre>
+##               expr      min       lq     mean   median       uq       max neval
+##   join_text_norm() 6.353301 6.641401 7.238728 7.070050 7.397151 12.855901   100
+##  join_text_saved() 5.706501 5.964101 6.506474 6.430801 6.640600 11.475901   100
+##    collapsed_fun() 1.500201 1.706001 1.887568 1.792001 1.930351  7.804401   100</code></pre>
 <p>Collapsed function is faster than all the other approach for just 1000 loops. Imagine doing it for 1 million. Vectorized function in those cases will be 1000 times faster than loops.</p>
 <p>The real reason for that is vectorized code uses optimized c for looping which is almost always faster than loops in R. And at times you can get 1000x speed compared to a normal loop. and Thus sometimes you can get away with doing more with vectors than with loops.</p>
 </div>
-<div id="vectorized-code-can-do-2-or-3-steps-more-in-lesser-time" class="section level3" number="13.4.2">
-<h3><span class="header-section-number">13.4.2</span> Vectorized code can do 2 or 3 steps more in lesser time</h3>
+<div id="vectorized-code-can-do-2-or-3-steps-more-in-lesser-time" class="section level3 hasAnchor" number="14.4.2">
+<h3><span class="header-section-number">14.4.2</span> Vectorized code can do 2 or 3 steps more in lesser time<a href="loops.html#vectorized-code-can-do-2-or-3-steps-more-in-lesser-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There is a classical example that I read in a book <code>efficient R</code> and I was amazed to see why it happened.</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="loops.html#cb273-1" aria-hidden="true" tabindex="-1"></a>if_norm <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb273-2"><a href="loops.html#cb273-2" aria-hidden="true" tabindex="-1"></a>  x,</span>
-<span id="cb273-3"><a href="loops.html#cb273-3" aria-hidden="true" tabindex="-1"></a>  size</span>
-<span id="cb273-4"><a href="loops.html#cb273-4" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb273-5"><a href="loops.html#cb273-5" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">character</span>(size)</span>
-<span id="cb273-6"><a href="loops.html#cb273-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>){</span>
-<span id="cb273-7"><a href="loops.html#cb273-7" aria-hidden="true" tabindex="-1"></a>    value <span class="ot">&lt;-</span> x[[i]]</span>
-<span id="cb273-8"><a href="loops.html#cb273-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(value <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb273-9"><a href="loops.html#cb273-9" aria-hidden="true" tabindex="-1"></a>      y[[i]] <span class="ot">&lt;-</span> <span class="st">&quot;zero&quot;</span></span>
-<span id="cb273-10"><a href="loops.html#cb273-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>(value <span class="sc">==</span> <span class="dv">1</span>){</span>
-<span id="cb273-11"><a href="loops.html#cb273-11" aria-hidden="true" tabindex="-1"></a>      y[[i]] <span class="ot">&lt;-</span> <span class="st">&quot;one&quot;</span></span>
-<span id="cb273-12"><a href="loops.html#cb273-12" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb273-13"><a href="loops.html#cb273-13" aria-hidden="true" tabindex="-1"></a>      y[[i]] <span class="ot">&lt;-</span> <span class="st">&quot;many&quot;</span></span>
-<span id="cb273-14"><a href="loops.html#cb273-14" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb273-15"><a href="loops.html#cb273-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb273-16"><a href="loops.html#cb273-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
-<span id="cb273-17"><a href="loops.html#cb273-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb273-18"><a href="loops.html#cb273-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb273-19"><a href="loops.html#cb273-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb273-20"><a href="loops.html#cb273-20" aria-hidden="true" tabindex="-1"></a>if_vector <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb273-21"><a href="loops.html#cb273-21" aria-hidden="true" tabindex="-1"></a>  x,</span>
-<span id="cb273-22"><a href="loops.html#cb273-22" aria-hidden="true" tabindex="-1"></a>  size</span>
-<span id="cb273-23"><a href="loops.html#cb273-23" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb273-24"><a href="loops.html#cb273-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb273-25"><a href="loops.html#cb273-25" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">character</span>(size)</span>
-<span id="cb273-26"><a href="loops.html#cb273-26" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb273-27"><a href="loops.html#cb273-27" aria-hidden="true" tabindex="-1"></a>  y[<span class="dv">1</span><span class="sc">:</span>size] <span class="ot">&lt;-</span> <span class="st">&quot;many&quot;</span></span>
-<span id="cb273-28"><a href="loops.html#cb273-28" aria-hidden="true" tabindex="-1"></a>  y[x <span class="sc">==</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;one&quot;</span></span>
-<span id="cb273-29"><a href="loops.html#cb273-29" aria-hidden="true" tabindex="-1"></a>  y[x <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="st">&quot;zero&quot;</span></span>
-<span id="cb273-30"><a href="loops.html#cb273-30" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb273-31"><a href="loops.html#cb273-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
-<span id="cb273-32"><a href="loops.html#cb273-32" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="loops.html#cb277-1" aria-hidden="true" tabindex="-1"></a>if_norm <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb277-2"><a href="loops.html#cb277-2" aria-hidden="true" tabindex="-1"></a>  x,</span>
+<span id="cb277-3"><a href="loops.html#cb277-3" aria-hidden="true" tabindex="-1"></a>  size</span>
+<span id="cb277-4"><a href="loops.html#cb277-4" aria-hidden="true" tabindex="-1"></a>){</span>
+<span id="cb277-5"><a href="loops.html#cb277-5" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">character</span>(size)</span>
+<span id="cb277-6"><a href="loops.html#cb277-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e3</span>){</span>
+<span id="cb277-7"><a href="loops.html#cb277-7" aria-hidden="true" tabindex="-1"></a>    value <span class="ot">&lt;-</span> x[[i]]</span>
+<span id="cb277-8"><a href="loops.html#cb277-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(value <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb277-9"><a href="loops.html#cb277-9" aria-hidden="true" tabindex="-1"></a>      y[[i]] <span class="ot">&lt;-</span> <span class="st">&quot;zero&quot;</span></span>
+<span id="cb277-10"><a href="loops.html#cb277-10" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>(value <span class="sc">==</span> <span class="dv">1</span>){</span>
+<span id="cb277-11"><a href="loops.html#cb277-11" aria-hidden="true" tabindex="-1"></a>      y[[i]] <span class="ot">&lt;-</span> <span class="st">&quot;one&quot;</span></span>
+<span id="cb277-12"><a href="loops.html#cb277-12" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb277-13"><a href="loops.html#cb277-13" aria-hidden="true" tabindex="-1"></a>      y[[i]] <span class="ot">&lt;-</span> <span class="st">&quot;many&quot;</span></span>
+<span id="cb277-14"><a href="loops.html#cb277-14" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb277-15"><a href="loops.html#cb277-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb277-16"><a href="loops.html#cb277-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
+<span id="cb277-17"><a href="loops.html#cb277-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb277-18"><a href="loops.html#cb277-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-19"><a href="loops.html#cb277-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-20"><a href="loops.html#cb277-20" aria-hidden="true" tabindex="-1"></a>if_vector <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb277-21"><a href="loops.html#cb277-21" aria-hidden="true" tabindex="-1"></a>  x,</span>
+<span id="cb277-22"><a href="loops.html#cb277-22" aria-hidden="true" tabindex="-1"></a>  size</span>
+<span id="cb277-23"><a href="loops.html#cb277-23" aria-hidden="true" tabindex="-1"></a>){</span>
+<span id="cb277-24"><a href="loops.html#cb277-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-25"><a href="loops.html#cb277-25" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">character</span>(size)</span>
+<span id="cb277-26"><a href="loops.html#cb277-26" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb277-27"><a href="loops.html#cb277-27" aria-hidden="true" tabindex="-1"></a>  y[<span class="dv">1</span><span class="sc">:</span>size] <span class="ot">&lt;-</span> <span class="st">&quot;many&quot;</span></span>
+<span id="cb277-28"><a href="loops.html#cb277-28" aria-hidden="true" tabindex="-1"></a>  y[x <span class="sc">==</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;one&quot;</span></span>
+<span id="cb277-29"><a href="loops.html#cb277-29" aria-hidden="true" tabindex="-1"></a>  y[x <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="st">&quot;zero&quot;</span></span>
+<span id="cb277-30"><a href="loops.html#cb277-30" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb277-31"><a href="loops.html#cb277-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
+<span id="cb277-32"><a href="loops.html#cb277-32" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Both the function will return the same vector. However we are doing minimum with the normal function while in vectorized function we are doing redundant operations.</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="loops.html#cb274-1" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span> <span class="fl">1e3</span></span>
-<span id="cb274-2"><a href="loops.html#cb274-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb274-3"><a href="loops.html#cb274-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
-<span id="cb274-4"><a href="loops.html#cb274-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
-<span id="cb274-5"><a href="loops.html#cb274-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> size,</span>
-<span id="cb274-6"><a href="loops.html#cb274-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb274-7"><a href="loops.html#cb274-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb274-8"><a href="loops.html#cb274-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb274-9"><a href="loops.html#cb274-9" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(</span>
-<span id="cb274-10"><a href="loops.html#cb274-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">if_norm</span>(x, size),</span>
-<span id="cb274-11"><a href="loops.html#cb274-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">if_vector</span>(x, size)</span>
-<span id="cb274-12"><a href="loops.html#cb274-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="loops.html#cb278-1" aria-hidden="true" tabindex="-1"></a>size <span class="ot">&lt;-</span> <span class="fl">1e3</span></span>
+<span id="cb278-2"><a href="loops.html#cb278-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb278-3"><a href="loops.html#cb278-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb278-4"><a href="loops.html#cb278-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb278-5"><a href="loops.html#cb278-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> size,</span>
+<span id="cb278-6"><a href="loops.html#cb278-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb278-7"><a href="loops.html#cb278-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb278-8"><a href="loops.html#cb278-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb278-9"><a href="loops.html#cb278-9" aria-hidden="true" tabindex="-1"></a><span class="fu">all.equal</span>(</span>
+<span id="cb278-10"><a href="loops.html#cb278-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">if_norm</span>(x, size),</span>
+<span id="cb278-11"><a href="loops.html#cb278-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">if_vector</span>(x, size)</span>
+<span id="cb278-12"><a href="loops.html#cb278-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>Let’s check the speed of both the functions. Even though We are doing 3 steps in the vectorized solution and doing the same thing 3 times just to get a solution yet we are faster because vectorized code is very very fast you can get away with doing more and still saving time. Compare vectorized to be FLASH GORDEN and it can be faster even when it’s doing more than it should.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="loops.html#cb276-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb276-2"><a href="loops.html#cb276-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">minimal =</span> <span class="fu">if_norm</span>(x,size),</span>
-<span id="cb276-3"><a href="loops.html#cb276-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">vectorized =</span> <span class="fu">if_vector</span>(x, size)</span>
-<span id="cb276-4"><a href="loops.html#cb276-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="loops.html#cb280-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb280-2"><a href="loops.html#cb280-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">minimal =</span> <span class="fu">if_norm</span>(x,size),</span>
+<span id="cb280-3"><a href="loops.html#cb280-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">vectorized =</span> <span class="fu">if_vector</span>(x, size)</span>
+<span id="cb280-4"><a href="loops.html#cb280-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##        expr   min     lq    mean median    uq    max neval
-##     minimal 263.9 268.40 348.166 298.55 454.0  643.2   100
-##  vectorized  28.3  30.45  89.792  33.55  36.5 5487.3   100</code></pre>
+##        expr     min      lq      mean   median       uq      max neval
+##     minimal 265.301 269.501 288.16599 273.4010 290.3510  440.201   100
+##  vectorized  28.502  30.101  93.47598  31.6005  32.8015 6133.701   100</code></pre>
 </div>
 </div>
-<div id="understanding-non-vectorized-code" class="section level2" number="13.5">
-<h2><span class="header-section-number">13.5</span> Understanding non-vectorized code</h2>
+<div id="understanding-non-vectorized-code" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">14.5</span> Understanding non-vectorized code<a href="loops.html#understanding-non-vectorized-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are times when you need only scalar values and in those times it is redundant to use vectorized code. I see many people not understanding the difference and using vectorized code inside a loop on a scalar variable when non vectorized would have been more efficient. Let’s check it with an example.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="loops.html#cb278-1" aria-hidden="true" tabindex="-1"></a>n_size <span class="ot">&lt;-</span> <span class="fl">1e4</span></span>
-<span id="cb278-2"><a href="loops.html#cb278-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb278-3"><a href="loops.html#cb278-3" aria-hidden="true" tabindex="-1"></a>binary_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb278-4"><a href="loops.html#cb278-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">sample</span>(</span>
-<span id="cb278-5"><a href="loops.html#cb278-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb278-6"><a href="loops.html#cb278-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> n_size,</span>
-<span id="cb278-7"><a href="loops.html#cb278-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb278-8"><a href="loops.html#cb278-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb278-9"><a href="loops.html#cb278-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">sample</span>(</span>
-<span id="cb278-10"><a href="loops.html#cb278-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb278-11"><a href="loops.html#cb278-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> n_size,</span>
-<span id="cb278-12"><a href="loops.html#cb278-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb278-13"><a href="loops.html#cb278-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb278-14"><a href="loops.html#cb278-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">z =</span> <span class="fu">sample</span>(</span>
-<span id="cb278-15"><a href="loops.html#cb278-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb278-16"><a href="loops.html#cb278-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> n_size,</span>
-<span id="cb278-17"><a href="loops.html#cb278-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb278-18"><a href="loops.html#cb278-18" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb278-19"><a href="loops.html#cb278-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="loops.html#cb282-1" aria-hidden="true" tabindex="-1"></a>n_size <span class="ot">&lt;-</span> <span class="fl">1e4</span></span>
+<span id="cb282-2"><a href="loops.html#cb282-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb282-3"><a href="loops.html#cb282-3" aria-hidden="true" tabindex="-1"></a>binary_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb282-4"><a href="loops.html#cb282-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">sample</span>(</span>
+<span id="cb282-5"><a href="loops.html#cb282-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb282-6"><a href="loops.html#cb282-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> n_size,</span>
+<span id="cb282-7"><a href="loops.html#cb282-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb282-8"><a href="loops.html#cb282-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb282-9"><a href="loops.html#cb282-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">sample</span>(</span>
+<span id="cb282-10"><a href="loops.html#cb282-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb282-11"><a href="loops.html#cb282-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> n_size,</span>
+<span id="cb282-12"><a href="loops.html#cb282-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb282-13"><a href="loops.html#cb282-13" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb282-14"><a href="loops.html#cb282-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">z =</span> <span class="fu">sample</span>(</span>
+<span id="cb282-15"><a href="loops.html#cb282-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb282-16"><a href="loops.html#cb282-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> n_size,</span>
+<span id="cb282-17"><a href="loops.html#cb282-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb282-18"><a href="loops.html#cb282-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb282-19"><a href="loops.html#cb282-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Let’s check if we can find all the rows where all the variable are true. The fastest method would be vectorized solution like this</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="loops.html#cb279-1" aria-hidden="true" tabindex="-1"></a>all_true <span class="ot">&lt;-</span> binary_df<span class="sc">$</span>x <span class="sc">&amp;</span> binary_df<span class="sc">$</span>y <span class="sc">&amp;</span> binary_df<span class="sc">$</span>z</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="loops.html#cb283-1" aria-hidden="true" tabindex="-1"></a>all_true <span class="ot">&lt;-</span> binary_df<span class="sc">$</span>x <span class="sc">&amp;</span> binary_df<span class="sc">$</span>y <span class="sc">&amp;</span> binary_df<span class="sc">$</span>z</span></code></pre></div>
 <p>But when suppose you are using it in a loop to find the exact same thing.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="loops.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="do">### vectorized code</span></span>
-<span id="cb280-2"><a href="loops.html#cb280-2" aria-hidden="true" tabindex="-1"></a>vect_all_true <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb280-3"><a href="loops.html#cb280-3" aria-hidden="true" tabindex="-1"></a>  df</span>
-<span id="cb280-4"><a href="loops.html#cb280-4" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb280-5"><a href="loops.html#cb280-5" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">logical</span>(<span class="fu">nrow</span>(df))</span>
-<span id="cb280-6"><a href="loops.html#cb280-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb280-7"><a href="loops.html#cb280-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(binary_df<span class="sc">$</span>x)){</span>
-<span id="cb280-8"><a href="loops.html#cb280-8" aria-hidden="true" tabindex="-1"></a>    y[i] <span class="ot">&lt;-</span>  df<span class="sc">$</span>x[i] <span class="sc">&amp;</span> df<span class="sc">$</span>y[i] <span class="sc">&amp;</span> df<span class="sc">$</span>z[i]</span>
-<span id="cb280-9"><a href="loops.html#cb280-9" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb280-10"><a href="loops.html#cb280-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb280-11"><a href="loops.html#cb280-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
-<span id="cb280-12"><a href="loops.html#cb280-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb280-13"><a href="loops.html#cb280-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb280-14"><a href="loops.html#cb280-14" aria-hidden="true" tabindex="-1"></a><span class="do">### scalar code</span></span>
-<span id="cb280-15"><a href="loops.html#cb280-15" aria-hidden="true" tabindex="-1"></a>scalar_all_true <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb280-16"><a href="loops.html#cb280-16" aria-hidden="true" tabindex="-1"></a>  df</span>
-<span id="cb280-17"><a href="loops.html#cb280-17" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb280-18"><a href="loops.html#cb280-18" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">logical</span>(<span class="fu">nrow</span>(df))</span>
-<span id="cb280-19"><a href="loops.html#cb280-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb280-20"><a href="loops.html#cb280-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(df<span class="sc">$</span>x)){</span>
-<span id="cb280-21"><a href="loops.html#cb280-21" aria-hidden="true" tabindex="-1"></a>    y[[i]] <span class="ot">&lt;-</span>  df<span class="sc">$</span>x[[i]] <span class="sc">&amp;&amp;</span> df<span class="sc">$</span>y[[i]] <span class="sc">&amp;&amp;</span> df<span class="sc">$</span>z[[i]]</span>
-<span id="cb280-22"><a href="loops.html#cb280-22" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb280-23"><a href="loops.html#cb280-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb280-24"><a href="loops.html#cb280-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
-<span id="cb280-25"><a href="loops.html#cb280-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="loops.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="do">### vectorized code</span></span>
+<span id="cb284-2"><a href="loops.html#cb284-2" aria-hidden="true" tabindex="-1"></a>vect_all_true <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb284-3"><a href="loops.html#cb284-3" aria-hidden="true" tabindex="-1"></a>  df</span>
+<span id="cb284-4"><a href="loops.html#cb284-4" aria-hidden="true" tabindex="-1"></a>){</span>
+<span id="cb284-5"><a href="loops.html#cb284-5" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">logical</span>(<span class="fu">nrow</span>(df))</span>
+<span id="cb284-6"><a href="loops.html#cb284-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb284-7"><a href="loops.html#cb284-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(binary_df<span class="sc">$</span>x)){</span>
+<span id="cb284-8"><a href="loops.html#cb284-8" aria-hidden="true" tabindex="-1"></a>    y[i] <span class="ot">&lt;-</span>  df<span class="sc">$</span>x[i] <span class="sc">&amp;</span> df<span class="sc">$</span>y[i] <span class="sc">&amp;</span> df<span class="sc">$</span>z[i]</span>
+<span id="cb284-9"><a href="loops.html#cb284-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb284-10"><a href="loops.html#cb284-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb284-11"><a href="loops.html#cb284-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
+<span id="cb284-12"><a href="loops.html#cb284-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb284-13"><a href="loops.html#cb284-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb284-14"><a href="loops.html#cb284-14" aria-hidden="true" tabindex="-1"></a><span class="do">### scalar code</span></span>
+<span id="cb284-15"><a href="loops.html#cb284-15" aria-hidden="true" tabindex="-1"></a>scalar_all_true <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb284-16"><a href="loops.html#cb284-16" aria-hidden="true" tabindex="-1"></a>  df</span>
+<span id="cb284-17"><a href="loops.html#cb284-17" aria-hidden="true" tabindex="-1"></a>){</span>
+<span id="cb284-18"><a href="loops.html#cb284-18" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="fu">logical</span>(<span class="fu">nrow</span>(df))</span>
+<span id="cb284-19"><a href="loops.html#cb284-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb284-20"><a href="loops.html#cb284-20" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(df<span class="sc">$</span>x)){</span>
+<span id="cb284-21"><a href="loops.html#cb284-21" aria-hidden="true" tabindex="-1"></a>    y[[i]] <span class="ot">&lt;-</span>  df<span class="sc">$</span>x[[i]] <span class="sc">&amp;&amp;</span> df<span class="sc">$</span>y[[i]] <span class="sc">&amp;&amp;</span> df<span class="sc">$</span>z[[i]]</span>
+<span id="cb284-22"><a href="loops.html#cb284-22" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb284-23"><a href="loops.html#cb284-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb284-24"><a href="loops.html#cb284-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
+<span id="cb284-25"><a href="loops.html#cb284-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Let’s compare both the functions for speed.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="loops.html#cb281-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb281-2"><a href="loops.html#cb281-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vect_all_true</span>(<span class="at">df =</span> binary_df),</span>
-<span id="cb281-3"><a href="loops.html#cb281-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scalar_all_true</span>(<span class="at">df =</span> binary_df),</span>
-<span id="cb281-4"><a href="loops.html#cb281-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
-<span id="cb281-5"><a href="loops.html#cb281-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="loops.html#cb285-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb285-2"><a href="loops.html#cb285-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">vect_all_true</span>(<span class="at">df =</span> binary_df),</span>
+<span id="cb285-3"><a href="loops.html#cb285-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scalar_all_true</span>(<span class="at">df =</span> binary_df),</span>
+<span id="cb285-4"><a href="loops.html#cb285-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
+<span id="cb285-5"><a href="loops.html#cb285-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##                             expr     min      lq     mean   median      uq
-##    vect_all_true(df = binary_df) 32.1544 36.1321 45.96521 40.00680 60.1753
-##  scalar_all_true(df = binary_df) 17.6033 18.5460 24.59212 22.13005 28.7699
+##    vect_all_true(df = binary_df) 32.2671 34.5365 36.24843 35.39615 36.8008
+##  scalar_all_true(df = binary_df) 17.7967 19.0181 21.86647 22.37185 22.9407
 ##      max neval
-##  69.5042    10
-##  36.5266    10</code></pre>
+##  43.8001    10
+##  26.7061    10</code></pre>
 <p>I know this is not an excellent example because it can be vectorized easily but in the cases where you are working on individual scalar values using non-vectorized code gives you speed. In our current example we are getting twice the speed which is enough for such a small data set and the difference will increase with the number of rows.</p>
 </div>
-<div id="do-as-little-as-possible-inside-a-loop" class="section level2" number="13.6">
-<h2><span class="header-section-number">13.6</span> Do as little as possible inside a loop</h2>
+<div id="do-as-little-as-possible-inside-a-loop" class="section level2 hasAnchor" number="14.6">
+<h2><span class="header-section-number">14.6</span> Do as little as possible inside a loop<a href="loops.html#do-as-little-as-possible-inside-a-loop" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>R is an interpreted language every thing you write inside a loop runs multiple times. The best thing you can do is to be parsimonious while writing code inside a loop. There are a number of steps that you can do to speed up a loop a bit more.</p>
 <ol style="list-style-type: decimal">
 <li>Calculate results before the loop</li>
@@ -765,58 +788,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Write as less functions inside a loop as possible</li>
 </ol>
 <p>The main tip is to <strong><em>Get out of loop as quickly as possible</em></strong>. There is another very crucial thing you can do to speed up your code.</p>
-<div id="combine-vectorized-code-inside-a-loop" class="section level3" number="13.6.1">
-<h3><span class="header-section-number">13.6.1</span> Combine Vectorized code inside a loop</h3>
+<div id="combine-vectorized-code-inside-a-loop" class="section level3 hasAnchor" number="14.6.1">
+<h3><span class="header-section-number">14.6.1</span> Combine Vectorized code inside a loop<a href="loops.html#combine-vectorized-code-inside-a-loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The best case is to figure which part of codes can be optimized with a vectorized solution and which would require you to loop through. The key is to use <strong><em>as minimum loops as possible and as much as vectorized code as possible</em></strong>. This is the same thing that helps in parallelizing the code too.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="loops.html#cb283-1" aria-hidden="true" tabindex="-1"></a>n_size <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
-<span id="cb283-2"><a href="loops.html#cb283-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb283-3"><a href="loops.html#cb283-3" aria-hidden="true" tabindex="-1"></a>hr_df <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(</span>
-<span id="cb283-4"><a href="loops.html#cb283-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">department =</span> <span class="fu">sample</span>(</span>
-<span id="cb283-5"><a href="loops.html#cb283-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
-<span id="cb283-6"><a href="loops.html#cb283-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> n_size,</span>
-<span id="cb283-7"><a href="loops.html#cb283-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb283-8"><a href="loops.html#cb283-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb283-9"><a href="loops.html#cb283-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">salary =</span> <span class="fu">sample</span>(</span>
-<span id="cb283-10"><a href="loops.html#cb283-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">1e3</span><span class="sc">:</span><span class="fl">1e4</span>,</span>
-<span id="cb283-11"><a href="loops.html#cb283-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> n_size,</span>
-<span id="cb283-12"><a href="loops.html#cb283-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
-<span id="cb283-13"><a href="loops.html#cb283-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb283-14"><a href="loops.html#cb283-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="loops.html#cb287-1" aria-hidden="true" tabindex="-1"></a>n_size <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
+<span id="cb287-2"><a href="loops.html#cb287-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-3"><a href="loops.html#cb287-3" aria-hidden="true" tabindex="-1"></a>hr_df <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(</span>
+<span id="cb287-4"><a href="loops.html#cb287-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">department =</span> <span class="fu">sample</span>(</span>
+<span id="cb287-5"><a href="loops.html#cb287-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb287-6"><a href="loops.html#cb287-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> n_size,</span>
+<span id="cb287-7"><a href="loops.html#cb287-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb287-8"><a href="loops.html#cb287-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb287-9"><a href="loops.html#cb287-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">salary =</span> <span class="fu">sample</span>(</span>
+<span id="cb287-10"><a href="loops.html#cb287-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fl">1e3</span><span class="sc">:</span><span class="fl">1e4</span>,</span>
+<span id="cb287-11"><a href="loops.html#cb287-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> n_size,</span>
+<span id="cb287-12"><a href="loops.html#cb287-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb287-13"><a href="loops.html#cb287-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb287-14"><a href="loops.html#cb287-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Let’s try to find out How much money each department is paying for salary.</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="loops.html#cb284-1" aria-hidden="true" tabindex="-1"></a>sum_salary <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb284-2"><a href="loops.html#cb284-2" aria-hidden="true" tabindex="-1"></a>  df</span>
-<span id="cb284-3"><a href="loops.html#cb284-3" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb284-4"><a href="loops.html#cb284-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb284-5"><a href="loops.html#cb284-5" aria-hidden="true" tabindex="-1"></a>  answer <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb284-6"><a href="loops.html#cb284-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb284-7"><a href="loops.html#cb284-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(dep <span class="cf">in</span> <span class="fu">unique</span>(df<span class="sc">$</span>department)){</span>
-<span id="cb284-8"><a href="loops.html#cb284-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb284-9"><a href="loops.html#cb284-9" aria-hidden="true" tabindex="-1"></a>    value <span class="ot">&lt;-</span> df[</span>
-<span id="cb284-10"><a href="loops.html#cb284-10" aria-hidden="true" tabindex="-1"></a>      department <span class="sc">==</span> dep,</span>
-<span id="cb284-11"><a href="loops.html#cb284-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sum</span>(salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb284-12"><a href="loops.html#cb284-12" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb284-13"><a href="loops.html#cb284-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb284-14"><a href="loops.html#cb284-14" aria-hidden="true" tabindex="-1"></a>    answer[[dep]] <span class="ot">&lt;-</span> value</span>
-<span id="cb284-15"><a href="loops.html#cb284-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb284-16"><a href="loops.html#cb284-16" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb284-17"><a href="loops.html#cb284-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb284-18"><a href="loops.html#cb284-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(answer)</span>
-<span id="cb284-19"><a href="loops.html#cb284-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb284-20"><a href="loops.html#cb284-20" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb284-21"><a href="loops.html#cb284-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb284-22"><a href="loops.html#cb284-22" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb284-23"><a href="loops.html#cb284-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum_salary</span>(<span class="at">df =</span> hr_df)</span>
-<span id="cb284-24"><a href="loops.html#cb284-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="loops.html#cb288-1" aria-hidden="true" tabindex="-1"></a>sum_salary <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb288-2"><a href="loops.html#cb288-2" aria-hidden="true" tabindex="-1"></a>  df</span>
+<span id="cb288-3"><a href="loops.html#cb288-3" aria-hidden="true" tabindex="-1"></a>){</span>
+<span id="cb288-4"><a href="loops.html#cb288-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-5"><a href="loops.html#cb288-5" aria-hidden="true" tabindex="-1"></a>  answer <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb288-6"><a href="loops.html#cb288-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-7"><a href="loops.html#cb288-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(dep <span class="cf">in</span> <span class="fu">unique</span>(df<span class="sc">$</span>department)){</span>
+<span id="cb288-8"><a href="loops.html#cb288-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-9"><a href="loops.html#cb288-9" aria-hidden="true" tabindex="-1"></a>    value <span class="ot">&lt;-</span> df[</span>
+<span id="cb288-10"><a href="loops.html#cb288-10" aria-hidden="true" tabindex="-1"></a>      department <span class="sc">==</span> dep,</span>
+<span id="cb288-11"><a href="loops.html#cb288-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sum</span>(salary, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb288-12"><a href="loops.html#cb288-12" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb288-13"><a href="loops.html#cb288-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-14"><a href="loops.html#cb288-14" aria-hidden="true" tabindex="-1"></a>    answer[[dep]] <span class="ot">&lt;-</span> value</span>
+<span id="cb288-15"><a href="loops.html#cb288-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-16"><a href="loops.html#cb288-16" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb288-17"><a href="loops.html#cb288-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-18"><a href="loops.html#cb288-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(answer)</span>
+<span id="cb288-19"><a href="loops.html#cb288-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-20"><a href="loops.html#cb288-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb288-21"><a href="loops.html#cb288-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-22"><a href="loops.html#cb288-22" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb288-23"><a href="loops.html#cb288-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum_salary</span>(<span class="at">df =</span> hr_df)</span>
+<span id="cb288-24"><a href="loops.html#cb288-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##                    expr     min      lq     mean   median       uq     max
-##  sum_salary(df = hr_df) 12.4501 13.2019 14.74592 13.98495 15.44095 34.8142
+##                    expr     min       lq     mean  median       uq     max
+##  sum_salary(df = hr_df) 12.7145 13.54815 14.39076 13.9214 14.26445 32.7294
 ##  neval
 ##    100</code></pre>
 <p>I am doing as much vectorized calculation as possible in this scenario and this is the reason this code runs pretty fast. If I write a loop that goes through all the 10^{5} rows then I would get around 100x slower speed. This is a neat trick you must use whenever you can. Do as little as possible inside a loop.</p>
 </div>
 </div>
-<div id="conclusion-10" class="section level2" number="13.7">
-<h2><span class="header-section-number">13.7</span> Conclusion</h2>
+<div id="conclusion-10" class="section level2 hasAnchor" number="14.7">
+<h2><span class="header-section-number">14.7</span> Conclusion<a href="loops.html#conclusion-10" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This chapter mainly focused on Loops and how to optimize them. Loops are necessary and these tips will help run them better</p>
 <ol style="list-style-type: decimal">
 <li>vectorize your code</li>
@@ -844,7 +867,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -884,6 +906,10 @@ gitbook.start({
 "text": null
 },
 "download": ["best_r_practices.pdf", "best_r_practices.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

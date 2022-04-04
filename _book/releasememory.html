@@ -4,19 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 11 Release Memory | Best Coding Practices for R</title>
+  <title>Chapter 12 Release Memory | Best Coding Practices for R</title>
   <meta name="description" content="This book explains the most important things you need to know while you are writing production level R code." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 11 Release Memory | Best Coding Practices for R" />
+  <meta property="og:title" content="Chapter 12 Release Memory | Best Coding Practices for R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="This book explains the most important things you need to know while you are writing production level R code." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 11 Release Memory | Best Coding Practices for R" />
+  <meta name="twitter:title" content="Chapter 12 Release Memory | Best Coding Practices for R" />
   
   <meta name="twitter:description" content="This book explains the most important things you need to know while you are writing production level R code." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2021-06-08" />
+<meta name="date" content="2022-04-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="reference.html"/>
 <link rel="next" href="speedtips.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/clipboard-1.7.1/clipboard.min.js"></script>
 <link href="libs/primer-tooltips-1.4.0/build.css" rel="stylesheet" />
 <link href="libs/klippy-0.0.0.9500/css/klippy.min.css" rel="stylesheet" />
@@ -141,179 +140,207 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Best Coding Practices for R </a></li>
 
 <li class="divider"></li>
-<li class="part"><span><b>I Introduction</b></span></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>CoverPage</a></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="part"><span><b>II Structure</b></span></li>
-<li class="chapter" data-level="2" data-path="folder.html"><a href="folder.html"><i class="fa fa-check"></i><b>2</b> Folder Structure</a>
+<li class="part"><span><b>I Introduction<span></span></b></span></li>
+<li><a href="index.html#coverpage">CoverPage<span></span></a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction<span></span></a></li>
+<li class="part"><span><b>II Structure<span></span></b></span></li>
+<li class="chapter" data-level="2" data-path="folder.html"><a href="folder.html"><i class="fa fa-check"></i><b>2</b> Folder Structure<span></span></a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="folder.html"><a href="folder.html#organizing-files"><i class="fa fa-check"></i><b>2.1</b> Organizing files</a></li>
-<li class="chapter" data-level="2.2" data-path="folder.html"><a href="folder.html#create-projects"><i class="fa fa-check"></i><b>2.2</b> Create Projects</a></li>
-<li class="chapter" data-level="2.3" data-path="folder.html"><a href="folder.html#naming-files"><i class="fa fa-check"></i><b>2.3</b> Naming files</a></li>
-<li class="chapter" data-level="2.4" data-path="folder.html"><a href="folder.html#folders-based-on-file-type"><i class="fa fa-check"></i><b>2.4</b> Folders Based on File-Type</a></li>
-<li class="chapter" data-level="2.5" data-path="folder.html"><a href="folder.html#creating-sub-folders"><i class="fa fa-check"></i><b>2.5</b> Creating Sub-folders</a></li>
-<li class="chapter" data-level="2.6" data-path="folder.html"><a href="folder.html#conclusion"><i class="fa fa-check"></i><b>2.6</b> Conclusion</a></li>
+<li class="chapter" data-level="2.1" data-path="folder.html"><a href="folder.html#organizing-files"><i class="fa fa-check"></i><b>2.1</b> Organizing files<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="folder.html"><a href="folder.html#create-projects"><i class="fa fa-check"></i><b>2.2</b> Create Projects<span></span></a></li>
+<li class="chapter" data-level="2.3" data-path="folder.html"><a href="folder.html#naming-files"><i class="fa fa-check"></i><b>2.3</b> Naming files<span></span></a></li>
+<li class="chapter" data-level="2.4" data-path="folder.html"><a href="folder.html#folders-based-on-file-type"><i class="fa fa-check"></i><b>2.4</b> Folders Based on File-Type<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="folder.html"><a href="folder.html#creating-sub-folders"><i class="fa fa-check"></i><b>2.5</b> Creating Sub-folders<span></span></a></li>
+<li class="chapter" data-level="2.6" data-path="folder.html"><a href="folder.html#conclusion"><i class="fa fa-check"></i><b>2.6</b> Conclusion<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code Structure</a>
+<li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code Structure<span></span></a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#create-sections"><i class="fa fa-check"></i><b>3.1</b> Create Sections</a></li>
-<li class="chapter" data-level="3.2" data-path="code.html"><a href="code.html#order-of-code"><i class="fa fa-check"></i><b>3.2</b> Order of Code</a></li>
-<li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#indentation"><i class="fa fa-check"></i><b>3.3</b> Indentation</a></li>
-<li class="chapter" data-level="3.4" data-path="code.html"><a href="code.html#give-your-code-a-breathing-room"><i class="fa fa-check"></i><b>3.4</b> Give your code a breathing room</a></li>
-<li class="chapter" data-level="3.5" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.5</b> Conclusion’</a></li>
+<li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#create-sections"><i class="fa fa-check"></i><b>3.1</b> Create Sections<span></span></a></li>
+<li class="chapter" data-level="3.2" data-path="code.html"><a href="code.html#order-of-code"><i class="fa fa-check"></i><b>3.2</b> Order of Code<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#indentation"><i class="fa fa-check"></i><b>3.3</b> Indentation<span></span></a></li>
+<li class="chapter" data-level="3.4" data-path="code.html"><a href="code.html#give-your-code-a-breathing-room"><i class="fa fa-check"></i><b>3.4</b> Give your code a breathing room<span></span></a></li>
+<li class="chapter" data-level="3.5" data-path="code.html"><a href="code.html#conclusion-1"><i class="fa fa-check"></i><b>3.5</b> Conclusion’<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions</a>
+<li class="chapter" data-level="4" data-path="func.html"><a href="func.html"><i class="fa fa-check"></i><b>4</b> Functions<span></span></a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="func.html"><a href="func.html#metadata-or-information-header"><i class="fa fa-check"></i><b>4.1</b> Metadata or Information header</a></li>
-<li class="chapter" data-level="4.2" data-path="func.html"><a href="func.html#pass-everything-through-parameters"><i class="fa fa-check"></i><b>4.2</b> Pass everything through parameters</a></li>
-<li class="chapter" data-level="4.3" data-path="func.html"><a href="func.html#use-return-statement"><i class="fa fa-check"></i><b>4.3</b> Use Return Statement</a></li>
-<li class="chapter" data-level="4.4" data-path="func.html"><a href="func.html#keep-a-consistency-in-return-type"><i class="fa fa-check"></i><b>4.4</b> Keep a consistency in Return Type</a></li>
-<li class="chapter" data-level="4.5" data-path="func.html"><a href="func.html#use-sensible-names-for-parameters-too"><i class="fa fa-check"></i><b>4.5</b> Use Sensible Names for parameters too…</a></li>
-<li class="chapter" data-level="4.6" data-path="func.html"><a href="func.html#use-trycatch"><i class="fa fa-check"></i><b>4.6</b> use tryCatch</a></li>
-<li class="chapter" data-level="4.7" data-path="func.html"><a href="func.html#write-simple-and-unique-functions"><i class="fa fa-check"></i><b>4.7</b> Write simple and unique functions</a></li>
-<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#dont-load-libraries-or-source-code-inside-a-function"><i class="fa fa-check"></i><b>4.8</b> Don’t load libraries or source code inside a function</a></li>
-<li class="chapter" data-level="4.9" data-path="func.html"><a href="func.html#use-packagefunction-approach"><i class="fa fa-check"></i><b>4.9</b> Use Package::Function() approach</a>
+<li class="chapter" data-level="4.1" data-path="func.html"><a href="func.html#metadata-or-information-header"><i class="fa fa-check"></i><b>4.1</b> Metadata or Information header<span></span></a></li>
+<li class="chapter" data-level="4.2" data-path="func.html"><a href="func.html#pass-everything-through-parameters"><i class="fa fa-check"></i><b>4.2</b> Pass everything through parameters<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="func.html"><a href="func.html#use-return-statement"><i class="fa fa-check"></i><b>4.3</b> Use Return Statement<span></span></a></li>
+<li class="chapter" data-level="4.4" data-path="func.html"><a href="func.html#keep-a-consistency-in-return-type"><i class="fa fa-check"></i><b>4.4</b> Keep a consistency in Return Type<span></span></a></li>
+<li class="chapter" data-level="4.5" data-path="func.html"><a href="func.html#use-sensible-names-for-parameters-too"><i class="fa fa-check"></i><b>4.5</b> Use Sensible Names for parameters too…<span></span></a></li>
+<li class="chapter" data-level="4.6" data-path="func.html"><a href="func.html#use-trycatch"><i class="fa fa-check"></i><b>4.6</b> use tryCatch<span></span></a></li>
+<li class="chapter" data-level="4.7" data-path="func.html"><a href="func.html#write-simple-and-unique-functions"><i class="fa fa-check"></i><b>4.7</b> Write simple and unique functions<span></span></a></li>
+<li class="chapter" data-level="4.8" data-path="func.html"><a href="func.html#dont-load-libraries-or-source-code-inside-a-function"><i class="fa fa-check"></i><b>4.8</b> Don’t load libraries or source code inside a function<span></span></a></li>
+<li class="chapter" data-level="4.9" data-path="func.html"><a href="func.html#use-packagefunction-approach"><i class="fa fa-check"></i><b>4.9</b> Use Package::Function() approach<span></span></a>
 <ul>
-<li class="chapter" data-level="4.9.1" data-path="func.html"><a href="func.html#you-should-load-libraries-in-the-order-of-their-usage"><i class="fa fa-check"></i><b>4.9.1</b> You should load libraries in the order of their usage</a></li>
+<li class="chapter" data-level="4.9.1" data-path="func.html"><a href="func.html#you-should-load-libraries-in-the-order-of-their-usage"><i class="fa fa-check"></i><b>4.9.1</b> You should load libraries in the order of their usage<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="4.10" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.10</b> Conclusion</a></li>
+<li class="chapter" data-level="4.10" data-path="func.html"><a href="func.html#conclusion-2"><i class="fa fa-check"></i><b>4.10</b> Conclusion<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions</a>
+<li class="chapter" data-level="5" data-path="names.html"><a href="names.html"><i class="fa fa-check"></i><b>5</b> Naming Conventions<span></span></a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="names.html"><a href="names.html#popular-naming-conventions"><i class="fa fa-check"></i><b>5.1</b> Popular naming conventions</a>
+<li class="chapter" data-level="5.1" data-path="names.html"><a href="names.html#popular-naming-conventions"><i class="fa fa-check"></i><b>5.1</b> Popular naming conventions<span></span></a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="names.html"><a href="names.html#camelcase"><i class="fa fa-check"></i><b>5.1.1</b> camelCase</a></li>
-<li class="chapter" data-level="5.1.2" data-path="names.html"><a href="names.html#pascalcase"><i class="fa fa-check"></i><b>5.1.2</b> PascalCase</a></li>
-<li class="chapter" data-level="5.1.3" data-path="names.html"><a href="names.html#snake_case"><i class="fa fa-check"></i><b>5.1.3</b> snake_case</a></li>
+<li class="chapter" data-level="5.1.1" data-path="names.html"><a href="names.html#camelcase"><i class="fa fa-check"></i><b>5.1.1</b> camelCase<span></span></a></li>
+<li class="chapter" data-level="5.1.2" data-path="names.html"><a href="names.html#pascalcase"><i class="fa fa-check"></i><b>5.1.2</b> PascalCase<span></span></a></li>
+<li class="chapter" data-level="5.1.3" data-path="names.html"><a href="names.html#snake_case"><i class="fa fa-check"></i><b>5.1.3</b> snake_case<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="names.html"><a href="names.html#informative-names"><i class="fa fa-check"></i><b>5.2</b> Informative Names</a></li>
-<li class="chapter" data-level="5.3" data-path="names.html"><a href="names.html#conclusions"><i class="fa fa-check"></i><b>5.3</b> Conclusions</a></li>
+<li class="chapter" data-level="5.2" data-path="names.html"><a href="names.html#informative-names"><i class="fa fa-check"></i><b>5.2</b> Informative Names<span></span></a></li>
+<li class="chapter" data-level="5.3" data-path="names.html"><a href="names.html#conclusions"><i class="fa fa-check"></i><b>5.3</b> Conclusions<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="envManagement.html"><a href="envManagement.html"><i class="fa fa-check"></i><b>6</b> Environment Management</a>
+<li class="chapter" data-level="6" data-path="oops.html"><a href="oops.html"><i class="fa fa-check"></i><b>6</b> OOPS<span></span></a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="envManagement.html"><a href="envManagement.html#avoid-package-dependencies-when-possible"><i class="fa fa-check"></i><b>6.1</b> Avoid package dependencies when possible</a></li>
-<li class="chapter" data-level="6.2" data-path="envManagement.html"><a href="envManagement.html#renv-for-package-management"><i class="fa fa-check"></i><b>6.2</b> renv for package management</a></li>
-<li class="chapter" data-level="6.3" data-path="envManagement.html"><a href="envManagement.html#config-for-external-dependencies"><i class="fa fa-check"></i><b>6.3</b> config for external dependencies</a></li>
-<li class="chapter" data-level="6.4" data-path="envManagement.html"><a href="envManagement.html#conclusion-3"><i class="fa fa-check"></i><b>6.4</b> Conclusion</a></li>
+<li class="chapter" data-level="6.1" data-path="oops.html"><a href="oops.html#what-is-oops"><i class="fa fa-check"></i><b>6.1</b> What is oops<span></span></a></li>
+<li class="chapter" data-level="6.2" data-path="oops.html"><a href="oops.html#when-to-use-it"><i class="fa fa-check"></i><b>6.2</b> When to use it<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="dataManagement.html"><a href="dataManagement.html"><i class="fa fa-check"></i><b>7</b> data Management</a>
+<li class="chapter" data-level="7" data-path="envManagement.html"><a href="envManagement.html"><i class="fa fa-check"></i><b>7</b> Environment Management<span></span></a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="dataManagement.html"><a href="dataManagement.html#keep-a-copy-or-your-data"><i class="fa fa-check"></i><b>7.1</b> Keep a Copy or your Data</a></li>
-<li class="chapter" data-level="7.2" data-path="dataManagement.html"><a href="dataManagement.html#dont-use-numbers-for-columns"><i class="fa fa-check"></i><b>7.2</b> Don’t use numbers for columns</a></li>
-<li class="chapter" data-level="7.3" data-path="dataManagement.html"><a href="dataManagement.html#keep-meaningful-and-proper-column-names"><i class="fa fa-check"></i><b>7.3</b> Keep Meaningful and proper column names</a></li>
-<li class="chapter" data-level="7.4" data-path="dataManagement.html"><a href="dataManagement.html#use-databases"><i class="fa fa-check"></i><b>7.4</b> Use Databases</a></li>
-<li class="chapter" data-level="7.5" data-path="dataManagement.html"><a href="dataManagement.html#use-efficient-packages"><i class="fa fa-check"></i><b>7.5</b> Use Efficient Packages</a>
+<li class="chapter" data-level="7.1" data-path="envManagement.html"><a href="envManagement.html#avoid-package-dependencies-when-possible"><i class="fa fa-check"></i><b>7.1</b> Avoid package dependencies when possible<span></span></a></li>
+<li class="chapter" data-level="7.2" data-path="envManagement.html"><a href="envManagement.html#renv-for-package-management"><i class="fa fa-check"></i><b>7.2</b> renv for package management<span></span></a></li>
+<li class="chapter" data-level="7.3" data-path="envManagement.html"><a href="envManagement.html#config-for-external-dependencies"><i class="fa fa-check"></i><b>7.3</b> config for external dependencies<span></span></a></li>
+<li class="chapter" data-level="7.4" data-path="envManagement.html"><a href="envManagement.html#use-.renviron-file"><i class="fa fa-check"></i><b>7.4</b> use .Renviron file<span></span></a></li>
+<li class="chapter" data-level="7.5" data-path="envManagement.html"><a href="envManagement.html#conclusion-3"><i class="fa fa-check"></i><b>7.5</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="dataManagement.html"><a href="dataManagement.html"><i class="fa fa-check"></i><b>8</b> data Management<span></span></a>
 <ul>
-<li class="chapter" data-level="7.5.1" data-path="dataManagement.html"><a href="dataManagement.html#data.table"><i class="fa fa-check"></i><b>7.5.1</b> data.table</a></li>
-<li class="chapter" data-level="7.5.2" data-path="dataManagement.html"><a href="dataManagement.html#matrix"><i class="fa fa-check"></i><b>7.5.2</b> Matrix</a></li>
-<li class="chapter" data-level="7.5.3" data-path="dataManagement.html"><a href="dataManagement.html#disk.frame"><i class="fa fa-check"></i><b>7.5.3</b> disk.frame</a></li>
-<li class="chapter" data-level="7.5.4" data-path="dataManagement.html"><a href="dataManagement.html#modeldb"><i class="fa fa-check"></i><b>7.5.4</b> modeldb</a></li>
-<li class="chapter" data-level="7.5.5" data-path="dataManagement.html"><a href="dataManagement.html#dbplot"><i class="fa fa-check"></i><b>7.5.5</b> dbplot</a></li>
-<li class="chapter" data-level="7.5.6" data-path="dataManagement.html"><a href="dataManagement.html#sparklyr"><i class="fa fa-check"></i><b>7.5.6</b> sparklyr</a></li>
-</ul></li>
-<li class="chapter" data-level="7.6" data-path="dataManagement.html"><a href="dataManagement.html#conclusion-4"><i class="fa fa-check"></i><b>7.6</b> Conclusion</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="debug.html"><a href="debug.html"><i class="fa fa-check"></i><b>8</b> Debugging</a>
+<li class="chapter" data-level="8.1" data-path="dataManagement.html"><a href="dataManagement.html#keep-a-copy-or-your-data"><i class="fa fa-check"></i><b>8.1</b> Keep a Copy or your Data<span></span></a></li>
+<li class="chapter" data-level="8.2" data-path="dataManagement.html"><a href="dataManagement.html#dont-use-numbers-for-columns"><i class="fa fa-check"></i><b>8.2</b> Don’t use numbers for columns<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="dataManagement.html"><a href="dataManagement.html#keep-meaningful-and-proper-column-names"><i class="fa fa-check"></i><b>8.3</b> Keep Meaningful and proper column names<span></span></a></li>
+<li class="chapter" data-level="8.4" data-path="dataManagement.html"><a href="dataManagement.html#use-databases"><i class="fa fa-check"></i><b>8.4</b> Use Databases<span></span></a></li>
+<li class="chapter" data-level="8.5" data-path="dataManagement.html"><a href="dataManagement.html#use-efficient-packages"><i class="fa fa-check"></i><b>8.5</b> Use Efficient Packages<span></span></a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="debug.html"><a href="debug.html#write-unit-tests"><i class="fa fa-check"></i><b>8.1</b> Write Unit Tests</a></li>
-<li class="chapter" data-level="8.2" data-path="debug.html"><a href="debug.html#browser-and-print-are-your-friend"><i class="fa fa-check"></i><b>8.2</b> Browser() and print() are your friend</a></li>
-<li class="chapter" data-level="8.3" data-path="debug.html"><a href="debug.html#read-the-functions"><i class="fa fa-check"></i><b>8.3</b> <strong>Read the functions</strong></a></li>
-<li class="chapter" data-level="8.4" data-path="debug.html"><a href="debug.html#version-control-system"><i class="fa fa-check"></i><b>8.4</b> Version Control System</a></li>
-<li class="chapter" data-level="8.5" data-path="debug.html"><a href="debug.html#make-small-commits"><i class="fa fa-check"></i><b>8.5</b> Make small commits</a></li>
-<li class="chapter" data-level="8.6" data-path="debug.html"><a href="debug.html#use-curly-brackets"><i class="fa fa-check"></i><b>8.6</b> Use curly brackets</a></li>
-<li class="chapter" data-level="8.7" data-path="debug.html"><a href="debug.html#always-use-named-parameters"><i class="fa fa-check"></i><b>8.7</b> Always use named parameters</a></li>
-<li class="chapter" data-level="8.8" data-path="debug.html"><a href="debug.html#log-the-errors"><i class="fa fa-check"></i><b>8.8</b> Log the errors</a></li>
-<li class="chapter" data-level="8.9" data-path="debug.html"><a href="debug.html#dont-use-already-used-names"><i class="fa fa-check"></i><b>8.9</b> Don’t Use already used names</a></li>
-<li class="chapter" data-level="8.10" data-path="debug.html"><a href="debug.html#use-simple-code"><i class="fa fa-check"></i><b>8.10</b> Use Simple code</a></li>
-<li class="chapter" data-level="8.11" data-path="debug.html"><a href="debug.html#conclusion-5"><i class="fa fa-check"></i><b>8.11</b> Conclusion</a></li>
+<li class="chapter" data-level="8.5.1" data-path="dataManagement.html"><a href="dataManagement.html#data.table"><i class="fa fa-check"></i><b>8.5.1</b> data.table<span></span></a></li>
+<li class="chapter" data-level="8.5.2" data-path="dataManagement.html"><a href="dataManagement.html#matrix"><i class="fa fa-check"></i><b>8.5.2</b> Matrix<span></span></a></li>
+<li class="chapter" data-level="8.5.3" data-path="dataManagement.html"><a href="dataManagement.html#disk.frame"><i class="fa fa-check"></i><b>8.5.3</b> disk.frame<span></span></a></li>
+<li class="chapter" data-level="8.5.4" data-path="dataManagement.html"><a href="dataManagement.html#modeldb"><i class="fa fa-check"></i><b>8.5.4</b> modeldb<span></span></a></li>
+<li class="chapter" data-level="8.5.5" data-path="dataManagement.html"><a href="dataManagement.html#dbplot"><i class="fa fa-check"></i><b>8.5.5</b> dbplot<span></span></a></li>
+<li class="chapter" data-level="8.5.6" data-path="dataManagement.html"><a href="dataManagement.html#sparklyr"><i class="fa fa-check"></i><b>8.5.6</b> sparklyr<span></span></a></li>
 </ul></li>
-<li class="part"><span><b>III Memory</b></span></li>
-<li class="chapter" data-level="9" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>9</b> Type System</a>
+<li class="chapter" data-level="8.6" data-path="dataManagement.html"><a href="dataManagement.html#conclusion-4"><i class="fa fa-check"></i><b>8.6</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="debug.html"><a href="debug.html"><i class="fa fa-check"></i><b>9</b> Debugging<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="types.html"><a href="types.html#things-you-should-know"><i class="fa fa-check"></i><b>9.1</b> Things you should know</a>
+<li class="chapter" data-level="9.1" data-path="debug.html"><a href="debug.html#write-unit-tests"><i class="fa fa-check"></i><b>9.1</b> Write Unit Tests<span></span></a></li>
+<li class="chapter" data-level="9.2" data-path="debug.html"><a href="debug.html#browser-and-print-are-your-friend"><i class="fa fa-check"></i><b>9.2</b> Browser() and print() are your friend<span></span></a></li>
+<li class="chapter" data-level="9.3" data-path="debug.html"><a href="debug.html#read-the-functions"><i class="fa fa-check"></i><b>9.3</b> <strong>Read the functions</strong><span></span></a></li>
+<li class="chapter" data-level="9.4" data-path="debug.html"><a href="debug.html#version-control-system"><i class="fa fa-check"></i><b>9.4</b> Version Control System<span></span></a></li>
+<li class="chapter" data-level="9.5" data-path="debug.html"><a href="debug.html#make-small-commits"><i class="fa fa-check"></i><b>9.5</b> Make small commits<span></span></a></li>
+<li class="chapter" data-level="9.6" data-path="debug.html"><a href="debug.html#use-curly-brackets"><i class="fa fa-check"></i><b>9.6</b> Use curly brackets<span></span></a></li>
+<li class="chapter" data-level="9.7" data-path="debug.html"><a href="debug.html#always-use-named-parameters"><i class="fa fa-check"></i><b>9.7</b> Always use named parameters<span></span></a></li>
+<li class="chapter" data-level="9.8" data-path="debug.html"><a href="debug.html#log-the-errors"><i class="fa fa-check"></i><b>9.8</b> Log the errors<span></span></a></li>
+<li class="chapter" data-level="9.9" data-path="debug.html"><a href="debug.html#dont-use-already-used-names"><i class="fa fa-check"></i><b>9.9</b> Don’t Use already used names<span></span></a></li>
+<li class="chapter" data-level="9.10" data-path="debug.html"><a href="debug.html#use-simple-code"><i class="fa fa-check"></i><b>9.10</b> Use Simple code<span></span></a></li>
+<li class="chapter" data-level="9.11" data-path="debug.html"><a href="debug.html#conclusion-5"><i class="fa fa-check"></i><b>9.11</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>III Memory<span></span></b></span></li>
+<li class="chapter" data-level="10" data-path="types.html"><a href="types.html"><i class="fa fa-check"></i><b>10</b> Type System<span></span></a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="types.html"><a href="types.html#r-dont-have-scalar-data-types"><i class="fa fa-check"></i><b>9.1.1</b> R don’t have scalar data types</a></li>
-<li class="chapter" data-level="9.1.2" data-path="types.html"><a href="types.html#dates-are-basically-integers-under-the-hood."><i class="fa fa-check"></i><b>9.1.2</b> Dates are basically integers under the hood.</a></li>
-<li class="chapter" data-level="9.1.3" data-path="types.html"><a href="types.html#posixlt-are-basically-lists-under-the-hood"><i class="fa fa-check"></i><b>9.1.3</b> POSIXlt are basically lists under the hood</a></li>
-<li class="chapter" data-level="9.1.4" data-path="types.html"><a href="types.html#integers-are-smaller-than-numeric"><i class="fa fa-check"></i><b>9.1.4</b> Integers are smaller than numeric</a></li>
-<li class="chapter" data-level="9.1.5" data-path="types.html"><a href="types.html#define-your-datatypes-before-the-variable"><i class="fa fa-check"></i><b>9.1.5</b> define your datatypes before the variable</a></li>
-<li class="chapter" data-level="9.1.6" data-path="types.html"><a href="types.html#lists-are-better-than-dataframe-under-a-loop"><i class="fa fa-check"></i><b>9.1.6</b> lists are better than dataframe under a loop</a></li>
-<li class="chapter" data-level="9.1.7" data-path="types.html"><a href="types.html#use-lists-whenever-possible"><i class="fa fa-check"></i><b>9.1.7</b> use lists whenever possible</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="types.html"><a href="types.html#choose-data-types-carefully"><i class="fa fa-check"></i><b>9.2</b> Choose data types carefully</a></li>
-<li class="chapter" data-level="9.3" data-path="types.html"><a href="types.html#dont-change-datatypes"><i class="fa fa-check"></i><b>9.3</b> don’t change datatypes</a></li>
-<li class="chapter" data-level="9.4" data-path="types.html"><a href="types.html#future-of-type-system-in-r"><i class="fa fa-check"></i><b>9.4</b> Future of type-system in R</a></li>
-<li class="chapter" data-level="9.5" data-path="types.html"><a href="types.html#conclusion-6"><i class="fa fa-check"></i><b>9.5</b> Conclusion</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>10</b> Pass By Value-Reference</a>
+<li class="chapter" data-level="10.1" data-path="types.html"><a href="types.html#things-you-should-know"><i class="fa fa-check"></i><b>10.1</b> Things you should know<span></span></a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="reference.html"><a href="reference.html#understanding-the-system"><i class="fa fa-check"></i><b>10.1</b> Understanding the system</a>
+<li class="chapter" data-level="10.1.1" data-path="types.html"><a href="types.html#r-dont-have-scalar-data-types"><i class="fa fa-check"></i><b>10.1.1</b> R don’t have scalar data types<span></span></a></li>
+<li class="chapter" data-level="10.1.2" data-path="types.html"><a href="types.html#dates-are-basically-integers-under-the-hood."><i class="fa fa-check"></i><b>10.1.2</b> Dates are basically integers under the hood.<span></span></a></li>
+<li class="chapter" data-level="10.1.3" data-path="types.html"><a href="types.html#posixlt-are-basically-lists-under-the-hood"><i class="fa fa-check"></i><b>10.1.3</b> POSIXlt are basically lists under the hood<span></span></a></li>
+<li class="chapter" data-level="10.1.4" data-path="types.html"><a href="types.html#integers-are-smaller-than-numeric"><i class="fa fa-check"></i><b>10.1.4</b> Integers are smaller than numeric<span></span></a></li>
+<li class="chapter" data-level="10.1.5" data-path="types.html"><a href="types.html#define-your-datatypes-before-the-variable"><i class="fa fa-check"></i><b>10.1.5</b> define your datatypes before the variable<span></span></a></li>
+<li class="chapter" data-level="10.1.6" data-path="types.html"><a href="types.html#lists-are-better-than-dataframe-under-a-loop"><i class="fa fa-check"></i><b>10.1.6</b> lists are better than dataframe under a loop<span></span></a></li>
+<li class="chapter" data-level="10.1.7" data-path="types.html"><a href="types.html#use-lists-whenever-possible"><i class="fa fa-check"></i><b>10.1.7</b> use lists whenever possible<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="types.html"><a href="types.html#choose-data-types-carefully"><i class="fa fa-check"></i><b>10.2</b> Choose data types carefully<span></span></a></li>
+<li class="chapter" data-level="10.3" data-path="types.html"><a href="types.html#dont-change-datatypes"><i class="fa fa-check"></i><b>10.3</b> don’t change datatypes<span></span></a></li>
+<li class="chapter" data-level="10.4" data-path="types.html"><a href="types.html#future-of-type-system-in-r"><i class="fa fa-check"></i><b>10.4</b> Future of type-system in R<span></span></a></li>
+<li class="chapter" data-level="10.5" data-path="types.html"><a href="types.html#conclusion-6"><i class="fa fa-check"></i><b>10.5</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="reference.html"><a href="reference.html"><i class="fa fa-check"></i><b>11</b> Pass By Value-Reference<span></span></a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="reference.html"><a href="reference.html#pass-by-value"><i class="fa fa-check"></i><b>10.1.1</b> Pass by Value</a></li>
-<li class="chapter" data-level="10.1.2" data-path="reference.html"><a href="reference.html#pass-by-reference"><i class="fa fa-check"></i><b>10.1.2</b> Pass by reference</a></li>
-</ul></li>
-<li class="chapter" data-level="10.2" data-path="reference.html"><a href="reference.html#copy-on-modify"><i class="fa fa-check"></i><b>10.2</b> Copy on modify</a></li>
-<li class="chapter" data-level="10.3" data-path="reference.html"><a href="reference.html#for-pass-by-reference"><i class="fa fa-check"></i><b>10.3</b> for pass by reference</a></li>
-<li class="chapter" data-level="10.4" data-path="reference.html"><a href="reference.html#conclusion-7"><i class="fa fa-check"></i><b>10.4</b> Conclusion</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="releasememory.html"><a href="releasememory.html"><i class="fa fa-check"></i><b>11</b> Release Memory</a>
+<li class="chapter" data-level="11.1" data-path="reference.html"><a href="reference.html#understanding-the-system"><i class="fa fa-check"></i><b>11.1</b> Understanding the system<span></span></a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="releasememory.html"><a href="releasememory.html#use-rm"><i class="fa fa-check"></i><b>11.1</b> use rm()</a></li>
-<li class="chapter" data-level="11.2" data-path="releasememory.html"><a href="releasememory.html#use-gc"><i class="fa fa-check"></i><b>11.2</b> use gc()</a>
+<li class="chapter" data-level="11.1.1" data-path="reference.html"><a href="reference.html#pass-by-value"><i class="fa fa-check"></i><b>11.1.1</b> Pass by Value<span></span></a></li>
+<li class="chapter" data-level="11.1.2" data-path="reference.html"><a href="reference.html#pass-by-reference"><i class="fa fa-check"></i><b>11.1.2</b> Pass by reference<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="reference.html"><a href="reference.html#copy-on-modify"><i class="fa fa-check"></i><b>11.2</b> Copy on modify<span></span></a></li>
+<li class="chapter" data-level="11.3" data-path="reference.html"><a href="reference.html#for-pass-by-reference"><i class="fa fa-check"></i><b>11.3</b> for pass by reference<span></span></a></li>
+<li class="chapter" data-level="11.4" data-path="reference.html"><a href="reference.html#conclusion-7"><i class="fa fa-check"></i><b>11.4</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="releasememory.html"><a href="releasememory.html"><i class="fa fa-check"></i><b>12</b> Release Memory<span></span></a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="releasememory.html"><a href="releasememory.html#r-version-3.5"><i class="fa fa-check"></i><b>11.2.1</b> R version 3.5</a></li>
-<li class="chapter" data-level="11.2.2" data-path="releasememory.html"><a href="releasememory.html#r-version-4.0"><i class="fa fa-check"></i><b>11.2.2</b> R version 4.0</a></li>
-<li class="chapter" data-level="11.2.3" data-path="releasememory.html"><a href="releasememory.html#inside-a-heavy-loop"><i class="fa fa-check"></i><b>11.2.3</b> Inside a heavy loop</a></li>
-<li class="chapter" data-level="11.2.4" data-path="releasememory.html"><a href="releasememory.html#anything-that-takes-more-than-30-seconds"><i class="fa fa-check"></i><b>11.2.4</b> anything that takes more than 30 seconds</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="releasememory.html"><a href="releasememory.html#cache-store-calculations"><i class="fa fa-check"></i><b>11.3</b> Cache / Store calculations</a></li>
-<li class="chapter" data-level="11.4" data-path="releasememory.html"><a href="releasememory.html#conclusion-8"><i class="fa fa-check"></i><b>11.4</b> Conclusion</a></li>
-</ul></li>
-<li class="part"><span><b>IV Speed</b></span></li>
-<li class="chapter" data-level="12" data-path="speedtips.html"><a href="speedtips.html"><i class="fa fa-check"></i><b>12</b> Some Tips to make R code faster</a>
+<li class="chapter" data-level="12.1" data-path="releasememory.html"><a href="releasememory.html#use-rm"><i class="fa fa-check"></i><b>12.1</b> use rm()<span></span></a></li>
+<li class="chapter" data-level="12.2" data-path="releasememory.html"><a href="releasememory.html#use-gc"><i class="fa fa-check"></i><b>12.2</b> use gc()<span></span></a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="speedtips.html"><a href="speedtips.html#use-latest-version-of-r"><i class="fa fa-check"></i><b>12.1</b> Use Latest version of R</a></li>
-<li class="chapter" data-level="12.2" data-path="speedtips.html"><a href="speedtips.html#benchmark-and-profiling-the-code"><i class="fa fa-check"></i><b>12.2</b> Benchmark and profiling the code</a></li>
-<li class="chapter" data-level="12.3" data-path="speedtips.html"><a href="speedtips.html#algorithm-matters-more-than-language"><i class="fa fa-check"></i><b>12.3</b> Algorithm matters more than language</a></li>
-<li class="chapter" data-level="12.4" data-path="speedtips.html"><a href="speedtips.html#read-the-function"><i class="fa fa-check"></i><b>12.4</b> Read the function</a></li>
-<li class="chapter" data-level="12.5" data-path="speedtips.html"><a href="speedtips.html#use-conditionals-to-break-computations"><i class="fa fa-check"></i><b>12.5</b> Use Conditionals to break computations</a></li>
-<li class="chapter" data-level="12.6" data-path="speedtips.html"><a href="speedtips.html#use-faster-packages"><i class="fa fa-check"></i><b>12.6</b> Use Faster packages</a></li>
-<li class="chapter" data-level="12.7" data-path="speedtips.html"><a href="speedtips.html#some-pointers"><i class="fa fa-check"></i><b>12.7</b> Some pointers</a>
+<li class="chapter" data-level="12.2.1" data-path="releasememory.html"><a href="releasememory.html#r-version-3.5"><i class="fa fa-check"></i><b>12.2.1</b> R version 3.5<span></span></a></li>
+<li class="chapter" data-level="12.2.2" data-path="releasememory.html"><a href="releasememory.html#r-version-4.0"><i class="fa fa-check"></i><b>12.2.2</b> R version 4.0<span></span></a></li>
+<li class="chapter" data-level="12.2.3" data-path="releasememory.html"><a href="releasememory.html#inside-a-heavy-loop"><i class="fa fa-check"></i><b>12.2.3</b> Inside a heavy loop<span></span></a></li>
+<li class="chapter" data-level="12.2.4" data-path="releasememory.html"><a href="releasememory.html#anything-that-takes-more-than-30-seconds"><i class="fa fa-check"></i><b>12.2.4</b> anything that takes more than 30 seconds<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="releasememory.html"><a href="releasememory.html#cache-store-calculations"><i class="fa fa-check"></i><b>12.3</b> Cache / Store calculations<span></span></a></li>
+<li class="chapter" data-level="12.4" data-path="releasememory.html"><a href="releasememory.html#conclusion-8"><i class="fa fa-check"></i><b>12.4</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>IV Speed<span></span></b></span></li>
+<li class="chapter" data-level="13" data-path="speedtips.html"><a href="speedtips.html"><i class="fa fa-check"></i><b>13</b> Some Tips to make R code faster<span></span></a>
 <ul>
-<li class="chapter" data-level="12.7.1" data-path="speedtips.html"><a href="speedtips.html#use-instead-of-when-you-can"><i class="fa fa-check"></i><b>12.7.1</b> use [[ instead of [ when you can</a></li>
-<li class="chapter" data-level="12.7.2" data-path="speedtips.html"><a href="speedtips.html#r-calculates-everything"><i class="fa fa-check"></i><b>12.7.2</b> R calculates everything</a></li>
-<li class="chapter" data-level="12.7.3" data-path="speedtips.html"><a href="speedtips.html#internal-functions"><i class="fa fa-check"></i><b>12.7.3</b> .Internal functions</a></li>
-<li class="chapter" data-level="12.7.4" data-path="speedtips.html"><a href="speedtips.html#dont-compile"><i class="fa fa-check"></i><b>12.7.4</b> Don’t Compile</a></li>
-<li class="chapter" data-level="12.7.5" data-path="speedtips.html"><a href="speedtips.html#use-direct-method.object-structure"><i class="fa fa-check"></i><b>12.7.5</b> use direct method.object structure</a></li>
-</ul></li>
-<li class="chapter" data-level="12.8" data-path="speedtips.html"><a href="speedtips.html#export-other-languages"><i class="fa fa-check"></i><b>12.8</b> Export Other languages</a></li>
-<li class="chapter" data-level="12.9" data-path="speedtips.html"><a href="speedtips.html#conclusion-9"><i class="fa fa-check"></i><b>12.9</b> Conclusion</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>13</b> For Loops</a>
+<li class="chapter" data-level="13.1" data-path="speedtips.html"><a href="speedtips.html#use-latest-version-of-r"><i class="fa fa-check"></i><b>13.1</b> Use Latest version of R<span></span></a></li>
+<li class="chapter" data-level="13.2" data-path="speedtips.html"><a href="speedtips.html#benchmark-and-profiling-the-code"><i class="fa fa-check"></i><b>13.2</b> Benchmark and profiling the code<span></span></a></li>
+<li class="chapter" data-level="13.3" data-path="speedtips.html"><a href="speedtips.html#algorithm-matters-more-than-language"><i class="fa fa-check"></i><b>13.3</b> Algorithm matters more than language<span></span></a></li>
+<li class="chapter" data-level="13.4" data-path="speedtips.html"><a href="speedtips.html#read-the-function"><i class="fa fa-check"></i><b>13.4</b> Read the function<span></span></a></li>
+<li class="chapter" data-level="13.5" data-path="speedtips.html"><a href="speedtips.html#use-conditionals-to-break-computations"><i class="fa fa-check"></i><b>13.5</b> Use Conditionals to break computations<span></span></a></li>
+<li class="chapter" data-level="13.6" data-path="speedtips.html"><a href="speedtips.html#use-faster-packages"><i class="fa fa-check"></i><b>13.6</b> Use Faster packages<span></span></a></li>
+<li class="chapter" data-level="13.7" data-path="speedtips.html"><a href="speedtips.html#some-pointers"><i class="fa fa-check"></i><b>13.7</b> Some pointers<span></span></a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="loops.html"><a href="loops.html#initialize-objects-before-loops"><i class="fa fa-check"></i><b>13.1</b> initialize objects before loops</a></li>
-<li class="chapter" data-level="13.2" data-path="loops.html"><a href="loops.html#use-simple-data-types"><i class="fa fa-check"></i><b>13.2</b> use simple data-types</a></li>
-<li class="chapter" data-level="13.3" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>13.3</b> apply family</a>
+<li class="chapter" data-level="13.7.1" data-path="speedtips.html"><a href="speedtips.html#use-instead-of-when-you-can"><i class="fa fa-check"></i><b>13.7.1</b> use [[ instead of [ when you can<span></span></a></li>
+<li class="chapter" data-level="13.7.2" data-path="speedtips.html"><a href="speedtips.html#r-calculates-everything"><i class="fa fa-check"></i><b>13.7.2</b> R calculates everything<span></span></a></li>
+<li class="chapter" data-level="13.7.3" data-path="speedtips.html"><a href="speedtips.html#internal-functions"><i class="fa fa-check"></i><b>13.7.3</b> .Internal functions<span></span></a></li>
+<li class="chapter" data-level="13.7.4" data-path="speedtips.html"><a href="speedtips.html#dont-compile"><i class="fa fa-check"></i><b>13.7.4</b> Don’t Compile<span></span></a></li>
+<li class="chapter" data-level="13.7.5" data-path="speedtips.html"><a href="speedtips.html#use-direct-method.object-structure"><i class="fa fa-check"></i><b>13.7.5</b> use direct method.object structure<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="13.8" data-path="speedtips.html"><a href="speedtips.html#export-other-languages"><i class="fa fa-check"></i><b>13.8</b> Export Other languages<span></span></a></li>
+<li class="chapter" data-level="13.9" data-path="speedtips.html"><a href="speedtips.html#conclusion-9"><i class="fa fa-check"></i><b>13.9</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>14</b> For Loops<span></span></a>
 <ul>
-<li class="chapter" data-level="13.3.1" data-path="loops.html"><a href="loops.html#apply-functions-are-not-much-faster-than-loops"><i class="fa fa-check"></i><b>13.3.1</b> apply functions are not much faster than loops</a></li>
-<li class="chapter" data-level="13.3.2" data-path="loops.html"><a href="loops.html#nested-lapply-have-same-speed-as-a-normal-lapply"><i class="fa fa-check"></i><b>13.3.2</b> Nested lapply have same speed as a normal lapply</a></li>
-</ul></li>
-<li class="chapter" data-level="13.4" data-path="loops.html"><a href="loops.html#vectorize-your-code"><i class="fa fa-check"></i><b>13.4</b> Vectorize your code</a>
+<li class="chapter" data-level="14.1" data-path="loops.html"><a href="loops.html#initialize-objects-before-loops"><i class="fa fa-check"></i><b>14.1</b> initialize objects before loops<span></span></a></li>
+<li class="chapter" data-level="14.2" data-path="loops.html"><a href="loops.html#use-simple-data-types"><i class="fa fa-check"></i><b>14.2</b> use simple data-types<span></span></a></li>
+<li class="chapter" data-level="14.3" data-path="loops.html"><a href="loops.html#apply-family"><i class="fa fa-check"></i><b>14.3</b> apply family<span></span></a>
 <ul>
-<li class="chapter" data-level="13.4.1" data-path="loops.html"><a href="loops.html#never-repeat-a-calculation"><i class="fa fa-check"></i><b>13.4.1</b> never repeat a calculation</a></li>
-<li class="chapter" data-level="13.4.2" data-path="loops.html"><a href="loops.html#vectorized-code-can-do-2-or-3-steps-more-in-lesser-time"><i class="fa fa-check"></i><b>13.4.2</b> Vectorized code can do 2 or 3 steps more in lesser time</a></li>
+<li class="chapter" data-level="14.3.1" data-path="loops.html"><a href="loops.html#apply-functions-are-not-much-faster-than-loops"><i class="fa fa-check"></i><b>14.3.1</b> apply functions are not much faster than loops<span></span></a></li>
+<li class="chapter" data-level="14.3.2" data-path="loops.html"><a href="loops.html#nested-lapply-have-same-speed-as-a-normal-lapply"><i class="fa fa-check"></i><b>14.3.2</b> Nested lapply have same speed as a normal lapply<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="loops.html"><a href="loops.html#understanding-non-vectorized-code"><i class="fa fa-check"></i><b>13.5</b> Understanding non-vectorized code</a></li>
-<li class="chapter" data-level="13.6" data-path="loops.html"><a href="loops.html#do-as-little-as-possible-inside-a-loop"><i class="fa fa-check"></i><b>13.6</b> Do as little as possible inside a loop</a>
+<li class="chapter" data-level="14.4" data-path="loops.html"><a href="loops.html#vectorize-your-code"><i class="fa fa-check"></i><b>14.4</b> Vectorize your code<span></span></a>
 <ul>
-<li class="chapter" data-level="13.6.1" data-path="loops.html"><a href="loops.html#combine-vectorized-code-inside-a-loop"><i class="fa fa-check"></i><b>13.6.1</b> Combine Vectorized code inside a loop</a></li>
+<li class="chapter" data-level="14.4.1" data-path="loops.html"><a href="loops.html#never-repeat-a-calculation"><i class="fa fa-check"></i><b>14.4.1</b> never repeat a calculation<span></span></a></li>
+<li class="chapter" data-level="14.4.2" data-path="loops.html"><a href="loops.html#vectorized-code-can-do-2-or-3-steps-more-in-lesser-time"><i class="fa fa-check"></i><b>14.4.2</b> Vectorized code can do 2 or 3 steps more in lesser time<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="13.7" data-path="loops.html"><a href="loops.html#conclusion-10"><i class="fa fa-check"></i><b>13.7</b> Conclusion</a></li>
+<li class="chapter" data-level="14.5" data-path="loops.html"><a href="loops.html#understanding-non-vectorized-code"><i class="fa fa-check"></i><b>14.5</b> Understanding non-vectorized code<span></span></a></li>
+<li class="chapter" data-level="14.6" data-path="loops.html"><a href="loops.html#do-as-little-as-possible-inside-a-loop"><i class="fa fa-check"></i><b>14.6</b> Do as little as possible inside a loop<span></span></a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="loops.html"><a href="loops.html#combine-vectorized-code-inside-a-loop"><i class="fa fa-check"></i><b>14.6.1</b> Combine Vectorized code inside a loop<span></span></a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>14</b> Multithreading</a></li>
-<li class="part"><span><b>V Shiny Tips</b></span></li>
-<li class="chapter" data-level="15" data-path="shinyspeed.html"><a href="shinyspeed.html"><i class="fa fa-check"></i><b>15</b> Speed</a></li>
-<li class="chapter" data-level="16" data-path="shinymemory.html"><a href="shinymemory.html"><i class="fa fa-check"></i><b>16</b> Memory</a></li>
+<li class="chapter" data-level="14.7" data-path="loops.html"><a href="loops.html#conclusion-10"><i class="fa fa-check"></i><b>14.7</b> Conclusion<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="multithreading.html"><a href="multithreading.html"><i class="fa fa-check"></i><b>15</b> Multithreading<span></span></a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="multithreading.html"><a href="multithreading.html#multi-threading-has-an-overhead"><i class="fa fa-check"></i><b>15.1</b> Multi Threading has an overhead<span></span></a></li>
+<li class="chapter" data-level="15.2" data-path="multithreading.html"><a href="multithreading.html#be-cautious-with-database"><i class="fa fa-check"></i><b>15.2</b> Be Cautious with Database<span></span></a></li>
+<li class="chapter" data-level="15.3" data-path="multithreading.html"><a href="multithreading.html#use-future-package"><i class="fa fa-check"></i><b>15.3</b> Use Future Package<span></span></a></li>
+<li class="chapter" data-level="15.4" data-path="multithreading.html"><a href="multithreading.html#send-only-bigger-calculation"><i class="fa fa-check"></i><b>15.4</b> Send Only Bigger calculation<span></span></a></li>
+</ul></li>
+<li class="part"><span><b>V Architecture<span></span></b></span></li>
+<li class="chapter" data-level="16" data-path="functional-architecture-functional.html"><a href="functional-architecture-functional.html"><i class="fa fa-check"></i><b>16</b> Functional Architecture {functional}<span></span></a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="functional-architecture-functional.html"><a href="functional-architecture-functional.html#pure-and-impure-functions"><i class="fa fa-check"></i><b>16.1</b> Pure and Impure functions<span></span></a></li>
+<li class="chapter" data-level="16.2" data-path="functional-architecture-functional.html"><a href="functional-architecture-functional.html#data-and-method-as-seperate-entity"><i class="fa fa-check"></i><b>16.2</b> Data and Method as seperate entity<span></span></a></li>
+<li class="chapter" data-level="16.3" data-path="functional-architecture-functional.html"><a href="functional-architecture-functional.html#functors"><i class="fa fa-check"></i><b>16.3</b> functors<span></span></a></li>
+<li class="chapter" data-level="16.4" data-path="functional-architecture-functional.html"><a href="functional-architecture-functional.html#monoids"><i class="fa fa-check"></i><b>16.4</b> monoids<span></span></a></li>
+<li class="chapter" data-level="16.5" data-path="functional-architecture-functional.html"><a href="functional-architecture-functional.html#write-packages"><i class="fa fa-check"></i><b>16.5</b> write packages<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="testing-functional.html"><a href="testing-functional.html"><i class="fa fa-check"></i><b>17</b> Testing {functional}<span></span></a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="testing-functional.html"><a href="testing-functional.html#unit-testing"><i class="fa fa-check"></i><b>17.1</b> Unit Testing<span></span></a></li>
+<li class="chapter" data-level="17.2" data-path="testing-functional.html"><a href="testing-functional.html#systems-testing"><i class="fa fa-check"></i><b>17.2</b> Systems Testing<span></span></a></li>
+<li class="chapter" data-level="17.3" data-path="testing-functional.html"><a href="testing-functional.html#load-testing"><i class="fa fa-check"></i><b>17.3</b> Load Testing<span></span></a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="deployment-functional.html"><a href="deployment-functional.html"><i class="fa fa-check"></i><b>18</b> Deployment {functional}<span></span></a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="deployment-functional.html"><a href="deployment-functional.html#method"><i class="fa fa-check"></i><b>18.1</b> Method<span></span></a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -334,115 +361,159 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="releasememory" class="section level1" number="11">
-<h1><span class="header-section-number">Chapter 11</span> Release Memory</h1>
-<p>Sometimes even after applying all the best techniques to save memory you still need more space. In those cases you need to understand that R has 2 techniques available to you. These techniques are mostly useful in different context. I mostly recommend using <code>gc()</code> inside a loop and <code>rm()</code> inside an ETL or R script.</p>
-<div id="use-rm" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> use rm()</h2>
+<div id="releasememory" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Release Memory<a href="releasememory.html#releasememory" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Sometimes even after applying all the best techniques to save memory you still need more space. In those cases you need to understand that R has 2 techniques available to you. These techniques are mostly useful in different context. I mostly recommend using <code>gc()</code> inside a loop and <code>rm()</code> inside an ETL or big function.</p>
+<div id="use-rm" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> use rm()<a href="releasememory.html#use-rm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>rm</code> function deletes any object from R and releases some memory that could be used for further operations. It’s excellent for cases where you have a lot of intermediate results saved inside an R script that is supposed to run through an ETL. like this</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="releasememory.html#cb180-1" aria-hidden="true" tabindex="-1"></a>value <span class="ot">&lt;-</span> <span class="fu">length</span>(mtcars<span class="sc">$</span>mpg)</span>
-<span id="cb180-2"><a href="releasememory.html#cb180-2" aria-hidden="true" tabindex="-1"></a>sorted_mpg <span class="ot">&lt;-</span> <span class="fu">sort</span>(mtcars<span class="sc">$</span>mpg)</span>
-<span id="cb180-3"><a href="releasememory.html#cb180-3" aria-hidden="true" tabindex="-1"></a>median_values <span class="ot">&lt;-</span> sorted_mpg[value<span class="sc">/</span><span class="dv">2</span>] <span class="sc">+</span> sorted_mpg[(value<span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span> <span class="dv">1</span>]</span>
-<span id="cb180-4"><a href="releasememory.html#cb180-4" aria-hidden="true" tabindex="-1"></a>median_mpg <span class="ot">&lt;-</span> median_values <span class="sc">/</span> <span class="dv">2</span></span>
-<span id="cb180-5"><a href="releasememory.html#cb180-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb180-6"><a href="releasememory.html#cb180-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;sorted_mpg&quot;</span>, <span class="st">&quot;median_values&quot;</span>))</span></code></pre></div>
-<p>In these scenarios where you are running scripts like these and storing intermediate result for further processing it’s okay to use <code>rm</code> function. However when you wrap it inside a function only the final result stays and everything else is lost anyways so you don’t need to use <code>rm</code> function at all.</p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="releasememory.html#cb183-1" aria-hidden="true" tabindex="-1"></a>value <span class="ot">&lt;-</span> <span class="fu">length</span>(mtcars<span class="sc">$</span>mpg)</span>
+<span id="cb183-2"><a href="releasememory.html#cb183-2" aria-hidden="true" tabindex="-1"></a>sorted_mpg <span class="ot">&lt;-</span> <span class="fu">sort</span>(mtcars<span class="sc">$</span>mpg)</span>
+<span id="cb183-3"><a href="releasememory.html#cb183-3" aria-hidden="true" tabindex="-1"></a>median_values <span class="ot">&lt;-</span> sorted_mpg[value<span class="sc">/</span><span class="dv">2</span>] <span class="sc">+</span> sorted_mpg[(value<span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb183-4"><a href="releasememory.html#cb183-4" aria-hidden="true" tabindex="-1"></a>median_mpg <span class="ot">&lt;-</span> median_values <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb183-5"><a href="releasememory.html#cb183-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb183-6"><a href="releasememory.html#cb183-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">&quot;value&quot;</span>, <span class="st">&quot;sorted_mpg&quot;</span>, <span class="st">&quot;median_values&quot;</span>))</span></code></pre></div>
+<p>In these scenarios where you are running scripts like these and storing intermediate result for further processing it’s okay to use <code>rm</code> function. However when you wrap it inside a function only the final result stays and everything else is lost anyways so you don’t need to use <code>rm</code> function at all. The only difference is when your function is huge. I once wrote an ETL script where I compose multiple functions to create a bigger one which was supposed to run like an ETL job. The data created there was huge and it was crashing my RAM everytime. So I had to modify it to make sure I delete the objects created after I am done with it.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="releasememory.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ## this is a bad style it will exhaust your RAM way more quickly and you would always need more RAM than necessary to perform this action.</span></span>
+<span id="cb184-2"><a href="releasememory.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb184-3"><a href="releasememory.html#cb184-3" aria-hidden="true" tabindex="-1"></a><span class="co"># bad_func &lt;- function(){</span></span>
+<span id="cb184-4"><a href="releasememory.html#cb184-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb184-5"><a href="releasememory.html#cb184-5" aria-hidden="true" tabindex="-1"></a><span class="co">#   a &lt;- load_huge_datasets(&quot;some file&quot;)</span></span>
+<span id="cb184-6"><a href="releasememory.html#cb184-6" aria-hidden="true" tabindex="-1"></a><span class="co">#   b &lt;- load_huge_datasets(&quot;some other file or db&quot;)</span></span>
+<span id="cb184-7"><a href="releasememory.html#cb184-7" aria-hidden="true" tabindex="-1"></a><span class="co">#   c &lt;- load_huge_datasets(&quot;some other file or db&quot;)</span></span>
+<span id="cb184-8"><a href="releasememory.html#cb184-8" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb184-9"><a href="releasememory.html#cb184-9" aria-hidden="true" tabindex="-1"></a><span class="co">#   results_a &lt;- long_computaions(a)</span></span>
+<span id="cb184-10"><a href="releasememory.html#cb184-10" aria-hidden="true" tabindex="-1"></a><span class="co">#   results_b &lt;- other_long_computaions(b)</span></span>
+<span id="cb184-11"><a href="releasememory.html#cb184-11" aria-hidden="true" tabindex="-1"></a><span class="co">#   results_c &lt;- other_long_computaions(c)</span></span>
+<span id="cb184-12"><a href="releasememory.html#cb184-12" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb184-13"><a href="releasememory.html#cb184-13" aria-hidden="true" tabindex="-1"></a><span class="co">#   final_results &lt;- results_a + results_b + results_c</span></span>
+<span id="cb184-14"><a href="releasememory.html#cb184-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb184-15"><a href="releasememory.html#cb184-15" aria-hidden="true" tabindex="-1"></a><span class="co">#   return(</span></span>
+<span id="cb184-16"><a href="releasememory.html#cb184-16" aria-hidden="true" tabindex="-1"></a><span class="co">#     final_results</span></span>
+<span id="cb184-17"><a href="releasememory.html#cb184-17" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb184-18"><a href="releasememory.html#cb184-18" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span>
+<span id="cb184-19"><a href="releasememory.html#cb184-19" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb184-20"><a href="releasememory.html#cb184-20" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb184-21"><a href="releasememory.html#cb184-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ## This style is only using the RAM that&#39;s necessary at a time and then deleting objects to make room for other RAM</span></span>
+<span id="cb184-22"><a href="releasememory.html#cb184-22" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb184-23"><a href="releasememory.html#cb184-23" aria-hidden="true" tabindex="-1"></a><span class="co"># good_func &lt;- function(){</span></span>
+<span id="cb184-24"><a href="releasememory.html#cb184-24" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb184-25"><a href="releasememory.html#cb184-25" aria-hidden="true" tabindex="-1"></a><span class="co">#   a &lt;- load_huge_datasets(&quot;some file&quot;)</span></span>
+<span id="cb184-26"><a href="releasememory.html#cb184-26" aria-hidden="true" tabindex="-1"></a><span class="co">#   results_a &lt;- long_computaions(a)</span></span>
+<span id="cb184-27"><a href="releasememory.html#cb184-27" aria-hidden="true" tabindex="-1"></a><span class="co">#   rm(a)</span></span>
+<span id="cb184-28"><a href="releasememory.html#cb184-28" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb184-29"><a href="releasememory.html#cb184-29" aria-hidden="true" tabindex="-1"></a><span class="co">#   b &lt;- load_huge_datasets(&quot;some other file or db&quot;)</span></span>
+<span id="cb184-30"><a href="releasememory.html#cb184-30" aria-hidden="true" tabindex="-1"></a><span class="co">#   results_b &lt;- other_long_computaions(b)</span></span>
+<span id="cb184-31"><a href="releasememory.html#cb184-31" aria-hidden="true" tabindex="-1"></a><span class="co">#   rm(b)</span></span>
+<span id="cb184-32"><a href="releasememory.html#cb184-32" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb184-33"><a href="releasememory.html#cb184-33" aria-hidden="true" tabindex="-1"></a><span class="co">#   c &lt;- load_huge_datasets(&quot;some other file or db&quot;)</span></span>
+<span id="cb184-34"><a href="releasememory.html#cb184-34" aria-hidden="true" tabindex="-1"></a><span class="co">#   results_c &lt;- other_long_computaions(c)</span></span>
+<span id="cb184-35"><a href="releasememory.html#cb184-35" aria-hidden="true" tabindex="-1"></a><span class="co">#   rm(c)</span></span>
+<span id="cb184-36"><a href="releasememory.html#cb184-36" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb184-37"><a href="releasememory.html#cb184-37" aria-hidden="true" tabindex="-1"></a><span class="co">#   final_results &lt;- results_a + results_b + results_c</span></span>
+<span id="cb184-38"><a href="releasememory.html#cb184-38" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb184-39"><a href="releasememory.html#cb184-39" aria-hidden="true" tabindex="-1"></a><span class="co">#   return(</span></span>
+<span id="cb184-40"><a href="releasememory.html#cb184-40" aria-hidden="true" tabindex="-1"></a><span class="co">#     final_results</span></span>
+<span id="cb184-41"><a href="releasememory.html#cb184-41" aria-hidden="true" tabindex="-1"></a><span class="co">#   )</span></span>
+<span id="cb184-42"><a href="releasememory.html#cb184-42" aria-hidden="true" tabindex="-1"></a><span class="co">#   </span></span>
+<span id="cb184-43"><a href="releasememory.html#cb184-43" aria-hidden="true" tabindex="-1"></a><span class="co"># }</span></span></code></pre></div>
+<p>Read both the functions mentioned above if you ever faced with a situation where RAM is crucial always make a habit of writing code like good_func where you can use <code>rm()</code> inside a function to make room for more objects.</p>
 <p>I would not advice anyone to use this function unless you are writing an ETL script on a data that is large enough that you would need space after every iteration. Even in those scenarios you can get away with not using intermediate variables for storing the results. But if you must and only and only in those very rare cases this function should be used. In broader cases R’s garbage collection will have you covered.</p>
 </div>
-<div id="use-gc" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span> use gc()</h2>
+<div id="use-gc" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> use gc()<a href="releasememory.html#use-gc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Garbage collection is a process by which a software or a program returns the memory back to OS or frees it for it’s own usage. R has significantly improved it’s memory management in recent years. All the blogs you read about R being slow and memory hungry are mostly written during 2014-2017. They aren’t true anymore.</p>
-<div id="r-version-3.5" class="section level3" number="11.2.1">
-<h3><span class="header-section-number">11.2.1</span> R version 3.5</h3>
+<div id="r-version-3.5" class="section level3 hasAnchor" number="12.2.1">
+<h3><span class="header-section-number">12.2.1</span> R version 3.5<a href="releasememory.html#r-version-3.5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In R version 3.5 <code>altrep</code> was introduced which helps in saving a lot of memory in special cases like loops. Packages like <code>vroom</code> have achieved significant speed ups because now they didn’t have to load all the data in memory and can only load as much as they need. If you want to read more about it you should visit this page <a href="https://svn.r-project.org/R/branches/ALTREP/ALTREP.html" class="uri">https://svn.r-project.org/R/branches/ALTREP/ALTREP.html</a>.</p>
 </div>
-<div id="r-version-4.0" class="section level3" number="11.2.2">
-<h3><span class="header-section-number">11.2.2</span> R version 4.0</h3>
+<div id="r-version-4.0" class="section level3 hasAnchor" number="12.2.2">
+<h3><span class="header-section-number">12.2.2</span> R version 4.0<a href="releasememory.html#r-version-4.0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In R version 4.0 <code>ARC</code> ( <strong>automatic reference counting</strong> )was introduced in R. Previously R used to keep a track of how many copies an object has with <code>NRC</code> ( <strong>named reference counting</strong> )and that had only 3 option, 0, 1 and 2; where I think 2 meant many. Now with ARC R can increase and decrease these numbers for keeping a better track of how many object points to the same memory address. You can read more about in a blog post here: <a href="https://msmith.de/2020/05/14/exploring-r-reference-counting.html#:~:text=The%20CRAN%20NEWS%20accompanying%20R,further%20optimizations%20in%20the%20future." class="uri">https://msmith.de/2020/05/14/exploring-r-reference-counting.html#:~:text=The%20CRAN%20NEWS%20accompanying%20R,further%20optimizations%20in%20the%20future.</a>.</p>
 <p>So the gist of the matter is that R has been improving performance and memory management for a very long time.</p>
 <p>Now coming back to the main point. R has a function by name <code>gc</code> to run a garbage collector and release the memory that is not needed anymore. It’s useful to run it in mostly 2 situations.</p>
 </div>
-<div id="inside-a-heavy-loop" class="section level3" number="11.2.3">
-<h3><span class="header-section-number">11.2.3</span> Inside a heavy loop</h3>
+<div id="inside-a-heavy-loop" class="section level3 hasAnchor" number="12.2.3">
+<h3><span class="header-section-number">12.2.3</span> Inside a heavy loop<a href="releasememory.html#inside-a-heavy-loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Loops are slow in R and sometime when are you doing heavy manipulation in a loop. R might consume more memory than it’s needed and will slow the further processes. This is the point I use a gc() inside a loop.</p>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="releasememory.html#cb181-1" aria-hidden="true" tabindex="-1"></a>gc_after_a_number <span class="ot">&lt;-</span> <span class="fl">1e2</span></span>
-<span id="cb181-2"><a href="releasememory.html#cb181-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-3"><a href="releasememory.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>){</span>
-<span id="cb181-4"><a href="releasememory.html#cb181-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">### heavy calculations</span></span>
-<span id="cb181-5"><a href="releasememory.html#cb181-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( i <span class="sc">%%</span> gc_after_a_number <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb181-6"><a href="releasememory.html#cb181-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gc</span>()</span>
-<span id="cb181-7"><a href="releasememory.html#cb181-7" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb181-8"><a href="releasememory.html#cb181-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="releasememory.html#cb185-1" aria-hidden="true" tabindex="-1"></a>gc_after_a_number <span class="ot">&lt;-</span> <span class="fl">1e2</span></span>
+<span id="cb185-2"><a href="releasememory.html#cb185-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb185-3"><a href="releasememory.html#cb185-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fl">1e4</span>){</span>
+<span id="cb185-4"><a href="releasememory.html#cb185-4" aria-hidden="true" tabindex="-1"></a>  <span class="do">### heavy calculations</span></span>
+<span id="cb185-5"><a href="releasememory.html#cb185-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( i <span class="sc">%%</span> gc_after_a_number <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb185-6"><a href="releasememory.html#cb185-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">gc</span>()</span>
+<span id="cb185-7"><a href="releasememory.html#cb185-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb185-8"><a href="releasememory.html#cb185-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Here in the code above I am running a long loop but after every 100 iterations I am freeing up memory by running a gc() function. After how many iterations do you want to use a loop is totally dependent on what are you doing inside a loop. It could go from anywhere between 10 to 10 thousand depending upon the situation. It surely helps and I would recommend everyone to use it but only for very heavy calculations.</p>
 </div>
-<div id="anything-that-takes-more-than-30-seconds" class="section level3" number="11.2.4">
-<h3><span class="header-section-number">11.2.4</span> anything that takes more than 30 seconds</h3>
+<div id="anything-that-takes-more-than-30-seconds" class="section level3 hasAnchor" number="12.2.4">
+<h3><span class="header-section-number">12.2.4</span> anything that takes more than 30 seconds<a href="releasememory.html#anything-that-takes-more-than-30-seconds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If you know a function takes more than 30 second to execute. I would suggest you to run a gc() after it. It helps keep a check on R’s memory. It’s useful even if you are running a shiny app or an API. If anything takes more than 30 second it’s worth running the gc() function because than adding a few milliseconds will not be your main problem for sure.</p>
 </div>
 </div>
-<div id="cache-store-calculations" class="section level2" number="11.3">
-<h2><span class="header-section-number">11.3</span> Cache / Store calculations</h2>
+<div id="cache-store-calculations" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> Cache / Store calculations<a href="releasememory.html#cache-store-calculations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It’s a good practice in general to not repeat the same calculations over and over again. let’s check that with simple function.</p>
 <p>It’s a very famous problem of print <code>foo</code> when a number is divisible by 3 printing <code>bar</code> when it’s divisible by 5 and <code>foobar</code> when it’s divisible by both 3 and 5 or 15.</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="releasememory.html#cb182-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb182-2"><a href="releasememory.html#cb182-2" aria-hidden="true" tabindex="-1"></a>  num</span>
-<span id="cb182-3"><a href="releasememory.html#cb182-3" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb182-4"><a href="releasememory.html#cb182-4" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span>num)</span>
-<span id="cb182-5"><a href="releasememory.html#cb182-5" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">integer</span>(num)</span>
-<span id="cb182-6"><a href="releasememory.html#cb182-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb182-7"><a href="releasememory.html#cb182-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num){</span>
-<span id="cb182-8"><a href="releasememory.html#cb182-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(</span>
-<span id="cb182-9"><a href="releasememory.html#cb182-9" aria-hidden="true" tabindex="-1"></a>        x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span></span>
-<span id="cb182-10"><a href="releasememory.html#cb182-10" aria-hidden="true" tabindex="-1"></a>        x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span></span>
-<span id="cb182-11"><a href="releasememory.html#cb182-11" aria-hidden="true" tabindex="-1"></a>    ){</span>
-<span id="cb182-12"><a href="releasememory.html#cb182-12" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;foobar&quot;</span></span>
-<span id="cb182-13"><a href="releasememory.html#cb182-13" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>( x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb182-14"><a href="releasememory.html#cb182-14" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;foo&quot;</span></span>
-<span id="cb182-15"><a href="releasememory.html#cb182-15" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> ( x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb182-16"><a href="releasememory.html#cb182-16" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;bar&quot;</span></span>
-<span id="cb182-17"><a href="releasememory.html#cb182-17" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb182-18"><a href="releasememory.html#cb182-18" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> i</span>
-<span id="cb182-19"><a href="releasememory.html#cb182-19" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb182-20"><a href="releasememory.html#cb182-20" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb182-21"><a href="releasememory.html#cb182-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb182-22"><a href="releasememory.html#cb182-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
-<span id="cb182-23"><a href="releasememory.html#cb182-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb182-24"><a href="releasememory.html#cb182-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="releasememory.html#cb186-1" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb186-2"><a href="releasememory.html#cb186-2" aria-hidden="true" tabindex="-1"></a>  num</span>
+<span id="cb186-3"><a href="releasememory.html#cb186-3" aria-hidden="true" tabindex="-1"></a>){</span>
+<span id="cb186-4"><a href="releasememory.html#cb186-4" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span>num)</span>
+<span id="cb186-5"><a href="releasememory.html#cb186-5" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">integer</span>(num)</span>
+<span id="cb186-6"><a href="releasememory.html#cb186-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb186-7"><a href="releasememory.html#cb186-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num){</span>
+<span id="cb186-8"><a href="releasememory.html#cb186-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(</span>
+<span id="cb186-9"><a href="releasememory.html#cb186-9" aria-hidden="true" tabindex="-1"></a>        x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span></span>
+<span id="cb186-10"><a href="releasememory.html#cb186-10" aria-hidden="true" tabindex="-1"></a>        x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb186-11"><a href="releasememory.html#cb186-11" aria-hidden="true" tabindex="-1"></a>    ){</span>
+<span id="cb186-12"><a href="releasememory.html#cb186-12" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;foobar&quot;</span></span>
+<span id="cb186-13"><a href="releasememory.html#cb186-13" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>( x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb186-14"><a href="releasememory.html#cb186-14" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;foo&quot;</span></span>
+<span id="cb186-15"><a href="releasememory.html#cb186-15" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> ( x<span class="sc">$</span>y[[i]] <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb186-16"><a href="releasememory.html#cb186-16" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;bar&quot;</span></span>
+<span id="cb186-17"><a href="releasememory.html#cb186-17" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb186-18"><a href="releasememory.html#cb186-18" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> i</span>
+<span id="cb186-19"><a href="releasememory.html#cb186-19" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb186-20"><a href="releasememory.html#cb186-20" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb186-21"><a href="releasememory.html#cb186-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb186-22"><a href="releasememory.html#cb186-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
+<span id="cb186-23"><a href="releasememory.html#cb186-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb186-24"><a href="releasememory.html#cb186-24" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now look at the code above is it readable? what If I want to change the number of iterations. I will have to change it at 2 different places but that’s okay because I have wrapped in a function. But the key point is that I am also calculating <code>x$y[[i]]</code> multiple times and If I have make changes to it I will have to change it in <code>4</code> places. Let’s make it a little readable by storing the calculation and thus making our code readable and make it good enough that future changes can be done easily.</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="releasememory.html#cb183-1" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
-<span id="cb183-2"><a href="releasememory.html#cb183-2" aria-hidden="true" tabindex="-1"></a>  num</span>
-<span id="cb183-3"><a href="releasememory.html#cb183-3" aria-hidden="true" tabindex="-1"></a>){</span>
-<span id="cb183-4"><a href="releasememory.html#cb183-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb183-5"><a href="releasememory.html#cb183-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span>num)</span>
-<span id="cb183-6"><a href="releasememory.html#cb183-6" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">integer</span>(num)</span>
-<span id="cb183-7"><a href="releasememory.html#cb183-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb183-8"><a href="releasememory.html#cb183-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num){</span>
-<span id="cb183-9"><a href="releasememory.html#cb183-9" aria-hidden="true" tabindex="-1"></a>    curr_value <span class="ot">&lt;-</span> x<span class="sc">$</span>y[[i]]</span>
-<span id="cb183-10"><a href="releasememory.html#cb183-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb183-11"><a href="releasememory.html#cb183-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(</span>
-<span id="cb183-12"><a href="releasememory.html#cb183-12" aria-hidden="true" tabindex="-1"></a>        curr_value <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span></span>
-<span id="cb183-13"><a href="releasememory.html#cb183-13" aria-hidden="true" tabindex="-1"></a>        curr_value <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span></span>
-<span id="cb183-14"><a href="releasememory.html#cb183-14" aria-hidden="true" tabindex="-1"></a>    ){</span>
-<span id="cb183-15"><a href="releasememory.html#cb183-15" aria-hidden="true" tabindex="-1"></a>       z <span class="ot">&lt;-</span> <span class="st">&quot;foobar&quot;</span></span>
-<span id="cb183-16"><a href="releasememory.html#cb183-16" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>( curr_value <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb183-17"><a href="releasememory.html#cb183-17" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;foo&quot;</span></span>
-<span id="cb183-18"><a href="releasememory.html#cb183-18" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> ( curr_value <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb183-19"><a href="releasememory.html#cb183-19" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;bar&quot;</span></span>
-<span id="cb183-20"><a href="releasememory.html#cb183-20" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb183-21"><a href="releasememory.html#cb183-21" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> i</span>
-<span id="cb183-22"><a href="releasememory.html#cb183-22" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb183-23"><a href="releasememory.html#cb183-23" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb183-24"><a href="releasememory.html#cb183-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
-<span id="cb183-25"><a href="releasememory.html#cb183-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="releasememory.html#cb187-1" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
+<span id="cb187-2"><a href="releasememory.html#cb187-2" aria-hidden="true" tabindex="-1"></a>  num</span>
+<span id="cb187-3"><a href="releasememory.html#cb187-3" aria-hidden="true" tabindex="-1"></a>){</span>
+<span id="cb187-4"><a href="releasememory.html#cb187-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb187-5"><a href="releasememory.html#cb187-5" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span>num)</span>
+<span id="cb187-6"><a href="releasememory.html#cb187-6" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">integer</span>(num)</span>
+<span id="cb187-7"><a href="releasememory.html#cb187-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb187-8"><a href="releasememory.html#cb187-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>num){</span>
+<span id="cb187-9"><a href="releasememory.html#cb187-9" aria-hidden="true" tabindex="-1"></a>    curr_value <span class="ot">&lt;-</span> x<span class="sc">$</span>y[[i]]</span>
+<span id="cb187-10"><a href="releasememory.html#cb187-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb187-11"><a href="releasememory.html#cb187-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(</span>
+<span id="cb187-12"><a href="releasememory.html#cb187-12" aria-hidden="true" tabindex="-1"></a>        curr_value <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;&amp;</span></span>
+<span id="cb187-13"><a href="releasememory.html#cb187-13" aria-hidden="true" tabindex="-1"></a>        curr_value <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb187-14"><a href="releasememory.html#cb187-14" aria-hidden="true" tabindex="-1"></a>    ){</span>
+<span id="cb187-15"><a href="releasememory.html#cb187-15" aria-hidden="true" tabindex="-1"></a>       z <span class="ot">&lt;-</span> <span class="st">&quot;foobar&quot;</span></span>
+<span id="cb187-16"><a href="releasememory.html#cb187-16" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span>( curr_value <span class="sc">%%</span> <span class="dv">3</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb187-17"><a href="releasememory.html#cb187-17" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;foo&quot;</span></span>
+<span id="cb187-18"><a href="releasememory.html#cb187-18" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> ( curr_value <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb187-19"><a href="releasememory.html#cb187-19" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> <span class="st">&quot;bar&quot;</span></span>
+<span id="cb187-20"><a href="releasememory.html#cb187-20" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb187-21"><a href="releasememory.html#cb187-21" aria-hidden="true" tabindex="-1"></a>      z <span class="ot">&lt;-</span> i</span>
+<span id="cb187-22"><a href="releasememory.html#cb187-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb187-23"><a href="releasememory.html#cb187-23" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb187-24"><a href="releasememory.html#cb187-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(z)</span>
+<span id="cb187-25"><a href="releasememory.html#cb187-25" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Let’s check which is faster of the above implementations.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="releasememory.html#cb184-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb184-2"><a href="releasememory.html#cb184-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">foo</span>(<span class="fl">1e4</span>),</span>
-<span id="cb184-3"><a href="releasememory.html#cb184-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bar</span>(<span class="fl">1e4</span>)</span>
-<span id="cb184-4"><a href="releasememory.html#cb184-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="releasememory.html#cb188-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb188-2"><a href="releasememory.html#cb188-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">foo</span>(<span class="fl">1e4</span>),</span>
+<span id="cb188-3"><a href="releasememory.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bar</span>(<span class="fl">1e4</span>)</span>
+<span id="cb188-4"><a href="releasememory.html#cb188-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##        expr     min      lq     mean  median       uq     max neval
-##  foo(10000) 35.0775 40.5596 48.69933 45.0919 54.45235 84.6675   100
-##  bar(10000) 17.1787 20.9109 25.98496 23.2437 29.83330 59.6161   100</code></pre>
+##        expr     min       lq     mean   median       uq     max neval
+##  foo(10000) 35.9884 37.68765 42.10543 40.42580 44.01300 93.2937   100
+##  bar(10000) 17.4109 18.22870 19.91110 19.28375 20.38545 34.1456   100</code></pre>
 <p>We are saving almost half the time just because we are saving some intermediate calculations. You will be amazed to see how often can you do this. And it makes your code</p>
 <ul>
 <li><p>more performant</p></li>
@@ -452,15 +523,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Don’t force the computer to calculate something it has already calculated. This simple thing has brought into life big concepts like mem-cache or reddis. R too has the ability to cache it’s results. There is a package by name <code>memoise</code>. It can store the results of a previous calculation in RAM. It’s a classical case of RAM vs CPU trade off. You are using some RAM so that your CPU doesn’t have to work over and over again.</p>
 <p>Let’s try to calculate factorials to demonstrate how we can use it.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="releasememory.html#cb186-1" aria-hidden="true" tabindex="-1"></a>fact <span class="ot">&lt;-</span> <span class="cf">function</span>(num){</span>
-<span id="cb186-2"><a href="releasememory.html#cb186-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( num <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb186-3"><a href="releasememory.html#cb186-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span>)</span>
-<span id="cb186-4"><a href="releasememory.html#cb186-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb186-5"><a href="releasememory.html#cb186-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
-<span id="cb186-6"><a href="releasememory.html#cb186-6" aria-hidden="true" tabindex="-1"></a>      num <span class="sc">*</span> <span class="fu">fact</span>(num <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb186-7"><a href="releasememory.html#cb186-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb186-8"><a href="releasememory.html#cb186-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb186-9"><a href="releasememory.html#cb186-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="releasememory.html#cb190-1" aria-hidden="true" tabindex="-1"></a>fact <span class="ot">&lt;-</span> <span class="cf">function</span>(num){</span>
+<span id="cb190-2"><a href="releasememory.html#cb190-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( num <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb190-3"><a href="releasememory.html#cb190-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span>)</span>
+<span id="cb190-4"><a href="releasememory.html#cb190-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb190-5"><a href="releasememory.html#cb190-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
+<span id="cb190-6"><a href="releasememory.html#cb190-6" aria-hidden="true" tabindex="-1"></a>      num <span class="sc">*</span> <span class="fu">fact</span>(num <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb190-7"><a href="releasememory.html#cb190-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb190-8"><a href="releasememory.html#cb190-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb190-9"><a href="releasememory.html#cb190-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now because being a recursive function, which you should avoid writing at all costs, It does the same computation over and over again. It goes something like this</p>
 <ol style="list-style-type: decimal">
 <li><p>fact(0) * fact(1)</p>
@@ -481,35 +552,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol></li>
 </ol>
 <p>now it’s calculating same thing over and over again without caching it. It makes it a valid candidate for memoise.</p>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="releasememory.html#cb187-1" aria-hidden="true" tabindex="-1"></a>mem_fact <span class="ot">&lt;-</span> <span class="cf">function</span>(num){</span>
-<span id="cb187-2"><a href="releasememory.html#cb187-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( num <span class="sc">==</span> <span class="dv">0</span>){</span>
-<span id="cb187-3"><a href="releasememory.html#cb187-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span>)</span>
-<span id="cb187-4"><a href="releasememory.html#cb187-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb187-5"><a href="releasememory.html#cb187-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
-<span id="cb187-6"><a href="releasememory.html#cb187-6" aria-hidden="true" tabindex="-1"></a>      num <span class="sc">*</span> <span class="fu">mem_fact</span>(num <span class="sc">-</span> <span class="dv">1</span>)</span>
-<span id="cb187-7"><a href="releasememory.html#cb187-7" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb187-8"><a href="releasememory.html#cb187-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb187-9"><a href="releasememory.html#cb187-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb187-10"><a href="releasememory.html#cb187-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb187-11"><a href="releasememory.html#cb187-11" aria-hidden="true" tabindex="-1"></a>mem_fact <span class="ot">&lt;-</span> memoise<span class="sc">::</span><span class="fu">memoise</span>(mem_fact)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="releasememory.html#cb191-1" aria-hidden="true" tabindex="-1"></a>mem_fact <span class="ot">&lt;-</span> <span class="cf">function</span>(num){</span>
+<span id="cb191-2"><a href="releasememory.html#cb191-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>( num <span class="sc">==</span> <span class="dv">0</span>){</span>
+<span id="cb191-3"><a href="releasememory.html#cb191-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span>)</span>
+<span id="cb191-4"><a href="releasememory.html#cb191-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb191-5"><a href="releasememory.html#cb191-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(</span>
+<span id="cb191-6"><a href="releasememory.html#cb191-6" aria-hidden="true" tabindex="-1"></a>      num <span class="sc">*</span> <span class="fu">mem_fact</span>(num <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb191-7"><a href="releasememory.html#cb191-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb191-8"><a href="releasememory.html#cb191-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb191-9"><a href="releasememory.html#cb191-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb191-10"><a href="releasememory.html#cb191-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-11"><a href="releasememory.html#cb191-11" aria-hidden="true" tabindex="-1"></a>mem_fact <span class="ot">&lt;-</span> memoise<span class="sc">::</span><span class="fu">memoise</span>(mem_fact)</span></code></pre></div>
 <p>This is how you write a simple memoise function. Let’s compare the results.</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="releasememory.html#cb188-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
-<span id="cb188-2"><a href="releasememory.html#cb188-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fact</span>(<span class="dv">100</span>),</span>
-<span id="cb188-3"><a href="releasememory.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mem_fact</span>(<span class="dv">100</span>)</span>
-<span id="cb188-4"><a href="releasememory.html#cb188-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="releasememory.html#cb192-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
+<span id="cb192-2"><a href="releasememory.html#cb192-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fact</span>(<span class="dv">100</span>),</span>
+<span id="cb192-3"><a href="releasememory.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mem_fact</span>(<span class="dv">100</span>)</span>
+<span id="cb192-4"><a href="releasememory.html#cb192-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##           expr  min     lq    mean median     uq     max neval
-##      fact(100) 83.0 151.90 182.391  154.0 156.40  4214.8   100
-##  mem_fact(100) 88.7 122.15 758.983  178.4 185.85 59505.3   100</code></pre>
+##           expr    min      lq    mean   median       uq       max neval
+##      fact(100) 73.701 75.4010 134.686  78.0510  90.1515  4612.501   100
+##  mem_fact(100) 89.200 94.1505 632.618 101.3005 116.4005 51373.001   100</code></pre>
 <p>In this case we haven’t achieved much performance over the base code but if we run this function multiple times it will just fetch the results from RAM and save computations in which case it will be worth the effort. We will go through example in next chapters where memoise will be faster too…</p>
 <p>memoise is not the only package which does this sort of caching. There is a package by name <code>cachem</code> which is used in shiny and you will find some other products like redis which do the same thing but at scale. It’s an important technique to know for saving both time and memory.</p>
 </div>
-<div id="conclusion-8" class="section level2" number="11.4">
-<h2><span class="header-section-number">11.4</span> Conclusion</h2>
+<div id="conclusion-8" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> Conclusion<a href="releasememory.html#conclusion-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this chapter we learned how to free up memory for more usage in R. This should help you manage your R environment better. Let’s see what we have studied so far.</p>
 <ol style="list-style-type: decimal">
 <li>Don’t use rm unless necessary</li>
-<li>rm should only be used in an ETL or a manual script</li>
+<li>rm should only be used in an ETL or a function</li>
+<li>remove objects after you are done with it.</li>
 <li>Most of the time you can avoid rm</li>
 <li>use gc() inside heavy loops after every few iteration</li>
 <li>use gc() after every heavy transaction which takes more than a couple of seconds.</li>
@@ -531,7 +603,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -571,6 +642,10 @@ gitbook.start({
 "text": null
 },
 "download": ["best_r_practices.pdf", "best_r_practices.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }
