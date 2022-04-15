@@ -23,7 +23,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2022-04-04" />
+<meta name="date" content="2022-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -511,9 +511,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb188-3"><a href="releasememory.html#cb188-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bar</span>(<span class="fl">1e4</span>)</span>
 <span id="cb188-4"><a href="releasememory.html#cb188-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##        expr     min       lq     mean   median       uq     max neval
-##  foo(10000) 35.9884 37.68765 42.10543 40.42580 44.01300 93.2937   100
-##  bar(10000) 17.4109 18.22870 19.91110 19.28375 20.38545 34.1456   100</code></pre>
+##        expr     min       lq     mean   median      uq     max neval
+##  foo(10000) 34.0897 38.15025 40.96084 40.58305 43.0237 56.4424   100
+##  bar(10000) 16.8547 17.68535 20.41044 20.21155 21.6503 33.6360   100</code></pre>
 <p>We are saving almost half the time just because we are saving some intermediate calculations. You will be amazed to see how often can you do this. And it makes your code</p>
 <ul>
 <li><p>more performant</p></li>
@@ -569,9 +569,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb192-3"><a href="releasememory.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mem_fact</span>(<span class="dv">100</span>)</span>
 <span id="cb192-4"><a href="releasememory.html#cb192-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##           expr    min      lq    mean   median       uq       max neval
-##      fact(100) 73.701 75.4010 134.686  78.0510  90.1515  4612.501   100
-##  mem_fact(100) 89.200 94.1505 632.618 101.3005 116.4005 51373.001   100</code></pre>
+##           expr   min     lq     mean median     uq     max neval
+##      fact(100) 111.2 112.25  238.212  116.8 128.25 11954.2   100
+##  mem_fact(100) 131.5 135.20 1083.815  140.7 153.80 93511.0   100</code></pre>
 <p>In this case we haven’t achieved much performance over the base code but if we run this function multiple times it will just fetch the results from RAM and save computations in which case it will be worth the effort. We will go through example in next chapters where memoise will be faster too…</p>
 <p>memoise is not the only package which does this sort of caching. There is a package by name <code>cachem</code> which is used in shiny and you will find some other products like redis which do the same thing but at scale. It’s an important technique to know for saving both time and memory.</p>
 </div>

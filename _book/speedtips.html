@@ -23,7 +23,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2022-04-04" />
+<meta name="date" content="2022-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -411,12 +411,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb196-4"><a href="speedtips.html#cb196-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb196-5"><a href="speedtips.html#cb196-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##                            expr       min        lq       mean     median
-##  mapply(recurse_fib_rcpp, 1:30)   10.1744   10.3837   11.29749   11.02705
-##     mapply(recurse_fib_r, 1:30) 4508.8372 4582.8379 4790.99509 4673.42220
+##                            expr      min       lq       mean    median
+##  mapply(recurse_fib_rcpp, 1:30)    9.868    9.953   10.64601   10.3804
+##     mapply(recurse_fib_r, 1:30) 4460.362 4490.427 4662.18634 4615.9166
 ##         uq       max neval
-##    11.6206   13.3091    10
-##  5033.9028 5214.2881    10</code></pre>
+##    10.8899   12.9574    10
+##  4704.3369 5285.2032    10</code></pre>
 <p>While c++ is still at milliseconds R has reached to seconds and that too for only 30 fibonacci numbers. This is not acceptable at any level you work on. Even if you are writing basic scripts this is not permissible to be sitting on your computer at all. Let’s try to save memory by caching the results of previous operations.</p>
 <p>Lets try to save computation by using memoise package for caching intermediate results.</p>
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="speedtips.html#cb198-1" aria-hidden="true" tabindex="-1"></a>mem_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
@@ -437,12 +437,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb199-4"><a href="speedtips.html#cb199-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb199-5"><a href="speedtips.html#cb199-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##                            expr       min        lq      mean    median
-##  mapply(recurse_fib_rcpp, 1:30) 10.233202 11.046102 11.150221 11.210501
-##    mapply(memoised_fib_r, 1:30)  2.838101  2.955701  5.391361  3.086551
-##         uq     max neval
-##  11.367901 11.6672    10
-##   3.302001 26.1966    10</code></pre>
+##                            expr    min      lq     mean  median      uq     max
+##  mapply(recurse_fib_rcpp, 1:30) 9.8263 10.0558 10.36676 10.1093 10.7453 11.2718
+##    mapply(memoised_fib_r, 1:30) 2.5926  2.6744  5.44456  3.1384  3.6824 26.7838
+##  neval
+##     10
+##     10</code></pre>
 <p>We have beat the c++ just by a very simple optimization. But If we write a simple function that doesn’t use recursion we can still get better performance. Let’s write a better algorithm by writing a loop.</p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="speedtips.html#cb201-1" aria-hidden="true" tabindex="-1"></a>save_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
 <span id="cb201-2"><a href="speedtips.html#cb201-2" aria-hidden="true" tabindex="-1"></a>  fnum <span class="ot">&lt;-</span> fnum <span class="sc">+</span> <span class="dv">1</span></span>
@@ -463,12 +463,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb202-4"><a href="speedtips.html#cb202-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb202-5"><a href="speedtips.html#cb202-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##                            expr       min        lq      mean    median
-##  mapply(recurse_fib_rcpp, 1:30) 10272.001 10412.201 11000.041 11141.851
-##        mapply(save_fib_r, 1:30)   163.402   170.201  1315.531   190.601
-##         uq     max neval
-##  11261.902 12427.1    10
-##    308.101 11071.5    10</code></pre>
+##                            expr     min      lq     mean  median      uq
+##  mapply(recurse_fib_rcpp, 1:30) 10166.2 10847.7 11299.89 11180.5 11378.4
+##        mapply(save_fib_r, 1:30)   163.3   179.8  1306.98   195.4   253.3
+##      max neval
+##  13775.1    10
+##  11206.7    10</code></pre>
 <p>Now we are beating it with around 40x speed or more. But I think we can do better. This functions is vectorized but I am only asking for a single number I am doing the same calculations multiple time inside mapply function. If instead of using mapply I call the entire vec directly I will save computation.</p>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="speedtips.html#cb204-1" aria-hidden="true" tabindex="-1"></a>save_vec_fib_r <span class="ot">&lt;-</span> <span class="cf">function</span>(fnum){</span>
 <span id="cb204-2"><a href="speedtips.html#cb204-2" aria-hidden="true" tabindex="-1"></a>  vec <span class="ot">&lt;-</span> <span class="fu">integer</span>(fnum)</span>
@@ -488,12 +488,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb205-4"><a href="speedtips.html#cb205-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb205-5"><a href="speedtips.html#cb205-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##                        expr       min        lq      mean     median        uq
-##  mapply(save_fib_r, 1:1000) 79386.700 79670.001 82033.061 82016.9005 84438.901
-##        save_vec_fib_r(1000)   150.301   155.801  1197.361   156.3005   171.601
-##      max neval
-##  85510.4    10
-##  10460.4    10</code></pre>
+##                        expr     min      lq     mean  median      uq      max
+##  mapply(save_fib_r, 1:1000) 83119.3 86104.5 92578.22 94001.7 97719.7 100297.0
+##        save_vec_fib_r(1000)   151.3   156.3  1009.85   175.6   299.9   8317.9
+##  neval
+##     10
+##     10</code></pre>
 <p>Now the difference is not only huge but we are calculating 1000 fibonacci numbers instead of just 30 we were working on previously. But I agree that I didn’t gave c++ a chance. Languages have come and gone c++ have stood the test of time. It’s the fastest language there is and R is nowhere close to it. I was just trying to compare an optimized version with an un-optimized one.</p>
 <p>Let’s rewrite this same function in Rcpp just to see how far we are from the fastest programming language.</p>
 <div class="sourceCode" id="cb207"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span id="cb207-1"><a href="speedtips.html#cb207-1" aria-hidden="true" tabindex="-1"></a></span>
@@ -520,12 +520,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb208-3"><a href="speedtips.html#cb208-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">save_vec_fib_r</span>(<span class="fl">1e5</span>)</span>
 <span id="cb208-4"><a href="speedtips.html#cb208-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##                   expr       min         lq      mean     median        uq
-##        fib_rcpp(1e+05)   310.201   401.4015   444.652   424.8015   458.651
-##  save_vec_fib_r(1e+05) 15309.201 15842.5005 20053.541 17113.0505 22962.951
-##        max neval
-##   2013.002   100
-##  46033.400   100</code></pre>
+##                   expr     min      lq      mean  median       uq     max neval
+##        fib_rcpp(1e+05)   310.5   396.1   442.181   434.7   468.25  1797.3   100
+##  save_vec_fib_r(1e+05) 15241.6 16230.8 20968.461 18505.0 23702.95 50231.4   100</code></pre>
 <p>So optimized R is about <code>28-30</code> times slower than the optimized rcpp code, which is a very good spot to be at. And to top it off now we are working on 1e5 numbers and that too within milliseconds in R. I wouldn’t loose a sleep over it.</p>
 <p>So always try to optimize the language before going anywhere else. R is the most easiest language to write slow code in but the code can be optimized to 1000x easily with a few hacks like I just did.</p>
 </div>
@@ -539,7 +536,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##     x[list] &lt;- values
 ##     x
 ## }
-## &lt;bytecode: 0x000000002c371b68&gt;
+## &lt;bytecode: 0x000000002a742600&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p>It’s no more than a basic function you could write yourself. Let’s check another one of my favorite function.</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="speedtips.html#cb212-1" aria-hidden="true" tabindex="-1"></a>stopifnot</span></code></pre></div>
@@ -597,7 +594,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##     }
 ##     invisible()
 ## }
-## &lt;bytecode: 0x0000000015470fe8&gt;
+## &lt;bytecode: 0x0000000015480d38&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p>Again it’s basic R function, a huge one though. I wouldn’t recommend you to rewrite it but if you just need a stop call on a basic condition you will be writing faster code with just simple <code>if</code> and <code>stop</code> function.</p>
 <p>Let’s see that again in other base code.</p>
@@ -639,7 +636,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         ans[npos] &lt;- rep(no, length.out = len)[npos]
 ##     ans
 ## }
-## &lt;bytecode: 0x0000000012bda1a0&gt;
+## &lt;bytecode: 0x0000000012bda0e8&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p>You might think ifelse is an optimized function in base R which is faster and optimized at the compiler level or interpretator level. But in fact if you read the function carefully and realize that it’s wasting on checking if you are passing an atomic vector and you are better off just using the last 5-6 lines of the function for a faster result.</p>
 <p>These are just the basic examples I could think out of my mind and there are tons of such example where you could optimize a function just by reading it and realizing you might not need so much of hassle in the first place.</p>
@@ -689,20 +686,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb220-20"><a href="speedtips.html#cb220-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">eager_return</span>(<span class="fl">1e5</span>)</span>
 <span id="cb220-21"><a href="speedtips.html#cb220-21" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: nanoseconds
-##                 expr     min      lq       mean    median      uq      max
-##   lazy_return(1e+05)     500     702   27024.03    1150.5    4401  2414800
-##  eager_return(1e+05) 5332701 5460302 6216472.09 5711251.5 6230101 12221600
-##  neval
-##    100
-##    100</code></pre>
+##                 expr     min      lq    mean  median      uq      max neval
+##   lazy_return(1e+05)     400     850   27629    1850    5650  2427900   100
+##  eager_return(1e+05) 5243900 5516000 6539512 5986550 7390950 11714000   100</code></pre>
 <p>ALTREP based vectors have the same effect as well. R hasn’t started evaluating <code>y</code> in function lazy_return while it evaluated them in eager_return. Just because <code>y</code> are not evaluated in lazy_return while they are evaluated in the eager_return.</p>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="speedtips.html#cb222-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">lazy_return</span>(<span class="fl">1e3</span>)</span>
 <span id="cb222-2"><a href="speedtips.html#cb222-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">eager_return</span>(<span class="fl">1e3</span>)</span>
 <span id="cb222-3"><a href="speedtips.html#cb222-3" aria-hidden="true" tabindex="-1"></a> </span>
 <span id="cb222-4"><a href="speedtips.html#cb222-4" aria-hidden="true" tabindex="-1"></a><span class="fu">.Internal</span>(<span class="fu">inspect</span>(x))</span></code></pre></div>
-<pre><code>## @0x000000002d4e7248 13 INTSXP g0c0 [REF(65535)]  1 : 1000 (compact)</code></pre>
+<pre><code>## @0x000000002d4c47c8 13 INTSXP g0c0 [REF(65535)]  1 : 1000 (compact)</code></pre>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="speedtips.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.Internal</span>(<span class="fu">inspect</span>(y))</span></code></pre></div>
-<pre><code>## @0x000000002b31fc98 13 INTSXP g0c7 [REF(2)] (len=1000, tl=0) 1,2,3,4,5,...</code></pre>
+<pre><code>## @0x000000002a44b688 13 INTSXP g0c7 [REF(2)] (len=1000, tl=0) 1,2,3,4,5,...</code></pre>
 <p>People normally assume that for loops in R are very slow this is the reason eager_return is slow. But when you inspect the internal structure of both <code>x and y</code> you will see that x is a compact representation of number 1:1000 and thus it’s not using memory and it’s not even evaluated yet. While Y is a full fledged vector with all the numbers from 1 to 1000 stored in it. It consumes memory and time.</p>
 <p>While all the other calculations on these vectors will work exactly the same and it might not take as much time as you would assume.</p>
 <div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="speedtips.html#cb226-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
@@ -710,9 +704,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb226-3"><a href="speedtips.html#cb226-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">full_vector =</span> y <span class="sc">+</span> y</span>
 <span id="cb226-4"><a href="speedtips.html#cb226-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##         expr   min    lq    mean median    uq   max neval
-##       altrep 2.401 2.601 3.01806  2.901 3.402 4.801   100
-##  full_vector 2.400 2.501 2.90997  2.701 3.101 9.301   100</code></pre>
+##         expr min  lq  mean median   uq  max neval
+##       altrep 2.4 2.6 3.004    2.9 3.20  6.5   100
+##  full_vector 2.4 2.6 3.004    2.8 3.15 10.2   100</code></pre>
 <p>Other such example would be not evaluating a promise until it’s needed. In very simple terms R divides every operations into promises that have to be evaluated at a later stage and only when they are needed, Otherwise they might not be evaluated at all.</p>
 <div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="speedtips.html#cb228-1" aria-hidden="true" tabindex="-1"></a>func <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb228-2"><a href="speedtips.html#cb228-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(){</span>
@@ -757,8 +751,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb230-11"><a href="speedtips.html#cb230-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##  expr      min       lq     mean   median       uq      max neval
-##    [[ 146.0301 150.2259 151.9149 150.8220 153.7978 160.1090    10
-##     [ 149.4573 151.7156 161.7401 156.1614 164.6089 194.1143    10</code></pre>
+##    [[ 152.3998 156.0132 169.3031 163.3575 166.3210 210.0306    10
+##     [ 148.6896 158.0594 170.2891 170.5148 178.3906 195.2633    10</code></pre>
 <p>The difference is just in milliseconds but there is a difference non the less. If you use it precisely you might save a few millisecond when you need them with just a basic understanding that this too could help you at times.</p>
 <p>Best way to navigate a nested list is through <code>[[</code> function by passing a character vector. Take this as an example</p>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="speedtips.html#cb232-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
@@ -831,9 +825,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb238-13"><a href="speedtips.html#cb238-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">optimized =</span> <span class="fu">year_2_sec_opti</span>(<span class="dv">1</span><span class="sc">:</span><span class="fl">2e5</span>)</span>
 <span id="cb238-14"><a href="speedtips.html#cb238-14" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##       expr     min      lq      mean  median        uq      max neval
-##       norm 871.801 955.902 1160.9051 998.251 1074.8510 7833.601   100
-##  optimized 459.802 509.101  841.3991 530.901  613.3015 8812.701   100</code></pre>
+##       expr   min      lq     mean  median     uq     max neval
+##       norm 989.1 1012.35 1528.136 1362.55 1488.1 10291.8   100
+##  optimized 521.9  531.45  996.061  674.70  753.6  9877.4   100</code></pre>
 <p>Even though the difference is very small there is a difference none the less.</p>
 <p>It goes for <code>(</code> parenthesis and <code>{</code> braces too… In R this things are functions and are actually evaluated before a result is displayed. Let’s use the same example above but with many parenthesis.</p>
 <div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="speedtips.html#cb240-1" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
@@ -843,9 +837,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb240-5"><a href="speedtips.html#cb240-5" aria-hidden="true" tabindex="-1"></a>    })</span>
 <span id="cb240-6"><a href="speedtips.html#cb240-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##            expr     min       lq      mean   median       uq      max neval
-##  without_braces 459.301 468.2005  615.1549 497.8005 550.6015   7286.8   100
-##     with_braces 457.501 473.6010 2577.2030 510.3515 584.2510 188225.6   100</code></pre>
+##            expr   min     lq     mean median     uq      max neval
+##  without_braces 464.8 519.20  800.364 542.00 716.65   9201.7   100
+##     with_braces 471.4 523.55 2697.885 543.05 799.10 191434.0   100</code></pre>
 <p>R is not so slow language anymore so these differences are very small to notice but you can make it a habit to use only minimum code needed. This helps.</p>
 <blockquote>
 <p><strong><em>Fun fact:</em></strong> you can only nest a function up to 50 levels after that it breaks. I have tried it before and counted numbers. Don’t ask me why…</p>
@@ -857,7 +851,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="speedtips.html#cb242-1" aria-hidden="true" tabindex="-1"></a>integer</span></code></pre></div>
 <pre><code>## function (length = 0L) 
 ## .Internal(vector(&quot;integer&quot;, length))
-## &lt;bytecode: 0x0000000012bb6df8&gt;
+## &lt;bytecode: 0x0000000012bb6d40&gt;
 ## &lt;environment: namespace:base&gt;</code></pre>
 <p>Here as you can read R is called an internal method by name vector and passing arguments to it. We can directly use this function as well.</p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="speedtips.html#cb244-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">.Internal</span>(<span class="fu">vector</span>(<span class="st">&quot;integer&quot;</span>, <span class="dv">10</span>))</span>
@@ -888,9 +882,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb248-3"><a href="speedtips.html#cb248-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">norm =</span> <span class="fu">as.Date</span>(<span class="dv">10000</span>, <span class="at">origin =</span> <span class="fu">as.Date</span>(<span class="st">&quot;1970-01-01&quot;</span>))</span>
 <span id="cb248-4"><a href="speedtips.html#cb248-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##  expr    min     lq     mean  median      uq     max neval
-##  oops 58.101 60.701 70.70292 66.5505 76.3010 165.902   100
-##  norm 62.102 64.251 76.00916 70.6010 80.6505 200.202   100</code></pre>
+##  expr  min    lq   mean median    uq   max neval
+##  oops 58.0 59.90 63.161  60.60 62.45 126.1   100
+##  norm 62.5 63.95 68.559  64.65 66.10 190.1   100</code></pre>
 <p>It might not matter much in a single call but in a loop we can definitely use all these tricks to speed up our code.</p>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="speedtips.html#cb250-1" aria-hidden="true" tabindex="-1"></a>bad_code <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb250-2"><a href="speedtips.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -927,8 +921,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb251-5"><a href="speedtips.html#cb251-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##                expr      min       lq     mean   median       uq      max neval
-##     bad_code(10000) 730.6157 737.6167 742.2176 742.4049 745.8682 751.5537    10
-##  faster_code(10000) 685.1751 687.4609 696.0408 694.5571 700.6268 713.7365    10</code></pre>
+##     bad_code(10000) 729.8388 742.1024 775.5812 773.6850 812.1469 822.1572    10
+##  faster_code(10000) 687.1609 696.7501 716.1808 702.5689 718.0784 790.9458    10</code></pre>
 <p>as you can see we can extract a few more drops from our CPU if we use these small techniques. It might not be much but again it’s not too much to remember. And if you use them precisely you can save seconds off an entire app by saving milliseconds on each operation.</p>
 </div>
 </div>

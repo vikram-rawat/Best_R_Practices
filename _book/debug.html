@@ -23,7 +23,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2022-04-04" />
+<meta name="date" content="2022-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -458,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             &quot;input...\n&quot;)
 ##     UseMethod(&quot;tokens&quot;)
 ## }
-## &lt;bytecode: 0x0000000026a22638&gt;
+## &lt;bytecode: 0x0000000026a21b28&gt;
 ## &lt;environment: namespace:quanteda&gt;</code></pre>
 <p>And you can check which methods are available for which classes by using</p>
 <div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="debug.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">methods</span>(<span class="at">class =</span> <span class="st">&quot;dfm&quot;</span>)</span></code></pre></div>
@@ -511,7 +511,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         &quot;all&quot;), several.ok = TRUE)
 ##     UseMethod(&quot;textstat_lexdiv&quot;)
 ## }
-## &lt;bytecode: 0x0000000022c0b500&gt;
+## &lt;bytecode: 0x0000000022c0acc0&gt;
 ## &lt;environment: namespace:quanteda.textstats&gt;</code></pre>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="debug.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># works but the implementation is still hidden because method will be decided based on the class provided to the method at the exact moment of calculation</span></span></code></pre></div>
 <p>But If you still want to know how to know the definition of a method of the class. Just use this code.</p>
@@ -550,7 +550,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##             &quot;all&quot;]
 ##     compute_lexdiv_dfm_stats(x, measure = measure, log.base = log.base)
 ## }
-## &lt;bytecode: 0x000000002a1a1cf8&gt;
+## &lt;bytecode: 0x000000002a1a6530&gt;
 ## &lt;environment: namespace:quanteda.textstats&gt;</code></pre>
 <p>If you want to understand more of this learn OOPS in R. R has multiple object oriented systems and R is a highly Object oriented programming but the style is different from other languages. This book is all about best practices in R and thus we are not going to go deep into fundamentals of R programming here but this trick is worth knowing.</p>
 <p>These tricks will help you read code that is loaded on your environment but you have not written them. Reading someone else’s code makes you a better coder. And it helps you understand why this code is breaking up.</p>

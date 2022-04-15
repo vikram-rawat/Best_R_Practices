@@ -23,7 +23,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2022-04-04" />
+<meta name="date" content="2022-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -417,10 +417,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb254-14"><a href="loops.html#cb254-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb254-15"><a href="loops.html#cb254-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##        expr       min      lq      mean    median        uq       max neval
-##  set_df_col 10.267001 10.5887 11.218911 11.138451 11.767000 12.431101    10
-##  set_dt_num  3.045801  3.0838  3.822981  3.623002  3.837501  6.831201    10
-##  set_dt_col  3.152602  3.4841  3.922271  3.580301  3.903402  7.084401    10</code></pre>
+##        expr     min      lq     mean   median      uq     max neval
+##  set_df_col 10.0359 10.5351 11.66971 11.63480 12.7045 13.6789    10
+##  set_dt_num  2.9688  3.0653  3.63923  3.19435  3.6042  7.0471    10
+##  set_dt_col  3.1091  3.3247  4.80840  3.78055  6.3296  9.2437    10</code></pre>
 <p>This Code used to give me around 200x increment over base R in previous versions. From R 4.0 onward R is managing memory pretty efficiently and the base is performing better in this test. Let me try it on a larger data set.</p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="loops.html#cb256-1" aria-hidden="true" tabindex="-1"></a>n_row <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
 <span id="cb256-2"><a href="loops.html#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -439,9 +439,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb256-15"><a href="loops.html#cb256-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##        expr       min        lq      mean    median        uq       max neval
-##  set_df_col 5348.5332 5490.4668 5675.8209 5587.4427 5923.5778 6119.5538    10
-##  set_dt_num  313.2469  325.0008  358.3290  353.7714  385.9434  414.7643    10
-##  set_dt_col  326.3563  337.5951  385.5643  351.7514  436.3054  493.8522    10</code></pre>
+##  set_df_col 5456.6562 5569.9672 6513.7164 6006.7292 7862.2280 8453.2321    10
+##  set_dt_num  336.3007  341.2456  477.2592  409.8479  674.0167  717.1259    10
+##  set_dt_col  336.9720  344.8514  406.3730  370.7787  381.0362  733.9936    10</code></pre>
 <p>Now we can see some improvement over the base. On bigger data set we are getting around 10x+ speed with data.table. It was just to establish the fact that data.table performs well over bigger data sets. Yet we can still get a better performance by moving to a lower level data structure.</p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="loops.html#cb258-1" aria-hidden="true" tabindex="-1"></a>n_row <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
 <span id="cb258-2"><a href="loops.html#cb258-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -459,10 +459,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb258-14"><a href="loops.html#cb258-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb258-15"><a href="loops.html#cb258-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##          expr      min       lq      mean    median       uq      max neval
-##  set_list_col  23.9616  24.4937  28.42005  26.80065  28.8722  38.2675    10
-##    set_dt_num 311.7625 314.1495 322.61970 323.88640 327.3298 337.5023    10
-##    set_dt_col 329.6029 337.0087 364.85992 347.76210 363.7729 523.5365    10</code></pre>
+##          expr      min       lq     mean    median       uq      max neval
+##  set_list_col  23.4074  30.3921  48.1672  41.53045  72.6099  81.8664    10
+##    set_dt_num 310.5795 320.7305 416.7042 332.21970 447.6012 689.7944    10
+##    set_dt_col 317.2054 335.0199 507.7914 405.86305 683.1480 968.7802    10</code></pre>
 <p>Just by moving from data.frame to list we can get a substantial increment over the base. Now we are close to 400x over R data.table. Which is huge. But wait we can do it better. We haven’t tried the most atomic level structure in R the VECTORS. Let’s benchmark it again with vectors.</p>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="loops.html#cb260-1" aria-hidden="true" tabindex="-1"></a>n_row <span class="ot">&lt;-</span> <span class="fl">1e5</span></span>
 <span id="cb260-2"><a href="loops.html#cb260-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -482,9 +482,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb260-16"><a href="loops.html#cb260-16" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb260-17"><a href="loops.html#cb260-17" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##          expr       min       lq     mean   median       uq     max neval
-##  set_list_col 23.843401 24.54130 26.79498 25.82325 27.28535 38.4216   100
-##    set_vector  9.725901 10.12715 11.29298 10.69910 11.14740 25.6903   100</code></pre>
+##          expr     min       lq     mean   median       uq     max neval
+##  set_list_col 23.0302 23.32585 26.23807 24.56875 28.06060 40.1303   100
+##    set_vector  9.4297  9.61575 10.57781  9.78250 10.96405 16.5537   100</code></pre>
 <p>We were able to squeeze 2x + speed with base R vector. So finally we have vector that can do the entire computation at 6ms while the worst dataframe would do it at 7700ms. Which makes our code around 1200x faster. All you need to do is to remember can we do it with a simpler data-type.</p>
 <p>This is the best change you can make in your code to make it run faster. I always prefer looping over a vector like 90% of the time. In some cases where it’s not possible I like to convert the dataframe to list and run a loop and then convert it back to a dataframe. Because dataframe itself is a list with some constraints. Remembering this will help you a lot in speeding up your code.</p>
 </div>
@@ -510,8 +510,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb262-7"><a href="loops.html#cb262-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##     expr     min      lq     mean  median      uq     max neval
-##   lapply 48.1757 50.2958 52.84344 51.1705 52.7505 70.8977    10
-##  forloop 49.9527 50.4819 52.87576 52.3894 55.2797 58.3301    10</code></pre>
+##   lapply 46.5914 47.0127 53.40343 50.2004 55.7564 75.0098    10
+##  forloop 48.3364 48.7695 56.02843 51.5190 63.2761 71.9482    10</code></pre>
 <p>I have tested this on bigger vector and the results are almost identical. There difference is not too much. but lapply gives you optimized loop to begin and thus you should always prefer a lapply where ever it’s possible but you should not be scared to use a loop either as the speed is mostly the same.</p>
 </div>
 <div id="nested-lapply-have-same-speed-as-a-normal-lapply" class="section level3 hasAnchor" number="14.3.2">
@@ -530,9 +530,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb264-12"><a href="loops.html#cb264-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb264-13"><a href="loops.html#cb264-13" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##    expr     min      lq     mean   median      uq     max neval
-##  nested 51.1481 54.0475 55.71928 54.53290 56.1110 66.4323    10
-##  normal 54.4771 56.5014 57.85445 57.09725 58.1304 63.5937    10</code></pre>
+##    expr     min      lq     mean   median     uq     max neval
+##  nested 48.6599 49.3330 51.24001 50.09525 52.664 58.8293    10
+##  normal 51.2088 51.5173 53.76280 52.46060 53.986 63.2061    10</code></pre>
 <p>as you can see that nesting multiple lapply function doesn’t slow the code. However it’s not a standard practice to do it and I would not recommend anybody to make your code harder to read by nesting multiple lapply functions.</p>
 <p>So let me summarize it lapply is better than loops but it’s no where near the speed of a vectorized code. Let’s talk about the fastest way to speed up your code.</p>
 </div>
@@ -611,12 +611,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb271-3"><a href="loops.html#cb271-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">join_text_saved</span>(<span class="at">df =</span> main_table)</span>
 <span id="cb271-4"><a href="loops.html#cb271-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##                              expr      min       lq     mean   median       uq
-##   join_text_norm(df = main_table) 6.290101 6.889651 7.455970 7.189351 7.535502
-##  join_text_saved(df = main_table) 5.745501 6.085952 6.685338 6.473151 7.051451
+##                              expr    min      lq     mean  median      uq
+##   join_text_norm(df = main_table) 6.1648 6.39855 6.987132 6.60230 7.26555
+##  join_text_saved(df = main_table) 5.5528 5.78270 6.237444 5.96095 6.50705
 ##      max neval
-##  15.2699   100
-##  11.5883   100</code></pre>
+##  11.8601   100
+##  11.5658   100</code></pre>
 <p>We did not save much on it but we still saved one millisecond on just a 1000 loop. It’s an excellent practice of not to repeat calculation. Especially when you are calculating multiple things again and again.</p>
 <p>Now coming back to the point. You could try this approach just like every other programming language does. Or you can try a vectorized approach with the built in paste function with collapse argument.</p>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="loops.html#cb273-1" aria-hidden="true" tabindex="-1"></a>collapsed_fun <span class="ot">&lt;-</span> <span class="cf">function</span>(</span>
@@ -646,10 +646,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb275-4"><a href="loops.html#cb275-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collapsed_fun</span>()</span>
 <span id="cb275-5"><a href="loops.html#cb275-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##               expr      min       lq     mean   median       uq       max neval
-##   join_text_norm() 6.353301 6.641401 7.238728 7.070050 7.397151 12.855901   100
-##  join_text_saved() 5.706501 5.964101 6.506474 6.430801 6.640600 11.475901   100
-##    collapsed_fun() 1.500201 1.706001 1.887568 1.792001 1.930351  7.804401   100</code></pre>
+##               expr    min      lq     mean  median      uq     max neval
+##   join_text_norm() 6.1499 6.36125 6.966697 6.59690 7.27055 12.5162   100
+##  join_text_saved() 5.5705 5.72995 6.385606 6.19650 6.78010 10.9338   100
+##    collapsed_fun() 1.5158 1.65620 1.831994 1.70615 1.85835  8.4401   100</code></pre>
 <p>Collapsed function is faster than all the other approach for just 1000 loops. Imagine doing it for 1 million. Vectorized function in those cases will be 1000 times faster than loops.</p>
 <p>The real reason for that is vectorized code uses optimized c for looping which is almost always faster than loops in R. And at times you can get 1000x speed compared to a normal loop. and Thus sometimes you can get away with doing more with vectors than with loops.</p>
 </div>
@@ -708,9 +708,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb280-3"><a href="loops.html#cb280-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">vectorized =</span> <span class="fu">if_vector</span>(x, size)</span>
 <span id="cb280-4"><a href="loops.html#cb280-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##        expr     min      lq      mean   median       uq      max neval
-##     minimal 265.301 269.501 288.16599 273.4010 290.3510  440.201   100
-##  vectorized  28.502  30.101  93.47598  31.6005  32.8015 6133.701   100</code></pre>
+##        expr   min     lq    mean median     uq    max neval
+##     minimal 264.5 270.10 361.012 297.45 455.15  777.8   100
+##  vectorized  28.0  30.35  94.636  31.65  34.65 6033.2   100</code></pre>
 </div>
 </div>
 <div id="understanding-non-vectorized-code" class="section level2 hasAnchor" number="14.5">
@@ -770,12 +770,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb285-4"><a href="loops.html#cb285-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb285-5"><a href="loops.html#cb285-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##                             expr     min      lq     mean   median      uq
-##    vect_all_true(df = binary_df) 32.2671 34.5365 36.24843 35.39615 36.8008
-##  scalar_all_true(df = binary_df) 17.7967 19.0181 21.86647 22.37185 22.9407
+##                             expr     min      lq     mean  median      uq
+##    vect_all_true(df = binary_df) 30.8115 33.4569 35.23096 34.4731 35.7077
+##  scalar_all_true(df = binary_df) 16.3355 16.5239 19.38502 18.4908 20.1753
 ##      max neval
-##  43.8001    10
-##  26.7061    10</code></pre>
+##  42.2481    10
+##  25.6194    10</code></pre>
 <p>I know this is not an excellent example because it can be vectorized easily but in the cases where you are working on individual scalar values using non-vectorized code gives you speed. In our current example we are getting twice the speed which is enough for such a small data set and the difference will increase with the number of rows.</p>
 </div>
 <div id="do-as-little-as-possible-inside-a-loop" class="section level2 hasAnchor" number="14.6">
@@ -831,10 +831,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb288-23"><a href="loops.html#cb288-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sum_salary</span>(<span class="at">df =</span> hr_df)</span>
 <span id="cb288-24"><a href="loops.html#cb288-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##                    expr     min       lq     mean  median       uq     max
-##  sum_salary(df = hr_df) 12.7145 13.54815 14.39076 13.9214 14.26445 32.7294
-##  neval
-##    100</code></pre>
+##                    expr     min       lq     mean median      uq     max neval
+##  sum_salary(df = hr_df) 12.1586 12.72295 13.60477 13.094 13.7508 33.4115   100</code></pre>
 <p>I am doing as much vectorized calculation as possible in this scenario and this is the reason this code runs pretty fast. If I write a loop that goes through all the 10^{5} rows then I would get around 100x slower speed. This is a neat trick you must use whenever you can. Do as little as possible inside a loop.</p>
 </div>
 </div>

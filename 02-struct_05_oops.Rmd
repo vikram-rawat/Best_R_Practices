@@ -1,6 +1,23 @@
 # OOPS {#oops}
 
+`Object Oriented Programming System` or `oops` is a common practice among programmers. It's useful when you want to write a software for some other software engineer to use. Objects are a way of organizing your data and the functions together and it's so popular that languages like **JAVA** will not allow you to move away from the oops paradigm for even a bit.
 
 ## What is oops
 
+Oops in short means `keeping your data and functions together to form an object and those objects can be used in hierarchical order to create a world view`. When your project grows in size problem arises in keeping the structure together and organizing thousands of functions and data.
+
+When functions are attached to an object they are called `methods`.
+
 ## When to use it
+
+Oops solves real world problems, I totally believe softwares like ms-Excel and Outlook can't be written without oops. Someone could try a functional approach to the problem but oops are more ideal for these situations. Even in day to day life we can see that web frameworks are written in object oriented programming (like Shiny, plumber, restRserve and ambiorix all are written in R6) but the web developers usually use only functional programming.
+
+Let's take my own package for example:
+
+```{r}
+
+read.sql::get_sql_query
+
+```
+
+This package just reads an SQL file and execute it on a connection. If you read the code carefully you will realize that it reads the file everytime you execute this code. It may take just a few miliseconds but it will open the file, read it and close the file, create a query after interpolating query parameters again and again. Which is wastage of resources. This is an ideal package to turn into oops framework. Where you store all the information regarding a SQL query once and then execute it again and again.

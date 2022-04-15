@@ -23,7 +23,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2022-04-04" />
+<meta name="date" content="2022-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -383,24 +383,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb291-4"><a href="multithreading.html#cb291-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">single =</span> nyc[,.(<span class="at">count =</span> .N, <span class="at">total_dist =</span>  <span class="fu">sum</span>(distance)),.(year,month, day)]</span>
 <span id="cb291-5"><a href="multithreading.html#cb291-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##    expr      min       lq     mean median      uq     max neval
-##  single 9.797101 10.51715 11.99587 11.064 11.4807 25.6034   100</code></pre>
+##    expr    min       lq     mean   median       uq     max neval
+##  single 9.5744 10.04305 11.74682 10.70685 11.15145 25.2111   100</code></pre>
 <div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="multithreading.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setDTthreads</span>(2L)</span>
 <span id="cb293-2"><a href="multithreading.html#cb293-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb293-3"><a href="multithreading.html#cb293-3" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
 <span id="cb293-4"><a href="multithreading.html#cb293-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">double =</span> nyc[,.(<span class="at">count =</span> .N, <span class="at">total_dist =</span>  <span class="fu">sum</span>(distance)),.(year,month, day)]</span>
 <span id="cb293-5"><a href="multithreading.html#cb293-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##    expr      min       lq     mean   median       uq     max neval
-##  double 7.263401 7.733701 9.215801 8.299901 8.796251 19.6011   100</code></pre>
+##    expr    min     lq     mean median      uq     max neval
+##  double 7.1453 7.5656 8.889873 7.9741 8.38225 18.7695   100</code></pre>
 <div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="multithreading.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setDTthreads</span>(4L)</span>
 <span id="cb295-2"><a href="multithreading.html#cb295-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb295-3"><a href="multithreading.html#cb295-3" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(</span>
 <span id="cb295-4"><a href="multithreading.html#cb295-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">double =</span> nyc[,.(<span class="at">count =</span> .N, <span class="at">total_dist =</span>  <span class="fu">sum</span>(distance)),.(year,month, day)]</span>
 <span id="cb295-5"><a href="multithreading.html#cb295-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: milliseconds
-##    expr      min       lq     mean   median      uq     max neval
-##  double 6.776101 7.322401 8.675783 7.705201 7.97685 20.0717   100</code></pre>
+##    expr    min      lq    mean  median      uq     max neval
+##  double 6.6381 6.98075 8.25967 7.36465 7.63495 19.6903   100</code></pre>
 </div>
 <div id="be-cautious-with-database" class="section level2 hasAnchor" number="15.2">
 <h2><span class="header-section-number">15.2</span> Be Cautious with Database<a href="multithreading.html#be-cautious-with-database" class="anchor-section" aria-label="Anchor link to header"></a></h2>

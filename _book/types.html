@@ -23,7 +23,7 @@
 <meta name="author" content="Vikram Singh Rawat" />
 
 
-<meta name="date" content="2022-04-04" />
+<meta name="date" content="2022-04-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -401,9 +401,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb81-11"><a href="types.html#cb81-11" aria-hidden="true" tabindex="-1"></a><span class="at">times =</span> <span class="dv">10</span></span>
 <span id="cb81-12"><a href="types.html#cb81-12" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>## Unit: microseconds
-##        expr      min       lq      mean   median       uq      max neval
-##  vectorized  105.700  106.300  119.3107  109.951  111.201  211.401    10
-##      scalar 5789.201 6394.801 7294.5508 7613.251 7864.601 8228.501    10</code></pre>
+##        expr     min      lq     mean   median      uq      max neval
+##  vectorized   113.9   165.9 20821.27   170.95   175.6 206748.8    10
+##      scalar 11103.9 12991.6 13555.62 13487.10 14735.5  15695.1    10</code></pre>
 <p>Even then I would ask you to go ahead with R because the difference will most probably in 1-2 milliseconds which will never impact your performance any serious way. But this is something you should remember that vectorized R is way faster than even python but scalar manipulations in R are a bit slower. Choose vectorized version of the code whenever possible even if you do a bit more steps in it, it will still be faster than the scalar versions.</p>
 </div>
 <div id="dates-are-basically-integers-under-the-hood." class="section level3 hasAnchor" number="10.1.2">
@@ -413,13 +413,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="types.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;Date&quot;</span></span>
 <span id="cb85-2"><a href="types.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.integer</span>(x)</span></code></pre></div>
-<pre><code>## [1] 19086</code></pre>
+<pre><code>## [1] 19097</code></pre>
 <p>This number means it has been 18 thousand 7 hundred days since 1970 which is roughly (365 * 50)</p>
 </div>
 <div id="posixlt-are-basically-lists-under-the-hood" class="section level3 hasAnchor" number="10.1.3">
 <h3><span class="header-section-number">10.1.3</span> POSIXlt are basically lists under the hood<a href="types.html#posixlt-are-basically-lists-under-the-hood" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="types.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(x)</span></code></pre></div>
-<pre><code>## [1] 19086</code></pre>
+<pre><code>## [1] 19097</code></pre>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="types.html#cb89-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">Sys.time</span>()</span>
 <span id="cb89-2"><a href="types.html#cb89-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.POSIXlt</span>(y)</span>
 <span id="cb89-3"><a href="types.html#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
@@ -428,16 +428,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb91-2"><a href="types.html#cb91-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb91-3"><a href="types.html#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unclass</span>(y)</span></code></pre></div>
 <pre><code>## $sec
-## [1] 9.007679
+## [1] 31.12392
 ## 
 ## $min
-## [1] 52
+## [1] 42
 ## 
 ## $hour
-## [1] 21
+## [1] 9
 ## 
 ## $mday
-## [1] 4
+## [1] 15
 ## 
 ## $mon
 ## [1] 3
@@ -446,10 +446,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [1] 122
 ## 
 ## $wday
-## [1] 1
+## [1] 5
 ## 
 ## $yday
-## [1] 93
+## [1] 104
 ## 
 ## $isdst
 ## [1] 0
